@@ -1,5 +1,5 @@
 <?php
-    class EMod implements EPersona{
+    class EMod implements EPerson{
 
     }
 ?>
