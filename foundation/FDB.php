@@ -3,7 +3,7 @@
         private $connection;
         private $instance;
 
-        function __construct() {
+        private function __construct() {
 
         }
 
