@@ -3,5 +3,5 @@
         private $nMaxPlayers;
         private $nPlayers;
         private $time;
-        }
+    }
 ?>
