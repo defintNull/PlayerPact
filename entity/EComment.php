@@ -1,5 +1,5 @@
 <?php
-    class Comment implements Text{
-        
+    class EComment implements EText{
+
     }
 ?>

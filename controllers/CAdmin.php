@@ -4,7 +4,7 @@
 
         }
 
-        function runQuery(str $query){
+        function runQuery(string $query){
             
         }
     }

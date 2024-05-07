@@ -1,5 +1,5 @@
 <?php
-    class EMessage implements Text{
+    class EMessage implements EText{
         
     }
 ?>

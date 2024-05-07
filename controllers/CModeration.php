@@ -8,7 +8,7 @@
 
         }
 
-        function findUser(int $idUser, str $name){
+        function findUser(int $idUser, string $name){
 
         }
 
@@ -16,7 +16,7 @@
 
         }
 
-        function confirmBan(int $idUser, int $idMod, str $description, str $userEmail, str $modEmail){
+        function confirmBan(int $idUser, int $idMod, string $description, string $userEmail, string $modEmail){
 
         }
 

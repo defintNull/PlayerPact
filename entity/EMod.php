@@ -1,5 +1,5 @@
 <?php
-    class Mod implements Person{
-        
+    class EMod implements EPersona{
+
     }
 ?>
