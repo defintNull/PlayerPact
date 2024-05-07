@@ -1,5 +1,5 @@
 <?php
-    class EPersona {
+    class EPerson {
 
         private $username;
         private $password;
