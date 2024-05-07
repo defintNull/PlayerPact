@@ -1,6 +1,7 @@
 <?php
     class EPerson {
 
+        private $id;
         private $username;
         private $password;
         private $name;
