@@ -1,5 +1,5 @@
 <?php
-    class EAdmin implements EPersona{
-        
+    class EAdmin implements EPerson {
+
     }
 ?>
