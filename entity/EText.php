@@ -2,7 +2,7 @@
     class EText {
 
         private $id;
-        private $string;
+        private $description;
         private $date;
         private $time;
 
