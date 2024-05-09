@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 09, 2024 alle 18:31
+-- Creato il: Mag 09, 2024 alle 18:35
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -161,6 +161,7 @@ CREATE TABLE `moderationuser` (
 
 CREATE TABLE `postsell` (
   `id` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `description` varchar(256) NOT NULL,
   `date` date NOT NULL,
@@ -176,6 +177,7 @@ CREATE TABLE `postsell` (
 
 CREATE TABLE `poststandard` (
   `id` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `description` varchar(256) NOT NULL,
   `date` date NOT NULL
@@ -189,6 +191,7 @@ CREATE TABLE `poststandard` (
 
 CREATE TABLE `postteam` (
   `id` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   `title` varchar(32) NOT NULL,
   `description` varchar(256) NOT NULL,
   `date` date NOT NULL,
