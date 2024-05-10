@@ -1,12 +1,11 @@
 <?php
     require realpath($_SERVER["DOCUMENT_ROOT"]."/envloader.php");
-    $c = new FDB();
 
     class FDB {
         private $db;
         private $instance;
 
-        public function __construct() {
+        private function __construct() {
 
             try{
                 $this->db = new PDO("mysql:host=".$_ENV["DB_HOST"].";dename=".$_ENV["DB_NAME"],$_ENV["DB_USER_NAME"],$_ENV["DB_PASSWORD"]);
