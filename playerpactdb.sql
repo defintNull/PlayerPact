@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 09, 2024 alle 18:35
+-- Creato il: Mag 10, 2024 alle 17:19
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -262,13 +262,13 @@ ALTER TABLE `chatuser`
 -- Indici per le tabelle `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`,`idpoststandard`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`,`idchat`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `mod`
@@ -324,7 +324,9 @@ ALTER TABLE `report`
 -- Indici per le tabelle `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -340,7 +342,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT per la tabella `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `comment`
