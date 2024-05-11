@@ -63,23 +63,18 @@ use Dotenv\Parser\Value;
                 }
                 $counter++;
             }
-            $sql .= ") VALUES ('";
+            $sql .= ") VALUES (";
 
             $counter = 0;
             foreach($values as $attrib=>$data) {
                 $sql .= "\"". $data. "\"";
                 if($counter < count($values)-1) {
-                    $sql .= "', '";
+                    $sql .= ", ";
                 }
                 $counter++;
             }
-<<<<<<< HEAD
             $sql .= ")";
             
-=======
-            $sql .= "')";
-            echo $sql;
->>>>>>> fad43fb8539fb55279cdf389a14ec23c34122beb
             $sth = $this->db->prepare($sql);
             $sth->execute();
 
