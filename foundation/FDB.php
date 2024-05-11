@@ -67,14 +67,14 @@ use Dotenv\Parser\Value;
 
             $counter = 0;
             foreach($values as $attrib=>$data) {
-                $sql .= $data;
+                $sql .= "\"". $data. "\"";
                 if($counter < count($values)-1) {
                     $sql .= ",";
                 }
                 $counter++;
             }
             $sql .= ")";
-            echo $sql;
+            
             $sth = $this->db->prepare($sql);
             $sth->execute();
 
