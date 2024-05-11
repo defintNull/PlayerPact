@@ -27,7 +27,7 @@ use Dotenv\Parser\Value;
         private function __construct() {
 
             try{
-                $this->db = new PDO("mysql:host=".$_ENV["DB_HOST"].";dename=".$_ENV["DB_NAME"],$_ENV["DB_USER_NAME"],$_ENV["DB_PASSWORD"]);
+                $this->db = new PDO("mysql:host=".$_ENV["DB_HOST"].";dbname=".$_ENV["DB_NAME"],$_ENV["DB_USER_NAME"],$_ENV["DB_PASSWORD"]);
             } catch(PDOException $e) {
                 echo "Errore: ". $e->getMessage();
             }
@@ -52,7 +52,7 @@ use Dotenv\Parser\Value;
         function store(string $class, $entity) : void{
             $this->db->beginTransaction();
 
-            $sql = "INSERT INTO ". self::$tables[$class]."(";
+            $sql = "INSERT INTO ". self::$tables[$class]." (";
             
             $counter = 0;
             $values = $entity->getValues();
@@ -74,8 +74,10 @@ use Dotenv\Parser\Value;
                 $counter++;
             }
             $sql .= ")";
+            echo $sql;
+            $sth = $this->db->prepare($sql);
+            $sth->execute();
 
-            $this->db->exec($sql);
             $this->db->commit();
         }
 
@@ -92,7 +94,7 @@ use Dotenv\Parser\Value;
         }
 
         function delete() {
-            
+
         }
 
         function update() {

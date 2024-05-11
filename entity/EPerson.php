@@ -1,14 +1,25 @@
 <?php
     class EPerson {
 
-        private $id;
-        private $username;
-        private $password;
-        private $name;
-        private $surname;
-        private $birthDate;
-        private $email;
-        private $image;
+        protected $id;
+        protected $username;
+        protected $password;
+        protected $name;
+        protected $surname;
+        protected $birthDate;
+        protected $email;
+        protected $image;
+
+        public function __construct($id,$username,$password,$name,$surname,$birthDate,$email,$image) {
+            $this->id = $id;
+            $this->username = $username;
+            $this->password = $password;
+            $this->name = $name;
+            $this->surname = $surname;
+            $this->birthDate = $birthDate;
+            $this->email = $email;
+            $this->image = $image;
+        }
 
         public function getValues() {
             $v = array(
