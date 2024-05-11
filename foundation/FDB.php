@@ -81,28 +81,81 @@ use Dotenv\Parser\Value;
             $this->db->commit();
         }
 
-        function load(string $class, int $id) : array{
+        function load(string $class, string $condition) : array{
+            $this->db->beginTransaction();
 
-            $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE id=". $id;
+            $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE " . $condition;
             
             $sth = $this->db->prepare($sql);
             $sth->execute();
 
             $result = $sth->fetch(PDO::FETCH_ASSOC);
+
+            $this->db->commit();
             
             return $result;
         }
 
-        function delete() {
+        function delete(string $class, string $condition) : void {
+            $this->db->beginTransaction();
 
+            $sql = "DELETE FROM " .self::$tables[$class] . " WHERE ". $condition;
+
+            $sth = $this->db->prepare($sql);
+            $sth->execute();
+
+            $this->db->commit();
         }
 
-        function update() {
+        function update(string $class, $entity, string $condition) : void{
+            $this->db->beginTransaction();
 
+            $sql = "UPDATE ". self::$tables[$class] ." SET ";
+
+            $counter = 0;
+            $values = $entity->getValues();
+            foreach($values as $attrib=>$data) {
+                $sql .= $attrib . "="."\"". $data . "\"";
+                if($counter < count($values)-1) {
+                    $sql .= ", ";
+                }
+                $counter++;
+            }
+            $sql .= " WHERE " . $condition;
+
+            $sth = $this->db->prepare($sql);
+            $sth->execute();
+
+            $this->db->commit();
         }
 
-        function exists() {
+        function exists(string $class, $entity) : bool{
+            $this->db->beginTransaction();
+
+            $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE (";
+
+            $counter = 0;
+            $values = $entity->getValues();
+            foreach($values as $attrib=>$data) {
+                $sql .= $attrib . "="."\"". $data . "\"";
+                if($counter < count($values)-1) {
+                    $sql .= " AND ";
+                }
+                $counter++;
+            }
+            $sql .= ")";
             
+            $sth = $this->db->prepare($sql);
+            $sth->execute();
+            $result = $sth->fetch();
+
+            $this->db->commit();
+
+            if($result == false) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 ?>
