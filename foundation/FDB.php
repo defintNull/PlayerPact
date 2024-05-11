@@ -59,21 +59,21 @@ use Dotenv\Parser\Value;
             foreach($values as $attrib=>$data) {
                 $sql .= $attrib;
                 if($counter < count($values)-1) {
-                    $sql .= ",";
+                    $sql .= ", ";
                 }
                 $counter++;
             }
-            $sql .= ") VALUES (";
+            $sql .= ") VALUES ('";
 
             $counter = 0;
             foreach($values as $attrib=>$data) {
                 $sql .= $data;
                 if($counter < count($values)-1) {
-                    $sql .= ",";
+                    $sql .= "', '";
                 }
                 $counter++;
             }
-            $sql .= ")";
+            $sql .= "')";
             echo $sql;
             $sth = $this->db->prepare($sql);
             $sth->execute();
