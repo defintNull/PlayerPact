@@ -1,5 +1,5 @@
 <?php
-    class EModerationPost implements EModeration {
+    class EModerationPost extends EModeration {
         
     }
 ?>

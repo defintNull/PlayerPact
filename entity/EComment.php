@@ -1,5 +1,5 @@
 <?php
-    class EComment implements EText{
+    class EComment extends EText{
 
     }
 ?>

@@ -1,5 +1,5 @@
 <?php
-    class EUser implements EPerson{
+    class EUser extends EPerson{
       
     }
 ?>
