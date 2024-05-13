@@ -1,23 +1,45 @@
 <?php
     class FMod implements FDB{
-        function store() {
+        
+        function store($obj) {
+            $db = FDB::getInstance();
 
+            $table = substr(__CLASS__,1);
+
+            $db->store($table,$obj);
         }
 
-        function load() {
+        function load(string $condition) {
+            $db = FDB::getInstance();
 
+            $table = substr(__CLASS__,1);
+
+            $db->load($table,$condition);
         }
 
-        function delete() {
+        function delete(string $condition) {
+            $db = FDB::getInstance();
 
+            $table = substr(__CLASS__,1);
+
+            $db->load($table,$condition);
         }
 
-        function update() {
+        function update($obj,string $condition) {
+            $db = FDB::getInstance();
 
+            $table = substr(__CLASS__,1);
+
+            $db->update($table,$obj,$condition);
         }
 
-        function exists() {
-            
+        function exists($obj) {
+            $db = FDB::getInstance();
+
+            $table = substr(__CLASS__,1);
+
+            $db->exists($table,$obj);
         }
+
     }
 ?>

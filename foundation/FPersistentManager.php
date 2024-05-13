@@ -7,22 +7,22 @@
             $entity->store($obj);
         }
 
-        function load($EClass,$condition) {
+        function load($EClass,string $condition) {
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
             $entity->load($condition);
         }
 
-        function delete($EClass,$condition) {
+        function delete($EClass,string $condition) {
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
             $entity->delete($condition);
         }
 
-        function update($obj,$condition) {
+        function update($obj,string $condition) {
             $FClass = self::classConvert($obj);
             $entity = new $FClass();
-            $entity->update($obj);
+            $entity->update($obj,$condition);
         }
 
         function exists($obj) {
