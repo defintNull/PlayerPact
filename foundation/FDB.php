@@ -1,7 +1,5 @@
 <?php
 
-use Dotenv\Parser\Value;
-
     require realpath($_SERVER["DOCUMENT_ROOT"]."/envloader.php");
 
     class FDB {
