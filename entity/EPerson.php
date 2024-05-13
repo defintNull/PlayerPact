@@ -1,5 +1,5 @@
 <?php
-    class EPerson {
+    class EPerson implements FInterface{
 
         protected $id;
         protected $username;
