@@ -5,7 +5,7 @@
             $path = dirname(__FILE__) . '/' . $filename;
             if (is_file($path)) {
                 require $path;
-        }
+            }
         }
         
     }
