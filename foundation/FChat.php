@@ -1,4 +1,7 @@
 <?php
+
+    require realpath(__DIR__."/FDB.php");
+
     class FChat implements FDB{
         
         function store($obj) {

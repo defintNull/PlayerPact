@@ -1,4 +1,7 @@
 <?php
+
+    require realpath(__DIR__."/FDB.php");
+
     class FMod implements FDB{
         
         function store($obj) {
