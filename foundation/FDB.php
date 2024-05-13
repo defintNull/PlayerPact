@@ -27,7 +27,7 @@
             try{
                 $this->db = new PDO("mysql:host=".$_ENV["DB_HOST"].";dbname=".$_ENV["DB_NAME"],$_ENV["DB_USER_NAME"],$_ENV["DB_PASSWORD"]);
             } catch(PDOException $e) {
-                echo "Errore: ". $e->getMessage();
+                return $e->getCode();
             }
 
         }
@@ -47,112 +47,145 @@
             self::$instance == null;
         }
 
-        function store(string $class, $entity) : void{
-            $this->db->beginTransaction();
+        function store(string $class, $entity) {
+            try {
 
-            $sql = "INSERT INTO ". self::$tables[$class]." (";
+                $this->db->beginTransaction();
+
+                $sql = "INSERT INTO ". self::$tables[$class]." (";
             
-            $counter = 0;
-            $values = $entity->getValues();
-            foreach($values as $attrib=>$data) {
-                $sql .= $attrib;
-                if($counter < count($values)-1) {
-                    $sql .= ", ";
+                $counter = 0;
+                $values = $entity->getValues();
+                foreach($values as $attrib=>$data) {
+                    $sql .= $attrib;
+                    if($counter < count($values)-1) {
+                        $sql .= ", ";
+                    }
+                    $counter++;
                 }
-                $counter++;
-            }
-            $sql .= ") VALUES (";
+                $sql .= ") VALUES (";
 
-            $counter = 0;
-            foreach($values as $attrib=>$data) {
-                $sql .= "\"". $data. "\"";
-                if($counter < count($values)-1) {
-                    $sql .= ", ";
+                $counter = 0;
+                foreach($values as $attrib=>$data) {
+                    $sql .= "\"". $data. "\"";
+                    if($counter < count($values)-1) {
+                        $sql .= ", ";
+                    }
+                    $counter++;
                 }
-                $counter++;
-            }
-            $sql .= ")";
-            
-            $sth = $this->db->prepare($sql);
-            $sth->execute();
+                $sql .= ")";
+                
+                $sth = $this->db->prepare($sql);
+                $sth->execute();
 
-            $this->db->commit();
+                $this->db->commit();
+
+            }catch (PDOException $e) {
+                return $e->getCode();
+            }
         }
 
-        function load(string $class, string $condition) : array{
-            $this->db->beginTransaction();
+        function load(string $class, string $condition) {
+            try {
 
-            $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE " . $condition;
-            
-            $sth = $this->db->prepare($sql);
-            $sth->execute();
+                $this->db->beginTransaction();
 
-            $result = $sth->fetch(PDO::FETCH_ASSOC);
+                $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE " . $condition;
+                
+                $sth = $this->db->prepare($sql);
+                $sth->execute();
 
-            $this->db->commit();
-            
-            return $result;
-        }
+                $result = $sth->fetch(PDO::FETCH_ASSOC);
 
-        function delete(string $class, string $condition) : void {
-            $this->db->beginTransaction();
+                $this->db->commit();
+                
+                return $result;
 
-            $sql = "DELETE FROM " .self::$tables[$class] . " WHERE ". $condition;
-
-            $sth = $this->db->prepare($sql);
-            $sth->execute();
-
-            $this->db->commit();
-        }
-
-        function update(string $class, $entity, string $condition) : void{
-            $this->db->beginTransaction();
-
-            $sql = "UPDATE ". self::$tables[$class] ." SET ";
-
-            $counter = 0;
-            $values = $entity->getValues();
-            foreach($values as $attrib=>$data) {
-                $sql .= $attrib . "="."\"". $data . "\"";
-                if($counter < count($values)-1) {
-                    $sql .= ", ";
-                }
-                $counter++;
+            } catch (PDOException $e) {
+                return $e->getCode();
             }
-            $sql .= " WHERE " . $condition;
-
-            $sth = $this->db->prepare($sql);
-            $sth->execute();
-
-            $this->db->commit();
         }
 
-        function exists(string $class, $entity) : bool{
-            $this->db->beginTransaction();
-
-            $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE (";
-
-            $counter = 0;
-            $values = $entity->getValues();
-            foreach($values as $attrib=>$data) {
-                $sql .= $attrib . "="."\"". $data . "\"";
-                if($counter < count($values)-1) {
-                    $sql .= " AND ";
-                }
-                $counter++;
-            }
-            $sql .= ")";
+        function delete(string $class, string $condition) {
             
-            $sth = $this->db->prepare($sql);
-            $sth->execute();
-            $result = $sth->fetch();
+            try {
 
-            $this->db->commit();
+                $this->db->beginTransaction();
 
-            if($result == false) {
-                return false;
-            } else {
-                return true;
+                $sql = "DELETE FROM " .self::$tables[$class] . " WHERE ". $condition;
+
+                $sth = $this->db->prepare($sql);
+                $sth->execute();
+
+                $this->db->commit();
+
+            } catch (PDOException $e) {
+                return $e->getCode();
+            }
+        }
+
+        function update(string $class, $entity, string $condition) {
+            
+            try {
+
+                $this->db->beginTransaction();
+
+                $sql = "UPDATE ". self::$tables[$class] ." SET ";
+
+                $counter = 0;
+                $values = $entity->getValues();
+                foreach($values as $attrib=>$data) {
+                    $sql .= $attrib . "="."\"". $data . "\"";
+                    if($counter < count($values)-1) {
+                        $sql .= ", ";
+                    }
+                    $counter++;
+                }
+                $sql .= " WHERE " . $condition;
+
+                $sth = $this->db->prepare($sql);
+                $sth->execute();
+
+                $this->db->commit();
+
+            } catch (PDOException $e) {
+                return $e->getCode();
+            }
+        }
+
+        function exists(string $class, $entity) {
+            
+            try {
+
+                $this->db->beginTransaction();
+
+                $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE (";
+
+                $counter = 0;
+                $values = $entity->getValues();
+                foreach($values as $attrib=>$data) {
+                    $sql .= $attrib . "="."\"". $data . "\"";
+                    if($counter < count($values)-1) {
+                        $sql .= " AND ";
+                    }
+                    $counter++;
+                }
+                $sql .= ")";
+                
+                $sth = $this->db->prepare($sql);
+                $sth->execute();
+                $result = $sth->fetch();
+
+                $this->db->commit();
+
+                if($result == false) {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            } catch (PDOException $e) {
+                return $e->getCode();
             }
         }
     }
