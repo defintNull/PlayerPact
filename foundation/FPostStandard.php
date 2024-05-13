@@ -1,6 +1,6 @@
 <?php
     require realpath(__DIR__."/FDB.php");
-    class FPostStandard implements FDB{
+    class FPostStandard {
         
         function store($obj) {
             $db = FDB::getInstance();

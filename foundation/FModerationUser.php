@@ -1,6 +1,6 @@
 <?php
     require realpath(__DIR__."/FDB.php");
-    class FModerationUser implements FDB{
+    class FModerationUser {
         
         function store($obj) {
             $db = FDB::getInstance();

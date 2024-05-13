@@ -2,7 +2,7 @@
 
     require realpath(__DIR__."/FDB.php");
 
-    class FChat implements FDB{
+    class FChat {
         
         function store($obj) {
             $db = FDB::getInstance();

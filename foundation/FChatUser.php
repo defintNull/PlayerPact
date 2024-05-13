@@ -2,7 +2,7 @@
 
     require realpath(__DIR__."/FDB.php");
 
-    class FChatUser implements FDB{
+    class FChatUser {
         function store() {
 
         }

@@ -1,7 +1,7 @@
 <?php
     require realpath(__DIR__."/FDB.php");
     
-    class FPostSell implements FDB{
+    class FPostSell {
         
         function store($obj) {
             $db = FDB::getInstance();

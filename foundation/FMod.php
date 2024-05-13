@@ -2,7 +2,7 @@
 
     require realpath(__DIR__."/FDB.php");
 
-    class FMod implements FDB{
+    class FMod {
         
         function store($obj) {
             $db = FDB::getInstance();

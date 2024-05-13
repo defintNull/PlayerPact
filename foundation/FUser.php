@@ -1,7 +1,7 @@
 <?php
     require realpath(__DIR__."/FDB.php");
 
-    class FUser implements FDB{
+    class FUser {
         
         function store($obj) {
             $db = FDB::getInstance();

@@ -1,7 +1,7 @@
 <?php
     require realpath(__DIR__."/FDB.php");
     
-    class FReport implements FDB{
+    class FReport {
         
         function store($obj) {
             $db = FDB::getInstance();
