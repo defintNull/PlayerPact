@@ -1,4 +1,6 @@
 <?php
+    require realpath(__DIR__."/FDB.php");
+
     class FUser implements FDB{
         
         function store($obj) {
