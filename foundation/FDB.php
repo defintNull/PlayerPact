@@ -57,7 +57,9 @@
                 $counter = 0;
                 $values = $entity->getValues();
                 foreach($values as $attrib=>$data) {
-                    $sql .= $attrib;
+                    if(!strcmp(strtolower($attrib),"id")) {
+                        $sql .= $attrib;
+                    }
                     if($counter < count($values)-1) {
                         $sql .= ", ";
                     }
@@ -67,7 +69,9 @@
 
                 $counter = 0;
                 foreach($values as $attrib=>$data) {
-                    $sql .= "\"". $data. "\"";
+                    if(!strcmp(strtolower($attrib),"id")) {
+                        $sql .= "\"". $data. "\"";
+                    }
                     if($counter < count($values)-1) {
                         $sql .= ", ";
                     }
