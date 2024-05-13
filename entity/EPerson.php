@@ -2,7 +2,7 @@
 
     require realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FInterface.php");
 
-    class EPerson implements FInterface{
+    class EPerson implements FInterface {
 
         protected $id;
         protected $username;
@@ -26,6 +26,7 @@
 
         public function getValues() {
             $v = array(
+                "id" => $this->id,
                 "username" => $this->username,
                 "password" => $this->password,
                 "name" => $this->name,

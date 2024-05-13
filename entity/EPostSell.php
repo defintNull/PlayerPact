@@ -1,4 +1,6 @@
 <?php
+    require realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPost.php");
+    
     class EPostSell extends EPost {
         
         private $price;
