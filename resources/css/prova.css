@@ -1,7 +1,14 @@
 #search {
-    margin-left: 16%;
+    margin-left: 16.6%;
 }
 
 #main {
     margin-left: 16%;
+}
+
+#logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 200;
 }
