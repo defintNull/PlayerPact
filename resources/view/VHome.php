@@ -4,12 +4,23 @@
 
     class VHome {
         private $smarty;
+        private $authenticated = false;
 
         public function __construct() {
+            session_start();
             $this->smarty = SmartyLoader::loadSmarty();
-            
-            $this->smarty->assign("name", "Mario");
-            $this->smarty->display("prova.tpl");
+
+            if(isset($_SESSION["username"])){
+                $this->authenticated = true;
+                $username = $_SESSION["username"];
+            }
+            else{
+                $username = "";
+            }
+
+            $this->smarty->assign("authenticated", $this->authenticated);
+            $this->smarty->assign("username", $username);
+            $this->smarty->display("prova.html");
         }
 
     }

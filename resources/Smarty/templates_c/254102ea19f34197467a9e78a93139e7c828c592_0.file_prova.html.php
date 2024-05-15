@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-15 19:43:30
-  from 'file:prova.tpl' */
+/* Smarty version 5.1.0, created on 2024-05-15 19:57:08
+  from 'file:prova.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6644f44205e2d4_21563300',
+  'unifunc' => 'content_6644f77430f0c9_17467104',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '4beab620666f8b1b5b77888abdd0c91b09e2d1b5' => 
+    '254102ea19f34197467a9e78a93139e7c828c592' => 
     array (
-      0 => 'prova.tpl',
-      1 => 1715795009,
+      0 => 'prova.html',
+      1 => 1715795825,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6644f44205e2d4_21563300 (\Smarty\Template $_smarty_tpl) {
+function content_6644f77430f0c9_17467104 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -42,7 +42,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="prova.html">Home</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link pMenuElement" aria-current="page" href="postStandard.html">PostStandard</a>
@@ -65,19 +65,21 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </form>
                         </div> -->
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
-                        <div class="col pImgCol">
-                            <li class="pDropdown">
-                                <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../../public/4.png" alt="Avatar" id="profileImage">
-                                </ul>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Profilo</a></li>
-                                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                                </ul>
-                            </li>
-                        </div>
+                            <div class="col pImgCol">
+                                <li class="pDropdown">
+                                    <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="../../public/4.png" alt="Avatar" id="profileImage">
+                                    </ul>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Profilo</a></li>
+                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </div>
                         <?php } else { ?>
-
+                            <div class="pUpperLogin">
+                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                            </div>
                         <?php }?>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">

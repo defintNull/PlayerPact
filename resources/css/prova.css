@@ -114,7 +114,7 @@
 }
 
 .pMenuElement:active {
-    color: #0a0a0a;
+    color: white;
     background-color: #534535;
 }
 
@@ -134,4 +134,39 @@
     color:white;
     text-decoration: none;
     font-weight: 700;
+}
+
+.pHomeButton {
+    color:#dddddd;
+    background-color: #ff8800;
+    transition: none;
+    border: none;
+    padding: 20px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    width: 40%;
+    font-size: 30px;
+}
+
+.pHomeButton:hover {
+    color:white;
+    background-color: #ff9800;
+    transition: none;
+}
+
+.pHomeButton:active {
+    color:white;
+    background-color: #534535;
+}
+
+.pUpperLoginButton {
+    color:#dddddd;
+    background-color: #ff8800;
+    transition: none;
+    border: none;
+    padding: 10px;
+    margin: 7px 2px;
+    border-radius: 8px;
+    position: absolute;
+    right: 30;
 }
