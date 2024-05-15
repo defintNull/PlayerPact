@@ -125,3 +125,13 @@
     padding-bottom: 5%;
     text-align: center;
 }
+
+.pWelcome {
+    font-size: 72px;
+}
+
+.pUsername {
+    color:white;
+    text-decoration: none;
+    font-weight: 700;
+}
