@@ -18,19 +18,18 @@
         }
 
         public function end() {
-            // Non so se manca uno start o se prende $_SESSION anche così
-            if(isset($_SESSION["user"])){ // Da vedere se usare user o altro
-                session_unset();
-                session_abort();
-            }
+            session_unset();
+            session_destroy();
         }
 
         public function set(string $key, $obj) {
-            $_SESSION[$key] = $obj;
+            $serial = serialize($obj);
+            $_SESSION[$key] = $serial;
         }
 
         public function load(string $key) {
-            return $_SESSION[$key];
+            $obj = unserialize($_SESSION[$key]);
+            return $obj;
         }
     }
 ?>
