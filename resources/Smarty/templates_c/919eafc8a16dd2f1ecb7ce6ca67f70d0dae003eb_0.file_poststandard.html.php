@@ -1,8 +1,40 @@
-<html>
+<?php
+/* Smarty version 5.1.0, created on 2024-05-16 21:28:51
+  from 'file:poststandard.html' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.1.0',
+  'unifunc' => 'content_66465e738a1e36_62384797',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '919eafc8a16dd2f1ecb7ce6ca67f70d0dae003eb' => 
+    array (
+      0 => 'poststandard.html',
+      1 => 1715887671,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_66465e738a1e36_62384797 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
+?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../css/prova.css">
+        <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
+>
+        <link rel="stylesheet" href="../css/home.css">
+    
+        <?php echo '<script'; ?>
+ type="text/javascript" src="../js/autoscroll.js"><?php echo '</script'; ?>
+>
+    
+    
     </head>
     <body>
         <div class="container-fluid h-100">
@@ -32,13 +64,13 @@
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <!-- <div class="col pSearchContainer">
+                        <div class="col pSearchContainer">
                             <form class="d-flex pSearch" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Cerca</button>
                             </form>
-                        </div> -->
-                        {if $authenticated == true}
+                        </div>
+                        <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,36 +82,26 @@
                                     </ul>
                                 </li>
                             </div>
-                        {else}
-                            <div class="pUpperLogin">
+                        <?php } else { ?>
+                            <div class="col pUpperLogin">
                                 <button type="button" class="btn-lg pUpperLoginButton">Login</button>
                             </div>
-                        {/if}
+                        <?php }?>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
-                        <div class="pBanner">
-                            <img src="../../public/banner.png">
+                        
+                        <!-- DATA FOR JS -->
+                        <div id="post-list">
+                            <input type="hidden" name="total_count" id="total_count" />
+                            <input type="hidden" name="offset" id="offset" />
                         </div>
-                        {if $authenticated == true}
-                            <div class="pWelcome">
-                                <a>Benvenuto</a>
-                                <a class="pUsername">{$username}</a>
-                            </div>
-                        {else}
-                            <div class="pWelcome">
-                                <a>Benvenuto in PlayerPact</a>
-                            </div>
-                            <a>Qui potrai cercare nuovi amici con cui giocare online, comprare un nuovo videogioco o semplicemente esprimere un proprio pensiero sul mondo dei videogiochi!</a>
-                            <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Registrati</button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Login</button>
-                            </div>
-                        {/if}
+                        <div class="ajax-loader text-center">
+                            <!-- <img src="LoaderIcon.gif"> Loading more posts... -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-</html>
+</html><?php }
+}

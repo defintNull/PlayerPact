@@ -1,6 +1,5 @@
 <?php
     require realpath($_SERVER["DOCUMENT_ROOT"]."/smartyloader.php");
-    echo $_SERVER["DOCUMENT_ROOT"]."/smartyloader.php";
 
     class VHome {
         private $smarty;
@@ -20,7 +19,7 @@
 
             $this->smarty->assign("authenticated", $this->authenticated);
             $this->smarty->assign("username", $username);
-            $this->smarty->display("prova.html");
+            $this->smarty->display("home.html");
         }
 
     }

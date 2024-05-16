@@ -98,12 +98,14 @@
                 
                 $sth = $this->db->prepare($sql);
                 $sth->execute();
-
-                $result = $sth->fetch(PDO::FETCH_ASSOC);
-
+                $results = [];
+                while($result = $sth->fetch(PDO::FETCH_ASSOC)) {
+                    $results[] = $result;
+                }
+                
                 $this->db->commit();
                 
-                return $result;
+                return $results;
 
             } catch (PDOException $e) {
                 return $e->getCode();

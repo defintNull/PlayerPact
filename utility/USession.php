@@ -31,5 +31,13 @@
             $obj = unserialize($_SESSION[$key]);
             return $obj;
         }
+
+        public function exist() : bool {
+            if(session_status() === PHP_SESSION_NONE) {
+                return false;
+            } else {
+                return true;
+            }
+        } 
     }
 ?>
