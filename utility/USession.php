@@ -28,8 +28,10 @@
         }
 
         public function load(string $key) {
-            $obj = unserialize($_SESSION[$key]);
-            return $obj;
+            if(isset($_SESSION[$key])){
+                return unserialize($_SESSION[$key]);
+            }
+            return null;
         }
 
         public function exist() : bool {

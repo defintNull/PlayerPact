@@ -1,6 +1,5 @@
 <?php
-
-    require realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FInterface.php");
+    include_once realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FInterface.php");
 
     class EPerson implements FInterface {
 
@@ -13,7 +12,7 @@
         protected $email;
         protected $image;
 
-        public function __construct($id,$username,$password,$name,$surname,$birthDate,$email,$image) {
+        public function __construct($id, $username, $password, $name, $surname, $birthDate, $email, $image) {
             $this->id = $id;
             $this->username = $username;
             $this->password = $password;

@@ -2,19 +2,24 @@
 
     require realpath($_SERVER["DOCUMENT_ROOT"]."/smartyloader.php");
     require realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
+    require realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
+    require realpath($_SERVER["DOCUMENT_ROOT"]."/controllers/CPost.php");
 
     class VPost {
         private $smarty;
         private $authenticated = false;
 
         public function __construct() {
-            session_start();
+            $session = USession::getInstance();
+            $session->start();
+            
             $this->smarty = SmartyLoader::loadSmarty();
             
-            //$_SESSION["username"] = "pippo";
-            if(isset($_SESSION["username"])){
+            $session->set("user", new EUser(1, "gg", "pippo", "J", "S", "2000-05-05", "email", "no"));
+            $user = $session->load("user");
+            if(isset($user)) {
                 $this->authenticated = true;
-                $username = $_SESSION["username"];
+                $username = $user->getValues()["username"];
             }
             else{
                 $username = "";
@@ -25,25 +30,25 @@
             $this->smarty->display("poststandard.html");
         }
 
-        public static function getData($type,$offset, $limit) {
+        public static function getData($type, $offset, $limit) {
 
-            $normaltypes = array("standard","team","sell");
-            $usertypes = array("standard","team","sell","interestlist");
-            $modtypes = array(""); //add types
+            $normaltypes = array("PostStandard","PostTeam","PostSell");
+            $usertypes = array("PostStandard","PostTeam","PostSell","InterestList");
+            $modtypes = array("Report", "User"); //add types
             $admintypes = array(""); // add types
 
             $session = USession::getInstance();
             $offset = (int)$offset;
             $limit  = (int)$limit;
 
-            if(in_array($type,$usertypes) && $session->load("usertype")=="user") {
+            if(in_array($type,$usertypes) && get_class($session->load("user"))=="EUser") {
                 /*
                 Creare istanza controllore
                 chiamare metodo di richiesta a db
                 return results
                 */
-                $results = null;
-                
+                $cPost = new CPost();
+                $results = $cPost->loadFromDB($type, $offset, $limit);
 
             } elseif(in_array($type,$modtypes) && $session->load("usertype")=="mod") {
                 
@@ -76,7 +81,6 @@
             } else {
                 //bad gateway
             }
-
             return $results;
 
         }
@@ -88,5 +92,5 @@
 
     }
     $a = new VPost();
-
+    //print_r($a->getData("PostStandard", 0, 10));
 ?>

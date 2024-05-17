@@ -1,7 +1,7 @@
 <?php
     include_once realpath(__DIR__."/FDB.php");
 
-    class FChatUser {
+    class FInterestListUser {
         function store() {
 
         }

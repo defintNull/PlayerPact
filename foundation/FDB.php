@@ -1,5 +1,4 @@
 <?php
-
     require realpath($_SERVER["DOCUMENT_ROOT"]."/envloader.php");
 
     class FDB {
@@ -91,11 +90,10 @@
 
         function load(string $class, string $condition) {
             try {
-
                 $this->db->beginTransaction();
 
                 $sql = "SELECT * FROM ". self::$tables[$class] ." WHERE " . $condition;
-                
+
                 $sth = $this->db->prepare($sql);
                 $sth->execute();
                 $results = [];
@@ -104,7 +102,6 @@
                 }
                 
                 $this->db->commit();
-                
                 return $results;
 
             } catch (PDOException $e) {
@@ -189,6 +186,29 @@
                 } else {
                     return true;
                 }
+
+            } catch (PDOException $e) {
+                return $e->getCode();
+            }
+        }
+
+        function getItemCount($class) {
+            try {
+
+                $this->db->beginTransaction();
+
+                $sql = "SELECT COUNT(*) FROM ". self::$tables[$class];
+                
+                $sth = $this->db->prepare($sql);
+                $sth->execute();
+                $results = [];
+                while($result = $sth->fetch(PDO::FETCH_ASSOC)) {
+                    $results[] = $result;
+                }
+                
+                $this->db->commit();
+                
+                return $results;
 
             } catch (PDOException $e) {
                 return $e->getCode();

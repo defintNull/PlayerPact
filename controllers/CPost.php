@@ -1,6 +1,18 @@
 <?php
+    require realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FPersistentManager.php");
+
     class CPost {
         
+        // Funzione che restituisce elementi del database in base ai parametri
+        public function loadFromDB(string $class, int $offset, int $limit) {
+            try{
+                $pm = new FPersistentManager();
+                $res = $pm->load("E".$class, "TRUE ORDER BY id DESC LIMIT ".$limit." OFFSET ".$offset);
+                return $res;
+            } catch(Exception $e){
+                return $e;
+            }
+        }
 
         public function viewPostSection(int $idSection) {
 

@@ -1,7 +1,33 @@
-<html>
+<?php
+/* Smarty version 5.1.0, created on 2024-05-17 17:17:44
+  from 'file:home.html' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.1.0',
+  'unifunc' => 'content_664775181a8d88_88769148',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
+    array (
+      0 => 'home.html',
+      1 => 1715959061,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_664775181a8d88_88769148 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
+?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
+>
         <link rel="stylesheet" href="../css/home.css">
     </head>
     <body>
@@ -38,7 +64,7 @@
                                 <button class="btn btn-outline-success" type="submit">Cerca</button>
                             </form>
                         </div> -->
-                        {if $authenticated == true}
+                        <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,22 +76,23 @@
                                     </ul>
                                 </li>
                             </div>
-                        {else}
+                        <?php } else { ?>
                             <div class="pUpperLogin">
                                 <button type="button" class="btn-lg pUpperLoginButton">Login</button>
                             </div>
-                        {/if}
+                        <?php }?>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         <div class="pBanner">
                             <img src="../../public/banner.png">
                         </div>
-                        {if $authenticated == true}
+                        <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="pWelcome">
                                 <a>Benvenuto</a>
-                                <a class="pUsername">{$username}</a>
+                                <a class="pUsername"><?php echo $_smarty_tpl->getValue('username');?>
+</a>
                             </div>
-                        {else}
+                        <?php } else { ?>
                             <div class="pWelcome">
                                 <a>Benvenuto in PlayerPact</a>
                             </div>
@@ -76,10 +103,11 @@
                             <div class="col">
                                 <button type="button" class="btn-lg pHomeButton">Login</button>
                             </div>
-                        {/if}
+                        <?php }?>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-</html>
+</html><?php }
+}
