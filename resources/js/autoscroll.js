@@ -4,9 +4,9 @@ $(document).ready(function(){
     let initialData;
 
     $.ajax({
-        url: 'scroll.php',
+        url: '../../scroll.php',
         success: function(data) {
-          initialData = JSON.parse(data);
+            initialData = JSON.parse(data);
         }
     });
     
