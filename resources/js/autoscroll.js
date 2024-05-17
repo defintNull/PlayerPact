@@ -1,7 +1,6 @@
 $(document).ready(function(){
     // load the initial rows on page load
     //Chiamata ajax a scroll.php
-
     let initialData;
 
     $.ajax({

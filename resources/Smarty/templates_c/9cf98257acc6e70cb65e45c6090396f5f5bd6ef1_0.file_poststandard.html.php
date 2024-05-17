@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-17 17:17:42
+/* Smarty version 5.1.0, created on 2024-05-17 19:54:54
   from 'file:poststandard.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66477516d65502_20731079',
+  'unifunc' => 'content_664799ee673b68_20241950',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9cf98257acc6e70cb65e45c6090396f5f5bd6ef1' => 
     array (
       0 => 'poststandard.html',
-      1 => 1715959043,
+      1 => 1715968490,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66477516d65502_20731079 (\Smarty\Template $_smarty_tpl) {
+function content_664799ee673b68_20241950 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -29,9 +29,12 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
         <link rel="stylesheet" href="../css/home.css">
-    
+        
         <?php echo '<script'; ?>
- type="text/javascript" src="../js/autoscroll.js"><?php echo '</script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ language="javascript" type="text/javascript" src="../js/autoscroll.js"><?php echo '</script'; ?>
 >
     
     
