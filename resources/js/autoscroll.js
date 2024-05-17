@@ -8,7 +8,7 @@ $(document).ready(function(){
         success: function(data) {
           initialData = JSON.parse(data);
         }
-      });
+    });
     
     if (initialData) {
         if (initialData.rows) {
