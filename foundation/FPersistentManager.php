@@ -23,8 +23,15 @@
             return $entity->load($condition);
         }
 
-        function delete($EClass, string $condition) {
+        function loadElements(string $EClass,int $limit,int $offset,string $datetime) {
             $FClass = "F".substr($EClass,1); 
+            $entity = new $FClass();
+            $results = $entity->loadElements($limit,$offset,$datetime);
+            return $results;
+        }
+
+        function delete($CClass, string $condition) {
+            $FClass = "F".substr($CClass,1); 
             $entity = new $FClass();
             $entity->delete($condition);
         }

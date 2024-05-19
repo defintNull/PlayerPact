@@ -1,59 +1,100 @@
 $(document).ready(function(){
     // load the initial rows on page load
-    //Chiamata ajax a scroll.php
-    let initialData;
+    // ajax call a scroll.php
+    var initialData;
+
+    var date = document.getElementById("date").value;
+    var time = document.getElementById("time").value;
+    var type = document.getElementById("type").value;
 
     $.ajax({
-        url: '../../scroll.php',
+        url: 'autoscroll.php'+ '?type=' + type + '&date=' + date +"&time=" + time,
         success: function(data) {
+            
             initialData = JSON.parse(data);
-        }
-    });
-    
-    if (initialData) {
-        if (initialData.rows) {
-            addrows(initialData.rows);
-            $('.ajax-loader').hide();
-        }
-    }
-    windowOnScroll(initialData);
-        
-});
-function windowOnScroll(initialData) {
-    $(window).on("scroll", function(e){
-        if ($(window).scrollTop() == $(document).height() - $(window).height()){
-            console.log('test');
-            if($(".post-item").length < initialData.totalcount) {
-                let offset = initialData.offset;
-                getMoreData(offset,initialData)
-            }
-        }
-    });
-}
-function getMoreData(offset,initialData) {
-    $('.ajax-loader').show();
-    $(window).off("scroll");
-    $.ajax({
-        url: "scroll.php" + '?dataOnly=1&offset=' + offset,
-        type: "get",
-        success: function (response) {
-            response = JSON.parse(response);
-            if (response.rows) {
-                addrows(response.rows);
-                if (response.offset) {
-                    var s = document.getElementById("offset");
-                    s.value = response.offset;
+
+            if (initialData) {
+                if (initialData.rows) {
+                    addrows(initialData.rows,initialData.type);
+                    $('.ajax-loader').hide();
+                    if (initialData.offset) {
+                        var s = document.getElementById("offset");
+                        s.value = initialData.offset;
+                    }
+                    if (initialData.totalcount) {
+                        var t = document.getElementById("total_count");
+                        t.value = initialData.totalcount;
+                    }
                 }
-                $('.ajax-loader').hide();
             }
             windowOnScroll(initialData);
+
+        }
+    });
+        
+});
+
+function windowOnScroll(initialData) {
+
+    if($(document).height() == $(window).height()) {
+        if($(".post-item").length == initialData.totalcount) {
+            getMoreData(initialData)
+        }
+    }
+
+    $(window).on("scroll", function(e){        
+        if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 60)) {
+            if($(".post-item").length == initialData.totalcount) {
+                getMoreData(initialData)
+            }
         }
     });
 }
-function addrows(rows) {
+
+function getMoreData(initialData) {
+    $('.ajax-loader').show();
+    $(window).off("scroll");
+
+    if(initialData.offset == initialData.totalcount) {
+        $.ajax({
+            url: "autoscroll.php" + '?offset=' + initialData.offset + '&total_count=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + initialData.date + '&time=' + initialData.time,
+            type: "get",
+            success: function (response) {
+                initialData = JSON.parse(response);
+                if (initialData.rows) {
+                    addrows(initialData.rows,initialData.type);
+                    if (initialData.offset) {
+                        var s = document.getElementById("offset");
+                        s.value = initialData.offset;
+                    }
+                    if (initialData.totalcount) {
+                        var t = document.getElementById("total_count");
+                        t.value = initialData.totalcount;
+                    }
+                    $('.ajax-loader').hide();
+                }
+                windowOnScroll(initialData);
+            }
+        });
+    }
+}
+
+function addrows(rows,type) {
     let postList = document.getElementById("post-list");
     $.each(rows, function (i, row) {
-        let rowHtml = '<div class="post-item" id="'+row.id+'"><p class="post-title">'+row.title+'</p><p>'+row.content+'</p></div>';
-        postList.append(rowHtml);
+        let node = document.createElement("div");
+        postList.append(node);
+        if(type == 'standard') {
+            node.outerHTML = 
+            '<div class="row post-item" id='+row.id+'>'+
+            '<div class="row title-post-bar">' +
+            '<div class="col post-title">'+row.title+'</div>'+
+            '<div class="col datetime">'+row.datetime+'</div>'+
+            '</div>' +
+            '<div class="row body-post">' +
+            '<div class="description">'+row.description+'</div>'+
+            '</div>' +
+            '</div>';
+        }
     });
 }

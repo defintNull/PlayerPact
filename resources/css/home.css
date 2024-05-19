@@ -120,11 +120,9 @@
 }
 
 #main_body {
-    padding-top: 7%;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-bottom: 5%;
+    margin-top: 60px;
     text-align: center;
+    min-width: 400px;
 }
 
 .pWelcome {

@@ -14,6 +14,21 @@
             }
         }
 
+        public function loadPosts(string $type,int $limit,int $offset,string $datetime) {
+
+            $pm = new FPersistentManager();
+
+            if($type == "standard") {
+                $res = $pm->loadElements("EPostStandard",$limit,$offset,$datetime);
+            } elseif($type == "sell") {
+                $res = $pm->loadElements("EPostSell",$limit,$offset,$datetime);
+            } elseif($type == "team") {
+                $res = $pm->loadElements("EPostTeam",$limit,$offset,$datetime);
+            }
+
+            return $res;
+        }
+
         public function viewPostSection(int $idSection) {
 
         }
