@@ -76,6 +76,8 @@ function getMoreData(initialData) {
                 windowOnScroll(initialData);
             }
         });
+    } else {
+        $('.ajax-loader').hide();
     }
 }
 

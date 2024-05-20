@@ -2,31 +2,21 @@
     require realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FPersistentManager.php");
 
     class CPost {
-        
-        // Funzione che restituisce elementi del database in base ai parametri
-        public function loadFromDB(string $class, int $offset, int $limit) {
-            try{
-                $pm = new FPersistentManager();
-                $res = $pm->load("E".$class, "TRUE ORDER BY id DESC LIMIT ".$limit." OFFSET ".$offset);
-                return $res;
-            } catch(Exception $e){
-                return $e;
-            }
-        }
 
         public function loadPosts(string $type,int $limit,int $offset,string $datetime) {
 
             $pm = new FPersistentManager();
 
             if($type == "standard") {
-                $res = $pm->loadElements("EPostStandard",$limit,$offset,$datetime);
+                $res = $pm->loadPosts("EPostStandard",$limit,$offset,$datetime);
             } elseif($type == "sell") {
-                $res = $pm->loadElements("EPostSell",$limit,$offset,$datetime);
+                $res = $pm->loadPosts("EPostSell",$limit,$offset,$datetime);
             } elseif($type == "team") {
-                $res = $pm->loadElements("EPostTeam",$limit,$offset,$datetime);
+                $res = $pm->loadPosts("EPostTeam",$limit,$offset,$datetime);
             }
-
-            return $res;
+            
+            $count = count($res);
+            return array($res,$count);
         }
 
         public function viewPostSection(int $idSection) {

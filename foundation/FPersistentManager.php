@@ -23,7 +23,7 @@
             return $entity->load($condition);
         }
 
-        function loadElements(string $EClass,int $limit,int $offset,string $datetime) {
+        function loadPosts(string $EClass,int $limit,int $offset,string $datetime) {
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
             $results = $entity->loadElements($limit,$offset,$datetime);

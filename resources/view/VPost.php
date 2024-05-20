@@ -13,19 +13,6 @@
             
         }
 
-        public function getPostElements(string $type,int $offset,int $limit,string $datetime) {
-
-            if($type == "standard" || $type == "sell" || $type == "team") {
-                $controller = new CPost();
-                $res = $controller->loadPosts($type,$limit,$offset,$datetime);
-                $count = count($res);
-                return array($res,$count);
-            } else {
-                // REINDIRIZZAMENTO BAD REQUEST
-            }
-
-        }
-
         public function print() {
             session_start();
             $this->smarty = SmartyLoader::loadSmarty();
