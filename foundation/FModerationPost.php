@@ -9,7 +9,7 @@
             $db->store($table,$obj);
         }
 
-        function load(string $col, array $arr) {
+        function load(array $arr) {
             $db = FDB::getInstance();
             $table = substr(__CLASS__,1);
             $condition = "";
