@@ -1,5 +1,5 @@
 <?php
-    include_once realpath(__DIR__."/FDB.php");
+    require_once realpath(__DIR__."/FDB.php");
 
     class FInterestListUser {
         function store() {

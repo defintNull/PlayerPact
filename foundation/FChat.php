@@ -1,5 +1,5 @@
 <?php
-    include_once realpath(__DIR__."/FDB.php");
+    require_once realpath(__DIR__."/FDB.php");
 
     class FChat {
         
@@ -9,9 +9,18 @@
             $db->store($table,$obj);
         }
 
-        function load(string $condition) {
+        function load(string $col, array $arr) {
             $db = FDB::getInstance();
             $table = substr(__CLASS__,1);
+            $condition = "";
+            $i = 0;
+            foreach($arr as $key => $val){
+                $condition .= $key."=".$val;
+                if($i != count($arr) - 2){
+                    $condition .= " AND ";
+                }
+                $i++;
+            }
             return $db->load($table,$condition);
         }
 
