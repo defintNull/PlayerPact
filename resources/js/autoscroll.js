@@ -90,13 +90,13 @@ function addrows(rows,type) {
         if(type == 'standard') {
             node.outerHTML = 
             '<div class="row post-item" id='+row.id+'>'+
+            '<div class="description">'+row.iduser+'</div>'+
             '<div class="row title-post-bar">' +
             '<div class="col post-title">'+row.title+'</div>'+
             '<div class="col datetime">'+row.datetime+'</div>'+
             '</div>' +
             '<div class="row body-post">' +
             '<div class="description">'+row.description+'</div>'+
-            '<div class="description">'+row.iduser+'</div>'+
             '</div>' +
             '</div>';
         }
