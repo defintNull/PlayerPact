@@ -17,10 +17,10 @@
             $entity->store($obj);
         }
 
-        function load($EClass, string $condition) {
+        function load($EClass, array $arr) {
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
-            return $entity->load($condition);
+            return $entity->load($arr);
         }
 
         function loadPosts(string $EClass,int $limit,int $offset,string $datetime) {

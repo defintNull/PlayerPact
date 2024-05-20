@@ -60,6 +60,7 @@ function getMoreData(initialData) {
             url: "autoscroll.php" + '?offset=' + initialData.offset + '&total_count=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + initialData.date + '&time=' + initialData.time,
             type: "get",
             success: function (response) {
+                
                 initialData = JSON.parse(response);
                 if (initialData.rows) {
                     addrows(initialData.rows,initialData.type);
@@ -95,6 +96,7 @@ function addrows(rows,type) {
             '</div>' +
             '<div class="row body-post">' +
             '<div class="description">'+row.description+'</div>'+
+            '<div class="description">'+row.iduser+'</div>'+
             '</div>' +
             '</div>';
         }

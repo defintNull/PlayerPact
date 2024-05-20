@@ -23,6 +23,10 @@
             $this->image = $image;
         }
 
+        public function getUsername() {
+            return $this->username;
+        }
+
         public function getValues() {
             $v = array(
                 "id" => $this->id,
