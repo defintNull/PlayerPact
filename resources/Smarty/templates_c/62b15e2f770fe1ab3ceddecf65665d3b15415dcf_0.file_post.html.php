@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-21 15:26:46
-  from 'file:home.html' */
+/* Smarty version 5.1.0, created on 2024-05-20 20:29:21
+  from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664ca116566db2_71300442',
+  'unifunc' => 'content_664b9681349ab1_10714612',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
+    '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
-      0 => 'home.html',
-      1 => 1715967472,
+      0 => 'post.html',
+      1 => 1716219782,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664ca116566db2_71300442 (\Smarty\Template $_smarty_tpl) {
+function content_664b9681349ab1_10714612 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -28,7 +28,17 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
         <?php echo '<script'; ?>
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
-        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="resources/css/home.css">
+        <link rel="stylesheet" href="resources/css/post.css">
+        
+        <?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ type="text/javascript" src="resources/js/autoscroll.js"><?php echo '</script'; ?>
+>
+    
+    
     </head>
     <body>
         <div class="container-fluid h-100">
@@ -45,7 +55,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="VPost.php">PostStandard</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="postStandard.html">PostStandard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link pMenuElement" aria-current="page" href="postTeam.html">postTeam</a>
@@ -58,12 +68,12 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <!-- <div class="col pSearchContainer">
+                        <div class="col pSearchContainer">
                             <form class="d-flex pSearch" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Cerca</button>
                             </form>
-                        </div> -->
+                        </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
                                 <li class="pDropdown">
@@ -77,33 +87,27 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 </li>
                             </div>
                         <?php } else { ?>
-                            <div class="pUpperLogin">
+                            <div class="col pUpperLogin">
                                 <button type="button" class="btn-lg pUpperLoginButton">Login</button>
                             </div>
                         <?php }?>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
-                        <div class="pBanner">
-                            <img src="../../public/banner.png">
+                        
+                        <!-- DATA FOR JS -->
+                        <div class="post_section" id="post-list">
+                            <input type="hidden" name="total_count" id="total_count" value="0"/>
+                            <input type="hidden" name="offset" id="offset" value="0" />
+                            <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
+" />
+                            <input type="hidden" name="date" id="date" value="<?php echo $_smarty_tpl->getValue('date');?>
+" />
+                            <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
+" />
                         </div>
-                        <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
-                            <div class="pWelcome">
-                                <a>Benvenuto</a>
-                                <a class="pUsername"><?php echo $_smarty_tpl->getValue('username');?>
-</a>
-                            </div>
-                        <?php } else { ?>
-                            <div class="pWelcome">
-                                <a>Benvenuto in PlayerPact</a>
-                            </div>
-                            <a>Qui potrai cercare nuovi amici con cui giocare online, comprare un nuovo videogioco o semplicemente esprimere un proprio pensiero sul mondo dei videogiochi!</a>
-                            <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Registrati</button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Login</button>
-                            </div>
-                        <?php }?>
+                        <div class="ajax-loader text-center text-bg-dark">
+                            Loading more posts... 
+                        </div>
                     </div>
                 </div>
             </div>
