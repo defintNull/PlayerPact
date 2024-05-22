@@ -4,47 +4,54 @@
     padding-right: 5%;
     min-width: 300px;
     height: auto;
+    background-color: #222222;
 }
 
 .post-item {
     padding: 10px;
-    border: #f3f3f3 1px solid;
-    border-radius: 5px;
+    border-radius: 18px;
     margin-bottom: 18px;
     margin-left: 20%;
     margin-right: 20%;
     min-width: 300px;
     min-height: 250px;
+    background-color: #222222;
+}
+
+.post-item:hover {
+    background-color: #333333;
+    box-shadow: 0px 0px 20px 1px #333333;
 }
 
 .post-username {
     text-align: left;
     font-size: 16px;
-    color: #4faae6;
+    color:coral;
     height: 30px;
     padding-bottom: 0;
     margin-bottom: 0;
 }
 
-.title-post-bar {
-    margin-top: 0;
-    padding-top: 0;
-    text-align: left;
-}
-
 .description {
-    border: #f3f3f3 1px solid;
     border-radius: 5px;
     text-align: left;
     min-height: 100px;
     padding-left: 10;
-    padding-top: 3;
+    padding-top: 10;
+    padding-bottom: 10;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .post-title {
     font-weight: 650;
     font-size: 20px;
     max-width: 100%;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 10;
 }
 
 .datetime {
@@ -52,6 +59,14 @@
     font-size: 10px;
     text-align: right;
     padding-right: 20;
+}
+
+hr.solid {
+    border-top: 1px solid #bbb;
+    padding: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 300px;
 }
 
 .ajax-loader {
