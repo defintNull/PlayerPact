@@ -82,23 +82,52 @@ function getMoreData(initialData) {
     }
 }
 
-function addrows(rows,type) {
-    let postList = document.getElementById("post-list");
-    $.each(rows, function (i, row) {
-        let node = document.createElement("div");
-        postList.append(node);
-        if(type == 'standard') {
-            node.outerHTML = 
-            '<div class="row post-item" id='+row.id+'>'+
-            '<div class="row title-post-bar">' +
-            '<div class="col post-title">'+row.title+'</div>'+
-            '<div class="col datetime">'+row.datetime+'</div>'+
-            '</div>' +
-            '<div class="row body-post">' +
-            '<div class="description">'+row.description+'</div>'+
-            '<div class="description">'+row.iduser+'</div>'+
-            '</div>' +
-            '</div>';
-        }
-    });
+async function addrows(rows,type) {
+    const postList = document.getElementById("post-list");
+
+    if(type == "standard") {
+        //Richiesta all'html del post
+        const response = await fetch("/resources/Smarty/templates/poststandard.html");
+        const text = await response.text();
+        const i1 = text.indexOf("<body>");
+        const i2 = text.indexOf("</body>");
+        const bodyHTML = text.substring(i1 + "<body>".length, i2);
+
+        $.each(rows, function(i, row) {
+            let node = document.createElement("div");
+            postList.append(node);
+            node.outerHTML = bodyHTML;
+
+            document.getElementById("id-post-standard").id = row.id;
+            document.getElementById("post-title").innerHTML = row.title;
+            document.getElementById("post-title").id = row.id + "-post-title"
+            document.getElementById("datetime").innerHTML = row.datetime;
+            document.getElementById("datetime").id = row.id + "-datetime"
+            document.getElementById("description").innerHTML = row.description;
+            document.getElementById("description").id = row.id + "-description"
+            document.getElementById("user").innerHTML = row.iduser;
+            document.getElementById("user").id = row.id + "-user"
+
+        })
+    }
+
+    
+    // console.log(bodyHTML);
+
+    // $.each(rows, function (i, row) {
+        
+    //     // if(type == 'standard') {
+    //     //     node.outerHTML = 
+    //     //     '<div class="row post-item" id='+row.id+'>'+
+    //     //     '<div class="row title-post-bar">' +
+    //     //     '<div class="col post-title">'+row.title+'</div>'+
+    //     //     '<div class="col datetime">'+row.datetime+'</div>'+
+    //     //     '</div>' +
+    //     //     '<div class="row body-post">' +
+    //     //     '<div class="description">'+row.description+'</div>'+
+    //     //     '<div class="description">'+row.iduser+'</div>'+
+    //     //     '</div>' +
+    //     //     '</div>';
+    //     // }
+    // });
 }
