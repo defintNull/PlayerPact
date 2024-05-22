@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-20 20:29:21
+/* Smarty version 5.1.0, created on 2024-05-22 09:59:15
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664b9681349ab1_10714612',
+  'unifunc' => 'content_664da5d3e49004_00023138',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1716219782,
+      1 => 1716364745,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664b9681349ab1_10714612 (\Smarty\Template $_smarty_tpl) {
+function content_664da5d3e49004_00023138 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -95,7 +95,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
-                        <div class="post_section" id="post-list">
+                        <!-- <div class="post_section" id="post-list"> -->
+                        <div class=<?php echo $_smarty_tpl->getValue('className');?>
+ id=<?php echo $_smarty_tpl->getValue('classId');?>
+>
                             <input type="hidden" name="total_count" id="total_count" value="0"/>
                             <input type="hidden" name="offset" id="offset" value="0" />
                             <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>

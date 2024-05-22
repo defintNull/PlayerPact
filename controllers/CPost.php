@@ -46,6 +46,8 @@
             } elseif($type == "team") {
                 $res = $pm->loadPosts("EPostTeam",$limit,$offset,$datetime);
                 $count = count($res);
+            } else {
+                // REDIRECT
             }
             
             return array($values,$count);

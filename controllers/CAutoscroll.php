@@ -10,27 +10,20 @@
                 'team'=>'CPost',
                 'sell'=>'CPost'
             );
-            
+
+            try {
+                $class = $types[$type];
+            } catch(Exception $e) {
+                //REINDIRIZZAMENTO
+            }
+
             if($type != "0") {
-
-                try {
-
-                    $view = new $types[$type]();
-                    $elements = $view->loadPosts($type,$offset,$limit,$datetime);
-
-                    return $elements;
-
-                } catch(Exception $e) {
-                    //REINDIRIZZAMENTO
-                }
-                
-                
+                $controller = new $class();       
+                $elements = $controller->loadPosts($type,$offset,$limit,$datetime);
+                return $elements;
             } else {
                 //ERROR OF PRINTING TYPE, REDIRECT ON 500 PAGE
             }
-
-            
         }
-
     }
 ?>

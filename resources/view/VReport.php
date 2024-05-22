@@ -22,9 +22,9 @@
             }
 
             $this->smarty->assign("authenticated", $this->authenticated);
-            $this->smarty->assign("type", "standard"); // INSERIRE LOGICA TIPO
-            $this->smarty->assign("className", "post_section");
-            $this->smarty->assign("classId", "post-list");
+            $this->smarty->assign("type", "userList"); // INSERIRE LOGICA TIPO
+            $this->smarty->assign("className", "report_section");
+            $this->smarty->assign("classId", "report-list");
 
             $sisdatetime = getdate();
             $date = date("Y/m/d");
@@ -34,5 +34,7 @@
             $this->smarty->assign("time", $time);
             $this->smarty->display("post.html");
         }
+
     }
+
 ?>

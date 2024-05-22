@@ -11,5 +11,5 @@
     // echo var_dump($x->load("Admin", "1=1"));
 
     $view = new VPost();
-    $view->print();
+    $view->show();
 ?>
