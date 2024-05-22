@@ -72,6 +72,6 @@ hr.solid {
 .ajax-loader {
     display: block;
     text-align: center;
-    background-color: black;
+    background-color: #222222;
     height: 30px;
 }

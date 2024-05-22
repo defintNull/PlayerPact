@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-22 14:19:37
+/* Smarty version 5.1.0, created on 2024-05-22 15:19:18
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664de2d9703bc6_21107120',
+  'unifunc' => 'content_664df0d6456c28_50358810',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1716380376,
+      1 => 1716383953,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664de2d9703bc6_21107120 (\Smarty\Template $_smarty_tpl) {
+function content_664df0d6456c28_50358810 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -108,7 +108,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
 " />
                         </div>
-                        <div class="ajax-loader text-center text-bg-dark">
+                        <div class="ajax-loader text-center">
                             Loading more posts... 
                         </div>
                     </div>
