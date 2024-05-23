@@ -5,7 +5,21 @@
         
         private $price;
         private $image;
+
+        public function __construct($id, $iduser, $title, $description, $date, $price, $image) {
+            parent::__construct($id,$iduser,$title,$description,$date);
+            $this->price = $price;
+            $this->image = $image;
+        }
+
+        public function getPrice(){
+            return $this->price;
+        }
         
+        public function getImage(){
+            return $this->image;
+        }
+
         public function getValues() {
             $v = parent::getValues();
             $v["price"] = $this->price;
