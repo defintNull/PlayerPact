@@ -7,6 +7,7 @@
     $frontcontroller = new FrontController();
     if($uri[1] == null) {
         $frontcontroller->home();
+        exit();
     }
     
     $frontcontroller->{$uri[1]}();
