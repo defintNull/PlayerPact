@@ -1,4 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^/exec.php$
     RewriteRule ^(.*)$ index.php
 </IfModule>
