@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-22 15:22:34
+/* Smarty version 5.1.0, created on 2024-05-23 17:13:06
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664df19ac93ba0_43771673',
+  'unifunc' => 'content_664f5d02f1a8f6_91576251',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf4badfa487b10a34b6175fa92ddf7bcdc652ad3' => 
     array (
       0 => 'post.html',
-      1 => 1716384094,
+      1 => 1716477183,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664df19ac93ba0_43771673 (\Smarty\Template $_smarty_tpl) {
+function content_664f5d02f1a8f6_91576251 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -55,13 +55,13 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postStandard.html">PostStandard</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/resources/Smarty/templates/poststandard.html">PostStandard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postTeam.html">postTeam</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="postteam.html">postTeam</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postSell.html">postSell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="postsell.html">postSell</a>
                             </li>
                         </ul>
                     </div>

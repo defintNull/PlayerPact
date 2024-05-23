@@ -1,6 +1,8 @@
 <?php
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FPersistentManager.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostStandard.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostSell.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostTeam.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
 
     class CPost {
@@ -43,9 +45,69 @@
             } elseif($type == "sell") {
                 $res = $pm->loadPosts("EPostSell",$limit,$offset,$datetime);
                 $count = count($res);
+
+                for($i=0;$i<$count;$i++) {
+
+                    $post = new EPostSell($res[$i]["id"],$res[$i]["iduser"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["price"],$res[$i]["image"]);
+                    $userdata = $pm->load("EUser", array("id" => $post->getIdUser()));
+                    
+                    if(count($userdata) !== 0) {
+                        $userdata = $userdata[0];
+                        $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
+                        $values[] = array(
+                            "id" => $post->getId(),
+                            "iduser" => $user->getUsername(),
+                            "title" => $post->getTitle(),
+                            "description" => $post->getDescription(),
+                            "datetime" => $post->getDateTime(),
+                            "price" => $post->getPrice(),
+                            "image" => $post->getImage()
+                        );
+                    } else {
+                        $values[] = array(
+                            "id" => $post->getId(),
+                            "title" => $post->getTitle(),
+                            "description" => $post->getDescription(),
+                            "datetime" => $post->getDateTime(),
+                            "price" => $post->getPrice(),
+                            "image" => $post->getImage()
+                        );
+                    }
+                }
+
             } elseif($type == "team") {
                 $res = $pm->loadPosts("EPostTeam",$limit,$offset,$datetime);
                 $count = count($res);
+
+                for($i=0;$i<$count;$i++) {
+
+                    $post = new EPostTeam($res[$i]["id"],$res[$i]["iduser"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["nMaxPlayer"],$res[$i]["nPlayers"],$res[$i]["time"]);
+                    $userdata = $pm->load("EUser", array("id" => $post->getIdUser()));
+                    
+                    if(count($userdata) !== 0) {
+                        $userdata = $userdata[0];
+                        $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
+                        $values[] = array(
+                            "id" => $post->getId(),
+                            "iduser" => $user->getUsername(),
+                            "title" => $post->getTitle(),
+                            "description" => $post->getDescription(),
+                            "datetime" => $post->getDateTime(),
+                            "nMaxPlayers" => $post->getNMaxPlayers(),
+                            "nPlayers" => $post->getNPlayers(),
+                            "time" => $post->getTime()
+                        );
+                    } else {
+                        $values[] = array(
+                            "id" => $post->getId(),
+                            "title" => $post->getTitle(),
+                            "description" => $post->getDescription(),
+                            "datetime" => $post->getDateTime()
+                        );
+                    }
+                
+                }
+            
             } else {
                 // REDIRECT
             }

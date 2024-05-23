@@ -22,7 +22,7 @@
             }
 
             $this->smarty->assign("authenticated", $this->authenticated);
-            $this->smarty->assign("type", "standard"); // INSERIRE LOGICA TIPO
+            $this->smarty->assign("type", "team"); // INSERIRE LOGICA TIPO
             $this->smarty->assign("className", "post_section");
             $this->smarty->assign("classId", "post-list");
 
