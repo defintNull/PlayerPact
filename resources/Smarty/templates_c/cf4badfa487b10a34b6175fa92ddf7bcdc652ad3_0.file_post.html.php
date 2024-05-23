@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-19 21:56:34
+/* Smarty version 5.1.0, created on 2024-05-22 15:22:34
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664a5972f02706_46395500',
+  'unifunc' => 'content_664df19ac93ba0_43771673',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf4badfa487b10a34b6175fa92ddf7bcdc652ad3' => 
     array (
       0 => 'post.html',
-      1 => 1716148593,
+      1 => 1716384094,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664a5972f02706_46395500 (\Smarty\Template $_smarty_tpl) {
+function content_664df19ac93ba0_43771673 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -95,7 +95,10 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
-                        <div class="post_section" id="post-list">
+                        <!-- <div class="post_section" id="post-list"> -->
+                        <div class=<?php echo $_smarty_tpl->getValue('className');?>
+ id=<?php echo $_smarty_tpl->getValue('classId');?>
+>
                             <input type="hidden" name="total_count" id="total_count" value="0"/>
                             <input type="hidden" name="offset" id="offset" value="0" />
                             <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
@@ -105,7 +108,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
 " />
                         </div>
-                        <div class="ajax-loader text-center text-bg-dark">
+                        <div class="ajax-loader text-center">
                             Loading more posts... 
                         </div>
                     </div>
