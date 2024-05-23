@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 00:20:24
-  from 'file:post.html' */
+/* Smarty version 5.1.0, created on 2024-05-24 00:32:54
+  from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664fc128e71119_40606511',
+  'unifunc' => 'content_664fc416b98a61_99994883',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
+    '4c0c8760587e025d607328e646b783cc64a4436b' => 
     array (
-      0 => 'post.html',
+      0 => 'postSection.html',
       1 => 1716502824,
       2 => 'file',
     ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664fc128e71119_40606511 (\Smarty\Template $_smarty_tpl) {
+function content_664fc416b98a61_99994883 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>

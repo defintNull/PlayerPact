@@ -59,8 +59,7 @@ function getMoreData(initialData) {
         $.ajax({
             url: "autoscroll.php" + '?offset=' + initialData.offset + '&total_count=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + initialData.date + '&time=' + initialData.time,
             type: "get",
-            success: function (response) {
-                
+            success: function (response) {                
                 initialData = JSON.parse(response);
                 if (initialData.rows) {
                     addrows(initialData.rows,initialData.type);
@@ -100,13 +99,13 @@ async function addrows(rows,type) {
 
             document.getElementById("id-post-standard").id = row.id;
             document.getElementById("post-title").innerHTML = row.title;
-            document.getElementById("post-title").id = row.id + "-post-title"
+            document.getElementById("post-title").id = row.id + "-post-title";
             document.getElementById("datetime").innerHTML = row.datetime;
-            document.getElementById("datetime").id = row.id + "-datetime"
+            document.getElementById("datetime").id = row.id + "-datetime";
             document.getElementById("description").innerHTML = row.description;
-            document.getElementById("description").id = row.id + "-description"
+            document.getElementById("description").id = row.id + "-description";
             document.getElementById("user").innerHTML = row.iduser;
-            document.getElementById("user").id = row.id + "-user"
+            document.getElementById("user").id = row.id + "-user";
 
         })
 
@@ -132,9 +131,9 @@ async function addrows(rows,type) {
             document.getElementById("description").id = row.id + "-description";
             document.getElementById("user").innerHTML = row.iduser;
             document.getElementById("user").id = row.id + "-user";
-            document.getElementById("players").innerHTML = row.nPlayers + "/" + row.nMaxPlayers;
+            document.getElementById("players").innerHTML = "Giocatori presenti: " + row.nPlayers + "/" + row.nMaxPlayers;
             document.getElementById("players").id = row.id + "-player";
-            document.getElementById("time_").innerHTML = row.time;
+            document.getElementById("time_").innerHTML = "Orario: " + row.time;
             document.getElementById("time_").id = row.id + "-time";
 
         })
@@ -160,7 +159,7 @@ async function addrows(rows,type) {
             document.getElementById("description").id = row.id + "-description";
             document.getElementById("user").innerHTML = row.iduser;
             document.getElementById("user").id = row.id + "-user";
-            document.getElementById("price").innerHTML = row.price;
+            document.getElementById("price").innerHTML = "Prezzo: " + row.price + "€";
             document.getElementById("price").id = row.id + "-price";
             if(row.image == null) {
                 document.getElementById("image").remove();
@@ -168,7 +167,6 @@ async function addrows(rows,type) {
                 document.getElementById("image").innerHTML = row.image;
             }
             document.getElementById("image").id = row.id + "-image";
-
 
         })
     }

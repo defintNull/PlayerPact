@@ -75,3 +75,48 @@ hr.solid {
     background-color: #222222;
     height: 30px;
 }
+
+.time_ {
+    text-align: left;
+}
+
+.players {
+    text-align: left;
+}
+
+.price {
+    text-align: left;
+}
+
+.commentButton {
+    color:white;
+    background-color: #ff8800;
+    transition: none;
+    border: none;
+    padding: 10px;
+    margin: 7px 2px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 300px;
+    position: relative;
+    right: 0;
+}
+
+.commentButton:hover {
+    background-color: #222222;
+    transition: none;
+}
+
+.form-control {
+    background-color: #222222;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #222222;
+}
