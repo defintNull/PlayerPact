@@ -1,9 +1,9 @@
 <?php
 
-    require realpath($_SERVER["DOCUMENT_ROOT"]."/smartyloader.php");
-    require realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
-    require realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FDB.php");
-    require realpath($_SERVER["DOCUMENT_ROOT"]."/controllers/CPost.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/smartyloader.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FDB.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/controllers/CPost.php");
 
     class VPost {
         private $smarty;
@@ -22,11 +22,10 @@
             }
 
             $this->smarty->assign("authenticated", $this->authenticated);
-            $this->smarty->assign("type", "standard"); // INSERIRE LOGICA TIPO
+            $this->smarty->assign("type", "sell"); // INSERIRE LOGICA TIPO
             $this->smarty->assign("className", "post_section");
             $this->smarty->assign("classId", "post-list");
 
-            $sisdatetime = getdate();
             $date = date("Y/m/d");
             $time = date("H:i:s");
 

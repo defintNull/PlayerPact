@@ -8,9 +8,8 @@ $(document).ready(function(){
     var type = document.getElementById("type").value;
 
     $.ajax({
-        url: 'autoscroll.php'+ '?type=' + type + '&date=' + date +"&time=" + time,
+        url: '/autoscroll/load'+ '?type=' + type + '&date=' + date +"&time=" + time,
         success: function(data) {
-            console.log(data);
             initialData = JSON.parse(data);
 
             if (initialData) {
@@ -57,7 +56,7 @@ function getMoreData(initialData) {
 
     if(initialData.offset == initialData.totalcount) {
         $.ajax({
-            url: "autoscroll.php" + '?offset=' + initialData.offset + '&total_count=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + initialData.date + '&time=' + initialData.time,
+            url: "/autoscroll/load" + '?offset=' + initialData.offset + '&total_count=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + initialData.date + '&time=' + initialData.time,
             type: "get",
             success: function (response) {                
                 initialData = JSON.parse(response);

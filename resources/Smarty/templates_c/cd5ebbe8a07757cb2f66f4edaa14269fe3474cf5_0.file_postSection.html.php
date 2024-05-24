@@ -1,12 +1,42 @@
-<html>
+<?php
+/* Smarty version 5.1.0, created on 2024-05-24 19:03:56
+  from 'file:postSection.html' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.1.0',
+  'unifunc' => 'content_6650c87c0053a4_54934499',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'cd5ebbe8a07757cb2f66f4edaa14269fe3474cf5' => 
+    array (
+      0 => 'postSection.html',
+      1 => 1716570233,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6650c87c0053a4_54934499 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
+?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
+>
         <link rel="stylesheet" href="/resources/css/home.css">
         <link rel="stylesheet" href="/resources/css/post.css">
         
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="/resources/js/autoscroll.js"></script>
+        <?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/autoscroll.js"><?php echo '</script'; ?>
+>
     
     </head>
     <body>
@@ -43,7 +73,7 @@
                                 <button class="btn btn-outline-success" type="submit">Cerca</button>
                             </form>
                         </div>
-                        {if $authenticated == true}
+                        <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,22 +85,27 @@
                                     </ul>
                                 </li>
                             </div>
-                        {else}
+                        <?php } else { ?>
                             <div class="col pUpperLogin">
                                 <button type="button" class="btn-lg pUpperLoginButton">Login</button>
                             </div>
-                        {/if}
+                        <?php }?>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
                         <!-- <div class="post_section" id="post-list"> -->
-                        <div class={$className} id={$classId}>
+                        <div class=<?php echo $_smarty_tpl->getValue('className');?>
+ id=<?php echo $_smarty_tpl->getValue('classId');?>
+>
                             <input type="hidden" name="total_count" id="total_count" value="0"/>
                             <input type="hidden" name="offset" id="offset" value="0" />
-                            <input type="hidden" name="type" id="type" value="{$type}" />
-                            <input type="hidden" name="date" id="date" value="{$date}" />
-                            <input type="hidden" name="dtime" id="time" value="{$time}" />
+                            <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
+" />
+                            <input type="hidden" name="date" id="date" value="<?php echo $_smarty_tpl->getValue('date');?>
+" />
+                            <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
+" />
                         </div>
                         <div class="ajax-loader text-center">
                             Loading more posts... 
@@ -80,4 +115,5 @@
             </div>
         </div>
     </body>
-</html>
+</html><?php }
+}

@@ -1,15 +1,10 @@
 <?php
-    require_once (__DIR__."/FrontController.php");
+    require_once (__DIR__."/controllers/FrontController.php");
 
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $uri = explode('/', $uri);
+    $query = $_SERVER['QUERY_STRING'];
+    $uri = $uri."?".$query;
 
     $frontcontroller = new FrontController();
-    if($uri[1] == null) {
-        $frontcontroller->home();
-        exit();
-    }
-    
-    $frontcontroller->{$uri[1]}();
-
+    $frontcontroller->run($uri);
 ?>
