@@ -149,11 +149,11 @@
         }
 
         public function comments(int $id) {
-            
-            
+            $pm = new FPersistentManager();
+            $res = $pm->loadPost("EPostStandard", $id);
 
             $view = new VPost();
-            $view->showComments();
+            $view->showComments($res["id"],$res["iduser"],$res["title"],$res["description"],$res["datetime"]);
         }
 
         public function createPost() {

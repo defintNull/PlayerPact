@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 00:32:54
+/* Smarty version 5.1.0, created on 2024-05-24 20:44:36
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664fc416b98a61_99994883',
+  'unifunc' => 'content_6650e014cc4787_20773502',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c0c8760587e025d607328e646b783cc64a4436b' => 
     array (
       0 => 'postSection.html',
-      1 => 1716502824,
+      1 => 1716576039,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664fc416b98a61_99994883 (\Smarty\Template $_smarty_tpl) {
+function content_6650e014cc4787_20773502 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -28,14 +28,14 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
         <?php echo '<script'; ?>
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
-        <link rel="stylesheet" href="resources/css/home.css">
-        <link rel="stylesheet" href="resources/css/post.css">
+        <link rel="stylesheet" href="/resources/css/home.css">
+        <link rel="stylesheet" href="/resources/css/post.css">
         
         <?php echo '<script'; ?>
  src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
- src="resources/js/autoscroll.js"><?php echo '</script'; ?>
+ src="/resources/js/autoscroll.js"><?php echo '</script'; ?>
 >
     
     </head>
@@ -45,7 +45,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
                     <div class="row h-auto pSideLogo">
                         <div class="pLogo">
-                            <img src="../../public/Logo.png" id="logo">
+                            <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
@@ -54,13 +54,13 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/resources/Smarty/templates/poststandard.html">PostStandard</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postteam.html">postTeam</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postsell.html">postSell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
                             </li>
                         </ul>
                     </div>
@@ -98,7 +98,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         <div class=<?php echo $_smarty_tpl->getValue('className');?>
  id=<?php echo $_smarty_tpl->getValue('classId');?>
 >
-                            <input type="hidden" name="total_count" id="total_count" value="0"/>
+                            <input type="hidden" name="totalcount" id="totalcount" value="0"/>
                             <input type="hidden" name="offset" id="offset" value="0" />
                             <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
 " />

@@ -30,6 +30,13 @@
             return $results;
         }
 
+        function loadPost(string $EClass,int $id) {
+            $FClass = "F".substr($EClass,1); 
+            $entity = new $FClass();
+            $results = $entity->loadById($id);
+            return $results[0];
+        }
+
         function delete($CClass, string $condition) {
             $FClass = "F".substr($CClass,1); 
             $entity = new $FClass();

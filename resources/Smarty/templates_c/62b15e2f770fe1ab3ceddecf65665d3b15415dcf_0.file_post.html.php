@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 00:20:24
+/* Smarty version 5.1.0, created on 2024-05-24 20:52:49
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664fc128e71119_40606511',
+  'unifunc' => 'content_6650e20189ffb6_26981763',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1716502824,
+      1 => 1716576039,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664fc128e71119_40606511 (\Smarty\Template $_smarty_tpl) {
+function content_6650e20189ffb6_26981763 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -28,15 +28,8 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
         <?php echo '<script'; ?>
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
-        <link rel="stylesheet" href="resources/css/home.css">
-        <link rel="stylesheet" href="resources/css/post.css">
-        
-        <?php echo '<script'; ?>
- src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
->
-        <?php echo '<script'; ?>
- src="resources/js/autoscroll.js"><?php echo '</script'; ?>
->
+        <link rel="stylesheet" href="/resources/css/home.css">
+        <link rel="stylesheet" href="/resources/css/post.css">
     
     </head>
     <body>
@@ -95,21 +88,32 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         
                         <!-- DATA FOR JS -->
                         <!-- <div class="post_section" id="post-list"> -->
-                        <div class=<?php echo $_smarty_tpl->getValue('className');?>
- id=<?php echo $_smarty_tpl->getValue('classId');?>
+                        <div class="post-item" id=<?php echo $_smarty_tpl->getValue('postId');?>
 >
-                            <input type="hidden" name="total_count" id="total_count" value="0"/>
-                            <input type="hidden" name="offset" id="offset" value="0" />
-                            <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
-" />
-                            <input type="hidden" name="date" id="date" value="<?php echo $_smarty_tpl->getValue('date');?>
-" />
-                            <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
-" />
+                            <div class="post-username" ><?php echo $_smarty_tpl->getValue('user');?>
+</div>
+                            <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
+</div>
+                            <div class="description"><?php echo $_smarty_tpl->getValue('description');?>
+</div>
+                            <div class="datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
+</div>
+                            
                         </div>
-                        <div class="ajax-loader text-center">
-                            Loading more posts... 
+                        <hr class="solid">
+                        <div class="commentSection">
+                            
                         </div>
+                        
+                        <input type="hidden" name="totalcount" id="totalcount" value="0"/>
+                        <input type="hidden" name="offset" id="offset" value="0" />
+                        <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
+" />
+                        <input type="hidden" name="date" id="date" value="<?php echo $_smarty_tpl->getValue('date');?>
+" />
+                        <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
+" />
+
                     </div>
                 </div>
             </div>
