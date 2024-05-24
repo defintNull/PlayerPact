@@ -4,20 +4,14 @@
     
     class CAutoscroll {
 
-        public function load($type,$date,$time) {
+        public function load($offset,$totalcount,$type,$date,$time) {
 
             //AUTOSCROLL
-            $offset = (int)($_GET['offset'] ?? 0);
-            $totalcount = (int)($_GET['total_count'] ?? 0);
-            $type = (string)($_GET['type'] ?? "0");
-
             //Date input
-            $datek = (string)($_GET['date'] ?? "2020/01/01");
-            $date = explode("/",$datek);
+            $date = explode("/",$date);
             $date = $date[0]."-".$date[1]."-".$date[2];
             //Time Input
-            $timek = (string)($_GET['time'] ?? "20:20:20");
-            $time = explode(":",$timek);
+            $time = explode(":",$time);
             $time = $time[0].":".$time[1].":".$time[2];
 
             $datetime = $date." ".$time;
@@ -37,8 +31,8 @@
                     'offset' => $offset,
                     'totalcount' => $totalcount,
                     'type' => $type,
-                    'date' => $datek,
-                    'time' => $timek
+                    'date' => $date,
+                    'time' => $time
                 ];
 
                 echo json_encode($data);

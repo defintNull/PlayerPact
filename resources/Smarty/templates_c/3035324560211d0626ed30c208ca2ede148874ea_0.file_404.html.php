@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 18:31:50
+/* Smarty version 5.1.0, created on 2024-05-24 19:32:50
   from 'file:404.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6650c0f6374270_15556928',
+  'unifunc' => 'content_6650cf42a6adf1_64959974',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3035324560211d0626ed30c208ca2ede148874ea' => 
     array (
       0 => '404.html',
-      1 => 1716568306,
+      1 => 1716571968,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6650c0f6374270_15556928 (\Smarty\Template $_smarty_tpl) {
+function content_6650cf42a6adf1_64959974 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -65,7 +65,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
         <div class="astronaut__wrist-right"></div>
 
         <div class="astronaut__cord">
-            <canvas id="cord" height="500px" width="500px"></canvas>
+            <canvas id="cord" height="300px" width="300px"></canvas>
         </div>
 
         <div class="astronaut__head">

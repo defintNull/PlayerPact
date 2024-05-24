@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 19:03:56
+/* Smarty version 5.1.0, created on 2024-05-24 20:13:02
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6650c87c0053a4_54934499',
+  'unifunc' => 'content_6650d8ae8d1c54_02993749',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cd5ebbe8a07757cb2f66f4edaa14269fe3474cf5' => 
     array (
       0 => 'postSection.html',
-      1 => 1716570233,
+      1 => 1716574293,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6650c87c0053a4_54934499 (\Smarty\Template $_smarty_tpl) {
+function content_6650d8ae8d1c54_02993749 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -54,13 +54,13 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/resources/Smarty/templates/poststandard.html">PostStandard</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postteam.html">postTeam</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postsell.html">postSell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
                             </li>
                         </ul>
                     </div>
@@ -98,7 +98,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                         <div class=<?php echo $_smarty_tpl->getValue('className');?>
  id=<?php echo $_smarty_tpl->getValue('classId');?>
 >
-                            <input type="hidden" name="total_count" id="total_count" value="0"/>
+                            <input type="hidden" name="totalcount" id="totalcount" value="0"/>
                             <input type="hidden" name="offset" id="offset" value="0" />
                             <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
 " />

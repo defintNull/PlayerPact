@@ -10,7 +10,7 @@
 
         public function home() {
             $view = new VPost();
-            $view->show();
+            $view->show("standard");
         }
 
         public function loadStandardPosts(int $offset,int $limit,string $datetime) {
@@ -133,13 +133,34 @@
 
         }
 
+        public function standard() {
+            $view = new VPost();
+            $view->show("standard");
+        }
+
+        public function sell() {
+            $view = new VPost();
+            $view->show("sell");
+        }
+
+        public function team() {
+            $view = new VPost();
+            $view->show("team");
+        }
+
+        public function comments(int $id) {
+            
+            
+
+            $view = new VPost();
+            $view->showComments();
+        }
+
         public function createPost() {
 
         }
 
-        public function viewComments(int $idPost) {
-
-        }
+        
 
         public function selectPost(int $postType) {
 

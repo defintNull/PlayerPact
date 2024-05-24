@@ -3,12 +3,12 @@ $(document).ready(function(){
     // ajax call a scroll.php
     var initialData;
 
-    var date = document.getElementById("date").value;
-    var time = document.getElementById("time").value;
+    var offset = document.getElementById("offset").value;
+    var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
 
     $.ajax({
-        url: '/autoscroll/load'+ '?type=' + type + '&date=' + date +"&time=" + time,
+        url: '/autoscroll/load'+ '?offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
             initialData = JSON.parse(data);
 
@@ -21,7 +21,7 @@ $(document).ready(function(){
                         s.value = initialData.offset;
                     }
                     if (initialData.totalcount) {
-                        var t = document.getElementById("total_count");
+                        var t = document.getElementById("totalcount");
                         t.value = initialData.totalcount;
                     }
                 }
@@ -53,12 +53,12 @@ function windowOnScroll(initialData) {
 function getMoreData(initialData) {
     $('.ajax-loader').show();
     $(window).off("scroll");
-
     if(initialData.offset == initialData.totalcount) {
         $.ajax({
-            url: "/autoscroll/load" + '?offset=' + initialData.offset + '&total_count=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + initialData.date + '&time=' + initialData.time,
+            url: "/autoscroll/load" + '?offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",
-            success: function (response) {                
+            success: function (response) {
+
                 initialData = JSON.parse(response);
                 if (initialData.rows) {
                     addrows(initialData.rows,initialData.type);
@@ -67,7 +67,7 @@ function getMoreData(initialData) {
                         s.value = initialData.offset;
                     }
                     if (initialData.totalcount) {
-                        var t = document.getElementById("total_count");
+                        var t = document.getElementById("totalcount");
                         t.value = initialData.totalcount;
                     }
                     $('.ajax-loader').hide();
@@ -96,6 +96,8 @@ async function addrows(rows,type) {
             postList.append(node);
             node.outerHTML = bodyHTML;
 
+            document.getElementById("clickable").href += "?id=" + row.id;
+            document.getElementById("clickable").id = row.id;
             document.getElementById("id-post-standard").id = row.id;
             document.getElementById("post-title").innerHTML = row.title;
             document.getElementById("post-title").id = row.id + "-post-title";
