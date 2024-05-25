@@ -4,6 +4,7 @@
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostSell.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostTeam.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EComment.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VPost.php");
 
     class CPost {
@@ -120,7 +121,10 @@
                         "id" => $post->getId(),
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
-                        "datetime" => $post->getDateTime()
+                        "datetime" => $post->getDateTime(),
+                        "nMaxPlayers" => $post->getNMaxPlayers(),
+                        "nPlayers" => $post->getNPlayers(),
+                        "time" => $post->getTime()
                     );
                 }
             
@@ -154,6 +158,40 @@
 
             $view = new VPost();
             $view->showComments($res["id"],$res["iduser"],$res["title"],$res["description"],$res["datetime"]);
+        }
+
+        public function loadComments(int $idpost,int $offset,int $limit,string $datetime) {
+            $pm = new FPersistentManager();
+            $values = array();
+
+            $res = $pm->loadComments($idpost,$limit,$offset,$datetime);
+            $count = count($res);
+
+            for($i=0;$i<$count;$i++) {
+
+                $comment = new EComment($res[$i]["id"],$res[$i]["idpoststandard"],$res[$i]["iduser"],$res[$i]["description"],$res[$i]["datetime"]);
+                $userdata = $pm->load("EUser", array("id" => $comment->getIdUser()));
+                
+                if(count($userdata) !== 0) {
+                    $userdata = $userdata[0];
+                    $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
+                    $values[] = array(
+                        "id" => $comment->getId(),
+                        "user" => $user->getUsername(),
+                        "description" => $comment->getDescription(),
+                        "datetime" => $comment->getDateTime()
+                    );
+                } else {
+                    $values[] = array(
+                        "id" => $comment->getId(),
+                        "description" => $comment->getDescription(),
+                        "datetime" => $comment->getDateTime()
+                    );
+                }
+            
+            }
+
+            return array($values,$count);
         }
 
         public function createPost() {

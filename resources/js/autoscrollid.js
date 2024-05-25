@@ -6,13 +6,15 @@ $(document).ready(function(){
     var offset = document.getElementById("offset").value;
     var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
-    
+    var id = document.getElementsByClassName("post-item")[0].id;
+
     $.ajax({
-        url: '/autoscroll/load'+ '?offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
+        url: '/autoscroll/loadbyid' + '?id=' + id + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
             
+            initialData = JSON.parse(data);
             try {
-                initialData = JSON.parse(data);
+                
             } catch(err) {
                 window.location.href = "/error/e404";
             }
@@ -61,10 +63,10 @@ function getMoreData(initialData) {
     $(window).off("scroll");
     if(initialData.offset == initialData.totalcount) {
         $.ajax({
-            url: "/autoscroll/load" + '?offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
+            url: "/autoscroll/loadbyid" + '?id=' + id + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",
             success: function (response) {
-
+                
                 try {
                     initialData = JSON.parse(response);
                 } catch(err) {

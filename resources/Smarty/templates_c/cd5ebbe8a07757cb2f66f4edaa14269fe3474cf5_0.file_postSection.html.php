@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 20:13:02
+/* Smarty version 5.1.0, created on 2024-05-25 12:14:59
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6650d8ae8d1c54_02993749',
+  'unifunc' => 'content_6651ba2348ba11_13671307',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cd5ebbe8a07757cb2f66f4edaa14269fe3474cf5' => 
     array (
       0 => 'postSection.html',
-      1 => 1716574293,
+      1 => 1716632093,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6650d8ae8d1c54_02993749 (\Smarty\Template $_smarty_tpl) {
+function content_6651ba2348ba11_13671307 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -33,6 +33,9 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
         
         <?php echo '<script'; ?>
  src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/addpostrows.js"><?php echo '</script'; ?>
 >
         <?php echo '<script'; ?>
  src="/resources/js/autoscroll.js"><?php echo '</script'; ?>

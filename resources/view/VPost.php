@@ -48,7 +48,6 @@
 
             $this->smarty->assign("date", $date);
             $this->smarty->assign("time", $time);
-            $this->smarty->display("postSection.html");
 
             $this->smarty->display("post.html");
         }

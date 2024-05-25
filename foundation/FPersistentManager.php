@@ -37,6 +37,12 @@
             return $results[0];
         }
 
+        function loadComments(int $idpost,int $limit,int $offset,string $datetime) {
+            $entity = new FComment();
+            $results = $entity->loadElements($idpost,$limit,$offset,$datetime);
+            return $results;
+        }
+
         function delete($CClass, string $condition) {
             $FClass = "F".substr($CClass,1); 
             $entity = new $FClass();
