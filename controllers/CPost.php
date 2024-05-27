@@ -155,9 +155,10 @@
         public function comments(int $id) {
             $pm = new FPersistentManager();
             $res = $pm->loadPost("EPostStandard", $id);
+            $user = $pm->loadUser($res["iduser"]);
 
             $view = new VPost();
-            $view->showComments($res["id"],$res["iduser"],$res["title"],$res["description"],$res["datetime"]);
+            $view->showComments($res["id"],$user["username"],$res["title"],$res["description"],$res["datetime"]);
         }
 
         public function loadComments(int $idpost,int $offset,int $limit,string $datetime) {

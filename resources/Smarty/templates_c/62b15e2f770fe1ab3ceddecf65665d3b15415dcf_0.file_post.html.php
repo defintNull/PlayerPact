@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 20:52:49
+/* Smarty version 5.1.0, created on 2024-05-27 12:34:31
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6650e20189ffb6_26981763',
+  'unifunc' => 'content_665461b78ad1d9_14227410',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1716576039,
+      1 => 1716806069,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6650e20189ffb6_26981763 (\Smarty\Template $_smarty_tpl) {
+function content_665461b78ad1d9_14227410 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -30,6 +30,16 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 >
         <link rel="stylesheet" href="/resources/css/home.css">
         <link rel="stylesheet" href="/resources/css/post.css">
+
+        <?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/addcommentrows.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/autoscrollid.js"><?php echo '</script'; ?>
+>
     
     </head>
     <body>
@@ -47,13 +57,13 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/resources/Smarty/templates/poststandard.html">PostStandard</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postteam.html">postTeam</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postsell.html">postSell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
                             </li>
                         </ul>
                     </div>
@@ -90,7 +100,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         <!-- <div class="post_section" id="post-list"> -->
                         <div class="post-item" id=<?php echo $_smarty_tpl->getValue('postId');?>
 >
-                            <div class="post-username" ><?php echo $_smarty_tpl->getValue('user');?>
+                            <div class="post-username"><?php echo $_smarty_tpl->getValue('user');?>
 </div>
                             <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
 </div>
@@ -98,10 +108,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 </div>
                             <div class="datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
 </div>
-                            
                         </div>
                         <hr class="solid">
-                        <div class="commentSection">
+
+                        <div class="commentSection" id="commentSection">
                             
                         </div>
                         
