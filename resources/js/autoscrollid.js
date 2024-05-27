@@ -69,7 +69,7 @@ function getMoreData(initialData) {
                 try {
                     initialData = JSON.parse(response);
                 } catch(err) {
-                    //window.location.href = "/error/e404";
+                    window.location.href = "/error/e404";
                 }
 
                 if (initialData.rows) {

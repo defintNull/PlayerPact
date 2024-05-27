@@ -33,22 +33,22 @@
                         try {
                             $controller->{$method}(...$query);
                         } catch(Error $e) {
-                            //header("Location: /error/e404");
+                            header("Location: /error/e404");
                         }
                     } else {
                         try {
                             $controller->{$method}();
                         } catch(Error $e) {
-                            //header("Location: /error/e404");
+                            header("Location: /error/e404");
                         }
                     }
                     
                 } else {
-                    //header("Location: /error/e404");
+                    header("Location: /error/e404");
                 }
                 
             } else {
-                //header("Location: /error/e404");
+                header("Location: /error/e404");
             }
         }
     }
