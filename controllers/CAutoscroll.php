@@ -64,6 +64,7 @@
                 
                 $data = [
                     'rows' => $rows,
+                    'id' => $id,
                     'offset' => $offset,
                     'totalcount' => $totalcount,
                     'type' => $type,

@@ -154,8 +154,8 @@
 
         public function comments(int $id) {
             $pm = new FPersistentManager();
-            $res = $pm->loadPost("EPostStandard", $id);
-            $user = $pm->loadUser($res["iduser"]);
+            $res = $pm->load("EPostStandard", array("id" => $id))[0];
+            $user = $pm->load("EUser", array("id" => $res["iduser"]))[0];
 
             $view = new VPost();
             $view->showComments($res["id"],$user["username"],$res["title"],$res["description"],$res["datetime"]);

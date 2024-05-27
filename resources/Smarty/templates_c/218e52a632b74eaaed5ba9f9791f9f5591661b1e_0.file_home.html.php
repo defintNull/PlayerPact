@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-21 15:26:46
+/* Smarty version 5.1.0, created on 2024-05-27 16:08:36
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_664ca116566db2_71300442',
+  'unifunc' => 'content_665493e4275c88_28225615',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
     array (
       0 => 'home.html',
-      1 => 1715967472,
+      1 => 1716818915,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_664ca116566db2_71300442 (\Smarty\Template $_smarty_tpl) {
+function content_665493e4275c88_28225615 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -28,7 +28,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
         <?php echo '<script'; ?>
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
-        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="/resources/css/home.css">
     </head>
     <body>
         <div class="container-fluid h-100">
@@ -36,22 +36,22 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
                     <div class="row h-auto pSideLogo">
                         <div class="pLogo">
-                            <img src="../../public/Logo.png" id="logo">
+                            <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="VPost.php">PostStandard</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">PostStandard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postTeam.html">postTeam</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">postTeam</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postSell.html">postSell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">postSell</a>
                             </li>
                         </ul>
                     </div>
@@ -68,7 +68,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Profilo</a></li>
@@ -84,7 +84,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         <div class="pBanner">
-                            <img src="../../public/banner.png">
+                            <img src="/public/banner.png">
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="pWelcome">

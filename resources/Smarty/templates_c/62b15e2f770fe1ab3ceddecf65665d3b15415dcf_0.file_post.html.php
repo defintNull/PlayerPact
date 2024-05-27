@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-27 12:34:31
+/* Smarty version 5.1.0, created on 2024-05-27 15:45:58
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665461b78ad1d9_14227410',
+  'unifunc' => 'content_66548e961e52c7_51896485',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1716806069,
+      1 => 1716817491,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665461b78ad1d9_14227410 (\Smarty\Template $_smarty_tpl) {
+function content_66548e961e52c7_51896485 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -48,22 +48,22 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
                     <div class="row h-auto pSideLogo">
                         <div class="pLogo">
-                            <img src="../../public/Logo.png" id="logo">
+                            <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">PostStandard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">postTeam</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">postSell</a>
                             </li>
                         </ul>
                     </div>
@@ -97,22 +97,29 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
-                        <!-- <div class="post_section" id="post-list"> -->
-                        <div class="post-item" id=<?php echo $_smarty_tpl->getValue('postId');?>
+                        <div class="single-post-section">
+                            <div class="row single-post" id=<?php echo $_smarty_tpl->getValue('postId');?>
 >
-                            <div class="post-username"><?php echo $_smarty_tpl->getValue('user');?>
+                                <div class="post-username"><?php echo $_smarty_tpl->getValue('user');?>
 </div>
-                            <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
+                                <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
 </div>
-                            <div class="description"><?php echo $_smarty_tpl->getValue('description');?>
+                                <div class="description"><?php echo $_smarty_tpl->getValue('description');?>
 </div>
-                            <div class="datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
+                                <div class="datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
 </div>
-                        </div>
-                        <hr class="solid">
-
-                        <div class="commentSection" id="commentSection">
-                            
+                            </div>
+                            <hr class="solid">
+                            <div class="row commentBox">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
+                                        <button type="button" class="btn-lg commentButton">Commenta</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr class="solid">
+                            <div class="commentSection" id="commentSection"></div>
                         </div>
                         
                         <input type="hidden" name="totalcount" id="totalcount" value="0"/>

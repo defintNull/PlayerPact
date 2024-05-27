@@ -5,20 +5,11 @@
         private $smarty;
         private $authenticated = false;
 
-        public function __construct() {
-            session_start();
+        public function show($authenticated) {
             $this->smarty = SmartyLoader::loadSmarty();
-            
-            if(isset($_SESSION["username"])){
-                $this->authenticated = true;
-                $username = $_SESSION["username"];
-            }
-            else{
-                $username = "";
-            }
 
             $this->smarty->assign("authenticated", $this->authenticated);
-            $this->smarty->assign("username", $username);
+            $this->smarty->assign("username", "");
             $this->smarty->display("home.html");
         }
 

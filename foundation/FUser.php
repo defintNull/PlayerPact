@@ -24,13 +24,6 @@
             return $db->load($table,$condition);
         }
 
-        function loadById($id){
-            $db = FDB::getInstance();
-            $table = substr(__CLASS__,1);
-            $condition = "id=".$id;
-            return $db->load($table,$condition);
-        }
-
         function delete(string $condition) {
             $db = FDB::getInstance();
             $table = substr(__CLASS__,1);

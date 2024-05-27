@@ -16,22 +16,22 @@
                 <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
                     <div class="row h-auto pSideLogo">
                         <div class="pLogo">
-                            <img src="../../public/Logo.png" id="logo">
+                            <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">PostStandard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">postTeam</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">postSell</a>
                             </li>
                         </ul>
                     </div>
@@ -65,17 +65,24 @@
                     <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
-                        <!-- <div class="post_section" id="post-list"> -->
-                        <div class="post-item" id={$postId}>
-                            <div class="post-username">{$user}</div>
-                            <div class="title-post-bar post-title">{$posttitle}</div>
-                            <div class="description">{$description}</div>
-                            <div class="datetime">{$datetime}</div>
-                        </div>
-                        <hr class="solid">
-
-                        <div class="commentSection" id="commentSection">
-                            
+                        <div class="single-post-section">
+                            <div class="row single-post" id={$postId}>
+                                <div class="post-username">{$user}</div>
+                                <div class="title-post-bar post-title">{$posttitle}</div>
+                                <div class="description">{$description}</div>
+                                <div class="datetime">{$datetime}</div>
+                            </div>
+                            <hr class="solid">
+                            <div class="row commentBox">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
+                                        <button type="button" class="btn-lg commentButton">Commenta</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr class="solid">
+                            <div class="commentSection" id="commentSection"></div>
                         </div>
                         
                         <input type="hidden" name="totalcount" id="totalcount" value="0"/>

@@ -6,19 +6,19 @@ $(document).ready(function(){
     var offset = document.getElementById("offset").value;
     var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
-    var id = document.getElementsByClassName("post-item")[0].id;
+    var id = document.getElementsByClassName("single-post")[0].id;
 
     $.ajax({
         url: '/autoscroll/loadbyid' + '?id=' + id + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
-            
+
             initialData = JSON.parse(data);
             try {
                 
             } catch(err) {
                 window.location.href = "/error/e404";
             }
-            
+
 
             if (initialData) {
                 if (initialData.rows) {
@@ -44,14 +44,14 @@ $(document).ready(function(){
 function windowOnScroll(initialData) {
 
     if($(document).height() == $(window).height()) {
-        if($(".post-item").length == initialData.totalcount) {
+        if($(".comment").length == initialData.totalcount) {
             getMoreData(initialData)
         }
     }
 
     $(window).on("scroll", function(e){        
         if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 60)) {
-            if($(".post-item").length == initialData.totalcount) {
+            if($(".comment").length == initialData.totalcount) {
                 getMoreData(initialData)
             }
         }
@@ -63,14 +63,13 @@ function getMoreData(initialData) {
     $(window).off("scroll");
     if(initialData.offset == initialData.totalcount) {
         $.ajax({
-            url: "/autoscroll/loadbyid" + '?id=' + id + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
+            url: "/autoscroll/loadbyid" + '?id=' + initialData.id + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",
-            success: function (response) {
-                
+            success: function (response) {                
                 try {
                     initialData = JSON.parse(response);
                 } catch(err) {
-                    window.location.href = "/error/e404";
+                    //window.location.href = "/error/e404";
                 }
 
                 if (initialData.rows) {

@@ -30,18 +30,6 @@
             return $results;
         }
 
-        function loadPost(string $EClass,int $id) {
-            $FClass = "F".substr($EClass,1); 
-            $entity = new $FClass();
-            $results = $entity->loadById($id);
-            return $results[0];
-        }
-
-        function loadUser(int $id) {
-            $f = new FUser();
-            return $f->loadById($id)[0];
-        }
-
         function loadComments(int $idpost,int $limit,int $offset,string $datetime) {
             $entity = new FComment();
             $results = $entity->loadElements($idpost,$limit,$offset,$datetime);
