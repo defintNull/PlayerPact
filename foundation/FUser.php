@@ -15,12 +15,13 @@
             $condition = "";
             $i = 0;
             foreach($arr as $key => $val){
-                $condition .= $key."=".$val;
+                $condition .= $key."=\"".$val."\"";
                 if($i != count($arr) - 1){
                     $condition .= " AND ";
                 }
                 $i++;
             }
+            
             return $db->load($table,$condition);
         }
 

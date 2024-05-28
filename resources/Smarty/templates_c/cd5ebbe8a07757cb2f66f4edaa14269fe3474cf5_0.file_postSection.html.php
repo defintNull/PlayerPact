@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-25 12:14:59
+/* Smarty version 5.1.0, created on 2024-05-28 14:57:55
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6651ba2348ba11_13671307',
+  'unifunc' => 'content_6655d4d374f352_00362448',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cd5ebbe8a07757cb2f66f4edaa14269fe3474cf5' => 
     array (
       0 => 'postSection.html',
-      1 => 1716632093,
+      1 => 1716901069,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6651ba2348ba11_13671307 (\Smarty\Template $_smarty_tpl) {
+function content_6655d4d374f352_00362448 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -54,7 +54,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
@@ -80,7 +80,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Profilo</a></li>
