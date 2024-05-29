@@ -3,15 +3,18 @@
 
     class VHome {
         private $smarty;
-        private $authenticated = false;
+        private $params;
 
-        public function show($authenticated) {
-            $this->smarty = SmartyLoader::loadSmarty();
-
-            $this->smarty->assign("authenticated", $this->authenticated);
-            $this->smarty->assign("username", "");
-            $this->smarty->display("home.html");
+        public function loadParams(array $params) {
+            $this->params = $params;
         }
 
+        public function show() {
+            $this->smarty = SmartyLoader::loadSmarty();
+            foreach($this->params as $key => $val){
+                $this->smarty->assign($key, $val);
+            }
+            $this->smarty->display("home.html");
+        }
     }
 ?>

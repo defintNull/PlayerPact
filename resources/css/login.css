@@ -1,5 +1,25 @@
+body {
+    color: white;
+    background-color: #222222;
+}
+
+
 .login {
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 35%;
+    margin-right: 35%;
     margin-top: 15%;
+    text-align: center;
+}
+
+.pButton {
+    background-color: ff8800;
+    min-width: 200px;
+}
+
+.pRegistration {
+    text-align: center;
+}
+
+.pCreateAccount {
+    text-decoration: none;
 }

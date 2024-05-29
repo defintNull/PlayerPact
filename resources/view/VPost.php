@@ -14,13 +14,6 @@
         }
 
         public function show($type) {
-            session_start();
-            
-            
-            if(isset($_SESSION["username"])){
-                $this->authenticated = true;
-            }
-
             $this->smarty->assign("authenticated", $this->authenticated);
             $this->smarty->assign("type", $type); // INSERIRE LOGICA TIPO
             $this->smarty->assign("className", "post_section");

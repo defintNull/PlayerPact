@@ -1,7 +1,33 @@
-<html>
+<?php
+/* Smarty version 5.1.0, created on 2024-05-29 10:07:15
+  from 'file:registration.html' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.1.0',
+  'unifunc' => 'content_6656e233451927_41732367',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c1a76d194fe75cbbffa18d26ca077a0fc78fd8d5' => 
+    array (
+      0 => 'registration.html',
+      1 => 1716968884,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6656e233451927_41732367 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
+?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
+>
     </head>
     <body>
         <form action="/login/register" method="post">
@@ -15,9 +41,9 @@
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
 											<h6 class="mb-0">Name</h6>
-											{if $name == "false"}
+											<?php if ($_smarty_tpl->getValue('name') == "false") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
-											{/if}
+											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
 											<input type="text" name="name" class="form-control form-control-lg" />
@@ -27,9 +53,9 @@
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
 											<h6 class="mb-0">Surname</h6>
-											{if $surname == "false"}
+											<?php if ($_smarty_tpl->getValue('surname') == "false") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
-											{/if}
+											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
 											<input type="text" name="surname" class="form-control form-control-lg" />                              
@@ -39,9 +65,9 @@
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
 											<h6 class="mb-0">Birthdate</h6>
-											{if $birthdate == "false"}
+											<?php if ($_smarty_tpl->getValue('birthdate') == "false") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
-											{/if}
+											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
 											<label class="active" for="dateStandard">Datepicker</label>
@@ -53,9 +79,9 @@
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
 										<h6 class="mb-0">Email address</h6>
-										{if $email == "false"}
+										<?php if ($_smarty_tpl->getValue('email') == "false") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
-										{/if}
+										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
 										<input type="email" name="email" class="form-control form-control-lg" placeholder="example@example.com" />
@@ -65,9 +91,9 @@
 								<div class="row align-items-center pt-4 pb-3">
 									<div class="col-md-3 ps-5">              
 										<h6 class="mb-0">Username</h6>
-										{if $username == "false"}
+										<?php if ($_smarty_tpl->getValue('username') == "false") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
-										{/if}
+										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
 										<input type="text" name="username" class="form-control form-control-lg" />											
@@ -77,9 +103,9 @@
 								<div class="row align-items-center pt-4 pb-3">
 									<div class="col-md-3 ps-5">	
 										<h6 class="mb-0">Password</h6>
-										{if $password == "false"}
+										<?php if ($_smarty_tpl->getValue('password') == "false") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
-										{/if}										
+										<?php }?>										
 									</div>
 									<div class="col-md-9 pe-5">              
 										<input type="password" name="password" class="form-control form-control-lg" />              
@@ -106,4 +132,5 @@
             </section>
         </form>
     </body>
-</html>
+</html><?php }
+}
