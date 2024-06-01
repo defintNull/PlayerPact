@@ -121,9 +121,11 @@ body {
 
 .error__description {
   opacity: 0.5;
+  margin-bottom: 20px;
 }
 
 .error__button {
+  text-decoration: none;
   min-width: 7em;
   margin-top: 3em;
   margin-right: 0.5em;

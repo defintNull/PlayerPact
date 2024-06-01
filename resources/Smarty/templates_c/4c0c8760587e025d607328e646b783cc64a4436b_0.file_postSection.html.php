@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 08:37:11
+/* Smarty version 5.1.0, created on 2024-06-01 16:41:27
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656cd1781d6a4_03683433',
+  'unifunc' => 'content_665b33171b3778_59128067',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c0c8760587e025d607328e646b783cc64a4436b' => 
     array (
       0 => 'postSection.html',
-      1 => 1716964582,
+      1 => 1717252883,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656cd1781d6a4_03683433 (\Smarty\Template $_smarty_tpl) {
+function content_665b33171b3778_59128067 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -90,7 +90,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                         <?php } else { ?>
                             <div class="col pUpperLogin">
-                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
                             </div>
                         <?php }?>
                     </div>

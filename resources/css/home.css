@@ -6,7 +6,7 @@
 .pLogo {
     padding: 0;
     margin: 0;
-    border-color: #d1d1d1;
+    border-color: white;
     border-style: none none solid none;
     border-spacing: 15px 10px;
 }
@@ -21,7 +21,7 @@
 .pSideLogo {
     display: block;
     background-color: #222222;
-    border-color: #d1d1d1;
+    border-color: white;
     border-style: none solid none none;
 }
 
@@ -30,7 +30,7 @@
     padding: 5%;
     padding-top: 7%;
     background-color: #222222;
-    border-color: #d1d1d1;
+    border-color: white;
     border-style: none solid none none;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .pUpperBar {
-    color: #eeeeee;
+    color: white;
     background-color: #222222;
     text-align: center;
     border-color: #d1d1d1;
@@ -75,12 +75,12 @@
 }
 
 #profileImage:hover {
-    border-color: #d1d1d1;
+    border-color: white;
     border-style: solid;
 }
 
 #profileImage:active {
-    border-color: #d1d1d1;
+    border-color: white;
     border-style: solid;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .pMenuElement {
-    color: #eeeeee;
+    color: white;
     text-decoration: none;
     text-align: center;
     transition: none;
@@ -136,7 +136,7 @@
 }
 
 .pHomeButton {
-    color:#dddddd;
+    color:white;
     background-color: #ff8800;
     transition: none;
     border: none;
@@ -159,7 +159,8 @@
 }
 
 .pUpperLoginButton {
-    color:#dddddd;
+    color: white;
+    text-decoration: none;
     background-color: #ff8800;
     transition: none;
     border: none;

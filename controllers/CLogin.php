@@ -3,18 +3,26 @@
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VLogin.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FPersistentManager.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EProfile.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
 
 
     class CLogin {
-        public function login(string $check="true") {
+        public function login(string $check="ok") {
             $view = new VLogin();
             $view->show($check);
         }
 
-        public function registration($name="true", $surname="true", $birthdate="true", $email="true", $username="true", $password="true") {
+        public function registration($info = "ok", $name="ok", $surname="ok", $birthdate="ok", $email="ok", $username="ok", $password="ok") {
             $view = new VLogin();
-            $view->registration($name, $surname, $birthdate, $email, $username, $password);
+            $params = array("name" => $name, 
+                            "surname" => $surname, 
+                            "birthdate" => $birthdate, 
+                            "email" => $email, 
+                            "username" => $username, 
+                            "password" => $password,
+                            "info" => $info);
+            $view->registration($params);
         }
 
         public function home() {
@@ -48,25 +56,25 @@
 
                 if($profile["type"] == "user") {
                     unset($profile["type"]);
-                    $userval = $pm->load("EUser", $profile)[0];
-                    $user = new EUser($userval["id"],$userval["username"],$userval["password"],$userval["name"],$userval["surname"],$userval["birthDate"],$userval["email"],$userval["image"]);
+                    $val = $pm->load("EUser", $values)[0];
+                    $user = new EUser($val["id"],$val["username"],$val["password"],$val["name"],$val["surname"],$val["birthDate"],$val["email"],$val["image"]);
 
                     $session = USession::getInstance();
-                    $session->set("User",$user);
+                    $session->set("user",$user);
 
                 } elseif($profile["type"] == "mod") {
-                    $userval = $pm->load("EMod", $profile)[0];
-                    $user = new EUser($userval["id"],$userval["username"],$userval["password"],$userval["name"],$userval["surname"],$userval["birthDate"],$userval["email"],$userval["image"]);
+                    $val = $pm->load("EMod", $values)[0];
+                    $user = new EMod($val["id"],$val["username"],$val["password"],$val["name"],$val["surname"],$val["birthDate"],$val["email"],$val["image"]);
 
                     $session = USession::getInstance();
-                    $session->set("User",$user);
+                    $session->set("user",$user);
                     
                 } elseif($profile["type"] == "admin") {
-                    $userval = $pm->load("EAdmin", $profile)[0];
-                    $user = new EUser($userval["id"],$userval["username"],$userval["password"],$userval["name"],$userval["surname"],$userval["birthDate"],$userval["email"],$userval["image"]);
+                    $val = $pm->load("EAdmin", $values)[0];
+                    $user = new EAdmin($val["id"],$val["username"],$val["password"],$val["name"],$val["surname"],$val["birthDate"],$val["email"],$val["image"]);
 
                     $session = USession::getInstance();
-                    $session->set("User",$user);
+                    $session->set("user",$user);
                 }
                 
                 return true;
@@ -75,63 +83,101 @@
         }
 
         public function register() {
-            $missing = $this->check();
+            $missing = $this->checkMissing();
+
             if($missing == array()) {
-                header("Location:/user/home?authenticated=true");
+                $name = $_POST["name"];
+                $surname = $_POST["surname"];
+                $birthdate = $_POST["birthdate"];
+                $email = $_POST["email"];
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+                if(isset($_POST["image"])){
+                    $image = $_POST["image"];
+                }
+                else {
+                    $image = null;
+                }
+
+                $user = new EUser(1, $username, $password, $name, $surname, $birthdate, $email, $image);
+                $profile = new EProfile(1, "user", $username, $password, $email);
+                
+                $existing = $this->checkExisting();
+                
+                if(count($existing) > 0){
+                    header("Location: /login/registration?info=error&".http_build_query($existing));
+                    exit();
+                }
+
+                $pm = new FPersistentManager();
+                if(!$pm->store($user) || !$pm->store($profile)){
+                    header("Location: /login/registration?info=error&");
+                    exit();
+                }
+                header("Location: /login");
                 exit();
             }
-            header("Location:/login/registration?".http_build_query($missing));
+            header("Location: /login/registration?info=error&".http_build_query($missing));
             exit();
         }
 
-        private static function check() {
+        private static function checkMissing() {
             //funzione da fare per formattare stringe per prevenire sql injection
+            //Aggiungere controllo se già esiste l'utente
             $name = $_POST["name"];
             $surname = $_POST["surname"];
             $birthdate = $_POST["birthdate"];
             $email = $_POST["email"];
             $username = $_POST["username"];
             $password = $_POST["password"];
-            
+
             $missing = array();
 
+            // Controllo sui campi vuoti
             if($name == ""){
-                $missing["name"] = "false";
-            } else {
-                $missing["name"] = "true";
+                $missing["name"] = "missing";
             }
 
             if($surname == ""){
-                $missing["surname"] = "false";
-            } else {
-                $missing["surname"] = "true";
+                $missing["surname"] = "missing";
             }
 
             if($birthdate == ""){
-                $missing["birthdate"] = "false";
-            } else {
-                $missing["birthdate"] = "true";
+                $missing["birthdate"] = "missing";
             }
 
             if($email == ""){
-                $missing["email"] = "false";
-            } else {
-                $missing["email"] = "true";
+                $missing["email"] = "missing";
             }
 
             if($username == ""){
-                $missing["username"] = "false";
-            } else {
-                $missing["username"] = "true";
+                $missing["username"] = "missing";
             }
 
             if($password == ""){
-                $missing["password"] = "false";
-            } else {
-                $missing["password"] = "true";
+                $missing["password"] = "missing";
             }
 
             return $missing;
+        }
+
+        private static function checkExisting() {
+            $email = $_POST["email"];
+            $username = $_POST["username"];
+
+            $pm = new FPersistentManager();
+            $existing = array();
+
+            $check = $pm->load("EProfile", array("username" => $username));
+            if($check != array()){
+                $existing["username"] = "existing";
+            }
+            $check = $pm->load("EProfile", array("email" => $email));
+            if($check != array()){
+                $existing["email"] = "existing";
+            }
+
+            return $existing;
         }
     }
 ?>

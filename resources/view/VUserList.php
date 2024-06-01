@@ -26,7 +26,6 @@
             $this->smarty->assign("className", "user_list_section");
             $this->smarty->assign("classId", "user-list");
 
-            $sisdatetime = getdate();
             $date = date("Y/m/d");
             $time = date("H:i:s");
 

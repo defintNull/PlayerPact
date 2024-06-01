@@ -156,7 +156,12 @@ hr.solid {
 }
 
 .commentButton:hover {
-    background-color: #222222;
+    background-color: #333333;
+    transition: none;
+}
+
+.commentButton:active {
+    background-color: #534535;
     transition: none;
 }
 

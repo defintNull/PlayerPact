@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 10:07:15
+/* Smarty version 5.1.0, created on 2024-06-01 18:50:28
   from 'file:registration.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656e233451927_41732367',
+  'unifunc' => 'content_665b51543a83f2_64772337',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c1a76d194fe75cbbffa18d26ca077a0fc78fd8d5' => 
     array (
       0 => 'registration.html',
-      1 => 1716968884,
+      1 => 1717260626,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656e233451927_41732367 (\Smarty\Template $_smarty_tpl) {
+function content_665b51543a83f2_64772337 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -28,20 +28,27 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
         <?php echo '<script'; ?>
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
-    </head>
+    
+		<link rel="stylesheet" href="/resources/css/registration.css">
+	</head>
     <body>
-        <form action="/login/register" method="post">
-            <section class="vh-100" style="background-color: #2779e2;">
-                <div class="container h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
+        <form action="/login/register" method="post" enctype="multipart/form-data" accept="image/*">
+            <section>
+                <div class="container">
+                    <div class="row d-flex justify-content-center align-items-center">
                       	<div class="col-xl-9">
-                        	<h1 class="text-white mb-4">Registration</h1>
+							<?php if ($_smarty_tpl->getValue('info') != "ok") {?>
+								<h1 class="registration-text mb-4">Registrazione - Errore</h1>
+							<?php } else { ?>
+								<h1 class="registration-text mb-4">Registrazione</h1>
+							<?php }?>
+                        	
 							<div class="card" style="border-radius: 15px;">
 								<div class="card-body">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
 											<h6 class="mb-0">Name</h6>
-											<?php if ($_smarty_tpl->getValue('name') == "false") {?>
+											<?php if ($_smarty_tpl->getValue('name') == "missing") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
 											<?php }?>
 										</div>
@@ -53,7 +60,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
 											<h6 class="mb-0">Surname</h6>
-											<?php if ($_smarty_tpl->getValue('surname') == "false") {?>
+											<?php if ($_smarty_tpl->getValue('surname') == "missing") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
 											<?php }?>
 										</div>
@@ -65,7 +72,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
 											<h6 class="mb-0">Birthdate</h6>
-											<?php if ($_smarty_tpl->getValue('birthdate') == "false") {?>
+											<?php if ($_smarty_tpl->getValue('birthdate') == "missing") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
 											<?php }?>
 										</div>
@@ -79,8 +86,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
 										<h6 class="mb-0">Email address</h6>
-										<?php if ($_smarty_tpl->getValue('email') == "false") {?>
+										<?php if ($_smarty_tpl->getValue('email') == "missing") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
+										<?php } elseif ($_smarty_tpl->getValue('email') == "existing") {?>
+											<div class="existing"><a>Hai inserito un indirizzo già utilizzato!</a></div>
 										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
@@ -91,8 +100,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<div class="row align-items-center pt-4 pb-3">
 									<div class="col-md-3 ps-5">              
 										<h6 class="mb-0">Username</h6>
-										<?php if ($_smarty_tpl->getValue('username') == "false") {?>
+										<?php if ($_smarty_tpl->getValue('username') == "missing") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
+										<?php } elseif ($_smarty_tpl->getValue('email') == "existing") {?>
+											<div class="existing"><a>Hai inserito uno username già utilizzato!</a></div>
 										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
@@ -103,7 +114,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<div class="row align-items-center pt-4 pb-3">
 									<div class="col-md-3 ps-5">	
 										<h6 class="mb-0">Password</h6>
-										<?php if ($_smarty_tpl->getValue('password') == "false") {?>
+										<?php if ($_smarty_tpl->getValue('password') == "missing") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
 										<?php }?>										
 									</div>
@@ -123,7 +134,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								</div>
 								<hr class="mx-n3">              
 								<div class="px-5 py-4">
-									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Send application</button>
+									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Send application</button>
 								</div>              
 							</div>
                       	</div>

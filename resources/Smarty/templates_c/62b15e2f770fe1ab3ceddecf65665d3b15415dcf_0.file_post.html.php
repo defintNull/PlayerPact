@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 08:37:14
+/* Smarty version 5.1.0, created on 2024-06-01 16:41:32
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656cd1a6f1a77_29028178',
+  'unifunc' => 'content_665b331c2b8747_16292749',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1716964582,
+      1 => 1717252862,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656cd1a6f1a77_29028178 (\Smarty\Template $_smarty_tpl) {
+function content_665b331c2b8747_16292749 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -80,7 +80,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Profilo</a></li>
@@ -90,7 +90,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                         <?php } else { ?>
                             <div class="col pUpperLogin">
-                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
                             </div>
                         <?php }?>
                     </div>

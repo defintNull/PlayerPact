@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 10:25:26
+/* Smarty version 5.1.0, created on 2024-06-01 17:18:43
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656e676d9a8c5_71015376',
+  'unifunc' => 'content_665b3bd3d15f96_23637030',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
     array (
       0 => 'home.html',
-      1 => 1716971032,
+      1 => 1717253078,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656e676d9a8c5_71015376 (\Smarty\Template $_smarty_tpl) {
+function content_665b3bd3d15f96_23637030 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -68,7 +68,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="/public/4.png" alt="Avatar" id="profileImage"> <!-- Inserire immagine profilo-->
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Profilo</a></li>
@@ -78,7 +78,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                         <?php } else { ?>
                             <div class="pUpperLogin">
-                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
                             </div>
                         <?php }?>
                     </div>
@@ -98,10 +98,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                             <a>Qui potrai cercare nuovi amici con cui giocare online, comprare un nuovo videogioco o semplicemente esprimere un proprio pensiero sul mondo dei videogiochi!</a>
                             <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Registrati</button>
+                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Registrati</a>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pHomeButton">Login</a>
                             </div>
                         <?php }?>
                     </div>

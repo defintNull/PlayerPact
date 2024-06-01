@@ -6,7 +6,7 @@
         function store($obj) {
             $db = FDB::getInstance();
             $table = substr(__CLASS__,1);
-            $db->store($table,$obj);
+            return $db->store($table,$obj);
         }
 
         function load(array $arr) {

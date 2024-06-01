@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-24 20:44:37
+/* Smarty version 5.1.0, created on 2024-06-01 19:22:00
   from 'file:404.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6650e0152cf1b4_69352184',
+  'unifunc' => 'content_665b58b8bffdd3_03741368',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '52a4af7f019068d78482866326bb9642981d8ecf' => 
     array (
       0 => '404.html',
-      1 => 1716576039,
+      1 => 1717262520,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6650e0152cf1b4_69352184 (\Smarty\Template $_smarty_tpl) {
+function content_665b58b8bffdd3_03741368 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -43,8 +43,8 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
             <div class="error__title">404</div>
             <div class="error__subtitle">Hmmm...</div>
             <div class="error__description">It looks like one of the developers fell asleep</div>
-            <button class="error__button error__button--active">LOGIN</button>
-            <button class="error__button">CONTACT</button>
+            <a class="error__button error__button--active" href="/login">LOGIN</a>
+            <a class="error__button" href="/user/home">HOME</a>
         </div>
 
         <div class="astronaut">

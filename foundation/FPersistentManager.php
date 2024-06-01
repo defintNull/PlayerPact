@@ -14,7 +14,7 @@
         function store($obj) {
             $FClass = self::classConvert($obj);
             $entity = new $FClass();
-            $entity->store($obj);
+            return $entity->store($obj);
         }
 
         function load($EClass, array $arr) {

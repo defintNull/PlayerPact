@@ -57,9 +57,7 @@
                 $counter = 0;
                 $values = $entity->getValues();
                 foreach($values as $attrib=>$data) {
-                    if(!strcmp(strtolower($attrib),"id")) {
-                        $sql .= $attrib;
-                    }
+                    $sql .= $attrib;
                     if($counter < count($values)-1) {
                         $sql .= ", ";
                     }
@@ -69,7 +67,9 @@
 
                 $counter = 0;
                 foreach($values as $attrib=>$data) {
-                    if(!strcmp(strtolower($attrib),"id")) {
+                    if(strcmp(strtolower($attrib),"id") == 0) {
+                        $sql .= "NULL";
+                    } else {
                         $sql .= "\"". $data. "\"";
                     }
                     if($counter < count($values)-1) {
@@ -80,12 +80,15 @@
                 $sql .= ")";
                 
                 $sth = $this->db->prepare($sql);
+                echo $sql;
                 $sth->execute();
 
                 $this->db->commit();
-
+                
+                return true;
             }catch (PDOException $e) {
-                return $e->getCode();
+                return false;
+                //return $e->getCode();
             }
         }
 
