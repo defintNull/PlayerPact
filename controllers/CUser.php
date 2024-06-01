@@ -9,18 +9,19 @@
 
             $session = USession::getInstance();
             $user = $session->load("user");
-
+            
+            $username = null;
+            $authenticated = false;
+            $createPostLink = "/login";
             if($user != null){
                 $username = $user->getUsername();
                 $authenticated = true;
-            }
-            else{
-                $username = null;
-                $authenticated = false;
+                $createPostLink = "/post/create";
             }
 
             $params = array("authenticated" => $authenticated,
-                            "username" => $username);
+                            "username" => $username,
+                            "createPostLink" => $createPostLink);
             $view->show($params);
         }
     }

@@ -179,5 +179,12 @@
 
             return $existing;
         }
+
+        public function logout(){
+            $session = USession::getInstance();
+            $session->end();
+            header("Location: /user/home");
+            exit();
+        }
     }
 ?>

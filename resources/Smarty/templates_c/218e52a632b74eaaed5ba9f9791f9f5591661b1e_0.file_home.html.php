@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 17:18:43
+/* Smarty version 5.1.0, created on 2024-06-01 21:00:09
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b3bd3d15f96_23637030',
+  'unifunc' => 'content_665b6fb92ed9a6_04155014',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
     array (
       0 => 'home.html',
-      1 => 1717253078,
+      1 => 1717268386,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b3bd3d15f96_23637030 (\Smarty\Template $_smarty_tpl) {
+function content_665b6fb92ed9a6_04155014 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -55,6 +55,14 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </li>
                         </ul>
                     </div>
+                    <div class="row justify-content-center text-bg-dark flex-grow-1">
+                        <ul class="nav nav-pills pSideNav">
+                            <li class="nav-item">
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="<?php echo $_smarty_tpl->getValue('createPostLink');?>
+">Nuovo post</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
@@ -72,7 +80,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Profilo</a></li>
-                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                        <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>
                             </div>

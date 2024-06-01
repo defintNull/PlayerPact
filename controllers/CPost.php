@@ -143,12 +143,15 @@
             $user = $session->load("user");
 
             $authenticated = false;
+            $createPostLink = "/login";
             if($user != null){
                 $authenticated = true;
+                $createPostLink = "/post/create";
             }
 
             $params = array("type" => "standard",
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "createPostLink" => $createPostLink);
             $view->show($params);
         }
 
@@ -158,12 +161,15 @@
             $user = $session->load("user");
 
             $authenticated = false;
+            $createPostLink = "/login";
             if($user != null){
                 $authenticated = true;
+                $createPostLink = "/post/create";
             }
 
             $params = array("type" => "sell",
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "createPostLink" => $createPostLink);
             $view->show($params);
         }
 
@@ -173,12 +179,15 @@
             $user = $session->load("user");
 
             $authenticated = false;
+            $createPostLink = "/login";
             if($user != null){
                 $authenticated = true;
+                $createPostLink = "/post/create";
             }
 
             $params = array("type" => "team",
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "createPostLink" => $createPostLink);
             $view->show($params);
         }
 
@@ -191,8 +200,10 @@
             $sessionUser = $session->load("user");
 
             $authenticated = false;
+            $createPostLink = "/login";
             if($sessionUser != null){
                 $authenticated = true;
+                $createPostLink = "/post/create";
             }
 
             $view = new VPost();
@@ -201,7 +212,8 @@
                             "title" => $res["title"],
                             "description" => $res["description"],
                             "datetime" => $res["datetime"],
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "createPostLink" => $createPostLink);
             $view->showComments($params);
         }
 
@@ -239,11 +251,9 @@
             return array($values,$count);
         }
 
-        public function createPost() {
+        public function create() {
 
-        }
-
-        
+        }        
 
         public function selectPost(int $postType) {
 
