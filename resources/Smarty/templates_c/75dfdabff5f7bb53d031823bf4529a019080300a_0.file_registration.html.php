@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-28 19:14:47
+/* Smarty version 5.1.0, created on 2024-05-28 20:45:52
   from 'file:registration.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656110792c3b2_05314141',
+  'unifunc' => 'content_66562660bba066_52478163',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '75dfdabff5f7bb53d031823bf4529a019080300a' => 
     array (
       0 => 'registration.html',
-      1 => 1716916485,
+      1 => 1716921924,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656110792c3b2_05314141 (\Smarty\Template $_smarty_tpl) {
+function content_66562660bba066_52478163 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -30,7 +30,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
 >
     </head>
     <body>
-        <form action="/login/register" method="post">
+        <form action="/login/register" method="post" enctype="multipart/form-data" accept="image/*">
             <section class="vh-100" style="background-color: #2779e2;">
                 <div class="container h-100">
                   <div class="row d-flex justify-content-center align-items-center h-100">
@@ -152,7 +152,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                           <hr class="mx-n3">
               
                           <div class="px-5 py-4">
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Send application</button>
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Register</button>
                           </div>
               
                         </div>

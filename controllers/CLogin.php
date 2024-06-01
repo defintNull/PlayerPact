@@ -35,7 +35,7 @@
         }
 
         public function register() {
-            echo var_dump($_POST);
+            echo var_dump($_FILES);
         }
 
         private static function authentication(string $username, string $password) {
@@ -44,14 +44,34 @@
 
             $pm = new FPersistentManager();
             $values = array("username" => $username, "password" => $password);
-            $res = $pm->load("EUser", $values); // DA CAMBIARE CON EPERSON
+            $profile = $pm->load("Eprofile", $values); // DA CAMBIARE CON EPERSON
             
-            if($res != array()) {
-                $res = $res[0];
-                $user = new EUser($res["id"],$res["username"],$res["password"],$res["name"],$res["surname"],$res["birthDate"],$res["email"],$res["image"]);
+            if($profile != array()) {
+                $profile = $profile[0];
 
-                $session = USession::getInstance();
-                $session->set("User",$user);
+                if($profile["type"] == "user") {
+                    unset($profile["type"]);
+                    $userval = $pm->load("EUser", $profile)[0];
+                    $user = new EUser($userval["id"],$userval["username"],$userval["password"],$userval["name"],$userval["surname"],$userval["birthDate"],$userval["email"],$userval["image"]);
+
+                    $session = USession::getInstance();
+                    $session->set("User",$user);
+
+                } elseif($profile["type"] == "mod") {
+                    $userval = $pm->load("EMod", $profile)[0];
+                    $user = new EUser($userval["id"],$userval["username"],$userval["password"],$userval["name"],$userval["surname"],$userval["birthDate"],$userval["email"],$userval["image"]);
+
+                    $session = USession::getInstance();
+                    $session->set("User",$user);
+                    
+                } elseif($profile["type"] == "admin") {
+                    $userval = $pm->load("EAdmin", $profile)[0];
+                    $user = new EUser($userval["id"],$userval["username"],$userval["password"],$userval["name"],$userval["surname"],$userval["birthDate"],$userval["email"],$userval["image"]);
+
+                    $session = USession::getInstance();
+                    $session->set("User",$user);
+                }
+                
                 return true;
             } else {
                 return false;

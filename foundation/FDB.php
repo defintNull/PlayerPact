@@ -17,7 +17,8 @@
             "PostStandard"=>"poststandard",
             "PostTeam"=>"postteam",
             "Report"=>"report",
-            "User"=>"user");
+            "User"=>"user",
+            "Profile"=>"profile");
 
         private $db;
 

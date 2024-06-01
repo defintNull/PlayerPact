@@ -39,7 +39,8 @@
                         try {
                             $controller->{$method}();
                         } catch(Error $e) {
-                            header("Location: /error/e404");
+                            echo $e;
+                            //header("Location: /error/e404");
                         }
                     }
                     
