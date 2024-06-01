@@ -24,5 +24,9 @@
 
             $this->smarty->display("post.html");
         }
+
+        public function showSelectNewPost(){
+            $this->smarty->display("selectNewPost.html");
+        }
     }
 ?>

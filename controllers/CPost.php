@@ -10,8 +10,7 @@
     class CPost {
 
         public function home() {
-            $view = new VPost();
-            $view->show("standard");
+            $this->standard();
         }
 
         public function loadStandardPosts(int $offset,int $limit,string $datetime) {
@@ -252,7 +251,8 @@
         }
 
         public function create() {
-
+            $view = new VPost();
+            $view->showSelectNewPost();
         }        
 
         public function selectPost(int $postType) {
