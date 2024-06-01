@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 20:16:44
+/* Smarty version 5.1.0, created on 2024-06-01 20:46:59
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b658c0dd152_09834761',
+  'unifunc' => 'content_665b6ca3b98f52_60514329',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c0c8760587e025d607328e646b783cc64a4436b' => 
     array (
       0 => 'postSection.html',
-      1 => 1717264929,
+      1 => 1717267618,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b658c0dd152_09834761 (\Smarty\Template $_smarty_tpl) {
+function content_665b6ca3b98f52_60514329 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -64,6 +64,13 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row justify-content-center text-bg-dark flex-grow-1">
+                        <ul class="nav nav-pills pSideNav">
+                            <li class="nav-item">
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/createPost">Nuovo post</a>
                             </li>
                         </ul>
                     </div>
