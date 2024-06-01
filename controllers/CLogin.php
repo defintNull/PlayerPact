@@ -12,35 +12,32 @@
             $view->show($check);
         }
 
-        public function registration() {
+        public function registration($name="true", $surname="true", $birthdate="true", $email="true", $username="true", $password="true") {
             $view = new VLogin();
-            $view->registration();
+            $view->registration($name, $surname, $birthdate, $email, $username, $password);
         }
 
         public function home() {
             $this->login();
         }
 
-        public function redirect() {
+        public function loginRedirect() {
             $username = $_POST["username"];
             $password = $_POST["password"];
 
-            $check = $this->authentication($username,$password);
-
+            $check = $this->authentication($username, $password);
+            
             if($check) {
-                //header("Location:/user/home");
-            } else {
-                //header("Location:/login/login?check=false");
+                header("Location:/user/home");
+                exit();
             }
-        }
-
-        public function register() {
-            echo var_dump($_FILES);
+            header("Location:/login/login?check=false");
+            exit();
         }
 
         private static function authentication(string $username, string $password) {
-            CLogin::check($username);
-            CLogin::check($password);
+            //CLogin::check($username);
+            //CLogin::check($password);
 
             $pm = new FPersistentManager();
             $values = array("username" => $username, "password" => $password);
@@ -73,13 +70,68 @@
                 }
                 
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
 
-        private static function check(string $string) {
+        public function register() {
+            $missing = $this->check();
+            if($missing == array()) {
+                header("Location:/user/home?authenticated=true");
+                exit();
+            }
+            header("Location:/login/registration?".http_build_query($missing));
+            exit();
+        }
+
+        private static function check() {
             //funzione da fare per formattare stringe per prevenire sql injection
+            $name = $_POST["name"];
+            $surname = $_POST["surname"];
+            $birthdate = $_POST["birthdate"];
+            $email = $_POST["email"];
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+            
+            $missing = array();
+
+            if($name == ""){
+                $missing["name"] = "false";
+            } else {
+                $missing["name"] = "true";
+            }
+
+            if($surname == ""){
+                $missing["surname"] = "false";
+            } else {
+                $missing["surname"] = "true";
+            }
+
+            if($birthdate == ""){
+                $missing["birthdate"] = "false";
+            } else {
+                $missing["birthdate"] = "true";
+            }
+
+            if($email == ""){
+                $missing["email"] = "false";
+            } else {
+                $missing["email"] = "true";
+            }
+
+            if($username == ""){
+                $missing["username"] = "false";
+            } else {
+                $missing["username"] = "true";
+            }
+
+            if($password == ""){
+                $missing["password"] = "false";
+            } else {
+                $missing["password"] = "true";
+            }
+
+            return $missing;
         }
     }
 ?>

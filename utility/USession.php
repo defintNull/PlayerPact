@@ -3,7 +3,7 @@
         private static $instance;
 
         private function __construct() {
-
+            
         }
 
         static function getInstance() : USession {
@@ -23,8 +23,7 @@
         }
 
         public function set(string $key, $obj) {
-            $serial = serialize($obj);
-            $_SESSION[$key] = $serial;
+            $_SESSION[$key] = serialize($obj);
         }
 
         public function load(string $key) {
@@ -34,12 +33,11 @@
             return null;
         }
 
-        public function exist() : bool {
+        public function exists() : bool {
             if(session_status() === PHP_SESSION_NONE) {
                 return false;
-            } else {
-                return true;
             }
+            return true;
         } 
     }
 ?>
