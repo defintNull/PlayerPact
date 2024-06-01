@@ -139,17 +139,47 @@
 
         public function standard() {
             $view = new VPost();
-            $view->show("standard");
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            $authenticated = false;
+            if($user != null){
+                $authenticated = true;
+            }
+
+            $params = array("type" => "standard",
+                            "authenticated" => $authenticated);
+            $view->show($params);
         }
 
         public function sell() {
             $view = new VPost();
-            $view->show("sell");
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            $authenticated = false;
+            if($user != null){
+                $authenticated = true;
+            }
+
+            $params = array("type" => "sell",
+                            "authenticated" => $authenticated);
+            $view->show($params);
         }
 
         public function team() {
             $view = new VPost();
-            $view->show("team");
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            $authenticated = false;
+            if($user != null){
+                $authenticated = true;
+            }
+
+            $params = array("type" => "team",
+                            "authenticated" => $authenticated);
+            $view->show($params);
         }
 
         public function comments(int $id) {
@@ -157,8 +187,22 @@
             $res = $pm->load("EPostStandard", array("id" => $id))[0];
             $user = $pm->load("EUser", array("id" => $res["iduser"]))[0];
 
+            $session = USession::getInstance();
+            $sessionUser = $session->load("user");
+
+            $authenticated = false;
+            if($sessionUser != null){
+                $authenticated = true;
+            }
+
             $view = new VPost();
-            $view->showComments($res["id"],$user["username"],$res["title"],$res["description"],$res["datetime"]);
+            $params = array("postId" => $res["id"],
+                            "username" => $user["username"],
+                            "title" => $res["title"],
+                            "description" => $res["description"],
+                            "datetime" => $res["datetime"],
+                            "authenticated" => $authenticated);
+            $view->showComments($params);
         }
 
         public function loadComments(int $idpost,int $offset,int $limit,string $datetime) {

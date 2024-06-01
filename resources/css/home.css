@@ -137,6 +137,7 @@
 
 .pHomeButton {
     color:white;
+    text-decoration: none;
     background-color: #ff8800;
     transition: none;
     border: none;
@@ -149,7 +150,7 @@
 
 .pHomeButton:hover {
     color:white;
-    background-color: #ff9800;
+    background-color: #333333;
     transition: none;
 }
 

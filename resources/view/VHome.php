@@ -1,19 +1,10 @@
 <?php
-    require realpath($_SERVER["DOCUMENT_ROOT"]."/smartyloader.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/smartyloader.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/View.php");
 
-    class VHome {
-        private $smarty;
-        private $params;
-
-        public function loadParams(array $params) {
-            $this->params = $params;
-        }
-
-        public function show() {
-            $this->smarty = SmartyLoader::loadSmarty();
-            foreach($this->params as $key => $val){
-                $this->smarty->assign($key, $val);
-            }
+    class VHome extends View {
+        public function show($params) {
+            $this->assignSmartyParams($params);
             $this->smarty->display("home.html");
         }
     }

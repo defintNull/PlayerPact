@@ -15,14 +15,13 @@
                 $authenticated = true;
             }
             else{
-                $username = "";
+                $username = null;
                 $authenticated = false;
             }
 
             $params = array("authenticated" => $authenticated,
                             "username" => $username);
-            $view->loadParams($params);
-            $view->show();
+            $view->show($params);
         }
     }
 ?>

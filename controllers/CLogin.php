@@ -8,6 +8,10 @@
 
 
     class CLogin {
+        public function home() {
+            $this->login();
+        }
+
         public function login(string $check="ok") {
             $view = new VLogin();
             $view->show($check);
@@ -25,10 +29,6 @@
             $view->registration($params);
         }
 
-        public function home() {
-            $this->login();
-        }
-
         public function loginRedirect() {
             $username = $_POST["username"];
             $password = $_POST["password"];
@@ -36,10 +36,10 @@
             $check = $this->authentication($username, $password);
             
             if($check) {
-                header("Location:/user/home");
+                header("Location: /user/home");
                 exit();
             }
-            header("Location:/login/login?check=false");
+            header("Location: /login/login?check=false");
             exit();
         }
 
@@ -49,7 +49,7 @@
 
             $pm = new FPersistentManager();
             $values = array("username" => $username, "password" => $password);
-            $profile = $pm->load("Eprofile", $values); // DA CAMBIARE CON EPERSON
+            $profile = $pm->load("Eprofile", $values);
             
             if($profile != array()) {
                 $profile = $profile[0];
@@ -67,7 +67,7 @@
                     $user = new EMod($val["id"],$val["username"],$val["password"],$val["name"],$val["surname"],$val["birthDate"],$val["email"],$val["image"]);
 
                     $session = USession::getInstance();
-                    $session->set("user",$user);
+                    $session->set("user",$user); // DA CAPIRE SE LA CHIAVE VA LASCIATA USER O VA MESSA A MOD O ADMIN
                     
                 } elseif($profile["type"] == "admin") {
                     $val = $pm->load("EAdmin", $values)[0];
