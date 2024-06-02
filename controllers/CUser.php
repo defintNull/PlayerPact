@@ -12,16 +12,13 @@
             
             $username = null;
             $authenticated = false;
-            $createPostLink = "/login";
             if($user != null){
                 $username = $user->getUsername();
                 $authenticated = true;
-                $createPostLink = "/post/create";
             }
 
             $params = array("authenticated" => $authenticated,
-                            "username" => $username,
-                            "createPostLink" => $createPostLink);
+                            "username" => $username);
             $view->show($params);
         }
     }

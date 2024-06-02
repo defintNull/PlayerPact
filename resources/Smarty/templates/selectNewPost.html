@@ -8,6 +8,9 @@
         <script src="/resources/js/createPost.js"></script>
     </head>
     <body>
+		<div class="backHome">
+			<a class="btn postButton" href="/user/home">Home</a>
+		</div>
         <div id="createPostPage">
 			<div class="dropup">
 				<a>Tipo: </a>
@@ -21,6 +24,11 @@
 				</ul>
 			</div>
 			<div id="postMenu"></div>
+			{if $info != "ok"}
+				<div class="error">
+					<a>Non hai riempito correttamente i campi!</a>
+				</div>
+			{/if}
         </div>
     </body>
 </html>

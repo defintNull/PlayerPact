@@ -38,7 +38,7 @@
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="{$createPostLink}">Nuovo post</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
                             </li>
                         </ul>
                     </div>
@@ -74,17 +74,18 @@
                         <!-- DATA FOR JS -->
                         <div class="single-post-section">
                             <div class="row single-post" id={$postId}>
-                                <div class="post-username">{$user}</div>
+                                <div class="post-username">{$username}</div>
                                 <div class="title-post-bar post-title">{$posttitle}</div>
                                 <div class="description">{$description}</div>
                                 <div class="datetime">{$datetime}</div>
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
-                                <form>
+                                <form action="/post/addcomment" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
-                                        <button type="button" class="btn-lg commentButton">Commenta</button>
+                                        <input name="comment" type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
+                                        <input type="hidden" name="postId" id="{$postId}" value="{$postId}">
+                                        <button type="submit" class="btn-lg commentButton">Commenta</button>
                                     </div>
                                 </form>
                             </div>

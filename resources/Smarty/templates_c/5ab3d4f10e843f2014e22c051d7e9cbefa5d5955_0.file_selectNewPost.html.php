@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-02 00:37:24
+/* Smarty version 5.1.0, created on 2024-06-02 16:20:37
   from 'file:selectNewPost.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665ba2a4613946_76520542',
+  'unifunc' => 'content_665c7fb5de2fa4_36108017',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ab3d4f10e843f2014e22c051d7e9cbefa5d5955' => 
     array (
       0 => 'selectNewPost.html',
-      1 => 1717281291,
+      1 => 1717338007,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665ba2a4613946_76520542 (\Smarty\Template $_smarty_tpl) {
+function content_665c7fb5de2fa4_36108017 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -38,6 +38,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 >
     </head>
     <body>
+		<div class="backHome">
+			<a class="btn postButton" href="/user/home">Home</a>
+		</div>
         <div id="createPostPage">
 			<div class="dropup">
 				<a>Tipo: </a>
@@ -51,6 +54,11 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 				</ul>
 			</div>
 			<div id="postMenu"></div>
+			<?php if ($_smarty_tpl->getValue('info') != "ok") {?>
+				<div class="error">
+					<a>Non hai riempito correttamente i campi!</a>
+				</div>
+			<?php }?>
         </div>
     </body>
 </html><?php }

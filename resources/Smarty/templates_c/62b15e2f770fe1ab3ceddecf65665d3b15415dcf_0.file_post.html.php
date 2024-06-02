@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-02 00:01:06
+/* Smarty version 5.1.0, created on 2024-06-02 17:10:21
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b9a228d1606_24080354',
+  'unifunc' => 'content_665c8b5d3287b7_85454871',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1717279043,
+      1 => 1717340960,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b9a228d1606_24080354 (\Smarty\Template $_smarty_tpl) {
+function content_665c8b5d3287b7_85454871 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -70,8 +70,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="<?php echo $_smarty_tpl->getValue('createPostLink');?>
-">Nuovo post</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
                             </li>
                         </ul>
                     </div>
@@ -108,7 +107,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         <div class="single-post-section">
                             <div class="row single-post" id=<?php echo $_smarty_tpl->getValue('postId');?>
 >
-                                <div class="post-username"><?php echo $_smarty_tpl->getValue('user');?>
+                                <div class="post-username"><?php echo $_smarty_tpl->getValue('username');?>
 </div>
                                 <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
 </div>
@@ -119,10 +118,13 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
-                                <form>
+                                <form action="/post/addcomment" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
-                                        <button type="button" class="btn-lg commentButton">Commenta</button>
+                                        <input name="comment" type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
+                                        <input type="hidden" name="postId" id="<?php echo $_smarty_tpl->getValue('postId');?>
+" value="<?php echo $_smarty_tpl->getValue('postId');?>
+">
+                                        <button type="submit" class="btn-lg commentButton">Commenta</button>
                                     </div>
                                 </form>
                             </div>

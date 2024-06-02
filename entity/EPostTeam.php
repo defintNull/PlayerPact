@@ -3,19 +3,19 @@
     
     class EPostTeam extends EPost{
 
-        private $nMaxPlayers;
+        private $nMaxPlayer;
         private $nPlayers;
         private $time;
 
-        public function __construct($id, $iduser, $title, $description, $date, $nMaxPlayers, $nPlayers, $time) {
+        public function __construct($id, $iduser, $title, $description, $date, $nMaxPlayer, $nPlayers, $time) {
             parent::__construct($id,$iduser,$title,$description,$date);
-            $this->nMaxPlayers = $nMaxPlayers;
+            $this->nMaxPlayer = $nMaxPlayer;
             $this->nPlayers = $nPlayers;
             $this->time = $time;
         }
 
-        public function getNMaxPlayers(){
-            return $this->nMaxPlayers;
+        public function getNMaxPlayer(){
+            return $this->nMaxPlayer;
         }
         
         public function getNPlayers(){
@@ -28,7 +28,7 @@
 
         public function getValues() {
             $v = parent::getValues();
-            $v["nMaxPlayers"] = $this->nMaxPlayers;
+            $v["nMaxPlayer"] = $this->nMaxPlayer;
             $v["nPlayers"] = $this->nPlayers;
             $v["time"] = $this->time;
             return $v;

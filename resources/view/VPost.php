@@ -25,7 +25,8 @@
             $this->smarty->display("post.html");
         }
 
-        public function showSelectNewPost(){
+        public function showSelectNewPost($info){
+            $this->smarty->assign("info", $info);
             $this->smarty->display("selectNewPost.html");
         }
     }

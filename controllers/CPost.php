@@ -111,7 +111,7 @@
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
-                        "nMaxPlayers" => $post->getNMaxPlayers(),
+                        "nMaxPlayers" => $post->getNMaxPlayer(),
                         "nPlayers" => $post->getNPlayers(),
                         "time" => $post->getTime()
                     );
@@ -121,7 +121,7 @@
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
-                        "nMaxPlayers" => $post->getNMaxPlayers(),
+                        "nMaxPlayers" => $post->getNMaxPlayer(),
                         "nPlayers" => $post->getNPlayers(),
                         "time" => $post->getTime()
                     );
@@ -132,25 +132,18 @@
             return array($values,$count);
         }
 
-        public function viewPostSection(int $idSection) {
-
-        }
-
         public function standard() {
             $view = new VPost();
             $session = USession::getInstance();
             $user = $session->load("user");
 
             $authenticated = false;
-            $createPostLink = "/login";
             if($user != null){
                 $authenticated = true;
-                $createPostLink = "/post/create";
             }
 
             $params = array("type" => "standard",
-                            "authenticated" => $authenticated,
-                            "createPostLink" => $createPostLink);
+                            "authenticated" => $authenticated);
             $view->show($params);
         }
 
@@ -160,15 +153,12 @@
             $user = $session->load("user");
 
             $authenticated = false;
-            $createPostLink = "/login";
             if($user != null){
                 $authenticated = true;
-                $createPostLink = "/post/create";
             }
 
             $params = array("type" => "sell",
-                            "authenticated" => $authenticated,
-                            "createPostLink" => $createPostLink);
+                            "authenticated" => $authenticated);
             $view->show($params);
         }
 
@@ -178,15 +168,12 @@
             $user = $session->load("user");
 
             $authenticated = false;
-            $createPostLink = "/login";
             if($user != null){
                 $authenticated = true;
-                $createPostLink = "/post/create";
             }
 
             $params = array("type" => "team",
-                            "authenticated" => $authenticated,
-                            "createPostLink" => $createPostLink);
+                            "authenticated" => $authenticated);
             $view->show($params);
         }
 
@@ -199,20 +186,17 @@
             $sessionUser = $session->load("user");
 
             $authenticated = false;
-            $createPostLink = "/login";
             if($sessionUser != null){
                 $authenticated = true;
-                $createPostLink = "/post/create";
             }
 
             $view = new VPost();
             $params = array("postId" => $res["id"],
                             "username" => $user["username"],
-                            "title" => $res["title"],
+                            "posttitle" => $res["title"],
                             "description" => $res["description"],
                             "datetime" => $res["datetime"],
-                            "authenticated" => $authenticated,
-                            "createPostLink" => $createPostLink);
+                            "authenticated" => $authenticated);
             $view->showComments($params);
         }
 
@@ -250,9 +234,17 @@
             return array($values,$count);
         }
 
-        public function create() {
+        public function create($info = "ok") {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
             $view = new VPost();
-            $view->showSelectNewPost();
+            $view->showSelectNewPost($info);
         }        
 
         public function confirmCreation() {
@@ -267,7 +259,12 @@
             $pm = new FPersistentManager();
             $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
-            // Bisogna aggiungere il controllo sui campi
+            // Ho aggiunto così il controllo sui campi (se un campo presenta problemi, si scrive solo che c'è stato un problema)
+            if(!$this->checkNewPostFields()){
+                header("Location: /post/create?info=error");
+                exit();
+            }
+
             if (isset($_POST["standard"])){
                 $values = $_POST["standard"];
                 $post = new EPostStandard(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"));
@@ -296,8 +293,61 @@
             }
         }
 
-        public function addComment(int $idUser, int $idPost, string $description) {
+        private function checkNewPostFields(){
+            if(isset($_POST["standard"])){
+                $values = $_POST["standard"];
+                foreach($values as $key => $val){
+                    if($val == ""){
+                        return false;
+                    }
+                }
+            } else if (isset($_POST["sell"])){
+                $values = $_POST["sell"];
+                foreach($values as $key => $val){
+                    if($val == ""){
+                        return false;
+                    }
+                }
+                if(!is_numeric($values["price"])){
+                    return false;
+                }
+            } else if (isset($_POST["team"])){
+                $values = $_POST["team"];
+                foreach($values as $key => $val){
+                    if($val == ""){
+                        return false;
+                    }
+                }
+                if(!is_numeric($values["nMaxPlayer"])){
+                    return false;
+                }
+                if(!is_numeric($values["nPlayers"])){
+                    return false;
+                }
+                if($values["nPlayers"] >= $values["nMaxPlayer"] || $values["nMaxPlayer"] <= 1 || $values["nPlayers"] <= 0){
+                    return false;
+                }
+            }
+            return true;
+        }
 
+        public function addcomment() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $pm = new FPersistentManager();
+            $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
+
+            $comment = new EComment(1, $_POST["postId"], $idUser, $_POST["comment"], date("Y-m-d H:m:s"));
+            $pm->store($comment);
+
+            header("Location: /post/comments?id=".$_POST["postId"]);
+            exit();
         }
 
         public function participate(int $idPost) {
