@@ -340,6 +340,11 @@
                 exit();
             }
 
+            if($_POST["comment"] == ""){
+                header("Location: /post/comments?id=".$_POST["postId"]."&info=error");
+                exit();
+            }
+
             $pm = new FPersistentManager();
             $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
