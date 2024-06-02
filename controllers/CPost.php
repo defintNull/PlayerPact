@@ -245,7 +245,7 @@
 
             $view = new VPost();
             $view->showSelectNewPost($info);
-        }        
+        }
 
         public function confirmCreation() {
             $session = USession::getInstance();
@@ -276,7 +276,27 @@
             } else if (isset($_POST["sell"])){
                 $values = $_POST["sell"]; // OCCORRE FARE IL CARICAMENTO DELL'IMMAGINE!
                 
-                $post = new EPostSell(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"), $values["price"], $values["image"]);
+                $image = null;
+                if (isset($_FILES['sell']['name']['image']) && $_FILES['sell']['error']['image'] == 0) {
+                    $file_tmp_path = $_FILES['sell']['tmp_name']['image'];
+                    $file_name = $_FILES['sell']['name']['image'];
+            
+                    $allowedfileExtensions = array('jpg', 'jpeg', 'png');
+                    $file_name_cmps = explode(".", $file_name);
+                    $file_extension = strtolower(end($file_name_cmps));
+            
+                    if (in_array($file_extension, $allowedfileExtensions)) {
+                        $image = addslashes(file_get_contents($file_tmp_path));
+                    } else{
+                        header("Location: /post/create?info=error");
+                        exit();
+                    }
+                } else{
+                    header("Location: /post/create?info=error");
+                    exit();
+                }
+                
+                $post = new EPostSell(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"), $values["price"], $image);
                 $pm->store($post);
 
                 header("Location: /post/sell");

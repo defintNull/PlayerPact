@@ -1,6 +1,6 @@
 <body>
     <div id="jsAddedMenu">
-        <form name="sell" action="/post/confirmCreation" method="post">
+        <form name="sell" action="/post/confirmCreation" method="post" enctype="multipart/form-data">
             <div class="postTitle">
                 <div class="input-group mb-3">
                     <input type="text" name="sell[title]" class="form-control" placeholder="Titolo..." aria-describedby="inputGroup-sizing-default">
@@ -17,7 +17,7 @@
             </div>
             <div class="image">
                 <div class="input-group mb-3">
-                    <input type="file" name="sell[image]" id="avatar" name="avatar" accept="image/png, image/jpeg" value="Carica immagine"/>
+                    <input type="file" name="sell[image]" id="sellImage" accept="image/png, image/jpeg" value="Carica immagine"/>
                 </div>
             </div>
             <div>

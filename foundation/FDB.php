@@ -80,15 +80,15 @@
                 $sql .= ")";
                 
                 $sth = $this->db->prepare($sql);
-                echo $sql;
+                //echo $sql;
                 $sth->execute();
 
                 $this->db->commit();
                 
                 return true;
             }catch (PDOException $e) {
-                //return false;
-                echo $e;
+                return false;
+                //echo $e;
                 //return $e;
             }
         }

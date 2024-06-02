@@ -83,7 +83,8 @@ async function addrows(rows,type) {
             if(row.image == null) {
                 document.getElementById("image").remove();
             } else {
-                document.getElementById("image").innerHTML = row.image;
+                document.getElementById("image").remove();
+                //document.getElementById("image").innerHTML = row.image;
             }
             document.getElementById("image").id = row.id + "-image";
 

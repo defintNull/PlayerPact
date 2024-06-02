@@ -10,11 +10,12 @@ $(document).ready(function(){
     $.ajax({
         url: '/autoscroll/load'+ '?offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
-            
+
             try {
                 initialData = JSON.parse(data);
             } catch(err) {
-                window.location.href = "/error/e404";
+                //console.log(err);
+                window.location.href = "/error/e404"; //ERRORE ESCE QUI
             }
             
 
