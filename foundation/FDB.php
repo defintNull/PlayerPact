@@ -80,7 +80,7 @@
                 $sql .= ")";
                 
                 $sth = $this->db->prepare($sql);
-                echo $sql;
+                //echo $sql;
                 $sth->execute();
 
                 $this->db->commit();
@@ -88,7 +88,8 @@
                 return true;
             }catch (PDOException $e) {
                 return false;
-                //return $e->getCode();
+                //echo $e;
+                //return $e;
             }
         }
 

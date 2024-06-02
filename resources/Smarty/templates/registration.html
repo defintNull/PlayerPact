@@ -21,7 +21,7 @@
 								<div class="card-body">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Name</h6>
+											<h6 class="mb-0">Nome</h6>
 											{if $name == "missing"}
 												<div class="missing"><a>Campo richiesto!</a></div>
 											{/if}
@@ -33,7 +33,7 @@
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Surname</h6>
+											<h6 class="mb-0">Cognome</h6>
 											{if $surname == "missing"}
 												<div class="missing"><a>Campo richiesto!</a></div>
 											{/if}
@@ -45,13 +45,12 @@
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Birthdate</h6>
+											<h6 class="mb-0">Data di nascita</h6>
 											{if $birthdate == "missing"}
 												<div class="missing"><a>Campo richiesto!</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
-											<label class="active" for="dateStandard">Datepicker</label>
 											<input type="date" id="birthdate" name="birthdate">
 										</div>
 									</div>
@@ -59,7 +58,7 @@
 								<hr class="mx-n3">
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
-										<h6 class="mb-0">Email address</h6>
+										<h6 class="mb-0">Indirizzo email</h6>
 										{if $email == "missing"}
 											<div class="missing"><a>Campo richiesto!</a></div>
 										{else if $email == "existing"}
@@ -99,7 +98,7 @@
 								<hr class="mx-n3">								
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">              
-										<h6 class="mb-0">Profile Picture</h6>										
+										<h6 class="mb-0">Immagine profilo</h6>										
 									</div>
 									<div class="col-md-9 pe-5">              
 										<input class="form-control form-control-lg" id="formFileLg" name="profilepicture" type="file" />
@@ -108,7 +107,7 @@
 								</div>
 								<hr class="mx-n3">              
 								<div class="px-5 py-4">
-									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Send application</button>
+									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Registrati</button>
 								</div>              
 							</div>
                       	</div>

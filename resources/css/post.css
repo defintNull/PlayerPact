@@ -1,3 +1,8 @@
+body {
+    background-color: #222222;
+    color: white;
+}
+
 .comment {
     text-align: left;
     margin-left: 20%;

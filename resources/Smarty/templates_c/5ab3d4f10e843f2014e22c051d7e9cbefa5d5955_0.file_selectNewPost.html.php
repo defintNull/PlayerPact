@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 22:55:15
+/* Smarty version 5.1.0, created on 2024-06-02 00:37:24
   from 'file:selectNewPost.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b8ab38e1884_51609038',
+  'unifunc' => 'content_665ba2a4613946_76520542',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ab3d4f10e843f2014e22c051d7e9cbefa5d5955' => 
     array (
       0 => 'selectNewPost.html',
-      1 => 1717275290,
+      1 => 1717281291,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b8ab38e1884_51609038 (\Smarty\Template $_smarty_tpl) {
+function content_665ba2a4613946_76520542 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -39,9 +39,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
     </head>
     <body>
         <div id="createPostPage">
-			<div class="dropdown">
-				<button id="dropdown" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				 	Tipo di post
+			<div class="dropup">
+				<a>Tipo: </a>
+				<button id="dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				 	Standard
 				</button>
 				<ul class="dropdown-menu" id="postChoice">
 					<li><a class="dropdown-item" type="button">Standard</a></li>
@@ -49,6 +50,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 					<li><a class="dropdown-item" type="button">Team</a></li>
 				</ul>
 			</div>
+			<div id="postMenu"></div>
         </div>
     </body>
 </html><?php }

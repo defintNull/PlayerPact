@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 20:56:16
+/* Smarty version 5.1.0, created on 2024-06-02 00:39:06
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b6ed02ca521_64119514',
+  'unifunc' => 'content_665ba30ae37936_24184402',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c0c8760587e025d607328e646b783cc64a4436b' => 
     array (
       0 => 'postSection.html',
-      1 => 1717268113,
+      1 => 1717279284,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b6ed02ca521_64119514 (\Smarty\Template $_smarty_tpl) {
+function content_665ba30ae37936_24184402 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -102,7 +102,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
                         <!-- <div class="post_section" id="post-list"> -->

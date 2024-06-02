@@ -43,7 +43,7 @@
                 'iduser' => $this->iduser,
                 "title" => $this->title,
                 "description" => $this->description,
-                "date" => $this->date
+                "datetime" => $this->date
             );
             return $v;
         }

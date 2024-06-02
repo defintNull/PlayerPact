@@ -9,6 +9,12 @@
 
     class CLogin {
         public function home() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            if($user != null){
+                header("Location: /user/home");
+                exit();
+            }
             $this->login();
         }
 

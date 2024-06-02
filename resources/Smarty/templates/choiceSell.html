@@ -1,0 +1,28 @@
+<body>
+    <div id="jsAddedMenu">
+        <form name="sell" action="/post/confirmCreation" method="post">
+            <div class="postTitle">
+                <div class="input-group mb-3">
+                    <input type="text" name="sell[title]" class="form-control" placeholder="Titolo" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="postDescription">
+                <div class="input-group mb-3">
+                    <input type="text" name="sell[description]" class="form-control" placeholder="Descrizione" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="price">
+                <input type="number" name="sell[price]" class="form-control" placeholder="0.00">
+                <i>&euro;</i>
+            </div>
+            <div class="image">
+                <div class="input-group mb-3">
+                    <input type="file" name="sell[image]" id="avatar" name="avatar" accept="image/png, image/jpeg" value="Carica immagine"/>
+                </div>
+            </div>
+            <div>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="postButton">Crea post</button>
+            </div>
+        </form>
+    </div>
+</body>

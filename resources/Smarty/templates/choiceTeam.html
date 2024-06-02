@@ -1,0 +1,56 @@
+<body>
+    <div id="jsAddedMenu">
+        <form name="team" action="/post/confirmCreation" method="post">
+            <div class="postTitle">
+                <div class="input-group mb-3">
+                    <input type="text" name="team[title]" class="form-control" placeholder="Titolo" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="postDescription">
+                <div class="input-group mb-3">
+                    <input type="text" name="team[description]" class="form-control" placeholder="Descrizione" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a>Numero giocatori già presenti: </a>
+                </div>
+                <div class="col">
+                    <div class="playerCounter">
+                        <div class="input-group">
+                            <input class="form-control" name="team[nPlayers]" dir="rtl" type="number" min="0" value="0" step="1" onkeydown="return false" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a>Numero massimo giocatori: </a>
+                </div>
+                <div class="col">
+                    <div class="playerCounter">
+                        <div class="input-group">
+                            <input class="form-control" name="team[nMaxPlayer]" dir="rtl" type="number" min="0" value="0" step="1" onkeydown="return false" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row timeRow">
+                <div class="col">
+                    <a>Orario in cui giocare: </a>
+                </div>
+                <div class="col">
+                    <div class="gametime">
+                        <div class="input-group mb-3">
+                            <input type="time" name="team[time]" class="form-control" placeholder="Descrizione" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="postButton">Crea post</button>
+            </div>
+        </form>
+    </div>
+</body>

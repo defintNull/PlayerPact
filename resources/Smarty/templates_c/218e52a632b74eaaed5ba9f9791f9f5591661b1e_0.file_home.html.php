@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 21:00:09
+/* Smarty version 5.1.0, created on 2024-06-01 23:55:47
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b6fb92ed9a6_04155014',
+  'unifunc' => 'content_665b98e3c3e142_22911335',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
     array (
       0 => 'home.html',
-      1 => 1717268386,
+      1 => 1717278947,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b6fb92ed9a6_04155014 (\Smarty\Template $_smarty_tpl) {
+function content_665b98e3c3e142_22911335 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -90,7 +90,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main_body">
                         <div class="pBanner">
                             <img src="/public/banner.png">
                         </div>

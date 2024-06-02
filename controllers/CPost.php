@@ -255,20 +255,45 @@
             $view->showSelectNewPost();
         }        
 
-        public function selectPost(int $postType) {
+        public function confirmCreation() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
 
-        }
+            if($user == null){
+                header("Location: /error/e404");
+                exit();
+            }
 
-        public function confirmCreationStandard(string $title, string $description, int $idUser) {
+            $pm = new FPersistentManager();
+            $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
-        }
+            // Bisogna aggiungere il controllo sui campi
+            if (isset($_POST["standard"])){
+                $values = $_POST["standard"];
+                $post = new EPostStandard(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"));
+                $pm->store($post);
 
-        public function confirmCreationTeam(string $title, string $description, int $idUser, int $maxPlayer, float $price) {
+                header("Location: /post/standard");
+                exit();
 
-        }
+            } else if (isset($_POST["sell"])){
+                $values = $_POST["sell"]; // OCCORRE FARE IL CARICAMENTO DELL'IMMAGINE!
+                
+                $post = new EPostSell(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"), $values["price"], $values["image"]);
+                $pm->store($post);
 
-        public function confirmCreationSell(string $title, string $description, int $idUser, float $price, string $image) {
+                header("Location: /post/sell");
+                exit();
 
+            } else if (isset($_POST["team"])){
+                $values = $_POST["team"];
+
+                $post = new EPostTeam(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"), $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
+                $pm->store($post);
+
+                header("Location: /post/team");
+                exit();
+            }
         }
 
         public function addComment(int $idUser, int $idPost, string $description) {

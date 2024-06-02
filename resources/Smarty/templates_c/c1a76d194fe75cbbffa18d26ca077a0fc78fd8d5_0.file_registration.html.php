@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-01 18:50:28
+/* Smarty version 5.1.0, created on 2024-06-02 02:32:47
   from 'file:registration.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665b51543a83f2_64772337',
+  'unifunc' => 'content_665bbdafa9c714_86404912',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c1a76d194fe75cbbffa18d26ca077a0fc78fd8d5' => 
     array (
       0 => 'registration.html',
-      1 => 1717260626,
+      1 => 1717283106,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665b51543a83f2_64772337 (\Smarty\Template $_smarty_tpl) {
+function content_665bbdafa9c714_86404912 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -47,7 +47,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<div class="card-body">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Name</h6>
+											<h6 class="mb-0">Nome</h6>
 											<?php if ($_smarty_tpl->getValue('name') == "missing") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
 											<?php }?>
@@ -59,7 +59,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Surname</h6>
+											<h6 class="mb-0">Cognome</h6>
 											<?php if ($_smarty_tpl->getValue('surname') == "missing") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
 											<?php }?>
@@ -71,13 +71,12 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Birthdate</h6>
+											<h6 class="mb-0">Data di nascita</h6>
 											<?php if ($_smarty_tpl->getValue('birthdate') == "missing") {?>
 												<div class="missing"><a>Campo richiesto!</a></div>
 											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
-											<label class="active" for="dateStandard">Datepicker</label>
 											<input type="date" id="birthdate" name="birthdate">
 										</div>
 									</div>
@@ -85,7 +84,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<hr class="mx-n3">
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
-										<h6 class="mb-0">Email address</h6>
+										<h6 class="mb-0">Indirizzo email</h6>
 										<?php if ($_smarty_tpl->getValue('email') == "missing") {?>
 											<div class="missing"><a>Campo richiesto!</a></div>
 										<?php } elseif ($_smarty_tpl->getValue('email') == "existing") {?>
@@ -125,7 +124,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<hr class="mx-n3">								
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">              
-										<h6 class="mb-0">Profile Picture</h6>										
+										<h6 class="mb-0">Immagine profilo</h6>										
 									</div>
 									<div class="col-md-9 pe-5">              
 										<input class="form-control form-control-lg" id="formFileLg" name="profilepicture" type="file" />
@@ -134,7 +133,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								</div>
 								<hr class="mx-n3">              
 								<div class="px-5 py-4">
-									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Send application</button>
+									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Registrati</button>
 								</div>              
 							</div>
                       	</div>

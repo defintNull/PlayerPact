@@ -1,3 +1,8 @@
+body {
+    background-color: #222222;
+    color: white;
+}
+
 .sideBar {
     width: 15%;
     min-width: 150px;
@@ -176,4 +181,9 @@
     color:white;
     background-color: #333333;
     transition: none;
+}
+
+.pUpperLoginButton:active {
+    color:white;
+    background-color: #534535;
 }
