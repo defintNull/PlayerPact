@@ -341,7 +341,7 @@
             }
 
             if($_POST["comment"] == ""){
-                header("Location: /post/comments?id=".$_POST["postId"]."&info=error");
+                header("Location: /post/comments?id=".$_POST["postId"]);
                 exit();
             }
 
