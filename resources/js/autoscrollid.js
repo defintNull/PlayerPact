@@ -11,14 +11,11 @@ $(document).ready(function(){
     $.ajax({
         url: '/autoscroll/loadbyid' + '?id=' + id + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
-
-            initialData = JSON.parse(data);
             try {
-                
+                initialData = JSON.parse(data);
             } catch(err) {
                 window.location.href = "/error/e404";
             }
-
 
             if (initialData) {
                 if (initialData.rows) {
@@ -65,7 +62,7 @@ function getMoreData(initialData) {
         $.ajax({
             url: "/autoscroll/loadbyid" + '?id=' + initialData.id + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",
-            success: function (response) {                
+            success: function (response) {      
                 try {
                     initialData = JSON.parse(response);
                 } catch(err) {

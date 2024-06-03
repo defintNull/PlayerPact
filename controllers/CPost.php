@@ -196,10 +196,10 @@
 
             $view = new VPost();
             $params = array("postId" => $res["id"],
-                            "username" => $user["username"],
-                            "posttitle" => $res["title"],
-                            "description" => $res["description"],
-                            "datetime" => $res["datetime"],
+                            "postUsername" => $user["username"],
+                            "postTitle" => $res["title"],
+                            "postDescription" => $res["description"],
+                            "postDatetime" => $res["datetime"],
                             "authenticated" => $authenticated);
             $view->showComments($params);
         }
@@ -394,11 +394,15 @@
             $pm = new FPersistentManager();
             $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
-            $comment = new EComment(1, $_POST["postId"], $idUser, $_POST["comment"], date("Y-m-d H:m:s"));
+            $comment = new EComment(1, $_POST["postId"], $idUser, $_POST["comment"], date("Y-m-d H:i:s"));
             $pm->store($comment);
 
             header("Location: /post/comments?id=".$_POST["postId"]);
             exit();
+        }
+
+        public function reportpost(){
+            
         }
 
         public function reportcomment() {

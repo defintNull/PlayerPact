@@ -17,11 +17,11 @@
 
         public function showComments($params) {
             $this->assignSmartyParams($params);
-            $this->smarty->assign("type", "comment");
 
+            $this->smarty->assign("type", "comment");
             $this->smarty->assign("date", date("Y/m/d"));
             $this->smarty->assign("time", date("H:i:s"));
-
+            
             $this->smarty->display("post.html");
         }
 

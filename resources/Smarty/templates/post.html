@@ -73,11 +73,23 @@
                         
                         <!-- DATA FOR JS -->
                         <div class="single-post-section">
-                            <div class="row single-post" id={$postId}>
-                                <div class="post-username">{$username}</div>
-                                <div class="title-post-bar post-title">{$posttitle}</div>
-                                <div class="description">{$description}</div>
-                                <div class="datetime">{$datetime}</div>
+                            <div class="post-section">
+                                <div class="row single-post" id={$postId}>
+                                    <div class="post-username">{$postUsername}</div>
+                                    <div class="post-title">{$postTitle}</div>
+                                    <div class="post-description">{$postDescription}</div>
+                                    <div class="row">
+                                        <div class="col reportPost text-end float-end">
+                                            <form action="/post/reportPost" method="post">
+                                                <input type="hidden" id="post-report" name="postId" value="">
+                                                <input type="image" id="report-image" src="/public/report.png">
+                                            </form>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="post-datetime" id="post-datetime">{$postDatetime}</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
@@ -88,6 +100,9 @@
                                         <button type="submit" class="btn-lg commentButton">Commenta</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="comment-section-title">
+                                <a>Commenti:</a>
                             </div>
                             <hr class="solid">
                             <div class="commentSection" id="commentSection"></div>

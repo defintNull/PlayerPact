@@ -1,10 +1,10 @@
 <body>
     <div class="comment">
-        <div class="row" id="comment">
-            <div class="comment-username" id="user"></div>
-            <div class="comment-description" id="description"></div>
+        <div class="row" id="comment-id">
+            <div class="comment-username" id="comment-username"></div>
+            <div class="comment-description" id="comment-description"></div>
         </div>
-        <div class="row bottom-comment">
+        <div class="row">
             <div class="col report text-end float-end">
                 <form action="/post/reportcomment" method="post">
                     <input type="hidden" id="comment-report" name="commentId" value="">
@@ -12,7 +12,7 @@
                 </form>
             </div>
             <div class="col-3">
-                <div class="comment-datetime" id="datetime"></div>
+                <div class="comment-datetime" id="comment-datetime"></div>
             </div>
         </div>
     </div>

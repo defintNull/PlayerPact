@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-03 18:04:25
+/* Smarty version 5.1.0, created on 2024-06-03 22:18:22
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665de9895df304_63465251',
+  'unifunc' => 'content_665e250ec2e434_25708395',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1717430630,
+      1 => 1717445881,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665de9895df304_63465251 (\Smarty\Template $_smarty_tpl) {
+function content_665e250ec2e434_25708395 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -105,16 +105,28 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         
                         <!-- DATA FOR JS -->
                         <div class="single-post-section">
-                            <div class="row single-post" id=<?php echo $_smarty_tpl->getValue('postId');?>
+                            <div class="post-section">
+                                <div class="row single-post" id=<?php echo $_smarty_tpl->getValue('postId');?>
 >
-                                <div class="post-username"><?php echo $_smarty_tpl->getValue('username');?>
+                                    <div class="post-username"><?php echo $_smarty_tpl->getValue('postUsername');?>
 </div>
-                                <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
+                                    <div class="post-title"><?php echo $_smarty_tpl->getValue('postTitle');?>
 </div>
-                                <div class="description"><?php echo $_smarty_tpl->getValue('description');?>
+                                    <div class="post-description"><?php echo $_smarty_tpl->getValue('postDescription');?>
 </div>
-                                <div class="datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
+                                    <div class="row">
+                                        <div class="col reportPost text-end float-end">
+                                            <form action="/post/reportPost" method="post">
+                                                <input type="hidden" id="post-report" name="postId" value="">
+                                                <input type="image" id="report-image" src="/public/report.png">
+                                            </form>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="post-datetime" id="post-datetime"><?php echo $_smarty_tpl->getValue('postDatetime');?>
 </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
@@ -127,6 +139,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                         <button type="submit" class="btn-lg commentButton">Commenta</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="comment-section-title">
+                                <a>Commenti:</a>
                             </div>
                             <hr class="solid">
                             <div class="commentSection" id="commentSection"></div>

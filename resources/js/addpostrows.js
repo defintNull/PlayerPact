@@ -19,12 +19,12 @@ async function addrows(rows,type) {
             document.getElementById("id-post-standard").id = row.id;
             document.getElementById("post-title").innerHTML = row.title;
             document.getElementById("post-title").id = row.id + "-post-title";
-            document.getElementById("datetime").innerHTML = row.datetime;
-            document.getElementById("datetime").id = row.id + "-datetime";
-            document.getElementById("description").innerHTML = row.description;
-            document.getElementById("description").id = row.id + "-description";
-            document.getElementById("user").innerHTML = row.iduser;
-            document.getElementById("user").id = row.id + "-user";
+            document.getElementById("post-datetime").innerHTML = row.datetime;
+            document.getElementById("post-datetime").id = row.id + "-post-datetime";
+            document.getElementById("post-description").innerHTML = row.description;
+            document.getElementById("post-description").id = row.id + "-post-description";
+            document.getElementById("post-userId").innerHTML = row.iduser;
+            document.getElementById("post-userId").id = row.id + "-post-userId";
 
         })
 
@@ -44,16 +44,16 @@ async function addrows(rows,type) {
             document.getElementById("id-post-team").id = row.id;
             document.getElementById("post-title").innerHTML = row.title;
             document.getElementById("post-title").id = row.id + "-post-title";
-            document.getElementById("datetime").innerHTML = row.datetime;
-            document.getElementById("datetime").id = row.id + "-datetime";
-            document.getElementById("description").innerHTML = row.description;
-            document.getElementById("description").id = row.id + "-description";
-            document.getElementById("user").innerHTML = row.iduser;
-            document.getElementById("user").id = row.id + "-user";
-            document.getElementById("players").innerHTML = "Giocatori presenti: " + row.nPlayers + "/" + row.nMaxPlayers;
-            document.getElementById("players").id = row.id + "-player";
-            document.getElementById("time_").innerHTML = "Orario: " + row.time;
-            document.getElementById("time_").id = row.id + "-time";
+            document.getElementById("post-datetime").innerHTML = row.datetime;
+            document.getElementById("post-datetime").id = row.id + "post-datetime";
+            document.getElementById("post-description").innerHTML = row.description;
+            document.getElementById("post-description").id = row.id + "-post-description";
+            document.getElementById("post-userId").innerHTML = row.iduser;
+            document.getElementById("post-userId").id = row.id + "-post-userId";
+            document.getElementById("post-players").innerHTML = "Giocatori presenti: " + row.nPlayers + "/" + row.nMaxPlayers;
+            document.getElementById("post-players").id = row.id + "-post-players";
+            document.getElementById("post-time_").innerHTML = "Orario: " + row.time;
+            document.getElementById("post-time_").id = row.id + "-post-time_";
 
         })
     } else if(type == "sell") {
@@ -72,22 +72,22 @@ async function addrows(rows,type) {
             document.getElementById("id-post-sell").id = row.id;
             document.getElementById("post-title").innerHTML = row.title;
             document.getElementById("post-title").id = row.id + "-post-title";
-            document.getElementById("datetime").innerHTML = row.datetime;
-            document.getElementById("datetime").id = row.id + "-datetime";
-            document.getElementById("description").innerHTML = row.description;
-            document.getElementById("description").id = row.id + "-description";
-            document.getElementById("user").innerHTML = row.iduser;
-            document.getElementById("user").id = row.id + "-user";
-            document.getElementById("price").innerHTML = "Prezzo: " + row.price + "€";
-            document.getElementById("price").id = row.id + "-price";
+            document.getElementById("post-datetime").innerHTML = row.datetime;
+            document.getElementById("post-datetime").id = row.id + "-post-datetime";
+            document.getElementById("post-description").innerHTML = row.description;
+            document.getElementById("post-description").id = row.id + "-post-description";
+            document.getElementById("post-userId").innerHTML = row.iduser;
+            document.getElementById("post-userId").id = row.id + "-post-userId";
+            document.getElementById("post-price").innerHTML = "Prezzo: " + row.price + "€";
+            document.getElementById("post-price").id = row.id + "-post-price";
             if(row.image == "") {
-                document.getElementById("image").remove();
+                document.getElementById("post-image").remove();
             } else {
-                document.getElementById("thumbnail").src = "data:image/png;base64," + row.image;
-                document.getElementById("thumbnailLink").href = "/post/get_image?id=" + row.id;
-                document.getElementById("thumbnail").id = row.id + "-thumbnail";
-                document.getElementById("thumbnailLink").id = row.id + "-thumbnailLink";
-                document.getElementById("image").id = row.id + "-image";
+                document.getElementById("post-thumbnail").src = "data:image/png;base64," + row.image;
+                document.getElementById("post-thumbnailLink").href = "/post/get_image?id=" + row.id;
+                document.getElementById("post-thumbnail").id = row.id + "-post-thumbnail";
+                document.getElementById("post-thumbnailLink").id = row.id + "-post-thumbnailLink";
+                document.getElementById("post-image").id = row.id + "-post-image";
             }
         })
     }
