@@ -25,7 +25,8 @@ async function addrows(rows,type) {
             document.getElementById("post-description").id = row.id + "-post-description";
             document.getElementById("post-userId").innerHTML = row.iduser;
             document.getElementById("post-userId").id = row.id + "-post-userId";
-
+            document.getElementById("post-report").value = row.id;
+            document.getElementById("post-report").id = row.id + "-post-report";
         })
 
     } else if(type == "team") {

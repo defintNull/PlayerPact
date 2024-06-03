@@ -35,9 +35,14 @@
             $this->smarty->display("fullscreenImage.html");
         }
 
-        public function showReportPage($params) {
+        public function showCommentReportPage($params) {
             $this->assignSmartyParams($params);
-            $this->smarty->display("reportPage.html");
+            $this->smarty->display("commentReportPage.html");
+        }
+
+        public function showPostReportPage($params) {
+            $this->assignSmartyParams($params);
+            $this->smarty->display("postReportPage.html");
         }
     }
 ?>

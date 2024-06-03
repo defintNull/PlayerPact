@@ -6,15 +6,18 @@
       <link rel="stylesheet" href="/resources/css/report.css">
     </head>
     <body>
-        <form action="/post/confirmCommentReport" method="post">
+        <div class="title-report-section">
+            <a>Invio segnalazioni</a>
+        </div>
+        <form class="form-body" action="/post/confirmCommentReport" method="post">
             <div class="reportDescription">
                 <div class="input-group mb-3">
-                    <input type="text" name="description" class="form-control" placeholder="Motivazione..." aria-describedby="inputGroup-sizing-default">
+                    <input type="text" name="description" class="form-control" placeholder="Spiegaci il motivo..." aria-describedby="inputGroup-sizing-default">
                 </div>
             </div>
             <input type="hidden" name="commentId" value="{$commentId}" class="form-control" aria-describedby="inputGroup-sizing-default">
             <div>
-                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="confirmReportButton">Segnala</button>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn confirmReportButton">Segnala</button>
             </div>
         </form>
     </body>

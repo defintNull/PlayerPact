@@ -401,10 +401,6 @@
             exit();
         }
 
-        public function reportpost(){
-            
-        }
-
         public function reportcomment() {
             $session = USession::getInstance();
             $user = $session->load("user");
@@ -417,7 +413,7 @@
             $commentId = $_POST["commentId"];
             $view = new VPost();
             $params = array("commentId" => $commentId);
-            $view->showReportPage($params);
+            $view->showCommentReportPage($params);
         }
 
         public function confirmCommentReport() {
@@ -447,6 +443,47 @@
             $pm->store($report);
 
             header("Location: /post/comments?id=".$postId);
+            exit();
+        }
+
+        public function reportpost() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $postId = $_POST["postId"];
+            $view = new VPost();
+            $params = array("postId" => $postId);
+            $view->showPostReportPage($params);
+        }
+
+        public function confirmPostReport() {
+            //Controllo aggiuntivo, valutare se serve
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $description = $_POST["description"];
+            $postId = $_POST["postId"];
+
+            if($description == "" || strlen($description) > 256){ // Se la lunghezza massima è maggiore di 256 va rimandato alla report ma bisogna passargli i parametri del commento da segnalare
+                header("Location: /post/standard");
+                exit();
+            }
+
+            $pm = new FPersistentManager();
+            $report = new EReport(1, $user->getId(), $postId, "post", $description, date("Y-m-d H:i:s"));
+            $pm->store($report);
+
+            header("Location: /post/standard");
             exit();
         }
 
