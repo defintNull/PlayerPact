@@ -400,6 +400,12 @@
             exit();
         }
 
+        public function reportcomment() {
+            $postId = $_POST["postId"];
+
+            
+        }
+
         public function participate(int $idPost) {
 
         }

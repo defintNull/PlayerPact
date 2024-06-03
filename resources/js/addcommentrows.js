@@ -21,8 +21,8 @@ async function addrows(rows,type) {
             document.getElementById("datetime").id = row.id + "-datetime";
             document.getElementById("description").innerHTML = row.description;
             document.getElementById("description").id = row.id + "-description";
-
+            document.getElementById("comment-report").value = row.id;
+            document.getElementById("comment-report").id = row.id + "-comment-report";
         })
-
     } 
 }

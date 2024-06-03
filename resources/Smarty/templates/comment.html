@@ -1,8 +1,20 @@
 <body>
-    <div class="row comment" id="comment">
-        <div class="comment-username" id="user"></div>
-        <div class="comment-description" id="description"></div>
-        <div class="comment-datetime" id="datetime"></div>
+    <div class="comment">
+        <div class="row" id="comment">
+            <div class="comment-username" id="user"></div>
+            <div class="comment-description" id="description"></div>
+        </div>
+        <div class="row bottom-comment">
+            <div class="col report text-end float-end">
+                <form action="/post/reportcomment" method="post">
+                    <input type="hidden" id="comment-report" name="postId" value="a">
+                    <input type="image" id="report-image" src="/public/report.png">
+                </form>
+            </div>
+            <div class="col-3">
+                <div class="comment-datetime" id="datetime"></div>
+            </div>
+        </div>
     </div>
     <hr class="solid">
 </body>
