@@ -29,5 +29,10 @@
             $this->smarty->assign("info", $info);
             $this->smarty->display("selectNewPost.html");
         }
+
+        public function showImage($imageURL) {
+            $this->smarty->assign("image", $imageURL);
+            $this->smarty->display("fullscreenImage.html");
+        }
     }
 ?>

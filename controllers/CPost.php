@@ -57,13 +57,15 @@
             $values = array();
 
             $res = $pm->loadPosts("EPostSell",$limit,$offset,$datetime);
+            //echo var_dump($res);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
 
                 $post = new EPostSell($res[$i]["id"],$res[$i]["iduser"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["price"],$res[$i]["image"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getIdUser()));
-                
+                //echo var_dump($post->getImage());
+                //Questo controllo teoricamente è inutile perché dopo non esisterà post senza utente
                 if(count($userdata) !== 0) {
                     $userdata = $userdata[0];
                     $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
@@ -74,7 +76,7 @@
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
                         "price" => $post->getPrice(),
-                        "image" => $post->getImage()
+                        "image" => base64_encode($post->getImage())
                     );
                 } else {
                     $values[] = array(
@@ -83,10 +85,11 @@
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
                         "price" => $post->getPrice(),
-                        "image" => $post->getImage()
+                        "image" => base64_encode($post->getImage())
                     );
                 }
             }
+            //echo var_dump(array($values,$count));
             return array($values,$count);
         }
 
@@ -274,12 +277,18 @@
                 exit();
 
             } else if (isset($_POST["sell"])){
-                $values = $_POST["sell"]; // OCCORRE FARE IL CARICAMENTO DELL'IMMAGINE!
+                $values = $_POST["sell"];
                 
                 $image = null;
                 if (isset($_FILES['sell']['name']['image']) && $_FILES['sell']['error']['image'] == 0) {
                     $file_tmp_path = $_FILES['sell']['tmp_name']['image'];
                     $file_name = $_FILES['sell']['name']['image'];
+                    $file_size = $_FILES['sell']['size']['image']; // in byte
+
+                    if($file_size > 5*1024*1024){
+                        header("Location: /post/create?info=tooBig"); // Aggiungere messaggio a schermo
+                        exit();
+                    }
             
                     $allowedfileExtensions = array('jpg', 'jpeg', 'png');
                     $file_name_cmps = explode(".", $file_name);
@@ -311,6 +320,22 @@
                 header("Location: /post/team");
                 exit();
             }
+        }
+
+        public function get_image(int $id){
+            $pm = new FPersistentManager();
+            $image = $pm->load("EPostSell", array("id" => $id));
+
+            if($image == null) {
+                header("Location: /error/e404");
+                exit();
+            }
+
+            $image = $image[0]["image"];
+            
+            $view = new VPost();
+            $imageURL = "data:image/png;base64,".base64_encode($image);
+            $view->showImage($imageURL);
         }
 
         private function checkNewPostFields(){

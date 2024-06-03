@@ -80,14 +80,15 @@ async function addrows(rows,type) {
             document.getElementById("user").id = row.id + "-user";
             document.getElementById("price").innerHTML = "Prezzo: " + row.price + "€";
             document.getElementById("price").id = row.id + "-price";
-            if(row.image == null) {
+            if(row.image == "") {
                 document.getElementById("image").remove();
             } else {
-                document.getElementById("image").remove();
-                //document.getElementById("image").innerHTML = row.image;
+                document.getElementById("thumbnail").src = "data:image/png;base64," + row.image;
+                document.getElementById("thumbnailLink").href = "/post/get_image?id=" + row.id;
+                document.getElementById("thumbnail").id = row.id + "-thumbnail";
+                document.getElementById("thumbnailLink").id = row.id + "-thumbnailLink";
+                document.getElementById("image").id = row.id + "-image";
             }
-            document.getElementById("image").id = row.id + "-image";
-
         })
     }
 }

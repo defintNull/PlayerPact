@@ -117,6 +117,7 @@ body {
     font-size: 10px;
     text-align: right;
     padding-right: 20;
+    margin-bottom: 10px;
 }
 
 hr.solid {
@@ -187,4 +188,24 @@ hr.solid {
 .commentBox {
     margin-left: 20%;
     margin-right: 20%;
+}
+
+.image {
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 200px;
+    max-height: 200px;
+    padding: 0;
+}
+
+.image a{
+    padding: 0;
 }

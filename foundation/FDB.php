@@ -107,6 +107,7 @@
                 }
                 
                 $this->db->commit();
+                //echo var_dump($results);
                 return $results;
 
             } catch (PDOException $e) {

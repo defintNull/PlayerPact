@@ -10,7 +10,7 @@ $(document).ready(function(){
     $.ajax({
         url: '/autoscroll/load'+ '?offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
-
+            //console.log(data);
             try {
                 initialData = JSON.parse(data);
             } catch(err) {
@@ -18,7 +18,6 @@ $(document).ready(function(){
                 window.location.href = "/error/e404"; //ERRORE ESCE QUI
             }
             
-
             if (initialData) {
                 if (initialData.rows) {
                     addrows(initialData.rows,initialData.type);
@@ -34,7 +33,6 @@ $(document).ready(function(){
                 }
             }
             windowOnScroll(initialData);
-
         }
     });
         
@@ -44,7 +42,7 @@ function windowOnScroll(initialData) {
 
     if($(document).height() == $(window).height()) {
         if($(".post-item").length == initialData.totalcount) {
-            getMoreData(initialData)
+            getMoreData(initialData);
         }
     }
 

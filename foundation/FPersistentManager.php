@@ -27,6 +27,7 @@
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
             $results = $entity->loadElements($limit,$offset,$datetime);
+            //echo var_dump($results);
             return $results;
         }
 
