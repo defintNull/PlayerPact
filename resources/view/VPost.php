@@ -34,5 +34,10 @@
             $this->smarty->assign("image", $imageURL);
             $this->smarty->display("fullscreenImage.html");
         }
+
+        public function showReportPage($params) {
+            $this->assignSmartyParams($params);
+            $this->smarty->display("reportPage.html");
+        }
     }
 ?>

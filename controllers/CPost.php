@@ -5,6 +5,7 @@
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostTeam.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EComment.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EReport.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VPost.php");
 
     class CPost {
@@ -401,9 +402,48 @@
         }
 
         public function reportcomment() {
-            $postId = $_POST["postId"];
+            $session = USession::getInstance();
+            $user = $session->load("user");
 
-            
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $commentId = $_POST["commentId"];
+            $view = new VPost();
+            $params = array("commentId" => $commentId);
+            $view->showReportPage($params);
+        }
+
+        public function confirmCommentReport() {
+            //Controllo aggiuntivo, valutare se serve
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $description = $_POST["description"];
+            $commentId = $_POST["commentId"];
+
+            $pm = new FPersistentManager();
+            $comment = $pm->load("EComment", array("id" => $commentId))[0];
+            //echo var_dump($comment);
+            $postId = $pm->load("EPostStandard", array("id" => $comment["idpoststandard"]))[0]["id"];
+
+            if($description == "" || strlen($description) > 256){ // Se la lunghezza massima è maggiore di 256 va rimandato alla report ma bisogna passargli i parametri del commento da segnalare
+                header("Location: /post/comments?id=".$postId);
+                exit();
+            }
+
+            $report = new EReport(1, $user->getId(), $commentId, "comment", $description, date("Y-m-d H:i:s"));
+            $pm->store($report);
+
+            header("Location: /post/comments?id=".$postId);
+            exit();
         }
 
         public function participate(int $idPost) {
