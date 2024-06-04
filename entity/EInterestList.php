@@ -4,10 +4,14 @@
     class EInterestList implements FInterface {
         
         private $id;
+        private $userId;
+        private $interestObjId;
 
         public function getValues() {
             $v = array(
-                "id" => $this->id
+                "id" => $this->id,
+                "userId" => $this->userId,
+                "interestObjId" => $this->interestObjId
             );
             return $v;
         }

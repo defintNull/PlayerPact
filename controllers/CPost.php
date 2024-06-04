@@ -437,17 +437,11 @@
                 exit();
             }
 
-            echo $objId;
-            echo $objType;
-
-            echo var_dump($_POST);
-
             $allowedTypes = array("standard", "team", "sell", "comment");
 
             if(!in_array($objType, $allowedTypes)) {
-                echo "CIAO";
-                //header("Location: /error/e404");
-                //exit();
+                header("Location: /error/e404");
+                exit();
             }
 
             $pm = new FPersistentManager();
