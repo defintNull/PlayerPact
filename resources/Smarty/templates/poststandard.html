@@ -6,8 +6,9 @@
             <div class="post-description" id="post-description"></div>
             <div class="row">
                 <div class="col reportPost text-end float-end">
-                    <form action="/post/reportPost" method="post">
-                        <input type="hidden" id="post-report" name="postId" value="">
+                    <form action="/post/report" method="post">
+                        <input type="hidden" id="post-report" name="objToReportId" value="">
+                        <input type="hidden" id="post-report-type" name="objToReportType" value="standard">
                         <input type="image" id="report-image" src="/public/report.png">
                     </form>
                 </div>

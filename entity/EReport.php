@@ -5,8 +5,7 @@
 
         private $id;
         private $idUser;
-        private $idPost;
-        private $idComment;
+        private $idToReport;
         private $type;
         private $description;
         private $date;
@@ -15,13 +14,7 @@
             $this->id = $id;
             $this->idUser = $idUser;
             $this->type = $type;
-            if($type == "comment"){
-                $this->idComment = $idToReport;
-                $this->idPost = null;
-            } else if($type == "post"){
-                $this->idPost = $idToReport;
-                $this->idComment = null;
-            }
+            $this->idToReport = $idToReport;
             $this->description = $description;
             $this->date = $date;
         }
@@ -30,8 +23,7 @@
             $v = array(
                 "id" => $this->id,
                 "idUser" => $this->idUser,
-                "idPost" => $this->idPost,
-                "idComment" => $this->idComment,
+                "idToReport" => $this->idToReport,
                 "type" => $this->type,
                 "description" => $this->description,
                 "datetime" => $this->date,

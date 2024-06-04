@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-03 23:28:33
+/* Smarty version 5.1.0, created on 2024-06-04 21:04:13
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665e3581d433c3_00486039',
+  'unifunc' => 'content_665f652da2cd21_69190513',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1717450034,
+      1 => 1717527407,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665e3581d433c3_00486039 (\Smarty\Template $_smarty_tpl) {
+function content_665f652da2cd21_69190513 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -116,9 +116,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 </div>
                                     <div class="row">
                                         <div class="col reportPost text-end float-end">
-                                            <form action="/post/reportpost" method="post">
-                                                <input type="hidden" id="post-report" name="postId" value="<?php echo $_smarty_tpl->getValue('postId');?>
+                                            <form action="/post/report" method="post">
+                                                <input type="hidden" id="post-report" name="objToReportId" value="<?php echo $_smarty_tpl->getValue('postId');?>
 ">
+                                                <input type="hidden" id="post-report-type" name="objToReportType" value="standard">
                                                 <input type="image" id="report-image" src="/public/report.png">
                                             </form>
                                         </div>

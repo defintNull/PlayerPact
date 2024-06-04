@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-03 23:26:04
+/* Smarty version 5.1.0, created on 2024-06-04 20:35:27
   from 'file:postReportPage.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665e34ec827d37_27771914',
+  'unifunc' => 'content_665f5e6fbb9152_54888712',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd068ba7b86d889ddc611528ee661387fe86a4ea5' => 
     array (
       0 => 'postReportPage.html',
-      1 => 1717449960,
+      1 => 1717525849,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665e34ec827d37_27771914 (\Smarty\Template $_smarty_tpl) {
+function content_665f5e6fbb9152_54888712 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -42,6 +42,8 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 </div>
             </div>
             <input type="hidden" name="postId" value="<?php echo $_smarty_tpl->getValue('postId');?>
+" class="form-control" aria-describedby="inputGroup-sizing-default">
+            <input type="hidden" name="postType" value="<?php echo $_smarty_tpl->getValue('postType');?>
 " class="form-control" aria-describedby="inputGroup-sizing-default">
             <div>
                 <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn confirmReportButton">Segnala</button>

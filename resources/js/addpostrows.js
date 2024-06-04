@@ -55,6 +55,8 @@ async function addrows(rows,type) {
             document.getElementById("post-players").id = row.id + "-post-players";
             document.getElementById("post-time_").innerHTML = "Orario: " + row.time;
             document.getElementById("post-time_").id = row.id + "-post-time_";
+            document.getElementById("post-report").value = row.id;
+            document.getElementById("post-report").id = row.id + "-post-report";
 
         })
     } else if(type == "sell") {
@@ -81,6 +83,8 @@ async function addrows(rows,type) {
             document.getElementById("post-userId").id = row.id + "-post-userId";
             document.getElementById("post-price").innerHTML = "Prezzo: " + row.price + "€";
             document.getElementById("post-price").id = row.id + "-post-price";
+            document.getElementById("post-report").value = row.id;
+            document.getElementById("post-report").id = row.id + "-post-report";
             if(row.image == "") {
                 document.getElementById("post-image").remove();
             } else {

@@ -401,7 +401,7 @@
             exit();
         }
 
-        public function reportcomment() {
+        public function report() {
             $session = USession::getInstance();
             $user = $session->load("user");
 
@@ -410,13 +410,15 @@
                 exit();
             }
 
-            $commentId = $_POST["commentId"];
+            $objToReportId = $_POST["objToReportId"];
+            $objToReportType = $_POST["objToReportType"];
             $view = new VPost();
-            $params = array("commentId" => $commentId);
-            $view->showCommentReportPage($params);
+            $params = array("objToReportId" => $objToReportId,
+                            "objToReportType" => $objToReportType);
+            $view->showReportPage($params);
         }
 
-        public function confirmCommentReport() {
+        public function confirmReport() {
             //Controllo aggiuntivo, valutare se serve
             $session = USession::getInstance();
             $user = $session->load("user");
@@ -427,64 +429,40 @@
             }
 
             $description = $_POST["description"];
-            $commentId = $_POST["commentId"];
-
-            $pm = new FPersistentManager();
-            $comment = $pm->load("EComment", array("id" => $commentId))[0];
-            //echo var_dump($comment);
-            $postId = $pm->load("EPostStandard", array("id" => $comment["idpoststandard"]))[0]["id"];
-
-            if($description == "" || strlen($description) > 256){ // Se la lunghezza massima è maggiore di 256 va rimandato alla report ma bisogna passargli i parametri del commento da segnalare
-                header("Location: /post/comments?id=".$postId);
-                exit();
-            }
-
-            $report = new EReport(1, $user->getId(), $commentId, "comment", $description, date("Y-m-d H:i:s"));
-            $pm->store($report);
-
-            header("Location: /post/comments?id=".$postId);
-            exit();
-        }
-
-        public function reportpost() {
-            $session = USession::getInstance();
-            $user = $session->load("user");
-
-            if($user == null){
-                header("Location: /login");
-                exit();
-            }
-
-            $postId = $_POST["postId"];
-            $view = new VPost();
-            $params = array("postId" => $postId);
-            $view->showPostReportPage($params);
-        }
-
-        public function confirmPostReport() {
-            //Controllo aggiuntivo, valutare se serve
-            $session = USession::getInstance();
-            $user = $session->load("user");
-
-            if($user == null){
-                header("Location: /login");
-                exit();
-            }
-
-            $description = $_POST["description"];
-            $postId = $_POST["postId"];
+            $objId = $_POST["objToReportId"];
+            $objType = $_POST["objToReportType"];
 
             if($description == "" || strlen($description) > 256){ // Se la lunghezza massima è maggiore di 256 va rimandato alla report ma bisogna passargli i parametri del commento da segnalare
                 header("Location: /post/standard");
                 exit();
             }
 
+            echo $objId;
+            echo $objType;
+
+            echo var_dump($_POST);
+
+            $allowedTypes = array("standard", "team", "sell", "comment");
+
+            if(!in_array($objType, $allowedTypes)) {
+                echo "CIAO";
+                //header("Location: /error/e404");
+                //exit();
+            }
+
             $pm = new FPersistentManager();
-            $report = new EReport(1, $user->getId(), $postId, "post", $description, date("Y-m-d H:i:s"));
+            $report = new EReport(1, $user->getId(), $objId, $objType, $description, date("Y-m-d H:i:s"));
             $pm->store($report);
 
-            header("Location: /post/standard");
-            exit();
+            if(strcmp($objType, "comment") == 0){
+                $comment = $pm->load("EComment", array("id" => $objId))[0];
+                $postId = $pm->load("EPostStandard", array("id" => $comment["idpoststandard"]))[0]["id"];
+                header("Location: /post/comments?id=".$postId);
+                exit();
+            } else {
+                header("Location: /post/".$objType);
+                exit();
+            }
         }
 
         public function participate(int $idPost) {

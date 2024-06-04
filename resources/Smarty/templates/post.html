@@ -80,8 +80,9 @@
                                     <div class="post-description">{$postDescription}</div>
                                     <div class="row">
                                         <div class="col reportPost text-end float-end">
-                                            <form action="/post/reportpost" method="post">
-                                                <input type="hidden" id="post-report" name="postId" value="{$postId}">
+                                            <form action="/post/report" method="post">
+                                                <input type="hidden" id="post-report" name="objToReportId" value="{$postId}">
+                                                <input type="hidden" id="post-report-type" name="objToReportType" value="standard">
                                                 <input type="image" id="report-image" src="/public/report.png">
                                             </form>
                                         </div>

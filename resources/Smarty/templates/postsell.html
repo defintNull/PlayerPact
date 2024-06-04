@@ -9,7 +9,18 @@
                 <img src="" class="post-thumbnail" id="post-thumbnail">
             </a>
         </div>
-        <div class="post-datetime" id="post-datetime"></div>
+        <div class="row">
+            <div class="col reportPost text-end float-end">
+                <form action="/post/report" method="post">
+                    <input type="hidden" id="post-report" name="objToReportId" value="">
+                    <input type="hidden" id="post-report-type" name="objToReportType" value="sell">
+                    <input type="image" id="report-image" src="/public/report.png">
+                </form>
+            </div>
+            <div class="col-3">
+                <div class="post-datetime" id="post-datetime"></div>
+            </div>
+        </div>
     </div>
     <hr class="solid">
 </body>
