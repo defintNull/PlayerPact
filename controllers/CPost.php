@@ -6,6 +6,7 @@
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EComment.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EReport.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EParticipation.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VPost.php");
 
     class CPost {
@@ -459,8 +460,43 @@
             }
         }
 
-        public function participate(int $idPost) {
+        public function participate() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
 
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            
+            $teamPostId = $_POST["teamPostId"];
+
+            $pm = new FPersistentManager();
+            $participation = new EParticipation($user->getId(), $teamPostId);
+            if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) == array()){
+                $pm->store($participation);
+            } else {
+                $pm->delete("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId));
+            }
+        }
+
+        public function isparticipating(){
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            
+            $teamPostId = $_POST["teamPostId"];
+            $pm = new FPersistentManager();
+
+            if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) != array()){
+                echo 1;
+            } else {
+                echo 0;
+            }
         }
 
         public function buy() {

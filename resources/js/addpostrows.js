@@ -57,6 +57,29 @@ async function addrows(rows,type) {
             document.getElementById("post-time_").id = row.id + "-post-time_";
             document.getElementById("post-report").value = row.id;
             document.getElementById("post-report").id = row.id + "-post-report";
+            document.getElementById("post-participate").dataset.id = row.id;
+            document.getElementById("post-participate").id = row.id + "-post-participate";
+
+            function isSaved() {
+                return $.ajax({
+                    url: "/post/isparticipating",
+                    type: "POST",
+                    data: {"teamPostId": row.id}
+                });
+            }
+            isSaved().then(function(response) {
+                //console.log(response);
+                document.getElementById(row.id + "-post-participate").value = response;
+                if(document.getElementById(row.id + "-post-participate").value == 1) {
+                    document.getElementById(row.id + "-post-participate").innerHTML = "Partecipi già";
+                } else {
+                    document.getElementById(row.id + "-post-participate").innerHTML = "Partecipa";
+                }
+                //console.log("Done");
+            }).catch(function(error) {
+                console.error("Error:", error);
+            });
+
 
         })
     } else if(type == "sell") {

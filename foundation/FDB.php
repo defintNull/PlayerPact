@@ -14,6 +14,7 @@
             "ModerationComment"=>"moderationcomment",
             "ModerationPost"=>"moderationpost",
             "ModerationUser"=>"moderationuser",
+            "Participation" => "participation",
             "PostSell"=>"postsell",
             "PostStandard"=>"poststandard",
             "PostTeam"=>"postteam",
