@@ -21,6 +21,7 @@
     margin: 0;
     top:0;
     height: 40px;
+    max-width: 100px;
 }
 
 .password {
@@ -30,4 +31,28 @@
 
 .privacy-page-body {
     padding-top: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-left: 15%;
+    padding-right: 15%;
+    min-width: 300px;
+}
+
+.btn {
+    color: white;
+    background-color: #ff8800;
+    transition: none;
+    border: none;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #333333;
+    transition: none;
+}
+
+.btn:active {
+    color: white;
+    background-color: #534535;
+    transition: none;
 }

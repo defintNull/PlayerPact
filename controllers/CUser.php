@@ -36,12 +36,49 @@
             $view->showProfile($params);
         }
 
-        public function posts() {
+        public function saved() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            
+            $username = null;
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            $username = $user->getUsername();
+            $view = new VUser();
+            $params = array("username" => $username);
+            $view->showProfile($params);
+        }
 
+        public function participated() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            
+            $username = null;
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            $username = $user->getUsername();
+            $view = new VUser();
+            $params = array("username" => $username);
+            $view->showProfile($params);
         }
 
         public function chats() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
             
+            $username = null;
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            $username = $user->getUsername();
+            $view = new VUser();
+            $params = array("username" => $username);
+            $view->showChatSection($params);
         }
 
         public function privacy() {

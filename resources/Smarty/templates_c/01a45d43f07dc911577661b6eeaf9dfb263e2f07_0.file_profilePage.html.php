@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-05 20:14:45
+/* Smarty version 5.1.0, created on 2024-06-06 00:40:27
   from 'file:profilePage.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6660ab155f7989_31767699',
+  'unifunc' => 'content_6660e95b92c582_57959995',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '01a45d43f07dc911577661b6eeaf9dfb263e2f07' => 
     array (
       0 => 'profilePage.html',
-      1 => 1717611233,
+      1 => 1717627203,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6660ab155f7989_31767699 (\Smarty\Template $_smarty_tpl) {
+function content_6660e95b92c582_57959995 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -46,20 +46,19 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/posts">Miei post</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">Miei post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Post salvati</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Partecipazioni</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chat</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy e sicurezza</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
-                            <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
                             </li>
                         </ul>
                     </div>

@@ -1,7 +1,33 @@
-<html>
+<?php
+/* Smarty version 5.1.0, created on 2024-06-06 00:07:51
+  from 'file:chatSection.html' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.1.0',
+  'unifunc' => 'content_6660e1b7d28c31_57937721',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'e92b7e69e0bb2ea513e062e1f4ac81d22843a30e' => 
+    array (
+      0 => 'chatSection.html',
+      1 => 1717625270,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6660e1b7d28c31_57937721 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
+?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
+>
         <link rel="stylesheet" href="/resources/css/home.css">
         <link rel="stylesheet" href="/resources/css/profilePage.css">
     </head>
@@ -41,7 +67,8 @@
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
                         <div class="upperBar">
                             <a>Pagina profilo di </a>
-                            <a class="upperBarUsername">{$username}</a>
+                            <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
+</a>
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
@@ -51,4 +78,5 @@
             </div>
         </div>
     </body>
-</html>
+</html><?php }
+}

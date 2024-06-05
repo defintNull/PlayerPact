@@ -17,5 +17,10 @@
             $this->assignSmartyParams($params);
             $this->smarty->display("privacy.html");
         }
+
+        public function showChatSection($params){
+            $this->assignSmartyParams($params);
+            $this->smarty->display("chatSection.html");
+        }
     }
 ?>
