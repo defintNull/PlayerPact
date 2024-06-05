@@ -248,3 +248,19 @@ hr.solid {
     padding-left: 240px;
     text-align: left;
 }
+
+.savePostButton {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+}
+
+.savePostButton:hover {
+    background-color: #444444;
+}
+
+.save-post-image {
+    padding-right: 13px;
+    width: 40px;
+}

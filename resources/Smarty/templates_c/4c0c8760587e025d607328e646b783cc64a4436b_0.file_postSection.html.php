@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-02 16:51:46
+/* Smarty version 5.1.0, created on 2024-06-05 01:05:07
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665c8702803235_36954377',
+  'unifunc' => 'content_665f9da36c8735_27175594',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c0c8760587e025d607328e646b783cc64a4436b' => 
     array (
       0 => 'postSection.html',
-      1 => 1717339853,
+      1 => 1717541949,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665c8702803235_36954377 (\Smarty\Template $_smarty_tpl) {
+function content_665f9da36c8735_27175594 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -39,6 +39,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 >
         <?php echo '<script'; ?>
  src="/resources/js/autoscroll.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/userButtonInteraction.js"><?php echo '</script'; ?>
 >
     
     </head>

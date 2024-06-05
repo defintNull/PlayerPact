@@ -8,6 +8,7 @@
             "Chat"=>"chat",
             "ChatUser"=>"chatuser",
             "Comment"=>"comment",
+            "InterestList" => "interestlist",
             "Message"=>"message",
             "Mod"=>"mod",
             "ModerationComment"=>"moderationcomment",
@@ -111,25 +112,25 @@
                 return $results;
 
             } catch (PDOException $e) {
-                return $e->getCode();
+                return $e;
             }
         }
 
         function delete(string $class, string $condition) {
-            
             try {
-
                 $this->db->beginTransaction();
 
-                $sql = "DELETE FROM " .self::$tables[$class] . " WHERE ". $condition;
-
+                $sql = "DELETE FROM ".self::$tables[$class]." WHERE ".$condition;
+                
                 $sth = $this->db->prepare($sql);
                 $sth->execute();
 
                 $this->db->commit();
+                return true;
 
             } catch (PDOException $e) {
-                return $e->getCode();
+                return false;
+                //return $e;
             }
         }
 
@@ -163,7 +164,6 @@
         }
 
         function exists(string $class, $entity) {
-            
             try {
 
                 $this->db->beginTransaction();
@@ -172,7 +172,7 @@
 
                 $counter = 0;
                 $values = $entity->getValues();
-                foreach($values as $attrib=>$data) {
+                foreach($values as $attrib => $data) {
                     $sql .= $attrib . "="."\"". $data . "\"";
                     if($counter < count($values)-1) {
                         $sql .= " AND ";
@@ -180,6 +180,8 @@
                     $counter++;
                 }
                 $sql .= ")";
+
+                echo $sql;
                 
                 $sth = $this->db->prepare($sql);
                 $sth->execute();
@@ -194,7 +196,7 @@
                 }
 
             } catch (PDOException $e) {
-                return $e->getCode();
+                return $e;
             }
         }
 

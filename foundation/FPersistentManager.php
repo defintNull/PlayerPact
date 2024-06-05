@@ -27,7 +27,6 @@
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
             $results = $entity->loadElements($limit,$offset,$datetime);
-            //echo var_dump($results);
             return $results;
         }
 
@@ -37,13 +36,13 @@
             return $results;
         }
 
-        function delete($CClass, string $condition) {
+        function delete($CClass, array $arr) {
             $FClass = "F".substr($CClass,1); 
             $entity = new $FClass();
-            $entity->delete($condition);
+            $entity->delete($arr);
         }
 
-        function update($obj, string $condition) {
+        function update($obj, array $condition) {
             $FClass = self::classConvert($obj);
             $entity = new $FClass();
             $entity->update($obj,$condition);
@@ -52,7 +51,7 @@
         function exists($obj) {
             $FClass = self::classConvert($obj);
             $entity = new $FClass();
-            return $entity->exist($obj);
+            return $entity->exists($obj);
         }
 
         private static function classConvert($obj) : string {

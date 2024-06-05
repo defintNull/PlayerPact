@@ -85,6 +85,31 @@ async function addrows(rows,type) {
             document.getElementById("post-price").id = row.id + "-post-price";
             document.getElementById("post-report").value = row.id;
             document.getElementById("post-report").id = row.id + "-post-report";
+            document.getElementById("post-save").value = row.id;
+            document.getElementById("post-save").id = row.id + "-post-save";
+            document.getElementById("save-post-image").id = row.id + "-save-post-image";
+            
+            function isSaved() {
+                return $.ajax({
+                    url: "/interestlist/issaved",
+                    type: "POST",
+                    data: {"sellPostId": row.id}
+                });
+            }
+            isSaved().then(function(response) {
+                //console.log(response);
+                document.getElementById(row.id + "-save-post-image").value = response;
+                if(document.getElementById(row.id + "-save-post-image").value == 1) {
+                    document.getElementById(row.id + "-save-post-image").src = "/public/saved.png";
+                } else {
+                    document.getElementById(row.id + "-save-post-image").src = "/public/save.png";
+                }
+                //console.log("Done");
+            }).catch(function(error) {
+                console.error("Error:", error);
+            });
+            
+            
             if(row.image == "") {
                 document.getElementById("post-image").remove();
             } else {
