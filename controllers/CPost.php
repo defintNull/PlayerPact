@@ -148,7 +148,8 @@
             }
 
             $params = array("type" => "standard",
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "username" => $user->getUsername());
             $view->show($params);
         }
 
@@ -163,7 +164,8 @@
             }
 
             $params = array("type" => "sell",
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "username" => $user->getUsername());
             $view->show($params);
         }
 
@@ -178,7 +180,8 @@
             }
 
             $params = array("type" => "team",
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "username" => $user->getUsername());
             $view->show($params);
         }
 
@@ -201,7 +204,8 @@
                             "postTitle" => $res["title"],
                             "postDescription" => $res["description"],
                             "postDatetime" => $res["datetime"],
-                            "authenticated" => $authenticated);
+                            "authenticated" => $authenticated,
+                            "username" => $sessionUser->getUsername());
             $view->showComments($params);
         }
 

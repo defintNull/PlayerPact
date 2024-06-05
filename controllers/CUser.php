@@ -1,12 +1,10 @@
 <?php
-    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VHome.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
 
     class CUser {
         public function home() {
-            $view = new VHome();
-
             $session = USession::getInstance();
             $user = $session->load("user");
             
@@ -17,9 +15,49 @@
                 $authenticated = true;
             }
 
+            $view = new VUser();
             $params = array("authenticated" => $authenticated,
                             "username" => $username);
-            $view->show($params);
+            $view->showHome($params);
+        }
+
+        public function profile() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            
+            $username = null;
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            $username = $user->getUsername();
+            $view = new VUser();
+            $params = array("username" => $username);
+            $view->showProfile($params);
+        }
+
+        public function posts() {
+
+        }
+
+        public function chats() {
+            
+        }
+
+        public function privacy() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            
+            $username = null;
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+            $username = $user->getUsername();
+            $view = new VUser();
+            $params = array("username" => $username,
+                            "censuredPassword" => "*");
+            $view->showPrivacyPage($params);
         }
     }
 ?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-05 15:01:26
+/* Smarty version 5.1.0, created on 2024-06-05 19:51:38
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666061a6add185_87006833',
+  'unifunc' => 'content_6660a5aaf378c9_18464425',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1717543398,
+      1 => 1717609837,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666061a6add185_87006833 (\Smarty\Template $_smarty_tpl) {
+function content_6660a5aaf378c9_18464425 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -90,7 +90,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                         <img src="/public/4.png" alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Profilo</a></li>
+                                        <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
+</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Profilo</a></li>
                                         <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>

@@ -8,6 +8,25 @@ body {
     min-width: 150px;
 }
 
+.dropdown-menu{
+    background-color: #222222;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+.usermenu-username {
+    color: coral;
+    background-color: #222222;
+    text-decoration: none;
+}
+
+.usermenu-username:hover {
+    color: coral;
+    background-color: #222222;
+}
+
 .pLogo {
     padding: 0;
     margin: 0;

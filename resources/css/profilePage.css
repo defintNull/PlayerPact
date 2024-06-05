@@ -1,0 +1,33 @@
+.upperBarUsername {
+    padding-top: 5px;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    color: coral;
+}
+
+.upperBar {
+    padding-top: 5px;
+    font-size: 30px;
+}
+
+.username {
+    color: coral;
+    text-decoration: none;
+}
+
+.privacy-page-item {
+    padding: 0;
+    margin: 0;
+    top:0;
+    height: 40px;
+}
+
+.password {
+    text-decoration: none;
+    color: white;
+}
+
+.privacy-page-body {
+    padding-top: 100px;
+}
