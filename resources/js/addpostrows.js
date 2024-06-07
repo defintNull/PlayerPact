@@ -72,6 +72,9 @@ async function addrows(rows,type) {
                 document.getElementById(row.id + "-post-participate").value = response;
                 if(document.getElementById(row.id + "-post-participate").value == 1) {
                     document.getElementById(row.id + "-post-participate").innerHTML = "Partecipi già";
+                } else if(document.getElementById(row.id + "-post-participate").value == 2) {
+                    document.getElementById(row.id + "-post-participate").innerHTML = "Partecipi già";
+                    document.getElementById(row.id + "-post-participate").disabled = true;
                 } else {
                     document.getElementById(row.id + "-post-participate").innerHTML = "Partecipa";
                 }
@@ -111,6 +114,8 @@ async function addrows(rows,type) {
             document.getElementById("post-save").value = row.id;
             document.getElementById("post-save").id = row.id + "-post-save";
             document.getElementById("save-post-image").id = row.id + "-save-post-image";
+            document.getElementById("sellpostform").id = row.id + "sellpostform";
+            document.getElementById(row.id + "sellpostform").value = row.id;
             
             function isSaved() {
                 return $.ajax({

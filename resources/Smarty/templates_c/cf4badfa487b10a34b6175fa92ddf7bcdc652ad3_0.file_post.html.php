@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-28 14:57:51
+/* Smarty version 5.1.0, created on 2024-06-06 19:15:34
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6655d4cfae45b7_76136932',
+  'unifunc' => 'content_6661eeb68a6fc9_95305236',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf4badfa487b10a34b6175fa92ddf7bcdc652ad3' => 
     array (
       0 => 'post.html',
-      1 => 1716901017,
+      1 => 1717692708,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6655d4cfae45b7_76136932 (\Smarty\Template $_smarty_tpl) {
+function content_6661eeb68a6fc9_95305236 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -67,6 +67,13 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             </li>
                         </ul>
                     </div>
+                    <div class="row justify-content-center text-bg-dark flex-grow-1">
+                        <ul class="nav nav-pills pSideNav">
+                            <li class="nav-item">
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
@@ -80,43 +87,70 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Profilo</a></li>
-                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                        <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
+</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Profilo</a></li>
+                                        <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>
                             </div>
                         <?php } else { ?>
                             <div class="col pUpperLogin">
-                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main_body">
                         
                         <!-- DATA FOR JS -->
                         <div class="single-post-section">
-                            <div class="row single-post" id=<?php echo $_smarty_tpl->getValue('postId');?>
+                            <div class="post-section">
+                                <div class="row single-post" id=<?php echo $_smarty_tpl->getValue('postId');?>
 >
-                                <div class="post-username"><?php echo $_smarty_tpl->getValue('user');?>
+                                    <div class="post-username"><?php echo $_smarty_tpl->getValue('postUsername');?>
 </div>
-                                <div class="title-post-bar post-title"><?php echo $_smarty_tpl->getValue('posttitle');?>
+                                    <div class="post-title"><?php echo $_smarty_tpl->getValue('postTitle');?>
 </div>
-                                <div class="description"><?php echo $_smarty_tpl->getValue('description');?>
+                                    <div class="post-description"><?php echo $_smarty_tpl->getValue('postDescription');?>
 </div>
-                                <div class="datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button class="savePostButton" id="post-save" value="">
+                                                <img class="save-post-image" src="/public/save.png">
+                                            </button>
+                                        </div>
+                                        <div class="col reportPost text-end float-end">
+                                            <form action="/post/report" method="post">
+                                                <input type="hidden" id="post-report" name="objToReportId" value="<?php echo $_smarty_tpl->getValue('postId');?>
+">
+                                                <input type="hidden" id="post-report-type" name="objToReportType" value="standard">
+                                                <input type="image" id="report-image" src="/public/report.png">
+                                            </form>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="post-datetime" id="post-datetime"><?php echo $_smarty_tpl->getValue('postDatetime');?>
 </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
-                                <form>
+                                <form action="/post/addcomment" method="post">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
-                                        <button type="button" class="btn-lg commentButton">Commenta</button>
+                                        <input name="comment" type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
+                                        <input type="hidden" name="postId" id="<?php echo $_smarty_tpl->getValue('postId');?>
+" value="<?php echo $_smarty_tpl->getValue('postId');?>
+">
+                                        <button type="submit" class="btn-lg commentButton">Commenta</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="comment-section-title">
+                                <a>Commenti:</a>
                             </div>
                             <hr class="solid">
                             <div class="commentSection" id="commentSection"></div>

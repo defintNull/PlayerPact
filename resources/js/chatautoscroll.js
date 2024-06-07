@@ -6,19 +6,19 @@ $(document).ready(function(){
     var offset = document.getElementById("offset").value;
     var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
-    var id = document.getElementsByClassName("single-post")[0].id;
-
+    const iduser = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
+    
     $.ajax({
-        url: '/autoscroll/loadbyid' + '?id=' + id + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
+        url: '/autoscroll/loadbyid'+ '?id=' + iduser + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
             //console.log(data);
             try {
                 initialData = JSON.parse(data);
             } catch(err) {
                 //console.log(err);
-                window.location.href = "/error/e404";
+                window.location.href = "/error/e404"; //ERRORE ESCE QUI
             }
-
+            
             if (initialData) {
                 if (initialData.rows) {
                     addrows(initialData.rows,initialData.type);
@@ -34,7 +34,6 @@ $(document).ready(function(){
                 }
             }
             windowOnScroll(initialData);
-
         }
     });
         
@@ -43,14 +42,16 @@ $(document).ready(function(){
 function windowOnScroll(initialData) {
 
     if($(document).height() == $(window).height()) {
-        if($(".comment").length == initialData.totalcount) {
-            getMoreData(initialData)
+        if($(".post-item").length == initialData.totalcount) {
+            getMoreData(initialData);
         }
     }
 
-    $(window).on("scroll", function(e){        
+    $(window).on("scroll", function(e){
+        
         if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 60)) {
-            if($(".comment").length == initialData.totalcount) {
+            if($(".chat-item").length == initialData.totalcount) {
+                console.log("no");
                 getMoreData(initialData)
             }
         }
@@ -58,18 +59,19 @@ function windowOnScroll(initialData) {
 }
 
 function getMoreData(initialData) {
-    
     $('.ajax-loader').show();
     $(window).off("scroll");
     if(initialData.offset == initialData.totalcount) {
+        const iduser = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
         $.ajax({
-            url: "/autoscroll/loadbyid" + '?id=' + initialData.id + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
+            url: "/autoscroll/loadbyid" + '?id=' + iduser + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",
-            success: function (response) {   
+            success: function (response) {
+
                 try {
                     initialData = JSON.parse(response);
                 } catch(err) {
-                    window.location.href = "/error/e404";
+                    //window.location.href = "/error/e404";
                 }
 
                 if (initialData.rows) {

@@ -1,6 +1,8 @@
 <?php
 
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/controllers/CPost.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/controllers/CUser.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
     
     class CAutoscroll {
 
@@ -25,7 +27,17 @@
                     $offset+= $limit;
                 }
                 $totalcount += $elements[1];
-                
+
+                $session = USession::getInstance();
+                $iduser = $session->load("user")->getId();
+                for($i=0;$i<count($rows);$i++) {
+                    if($iduser == $rows[$i]["iduser"]) {
+                        $rows[$i]["posses"] = 1;
+                    } else {
+                        $rows[$i]["posses"] = 1;
+                    }
+                }
+
                 $data = [
                     'rows' => $rows,
                     'offset' => $offset,
@@ -41,7 +53,7 @@
             }
         }
 
-        public function loadbyid(int $id,int $offset,int $totalcount,string $type,string $date,string $time) {
+        public function loadbyid($id,int $offset,int $totalcount,string $type,string $date,string $time) {
             //AUTOSCROLL
             //Date input
             $date = explode("/",$date);
@@ -107,6 +119,18 @@
 
             $controller = new CPost();
             $elements = $controller->loadComments($idpost,$offset,$limit,$datetime);
+            return $elements;
+        }
+
+        private function getChatElements(string $username,int $offset,int $limit,string $datetime) {
+            $controller = new CUser;       
+            $elements = $controller->loadChats($username,$offset,$limit,$datetime);
+            return $elements;
+        }
+
+        private function getMessageElements(int $idchat,int $offset,int $limit,string $datetime) {
+            $controller = new CUser();
+            $elements = $controller->loadMessages($idchat,$offset,$limit,$datetime);
             return $elements;
         }
     }

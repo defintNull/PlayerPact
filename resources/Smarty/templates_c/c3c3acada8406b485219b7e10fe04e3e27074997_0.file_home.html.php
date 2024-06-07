@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-28 14:57:05
+/* Smarty version 5.1.0, created on 2024-06-06 19:01:11
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6655d4a1366963_00737453',
+  'unifunc' => 'content_6661eb576f13d2_79219840',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c3c3acada8406b485219b7e10fe04e3e27074997' => 
     array (
       0 => 'home.html',
-      1 => 1716901015,
+      1 => 1717692708,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6655d4a1366963_00737453 (\Smarty\Template $_smarty_tpl) {
+function content_6661eb576f13d2_79219840 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -55,6 +55,13 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             </li>
                         </ul>
                     </div>
+                    <div class="row justify-content-center text-bg-dark flex-grow-1">
+                        <ul class="nav nav-pills pSideNav">
+                            <li class="nav-item">
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
@@ -68,21 +75,23 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="/public/4.png" alt="Avatar" id="profileImage"> <!-- Inserire immagine profilo-->
                                     </ul>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Profilo</a></li>
-                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                        <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
+</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Profilo</a></li>
+                                        <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>
                             </div>
                         <?php } else { ?>
                             <div class="pUpperLogin">
-                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main_body">
                         <div class="pBanner">
                             <img src="/public/banner.png">
                         </div>
@@ -98,10 +107,10 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             </div>
                             <a>Qui potrai cercare nuovi amici con cui giocare online, comprare un nuovo videogioco o semplicemente esprimere un proprio pensiero sul mondo dei videogiochi!</a>
                             <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Registrati</button>
+                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Registrati</a>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn-lg pHomeButton">Login</button>
+                                <a href="/login" type="button" class="btn-lg pHomeButton">Login</a>
                             </div>
                         <?php }?>
                     </div>

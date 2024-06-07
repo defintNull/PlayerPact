@@ -18,21 +18,29 @@
         }
 
         function load($EClass, array $arr) {
-            $FClass = "F".substr($EClass,1); 
+            $FClass = "F".substr($EClass,1);
             $entity = new $FClass();
             return $entity->load($arr);
         }
 
-        function loadPosts(string $EClass,int $limit,int $offset,string $datetime) {
+        function loadElements(string $EClass,int $limit,int $offset,string $datetime) {
             $FClass = "F".substr($EClass,1); 
             $entity = new $FClass();
             $results = $entity->loadElements($limit,$offset,$datetime);
             return $results;
         }
 
-        function loadComments(int $idpost,int $limit,int $offset,string $datetime) {
-            $entity = new FComment();
-            $results = $entity->loadElements($idpost,$limit,$offset,$datetime);
+        function loadElementsById(string $EClass,int $id,int $limit,int $offset,string $datetime) {
+            $FClass = "F".substr($EClass,1); 
+            $entity = new $FClass();
+            $results = $entity->loadElements($id,$limit,$offset,$datetime);
+            return $results;
+        }
+
+        function loadElementsByGroup(string $EClass,array $group,int $limit,int $offset,string $datetime) {
+            $FClass = "F".substr($EClass,1); 
+            $entity = new $FClass();
+            $results = $entity->loadElements($group,$limit,$offset,$datetime);
             return $results;
         }
 

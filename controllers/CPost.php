@@ -4,6 +4,9 @@
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostSell.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostTeam.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EChat.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EChatUser.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EChatUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EComment.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EReport.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EParticipation.php");
@@ -20,7 +23,7 @@
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadPosts("EPostStandard",$limit,$offset,$datetime);
+            $res = $pm->loadElements("EPostStandard",$limit,$offset,$datetime);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
@@ -58,7 +61,7 @@
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadPosts("EPostSell",$limit,$offset,$datetime);
+            $res = $pm->loadElements("EPostSell",$limit,$offset,$datetime);
             //echo var_dump($res);
             $count = count($res);
 
@@ -99,7 +102,7 @@
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadPosts("EPostTeam",$limit,$offset,$datetime);
+            $res = $pm->loadElements("EPostTeam",$limit,$offset,$datetime);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
@@ -145,11 +148,14 @@
             $authenticated = false;
             if($user != null){
                 $authenticated = true;
+                $username = $user->getUsername();
+            } else {
+                $username = null;
             }
 
             $params = array("type" => "standard",
                             "authenticated" => $authenticated,
-                            "username" => $user->getUsername());
+                            "username" => $username);
             $view->show($params);
         }
 
@@ -161,11 +167,14 @@
             $authenticated = false;
             if($user != null){
                 $authenticated = true;
+                $username = $user->getUsername();
+            } else {
+                $username = null;
             }
 
             $params = array("type" => "sell",
                             "authenticated" => $authenticated,
-                            "username" => $user->getUsername());
+                            "username" => $username);
             $view->show($params);
         }
 
@@ -177,11 +186,14 @@
             $authenticated = false;
             if($user != null){
                 $authenticated = true;
+                $username = $user->getUsername();
+            } else {
+                $username = null;
             }
 
             $params = array("type" => "team",
                             "authenticated" => $authenticated,
-                            "username" => $user->getUsername());
+                            "username" => $username);
             $view->show($params);
         }
 
@@ -196,6 +208,9 @@
             $authenticated = false;
             if($sessionUser != null){
                 $authenticated = true;
+                $username = $sessionUser->getUsername();
+            } else {
+                $username = null;
             }
 
             $view = new VPost();
@@ -205,7 +220,7 @@
                             "postDescription" => $res["description"],
                             "postDatetime" => $res["datetime"],
                             "authenticated" => $authenticated,
-                            "username" => $sessionUser->getUsername());
+                            "username" => $username);
             $view->showComments($params);
         }
 
@@ -213,7 +228,7 @@
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadComments($idpost,$limit,$offset,$datetime);
+            $res = $pm->loadElementsById("EComment",$idpost,$limit,$offset,$datetime);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
@@ -310,18 +325,58 @@
                     header("Location: /post/create?info=error");
                     exit();
                 }
-                
-                $post = new EPostSell(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"), $values["price"], $image);
+                $datetime = date("Y-m-d H:i:s");
+                $post = new EPostSell(1, $idUser, $values["title"], $values["description"], $datetime, $values["price"], $image);
                 $pm->store($post);
+                $params = array(
+                    "iduser" => $idUser,
+                    "title" => $values["title"],
+                    "description" => $values["description"],
+                    "datetime" => $datetime,
+                    "price" => $values["price"],
+                    "image" => $image
 
+                );
+                
                 header("Location: /post/sell");
                 exit();
 
             } else if (isset($_POST["team"])){
                 $values = $_POST["team"];
 
-                $post = new EPostTeam(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"), $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
+                $datetime = date("Y-m-d H:i:s");
+                $post = new EPostTeam(1, $idUser, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
                 $pm->store($post);
+
+                $params = array(
+                    "iduser" => $idUser,
+                    "title" => $values["title"],
+                    "description" => $values["description"],
+                    "datetime" => $datetime,
+                    "nMaxPlayer" => $values["nMaxPlayer"],
+                    "nPlayers" => $values["nPlayers"],
+                    "time" => $values["time"]
+
+                );
+                $idpostteam = $pm->load("EPostTeam",$params)[0]["id"];
+
+                $participation = new EParticipation($idUser, $idpostteam);
+                $pm->store($participation);
+
+                $chat = new EChat(1,$idpostteam,null,$datetime);
+                $pm->store($chat);
+
+                $params = array(
+                    "idpostteam" => $idpostteam,
+                    "idpostsell" => 0,
+                    "datetime" => $datetime
+                );
+                
+                $idchat = $pm->load("EChat",$params)[0]["id"];
+
+                $chatuser = new EChatUser(null,$idchat,$idUser,$datetime);
+                
+                $pm->store($chatuser);
 
                 header("Location: /post/team");
                 exit();
@@ -477,10 +532,24 @@
 
             $pm = new FPersistentManager();
             $participation = new EParticipation($user->getId(), $teamPostId);
+            $idchat = $pm->load("EChat", array(
+                "idpostteam" => $teamPostId,
+                "idpostsell" => 0,
+            ))[0]["id"];
+
             if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) == array()){
                 $pm->store($participation);
+
+                $datetime = date("Y-m-d H:i:s");
+                $chatuser = new EChatUser(null,$idchat,$user->getId(),$datetime);
+                $pm->store($chatuser);
+
             } else {
                 $pm->delete("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId));
+                $pm->delete("EChatUser", array(
+                    "idchat" => $idchat,
+                    "iduser" => $user->getId()
+                ));
             }
         }
 
@@ -496,15 +565,45 @@
             $teamPostId = $_POST["teamPostId"];
             $pm = new FPersistentManager();
 
-            if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) != array()){
+            if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) != array() and $pm->load("EPostTeam", array("id"=>$teamPostId))[0]["iduser"] != $user->getId()){
                 echo 1;
+            } elseif($pm->load("EPostTeam", array("id"=>$teamPostId))[0]["iduser"] == $user->getId()) {
+                echo 2;
             } else {
                 echo 0;
             }
         }
 
         public function buy() {
+                
+            $pm = new FPersistentManager();
+
+            $idpostsell = $_POST["sellPostId"];
+
+            $datetime = date("Y-m-d H:i:s");
+            $chat = new EChat(1,null,$idpostsell,$datetime);
+            $pm->store($chat);
+
+            $params = array(
+                "idpostteam" => 0,
+                "idpostsell" => $idpostsell,
+                "datetime" => $datetime
+            );
             
+            $idchat = $pm->load("EChat",$params)[0]["id"];
+
+            $idproprietary = $pm->load("EPostSell",array("id" => $idpostsell))[0]["iduser"];
+
+            $chatuser = new EChatUser(null,$idchat,$idproprietary,$datetime);            
+            $pm->store($chatuser);
+
+            $session = USession::getInstance();
+            $iduser = $session->load("user")->getId();
+            $chatuser = new EChatUser(null,$idchat,$iduser,$datetime);
+            
+            
+            $pm->store($chatuser);
+            header("Location: /user/chats");
         }
     }
 ?>

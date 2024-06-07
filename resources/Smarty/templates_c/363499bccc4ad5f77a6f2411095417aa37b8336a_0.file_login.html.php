@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-28 17:26:16
+/* Smarty version 5.1.0, created on 2024-06-01 13:09:57
   from 'file:login.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6655f798c13038_57261070',
+  'unifunc' => 'content_665b01854f4208_03475916',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '363499bccc4ad5f77a6f2411095417aa37b8336a' => 
     array (
       0 => 'login.html',
-      1 => 1716909961,
+      1 => 1717239737,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6655f798c13038_57261070 (\Smarty\Template $_smarty_tpl) {
+function content_665b01854f4208_03475916 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -33,26 +33,23 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
     </head>
     <body>
         <div class="login">
-          <?php if ($_smarty_tpl->getValue('check') == "false") {?>
-            <div>Login Errato</div>
-          <?php }?>
-          <form action="/login/redirect" method="post">
-            <!-- Email input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="username" id="form2Example1" name="username" class="form-control" />
-              <label class="form-label" for="form2Example1">Username</label>
-            </div>
-          
-            <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="password" id="form2Example2" name="password" class="form-control" />
-              <label class="form-label" for="form2Example2">Password</label>
-            </div>
-          
-            <!-- Submit button -->
-            <input  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4"></input>
-            </div>
-          </form>
+          	<?php if ($_smarty_tpl->getValue('check') == "false") {?>
+            	<div>Login Errato</div>
+          	<?php }?>
+          	<form action="/login/loginRedirect" method="post">
+            	<div data-mdb-input-init class="form-outline mb-4">
+                	<input type="username" id="form2Example1" name="username" class="form-control" placeholder="Username"/>
+            	</div>
+            	<div data-mdb-input-init class="form-outline mb-4">
+	              	<input type="password" id="form2Example2" name="password" class="form-control" placeholder="Password"/>
+            	</div>
+					<input type="submit" data-mdb-button-init data-mdb-ripple-init class="btn pButton" value="Login"></input>
+            	</div>
+          	</form>
+		  	<div class="pRegistration">
+		  		<a>Not registered? </a>
+		  		<a href="/login/registration" class="pCreateAccount">Create an account</a>
+			</div>
         </div>
     </body>
 </html><?php }

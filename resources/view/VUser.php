@@ -20,7 +20,18 @@
 
         public function showChatSection($params){
             $this->assignSmartyParams($params);
+            $this->smarty->assign("type", "chat");
+            $this->smarty->assign("date", date("Y/m/d"));
+            $this->smarty->assign("time", date("H:i:s"));
             $this->smarty->display("chatSection.html");
+        }
+
+        public function showMessageSection($params) {
+            $this->assignSmartyParams($params);
+            $this->smarty->assign("type", "message");
+            $this->smarty->assign("date", date("Y/m/d"));
+            $this->smarty->assign("time", date("H:i:s"));
+            $this->smarty->display("messageSection.html");
         }
     }
 ?>

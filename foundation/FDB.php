@@ -51,7 +51,7 @@
 
         function store(string $class, $entity) {
             try {
-
+                
                 $this->db->beginTransaction();
 
                 $sql = "INSERT INTO ". self::$tables[$class]." (";

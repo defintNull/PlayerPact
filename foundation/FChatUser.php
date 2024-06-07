@@ -2,24 +2,64 @@
     require_once realpath(__DIR__."/FDB.php");
 
     class FChatUser {
-        function store() {
 
+        function store($obj) {
+            $db = FDB::getInstance();
+            $table = substr(__CLASS__,1);
+            return $db->store($table,$obj);
         }
 
-        function load() {
-
+        function load(array $arr) {
+            $db = FDB::getInstance();
+            $table = substr(__CLASS__,1);
+            $condition = "";
+            $i = 0;
+            foreach($arr as $key => $val){
+                $condition .= $key."=\"".$val."\"";
+                if($i != count($arr) - 1){
+                    $condition .= " AND ";
+                }
+                $i++;
+            }
+            return $db->load($table,$condition);
         }
 
-        function delete() {
-
+        function delete(array $arr) {
+            $db = FDB::getInstance();
+            $table = substr(__CLASS__,1);
+            $condition = "";
+            $i = 0;
+            foreach($arr as $key => $val){
+                $condition .= $key."=\"".$val."\"";
+                if($i != count($arr) - 1){
+                    $condition .= " AND ";
+                }
+                $i++;
+            }
+            return $db->delete($table, $condition);
         }
 
-        function update() {
+        function update($obj,array $arr) {
+            $db = FDB::getInstance();
+            $table = substr(__CLASS__,1);
 
+            $condition = "";
+            $i = 0;
+            foreach($arr as $key => $val){
+                $condition .= $key."=\"".$val."\"";
+                if($i != count($arr) - 1){
+                    $condition .= " AND ";
+                }
+                $i++;
+            }
+
+            $db->update($table,$obj,$condition);
         }
 
-        function exists() {
-            
+        function exists($obj) {
+            $db = FDB::getInstance();
+            $table = substr(__CLASS__,1);
+            return $db->exists($table,$obj);
         }
     }
 ?>

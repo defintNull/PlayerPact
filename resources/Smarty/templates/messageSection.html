@@ -6,8 +6,9 @@
         <link rel="stylesheet" href="/resources/css/profilePage.css">
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="/resources/js/chatautoscroll.js"></script>
-        <script src="/resources/js/addchatrows.js"></script>
+        <script src="/resources/js/autoscrollid.js"></script>
+        <script src="/resources/js/addmessagerows.js"></script>
+
     </head>
     <body>
         <div class="container-fluid h-100">
@@ -49,18 +50,41 @@
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
-                        <div class=chat_section id=chat-list>
-
-                            <div class="ajax-loader text-center">
-                                Loading more posts... 
+                        
+                        <div class="single-post-section">
+                            <div class="row single-post" id="{$idchat}">
+                                <div class="post-title" id="post-title">{$title}</div>
+                                <div class="chat-datetime" id="chat-datetime">{$datetime}</div>
+                                <div class="chat-user" id="chat-user">{$user}</div>
                             </div>
-
-                            <input type="hidden" name="totalcount" id="totalcount" value="0"/>
-                            <input type="hidden" name="offset" id="offset" value="0" />
-                            <input type="hidden" name="type" id="type" value="{$type}" />
-                            <input type="hidden" name="date" id="date" value="{$date}" />
-                            <input type="hidden" name="dtime" id="time" value="{$time}" />
+                            <hr class="solid">
+                            <div class="row commentBox">
+                                <form action="/user/sendmessage" method="post">
+                                    <div class="form-group">
+                                        <input name="message" type="text" class="form-control" id="message" placeholder="Message">
+                                        <input type="hidden" name="postId" id="{$postId}" value="{$postId}">
+                                        <button type="submit" class="btn-lg commentButton">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="comment-section-title">
+                                <a>Commenti:</a>
+                            </div>
+                            <hr class="solid">
+                            <div class="commentSection" id="commentSection"></div>
                         </div>
+                        
+                        <div class=message_section id=message-list>
+                                
+                        </div>
+                        <div class="ajax-loader text-center">
+                            Loading more posts... 
+                        </div>
+                        <input type="hidden" name="totalcount" id="totalcount" value="0"/>
+                        <input type="hidden" name="offset" id="offset" value="0" />
+                        <input type="hidden" name="type" id="type" value="{$type}" />
+                        <input type="hidden" name="date" id="date" value="{$date}" />
+                        <input type="hidden" name="dtime" id="time" value="{$time}" />
                     </div>
                 </div>
             </div>
