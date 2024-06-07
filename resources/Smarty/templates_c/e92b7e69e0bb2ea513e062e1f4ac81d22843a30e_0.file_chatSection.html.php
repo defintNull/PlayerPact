@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-06 00:07:51
+/* Smarty version 5.1.0, created on 2024-06-07 22:38:15
   from 'file:chatSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6660e1b7d28c31_57937721',
+  'unifunc' => 'content_66636fb77a2bb3_52019925',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e92b7e69e0bb2ea513e062e1f4ac81d22843a30e' => 
     array (
       0 => 'chatSection.html',
-      1 => 1717625270,
+      1 => 1717792566,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6660e1b7d28c31_57937721 (\Smarty\Template $_smarty_tpl) {
+function content_66636fb77a2bb3_52019925 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -30,6 +30,16 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 >
         <link rel="stylesheet" href="/resources/css/home.css">
         <link rel="stylesheet" href="/resources/css/profilePage.css">
+
+        <?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/chatautoscroll.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/addchatrows.js"><?php echo '</script'; ?>
+>
     </head>
     <body>
         <div class="container-fluid h-100">
@@ -72,7 +82,21 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
-                        
+                        <div class=chat_section id=chat-list>
+
+                            <div class="ajax-loader text-center">
+                                Loading more posts... 
+                            </div>
+
+                            <input type="hidden" name="totalcount" id="totalcount" value="0"/>
+                            <input type="hidden" name="offset" id="offset" value="0" />
+                            <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
+" />
+                            <input type="hidden" name="date" id="date" value="<?php echo $_smarty_tpl->getValue('date');?>
+" />
+                            <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
+" />
+                        </div>
                     </div>
                 </div>
             </div>
