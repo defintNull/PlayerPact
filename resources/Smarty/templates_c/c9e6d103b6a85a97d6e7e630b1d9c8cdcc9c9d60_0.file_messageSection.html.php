@@ -85,7 +85,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                     <div class="row justify-content-center flex-grow-1" id="main_body">
                         
                         <div class="single-post-section">
-                            <div class="row single-post" id="<?php echo $_smarty_tpl->getValue('idchat');?>
+                            <div class="row single-post" id="<?php echo $_smarty_tpl->getValue('chatId');?>
 ">
                                 <div class="post-title" id="post-title"><?php echo $_smarty_tpl->getValue('title');?>
 </div>

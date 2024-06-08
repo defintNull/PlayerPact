@@ -4,14 +4,14 @@
     class EPost implements FInterface{
         
         private $id;
-        private $iduser;
+        private $userId;
         private $title;
         private $description;
         private $date;
 
-        public function __construct($id,$iduser,$title,$description,$date) {
+        public function __construct($id,$userId,$title,$description,$date) {
             $this->id = $id;
-            $this->iduser = $iduser;
+            $this->userId = $userId;
             $this->title = $title;
             $this->description = $description;
             $this->date= $date;
@@ -21,8 +21,8 @@
             return $this->id;
         }
 
-        public function getIdUser() {
-            return $this->iduser;
+        public function getUserId() {
+            return $this->userId;
         }
 
         public function getTitle() {
@@ -40,7 +40,7 @@
         public function getValues() {
             $v = array(
                 "id" => $this->id,
-                'iduser' => $this->iduser,
+                'userId' => $this->userId,
                 "title" => $this->title,
                 "description" => $this->description,
                 "datetime" => $this->date

@@ -24,10 +24,10 @@
             return $db->load($table,$condition);
         }
 
-        function loadElements(int $idpost,int $limit,int $offset,string $datetime) {
+        function loadElements(int $postId,int $limit,int $offset,string $datetime) {
             $db = FDB::getInstance();
             $table = substr(__CLASS__,1);
-            $condition = "idpoststandard=\"".$idpost."\" AND datetime<=\"".$datetime."\" ORDER BY id DESC LIMIT ".$limit." OFFSET ".$offset;
+            $condition = "postStandardId=\"".$postId."\" AND datetime<=\"".$datetime."\" ORDER BY id DESC LIMIT ".$limit." OFFSET ".$offset;
             return $db->load($table,$condition);
         }
 

@@ -80,11 +80,6 @@
                                     <div class="post-title">{$postTitle}</div>
                                     <div class="post-description">{$postDescription}</div>
                                     <div class="row">
-                                        <div class="col">
-                                            <button class="savePostButton" id="post-save" value="">
-                                                <img class="save-post-image" src="/public/save.png">
-                                            </button>
-                                        </div>
                                         <div class="col reportPost text-end float-end">
                                             <form action="/post/report" method="post">
                                                 <input type="hidden" id="post-report" name="objToReportId" value="{$postId}">

@@ -6,8 +6,8 @@
         private $price;
         private $image;
 
-        public function __construct($id, $iduser, $title, $description, $date, $price, $image) {
-            parent::__construct($id,$iduser,$title,$description,$date);
+        public function __construct($id, $userId, $title, $description, $date, $price, $image) {
+            parent::__construct($id,$userId,$title,$description,$date);
             $this->price = $price;
             $this->image = $image;
         }

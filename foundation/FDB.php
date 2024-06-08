@@ -85,13 +85,15 @@
                 //echo $sql;
                 $sth->execute();
 
+                $id = $this->db->lastInsertId();
+
                 $this->db->commit();
                 
-                return true;
+                return $id;
             }catch (PDOException $e) {
-                return false;
+                //return false;
                 //echo $e;
-                //return $e;
+                return $e;
             }
         }
 

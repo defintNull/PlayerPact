@@ -38,7 +38,7 @@
                 "password" => $this->password,
                 "name" => $this->name,
                 "surname" => $this->surname,
-                "birthdate" => $this->birthDate,
+                "birthDate" => $this->birthDate,
                 "email" => $this->email,
                 "image" => $this->image
             );

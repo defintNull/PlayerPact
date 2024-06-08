@@ -4,15 +4,15 @@
     
     class EMessage extends EText implements FInterface{
         private $id;
-        private $idchat;
-        private $iduser;
+        private $chatId;
+        private $userId;
         private $description;
         private $datetime;
 
-        public function __construct(int $id,int $idchat,int $iduser,string $description,string $datetime) {
+        public function __construct(int $id, int $chatId, int $userId, string $description, string $datetime) {
             $this->id = $id;
-            $this->idchat = $idchat;
-            $this->iduser = $iduser;
+            $this->chatId = $chatId;
+            $this->userId = $userId;
             $this->description = $description;
             $this->datetime = $datetime;
         }
@@ -21,12 +21,12 @@
             return $this->id;
         }
 
-        public function getIdChat() {
-            return $this->idchat;
+        public function getChatId() {
+            return $this->chatId;
         }
 
-        public function getIdUser() {
-            return $this->iduser;
+        public function getUserId() {
+            return $this->userId;
         }
 
         public function getDescription() {
@@ -40,8 +40,8 @@
         public function getValues(){
             $v = array(
                 "id" => $this->id,
-                "idchat" => $this->idchat,
-                "iduser" => $this->iduser,
+                "chatId" => $this->chatId,
+                "userId" => $this->userId,
                 "description" => $this->description,
                 "datetime" => $this->datetime
 

@@ -24,7 +24,6 @@ body {
     text-justify: inter-word;
     overflow:hidden;
     overflow-wrap: break-word;
-    /* white-space:nowrap; */
 }
 
 .comment-datetime {

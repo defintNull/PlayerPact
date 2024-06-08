@@ -1,0 +1,47 @@
+.chat_section {
+    padding-top: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    min-width: 1250px;
+    max-width: 1250px;
+    height: auto;
+    background-color: #222222;
+}
+
+.chat_section a {
+    text-decoration: none;
+    color:white;
+}
+
+.chat-item {
+    color: white;
+    background-color: #222222;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.chat-item:hover {
+    background-color: #333333;
+    box-shadow: 0px 0px 20px 1px #333333;
+}
+
+hr.solid {
+    border-top: 1px solid #bbb;
+    padding: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 300px;
+}
+
+.ajax-loader {
+    display: block;
+    text-align: center;
+    background-color: #222222;
+    height: 30px;
+}
+
+.chat-user {
+    color: coral;
+}

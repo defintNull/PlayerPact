@@ -6,10 +6,10 @@ $(document).ready(function(){
     var offset = document.getElementById("offset").value;
     var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
-    const iduser = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
+    const userId = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
     
     $.ajax({
-        url: '/autoscroll/loadbyid'+ '?id=' + iduser + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
+        url: '/autoscroll/loadbyid'+ '?id=' + userId + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
             //console.log(data);
             try {
@@ -62,9 +62,9 @@ function getMoreData(initialData) {
     $('.ajax-loader').show();
     $(window).off("scroll");
     if(initialData.offset == initialData.totalcount) {
-        const iduser = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
+        const userId = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
         $.ajax({
-            url: "/autoscroll/loadbyid" + '?id=' + iduser + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
+            url: "/autoscroll/loadbyid" + '?id=' + userId + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",
             success: function (response) {
 

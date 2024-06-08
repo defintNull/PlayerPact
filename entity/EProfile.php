@@ -3,22 +3,22 @@
 
     class EProfile implements FInterface {
 
-        protected $iduser;
+        protected $userId;
         protected $type;
         protected $username;
         protected $password;
         protected $email;
 
-        public function __construct($iduser, $type, $username, $password, $email) {
-            $this->iduser = $iduser;
+        public function __construct($userId, $type, $username, $password, $email) {
+            $this->userId = $userId;
             $this->type = $type;
             $this->username = $username;
             $this->password = $password;
             $this->email = $email;
         }
 
-        public function getIdUser() {
-            return $this->iduser;
+        public function getuserId() {
+            return $this->userId;
         }
 
         public function getType() {
@@ -39,7 +39,7 @@
 
         public function getValues() {
             $v = array(
-                "id" => $this->iduser,
+                "id" => $this->userId,
                 "type" => $this->type,
                 "username" => $this->username,
                 "password" => $this->password,

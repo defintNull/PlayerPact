@@ -9,7 +9,7 @@
 
         }
 
-        public function viewInterestListSection(int $idUser) {
+        public function viewInterestListSection(int $userId) {
 
         }
 
@@ -22,10 +22,10 @@
                 exit();
             }
             
-            $sellPostId = $_POST["sellPostId"];
+            $postSellId = $_POST["postSellId"];
             $pm = new FPersistentManager();
 
-            if($pm->load("EInterestList", array("userId" => $user->getId(), "sellPostId" => $sellPostId)) != array()){
+            if($pm->load("EInterestList", array("userId" => $user->getId(), "postSellId" => $postSellId)) != array()){
                 echo 1;
             } else {
                 echo 0;
@@ -41,20 +41,20 @@
                 exit();
             }
             
-            $sellPostId = $_POST["sellPostId"];
+            $postSellId = $_POST["postSellId"];
 
             $pm = new FPersistentManager();
-            $interest = new EInterestList($user->getId(), $sellPostId);
-            if($pm->load("EInterestList", array("userId" => $user->getId(), "sellPostId" => $sellPostId)) == array()){
+            $interest = new EInterestList($user->getId(), $postSellId);
+            if($pm->load("EInterestList", array("userId" => $user->getId(), "postSellId" => $postSellId)) == array()){
                 $pm->store($interest);
             } else {
-                $pm->delete("EInterestList", array("userId" => $user->getId(), "sellPostId" => $sellPostId));
+                $pm->delete("EInterestList", array("userId" => $user->getId(), "postSellId" => $postSellId));
             }
             
         
         }
 
-        public function removeProductFromList(int $idUser, int $idPost) {
+        public function removeProductFromList(int $userId, int $postId) {
             
         }
 

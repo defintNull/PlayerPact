@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-07 22:38:15
+/* Smarty version 5.1.0, created on 2024-06-08 15:58:06
   from 'file:chatSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66636fb77a2bb3_52019925',
+  'unifunc' => 'content_6664636e5691e9_95999531',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e92b7e69e0bb2ea513e062e1f4ac81d22843a30e' => 
     array (
       0 => 'chatSection.html',
-      1 => 1717792566,
+      1 => 1717855085,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66636fb77a2bb3_52019925 (\Smarty\Template $_smarty_tpl) {
+function content_6664636e5691e9_95999531 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -29,6 +29,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
         <link rel="stylesheet" href="/resources/css/home.css">
+        <link rel="stylesheet" href="/resources/css/chat.css">
         <link rel="stylesheet" href="/resources/css/profilePage.css">
 
         <?php echo '<script'; ?>

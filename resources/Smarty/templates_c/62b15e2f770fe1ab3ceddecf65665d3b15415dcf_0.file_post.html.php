@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-05 19:51:38
+/* Smarty version 5.1.0, created on 2024-06-08 15:51:18
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6660a5aaf378c9_18464425',
+  'unifunc' => 'content_666461d64e9d19_79109699',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1717609837,
+      1 => 1717854662,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6660a5aaf378c9_18464425 (\Smarty\Template $_smarty_tpl) {
+function content_666461d64e9d19_79109699 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -117,11 +117,6 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     <div class="post-description"><?php echo $_smarty_tpl->getValue('postDescription');?>
 </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <button class="savePostButton" id="post-save" value="">
-                                                <img class="save-post-image" src="/public/save.png">
-                                            </button>
-                                        </div>
                                         <div class="col reportPost text-end float-end">
                                             <form action="/post/report" method="post">
                                                 <input type="hidden" id="post-report" name="objToReportId" value="<?php echo $_smarty_tpl->getValue('postId');?>

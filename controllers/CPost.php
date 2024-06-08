@@ -28,8 +28,8 @@
 
             for($i=0;$i<$count;$i++) {
 
-                $post = new EPostStandard($res[$i]["id"],$res[$i]["iduser"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"]);
-                $userdata = $pm->load("EUser", array("id" => $post->getIdUser()));
+                $post = new EPostStandard($res[$i]["id"],$res[$i]["userId"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"]);
+                $userdata = $pm->load("EUser", array("id" => $post->getUserId()));
                 
                 //DA CORREGGERE
                 if(count($userdata) !== 0) {
@@ -37,7 +37,7 @@
                     $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
                     $values[] = array(
                         "id" => $post->getId(),
-                        "iduser" => $user->getUsername(),
+                        "userId" => $user->getUsername(),
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime()
@@ -67,8 +67,8 @@
 
             for($i=0;$i<$count;$i++) {
 
-                $post = new EPostSell($res[$i]["id"],$res[$i]["iduser"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["price"],$res[$i]["image"]);
-                $userdata = $pm->load("EUser", array("id" => $post->getIdUser()));
+                $post = new EPostSell($res[$i]["id"],$res[$i]["userId"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["price"],$res[$i]["image"]);
+                $userdata = $pm->load("EUser", array("id" => $post->getuserId()));
                 //echo var_dump($post->getImage());
                 //Questo controllo teoricamente è inutile perché dopo non esisterà post senza utente
                 if(count($userdata) !== 0) {
@@ -76,7 +76,7 @@
                     $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
                     $values[] = array(
                         "id" => $post->getId(),
-                        "iduser" => $user->getUsername(),
+                        "userId" => $user->getUsername(),
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
@@ -107,19 +107,19 @@
 
             for($i=0;$i<$count;$i++) {
 
-                $post = new EPostTeam($res[$i]["id"],$res[$i]["iduser"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["nMaxPlayer"],$res[$i]["nPlayers"],$res[$i]["time"]);
-                $userdata = $pm->load("EUser", array("id" => $post->getIdUser()));
+                $post = new EPostTeam($res[$i]["id"],$res[$i]["userId"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["nMaxPlayers"],$res[$i]["nPlayers"],$res[$i]["time"]);
+                $userdata = $pm->load("EUser", array("id" => $post->getuserId()));
                 
                 if(count($userdata) !== 0) {
                     $userdata = $userdata[0];
                     $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
                     $values[] = array(
                         "id" => $post->getId(),
-                        "iduser" => $user->getUsername(),
+                        "userId" => $user->getUsername(),
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
-                        "nMaxPlayers" => $post->getNMaxPlayer(),
+                        "nMaxPlayers" => $post->getNMaxPlayers(),
                         "nPlayers" => $post->getNPlayers(),
                         "time" => $post->getTime()
                     );
@@ -129,7 +129,7 @@
                         "title" => $post->getTitle(),
                         "description" => $post->getDescription(),
                         "datetime" => $post->getDateTime(),
-                        "nMaxPlayers" => $post->getNMaxPlayer(),
+                        "nMaxPlayers" => $post->getNMaxPlayers(),
                         "nPlayers" => $post->getNPlayers(),
                         "time" => $post->getTime()
                     );
@@ -200,7 +200,7 @@
         public function comments(int $id) {
             $pm = new FPersistentManager();
             $res = $pm->load("EPostStandard", array("id" => $id))[0];
-            $user = $pm->load("EUser", array("id" => $res["iduser"]))[0];
+            $user = $pm->load("EUser", array("id" => $res["userId"]))[0];
 
             $session = USession::getInstance();
             $sessionUser = $session->load("user");
@@ -224,17 +224,17 @@
             $view->showComments($params);
         }
 
-        public function loadComments(int $idpost,int $offset,int $limit,string $datetime) {
+        public function loadComments(int $postId,int $offset,int $limit,string $datetime) {
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadElementsById("EComment",$idpost,$limit,$offset,$datetime);
+            $res = $pm->loadElementsById("EComment",$postId,$limit,$offset,$datetime);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
 
-                $comment = new EComment($res[$i]["id"],$res[$i]["idpoststandard"],$res[$i]["iduser"],$res[$i]["description"],$res[$i]["datetime"]);
-                $userdata = $pm->load("EUser", array("id" => $comment->getIdUser()));
+                $comment = new EComment($res[$i]["id"],$res[$i]["postStandardId"],$res[$i]["userId"],$res[$i]["description"],$res[$i]["datetime"]);
+                $userdata = $pm->load("EUser", array("id" => $comment->getUserId()));
                 
                 if(count($userdata) !== 0) {
                     $userdata = $userdata[0];
@@ -281,7 +281,7 @@
             }
 
             $pm = new FPersistentManager();
-            $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
+            $userId = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
             // Ho aggiunto così il controllo sui campi (se un campo presenta problemi, si scrive solo che c'è stato un problema)
             if(!$this->checkNewPostFields()){
@@ -291,7 +291,9 @@
 
             if (isset($_POST["standard"])){
                 $values = $_POST["standard"];
-                $post = new EPostStandard(1, $idUser, $values["title"], $values["description"], date("Y-m-d H:i:s"));
+
+                // Creazione dei post standard
+                $post = new EPostStandard(1, $userId, $values["title"], $values["description"], date("Y-m-d H:i:s"));
                 $pm->store($post);
 
                 header("Location: /post/standard");
@@ -326,56 +328,32 @@
                     exit();
                 }
                 $datetime = date("Y-m-d H:i:s");
-                $post = new EPostSell(1, $idUser, $values["title"], $values["description"], $datetime, $values["price"], $image);
-                $pm->store($post);
-                $params = array(
-                    "iduser" => $idUser,
-                    "title" => $values["title"],
-                    "description" => $values["description"],
-                    "datetime" => $datetime,
-                    "price" => $values["price"],
-                    "image" => $image
 
-                );
+                // Creazione del post sell
+                $post = new EPostSell(1, $userId, $values["title"], $values["description"], $datetime, $values["price"], $image);
+                $pm->store($post);
                 
                 header("Location: /post/sell");
                 exit();
 
             } else if (isset($_POST["team"])){
                 $values = $_POST["team"];
-
                 $datetime = date("Y-m-d H:i:s");
-                $post = new EPostTeam(1, $idUser, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
-                $pm->store($post);
 
-                $params = array(
-                    "iduser" => $idUser,
-                    "title" => $values["title"],
-                    "description" => $values["description"],
-                    "datetime" => $datetime,
-                    "nMaxPlayer" => $values["nMaxPlayer"],
-                    "nPlayers" => $values["nPlayers"],
-                    "time" => $values["time"]
+                //Creazione del post team
+                $post = new EPostTeam(1, $userId, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
+                $postTeamId = $pm->store($post);
 
-                );
-                $idpostteam = $pm->load("EPostTeam",$params)[0]["id"];
-
-                $participation = new EParticipation($idUser, $idpostteam);
+                // Creazione della partecipazione
+                $participation = new EParticipation($userId, $postTeamId);
                 $pm->store($participation);
 
-                $chat = new EChat(1,$idpostteam,null,$datetime);
-                $pm->store($chat);
+                // Creazione della chat
+                $chat = new EChat(0, $postTeamId, "team", $datetime);
+                $chatId = $pm->store($chat);
 
-                $params = array(
-                    "idpostteam" => $idpostteam,
-                    "idpostsell" => 0,
-                    "datetime" => $datetime
-                );
-                
-                $idchat = $pm->load("EChat",$params)[0]["id"];
-
-                $chatuser = new EChatUser(null,$idchat,$idUser,$datetime);
-                
+                // Creazione del legame chat-user
+                $chatuser = new EChatUser($chatId, $userId, $datetime);
                 $pm->store($chatuser);
 
                 header("Location: /post/team");
@@ -452,9 +430,9 @@
             }
 
             $pm = new FPersistentManager();
-            $idUser = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
+            $userId = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
-            $comment = new EComment(1, $_POST["postId"], $idUser, $_POST["comment"], date("Y-m-d H:i:s"));
+            $comment = new EComment(1, $_POST["postId"], $userId, $_POST["comment"], date("Y-m-d H:i:s"));
             $pm->store($comment);
 
             header("Location: /post/comments?id=".$_POST["postId"]);
@@ -510,7 +488,7 @@
 
             if(strcmp($objType, "comment") == 0){
                 $comment = $pm->load("EComment", array("id" => $objId))[0];
-                $postId = $pm->load("EPostStandard", array("id" => $comment["idpoststandard"]))[0]["id"];
+                $postId = $pm->load("EPostStandard", array("id" => $comment["postStandardId"]))[0]["id"];
                 header("Location: /post/comments?id=".$postId);
                 exit();
             } else {
@@ -528,28 +506,20 @@
                 exit();
             }
             
-            $teamPostId = $_POST["teamPostId"];
+            $postTeamId = $_POST["postTeamId"];
 
             $pm = new FPersistentManager();
-            $participation = new EParticipation($user->getId(), $teamPostId);
-            $idchat = $pm->load("EChat", array(
-                "idpostteam" => $teamPostId,
-                "idpostsell" => 0,
-            ))[0]["id"];
+            $participation = new EParticipation($user->getId(), $postTeamId);
+            $chatId = $pm->load("EChat", array("postId" => $postTeamId, "postType" => "team"))[0]["id"];
 
-            if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) == array()){
+            if($pm->load("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId)) == array()){
                 $pm->store($participation);
-
                 $datetime = date("Y-m-d H:i:s");
-                $chatuser = new EChatUser(null,$idchat,$user->getId(),$datetime);
-                $pm->store($chatuser);
-
+                $chatuser = new EChatUser($chatId, $user->getId(), $datetime);
+                echo $pm->store($chatuser);
             } else {
-                $pm->delete("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId));
-                $pm->delete("EChatUser", array(
-                    "idchat" => $idchat,
-                    "iduser" => $user->getId()
-                ));
+                $pm->delete("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId));
+                $pm->delete("EChatUser", array("chatId" => $chatId,"userId" => $user->getId()));
             }
         }
 
@@ -562,12 +532,12 @@
                 exit();
             }
             
-            $teamPostId = $_POST["teamPostId"];
+            $postTeamId = $_POST["postTeamId"];
             $pm = new FPersistentManager();
 
-            if($pm->load("EParticipation", array("userId" => $user->getId(), "teamPostId" => $teamPostId)) != array() and $pm->load("EPostTeam", array("id"=>$teamPostId))[0]["iduser"] != $user->getId()){
+            if($pm->load("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId)) != array() and $pm->load("EPostTeam", array("id"=>$postTeamId))[0]["userId"] != $user->getId()){
                 echo 1;
-            } elseif($pm->load("EPostTeam", array("id"=>$teamPostId))[0]["iduser"] == $user->getId()) {
+            } elseif($pm->load("EPostTeam", array("id"=>$postTeamId))[0]["userId"] == $user->getId()) {
                 echo 2;
             } else {
                 echo 0;
@@ -575,35 +545,37 @@
         }
 
         public function buy() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
                 
             $pm = new FPersistentManager();
+            $postSellId = $_POST["postSellId"];     
+            $post = $pm->load("EPostSell", array("id" => $postSellId))[0];
+            $chatId = $pm->load("EChat", array("postId" => $postSellId));
 
-            $idpostsell = $_POST["sellPostId"];
+            // Controllo che se premo buy, non si creino altre chat se ci sono già
+            // + controllo se premo su buy e ho creato io il post
+            if($chatId == array() && $user->getId() != $post["userId"]) {
+                $datetime = date("Y-m-d H:i:s");
+                $chat = new EChat(0, $postSellId, "sell" ,$datetime);
+                $chatId = $pm->store($chat);
+    
+                $idOwner = $pm->load("EPostSell",array("id" => $postSellId))[0]["userId"];
+                $chatUser = new EChatUser($chatId, $idOwner, $datetime);            
+                $pm->store($chatUser);
+    
+                $userId = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
+                $chatUser = new EChatUser($chatId, $userId, $datetime);
+                $pm->store($chatUser);
+            }
 
-            $datetime = date("Y-m-d H:i:s");
-            $chat = new EChat(1,null,$idpostsell,$datetime);
-            $pm->store($chat);
-
-            $params = array(
-                "idpostteam" => 0,
-                "idpostsell" => $idpostsell,
-                "datetime" => $datetime
-            );
-            
-            $idchat = $pm->load("EChat",$params)[0]["id"];
-
-            $idproprietary = $pm->load("EPostSell",array("id" => $idpostsell))[0]["iduser"];
-
-            $chatuser = new EChatUser(null,$idchat,$idproprietary,$datetime);            
-            $pm->store($chatuser);
-
-            $session = USession::getInstance();
-            $iduser = $session->load("user")->getId();
-            $chatuser = new EChatUser(null,$idchat,$iduser,$datetime);
-            
-            
-            $pm->store($chatuser);
             header("Location: /user/chats");
+            exit();
         }
     }
 ?>

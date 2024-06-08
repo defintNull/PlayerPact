@@ -4,19 +4,19 @@
     class EParticipation implements FInterface{
         private $id;
         private $userId;
-        private $teamPostId;
+        private $postTeamId;
 
-        public function __construct($userId, $teamPostId) {
+        public function __construct($userId, $postTeamId) {
             $this->id = 0;
             $this->userId = $userId;
-            $this->teamPostId = $teamPostId;
+            $this->postTeamId = $postTeamId;
         }
 
         public function getValues() {
             $v = array(
                 "id" => $this->id,
                 "userId" => $this->userId,
-                "teamPostId" => $this->teamPostId
+                "postTeamId" => $this->postTeamId
             );
             return $v;
         }

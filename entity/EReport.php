@@ -4,15 +4,15 @@
     class EReport implements FInterface{
 
         private $id;
-        private $idUser;
+        private $userId;
         private $idToReport;
         private $type;
         private $description;
         private $date;
 
-        public function __construct(int $id, int $idUser, int $idToReport, string $type, string $description, $date) {
+        public function __construct(int $id, int $userId, int $idToReport, string $type, string $description, $date) {
             $this->id = $id;
-            $this->idUser = $idUser;
+            $this->userId = $userId;
             $this->type = $type;
             $this->idToReport = $idToReport;
             $this->description = $description;
@@ -22,7 +22,7 @@
         public function getValues() {
             $v = array(
                 "id" => $this->id,
-                "idUser" => $this->idUser,
+                "userId" => $this->userId,
                 "idToReport" => $this->idToReport,
                 "type" => $this->type,
                 "description" => $this->description,

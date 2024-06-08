@@ -4,22 +4,22 @@
     class EChatUser implements FInterface {
 
         private $id;
-        private $idchat;
-        private $iduser;
+        private $chatId;
+        private $userId;
         private $datetime;
 
-        public function __construct($id = 0,int $idchat,int $iduser,string $datetime) {
-            $this->id = $id;
-            $this->idchat = $idchat;
-            $this->iduser = $iduser;
+        public function __construct(int $chatId,int $userId,string $datetime) {
+            $this->id = 0;
+            $this->chatId = $chatId;
+            $this->userId = $userId;
             $this->datetime = $datetime;
         }
 
         public function getValues(){
             $v = array(
                 "id" => $this->id,
-                "idchat" => $this->idchat,
-                "iduser" => $this->iduser,
+                "chatId" => $this->chatId,
+                "userId" => $this->userId,
                 "datetime" => $this->datetime
             );
             return $v;

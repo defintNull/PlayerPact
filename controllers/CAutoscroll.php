@@ -29,9 +29,9 @@
                 $totalcount += $elements[1];
 
                 $session = USession::getInstance();
-                $iduser = $session->load("user")->getId();
+                $userId = $session->load("user")->getId();
                 for($i=0;$i<count($rows);$i++) {
-                    if($iduser == $rows[$i]["iduser"]) {
+                    if($userId == $rows[$i]["userId"]) {
                         $rows[$i]["posses"] = 1;
                     } else {
                         $rows[$i]["posses"] = 1;
@@ -115,10 +115,10 @@
 
         }
 
-        private function getCommentElements(int $idpost,int $offset,int $limit,string $datetime) {
+        private function getCommentElements(int $postId,int $offset,int $limit,string $datetime) {
 
             $controller = new CPost();
-            $elements = $controller->loadComments($idpost,$offset,$limit,$datetime);
+            $elements = $controller->loadComments($postId,$offset,$limit,$datetime);
             return $elements;
         }
 
@@ -128,9 +128,9 @@
             return $elements;
         }
 
-        private function getMessageElements(int $idchat,int $offset,int $limit,string $datetime) {
+        private function getMessageElements(int $chatId,int $offset,int $limit,string $datetime) {
             $controller = new CUser();
-            $elements = $controller->loadMessages($idchat,$offset,$limit,$datetime);
+            $elements = $controller->loadMessages($chatId,$offset,$limit,$datetime);
             return $elements;
         }
     }

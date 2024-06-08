@@ -1,13 +1,45 @@
-<html>
+<?php
+/* Smarty version 5.1.0, created on 2024-06-08 14:44:27
+  from 'file:messageSection.html' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.1.0',
+  'unifunc' => 'content_6664522b8aced0_23747084',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '7bd6907da686727a6e08b7dc65df4338e9a43cdf' => 
+    array (
+      0 => 'messageSection.html',
+      1 => 1717810593,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6664522b8aced0_23747084 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
+?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
+>
         <link rel="stylesheet" href="/resources/css/home.css">
         <link rel="stylesheet" href="/resources/css/profilePage.css">
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="/resources/js/autoscrollid.js"></script>
-        <script src="/resources/js/addmessagerows.js"></script>
+        <?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/autoscrollid.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/addmessagerows.js"><?php echo '</script'; ?>
+>
 
     </head>
     <body>
@@ -46,23 +78,30 @@
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
                         <div class="upperBar">
                             <a>Pagina profilo di </a>
-                            <a class="upperBarUsername">{$username}</a>
+                            <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
+</a>
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
                         
                         <div class="single-post-section">
-                            <div class="row single-post" id="{$chatId}">
-                                <div class="post-title" id="post-title">{$title}</div>
-                                <div class="chat-datetime" id="chat-datetime">{$datetime}</div>
-                                <div class="chat-user" id="chat-user">{$user}</div>
+                            <div class="row single-post" id="<?php echo $_smarty_tpl->getValue('chatId');?>
+">
+                                <div class="post-title" id="post-title"><?php echo $_smarty_tpl->getValue('title');?>
+</div>
+                                <div class="chat-datetime" id="chat-datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
+</div>
+                                <div class="chat-user" id="chat-user"><?php echo $_smarty_tpl->getValue('user');?>
+</div>
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
                                 <form action="/user/sendmessage" method="post">
                                     <div class="form-group">
                                         <input name="message" type="text" class="form-control" id="message" placeholder="Message">
-                                        <input type="hidden" name="postId" id="{$postId}" value="{$postId}">
+                                        <input type="hidden" name="postId" id="<?php echo $_smarty_tpl->getValue('postId');?>
+" value="<?php echo $_smarty_tpl->getValue('postId');?>
+">
                                         <button type="submit" class="btn-lg commentButton">Send</button>
                                     </div>
                                 </form>
@@ -82,12 +121,16 @@
                         </div>
                         <input type="hidden" name="totalcount" id="totalcount" value="0"/>
                         <input type="hidden" name="offset" id="offset" value="0" />
-                        <input type="hidden" name="type" id="type" value="{$type}" />
-                        <input type="hidden" name="date" id="date" value="{$date}" />
-                        <input type="hidden" name="dtime" id="time" value="{$time}" />
+                        <input type="hidden" name="type" id="type" value="<?php echo $_smarty_tpl->getValue('type');?>
+" />
+                        <input type="hidden" name="date" id="date" value="<?php echo $_smarty_tpl->getValue('date');?>
+" />
+                        <input type="hidden" name="dtime" id="time" value="<?php echo $_smarty_tpl->getValue('time');?>
+" />
                     </div>
                 </div>
             </div>
         </div>
     </body>
-</html>
+</html><?php }
+}

@@ -23,7 +23,7 @@ async function addrows(rows,type) {
             document.getElementById("post-datetime").id = row.id + "-post-datetime";
             document.getElementById("post-description").innerHTML = row.description;
             document.getElementById("post-description").id = row.id + "-post-description";
-            document.getElementById("post-userId").innerHTML = row.iduser;
+            document.getElementById("post-userId").innerHTML = row.userId;
             document.getElementById("post-userId").id = row.id + "-post-userId";
             document.getElementById("post-report").value = row.id;
             document.getElementById("post-report").id = row.id + "-post-report";
@@ -49,7 +49,7 @@ async function addrows(rows,type) {
             document.getElementById("post-datetime").id = row.id + "post-datetime";
             document.getElementById("post-description").innerHTML = row.description;
             document.getElementById("post-description").id = row.id + "-post-description";
-            document.getElementById("post-userId").innerHTML = row.iduser;
+            document.getElementById("post-userId").innerHTML = row.userId;
             document.getElementById("post-userId").id = row.id + "-post-userId";
             document.getElementById("post-players").innerHTML = "Giocatori presenti: " + row.nPlayers + "/" + row.nMaxPlayers;
             document.getElementById("post-players").id = row.id + "-post-players";
@@ -64,7 +64,7 @@ async function addrows(rows,type) {
                 return $.ajax({
                     url: "/post/isparticipating",
                     type: "POST",
-                    data: {"teamPostId": row.id}
+                    data: {"postTeamId": row.id}
                 });
             }
             isSaved().then(function(response) {
@@ -105,7 +105,7 @@ async function addrows(rows,type) {
             document.getElementById("post-datetime").id = row.id + "-post-datetime";
             document.getElementById("post-description").innerHTML = row.description;
             document.getElementById("post-description").id = row.id + "-post-description";
-            document.getElementById("post-userId").innerHTML = row.iduser;
+            document.getElementById("post-userId").innerHTML = row.userId;
             document.getElementById("post-userId").id = row.id + "-post-userId";
             document.getElementById("post-price").innerHTML = "Prezzo: " + row.price + "€";
             document.getElementById("post-price").id = row.id + "-post-price";
@@ -121,7 +121,7 @@ async function addrows(rows,type) {
                 return $.ajax({
                     url: "/interestlist/issaved",
                     type: "POST",
-                    data: {"sellPostId": row.id}
+                    data: {"postSellId": row.id}
                 });
             }
             isSaved().then(function(response) {

@@ -4,14 +4,14 @@
     class EChat implements FInterface {
 
         private $id;
-        private $idpostteam;
-        private $idpostsell;
+        private $postId;
+        private $postType;
         private $datetime;
 
-        public function __construct(int $id, $idpostteam, $idpostsell,string $datetime) {
+        public function __construct(int $id = 0, int $postId, string $postType,string $datetime) {
             $this->id = $id;
-            $this->idpostteam = $idpostteam;
-            $this->idpostsell = $idpostsell;
+            $this->postId = $postId;
+            $this->postType = $postType;
             $this->datetime = $datetime;
         }
 
@@ -19,12 +19,12 @@
             return $this->id;
         }
 
-        public function getIdPostTeam() {
-            return $this->idpostteam;
+        public function getPostId() {
+            return $this->postId;
         }
 
-        public function getIdPostSell() {
-            return $this->idpostsell;
+        public function getPostType() {
+            return $this->postType;
         }
 
         public function getDateTime() {
@@ -34,8 +34,8 @@
         public function getValues(){
             $v = array(
                 "id" => $this->id,
-                "idpostteam" => $this->idpostteam,
-                "idpostsell" => $this->idpostsell,
+                "postId" => $this->postId,
+                "postType" => $this->postType,
                 "datetime" => $this->datetime
             );
             return $v;

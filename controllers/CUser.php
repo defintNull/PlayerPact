@@ -88,8 +88,6 @@
         }
 
         public function loadChats(string $username,int $offset,int $limit,string $datetime) {
-            //DA AGGIUNGERE CONTROLLO SESSIONE
-
             $session = USession::getInstance();
             $user = $session->load("user");
 
@@ -101,49 +99,52 @@
             $pm = new FPersistentManager();
             $values = array();
             
-            $iduser = $pm->load("EUser", array("username" => $username))[0]["id"];
-            $chatusers = $pm->load("EChatUser", array("iduser" => $iduser));
-            $idchats = array();
+            $userId = $pm->load("EUser", array("username" => $username))[0]["id"];
+
+            // Prendo tutte le chat relative all'utente attuale loggato
+            $chatusers = $pm->load("EChatUser", array("userId" => $userId));
             
-            foreach($chatusers as $key=>$chatuserelement) {
-                $idchats[] = array("id" =>$chatuserelement["idchat"]);
+            // Se non ci sono chat passa valori nulli al js
+            if(count($chatusers) == 0) {
+                return array(null, 0);
             }
 
-            $res = $pm->loadElementsByGroup("EChat",$idchats,$limit,$offset,$datetime);
+            $chatIds = array();
+            
+            foreach($chatusers as $key => $chatuserelement) {
+                $chatIds[] = array("id" => $chatuserelement["chatId"]);
+            }
+
+            $res = $pm->loadElementsByGroup("EChat", $chatIds, $limit, $offset, $datetime);
             $count = count($res);
 
-            for($i=0;$i<$count;$i++) {
-
-                $chat = new EChat($res[$i]["id"],$res[$i]["idpostteam"],$res[$i]["idpostsell"],$res[$i]["datetime"]);
+            for($i = 0; $i < $count; $i++) {
+                $chat = new EChat($res[$i]["id"], $res[$i]["postId"], $res[$i]["postType"], $res[$i]["datetime"]);
+                //echo var_dump($chat);
                 $values[$i]["id"] = $chat->getId();
                 $values[$i]["datetime"] = $chat->getDateTime();
 
-
-                if($chat->getIdPostSell() == 0) {
-                    //TEAM
-                    $posttitle = $pm->load("EPostTeam", array("id" => $chat->getIdPostTeam()))[0]["title"];
+                if($chat->getPostType() == "team") {
+                    $posttitle = $pm->load("EPostTeam", array("id" => $chat->getPostId()))[0]["title"];
                     $values[$i]["posttitle"] = $posttitle;
                     $values[$i]["username"] = null;
 
-                } else {
-                    //SELL
-                    $posttitle = $pm->load("EPostSell", array("id" => $chat->getIdPostSell()))[0]["title"];
+                } else if ($chat->getPostType() == "sell") {
+                    $posttitle = $pm->load("EPostSell", array("id" => $chat->getPostId()))[0]["title"];
                     $values[$i]["posttitle"] = $posttitle;
-                    $idchatuser = $pm->load("EChatUser", array("idchat" => $chat->getId()));
-                    
-                    if($idchatuser[0]["iduser"] == $user->getId()) {
-                        
-                        $idchatuser = $idchatuser[1]["iduser"];
-                    } else {
-                        
-                        $idchatuser = $idchatuser[0]["iduser"];
+                    $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
+
+                    if($chatUserId[0]["userId"] == $user->getId()) {
+                        $chatUserId = $chatUserId[1]["userId"];
+                    } else {   
+                        $chatUserId = $chatUserId[0]["userId"];
                     }
-                    $username = $pm->load("EUser", array("id" => $idchatuser))[0]["username"];
+
+                    $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
                     $values[$i]["username"] = $username;
                 }
             }
-
-            return array($values,$count);
+            return array($values, $count);
         }
 
         public function messages(int $id) {
@@ -157,27 +158,27 @@
 
             $pm = new FPersistentManager();
             $res = $pm->load("EChat", array("id" => $id))[0];
-            $chat = new EChat($id,$res["idpostteam"],$res["idpostsell"],$res["datetime"]);
+            //echo var_dump($res);
+            $chat = new EChat($id,$res["postId"],$res["postType"],$res["datetime"]);
 
-            if($chat->getIdPostSell() == 0) {
-                //TEAM
-                $posttitle = $pm->load("EPostTeam", array("id" => $chat->getIdPostTeam()))[0]["title"];
-            } else {
-                //SELL
-                $posttitle = $pm->load("EPostSell", array("id" => $chat->getIdPostSell()))[0]["title"];
-                $idchatuser = $pm->load("EChatUser", array("idchat" => $chat->getId()));
-                if($idchatuser[0]["iduser"] == $user->getId()) {
-                    $idchatuser = $idchatuser[1]["iduser"];
+            if($chat->getPostType() == "team") {
+                $posttitle = $pm->load("EPostTeam", array("id" => $chat->getPostId()))[0]["title"];
+                $username = $user->getUsername();
+            } else if ($chat->getPostType() == "sell") {
+                $posttitle = $pm->load("EPostSell", array("id" => $chat->getPostId()))[0]["title"];
+                $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
+                if($chatUserId[0]["userId"] == $user->getId()) {
+                    $chatUserId = $chatUserId[1]["userId"];
                 } else {
-                    $idchatuser = $idchatuser[0]["iduser"];
+                    $chatUserId = $chatUserId[0]["userId"];
                 }
-                $username = $pm->load("EUser", array("id" => $idchatuser))[0]["username"];
+                
+                $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
             }
             
-            $username = $user->getUsername();
             $view = new VUser();
             $params = array(
-                "idchat" => $id,
+                "chatId" => $id,
                 "title" => $posttitle,
                 "datetime" => $chat->getDateTime(),
                 "user" => $username
@@ -185,17 +186,17 @@
             $view->showMessageSection($params);
         }
 
-        public function loadMessages(int $idchat,int $offset,int $limit,string $datetime) {
+        public function loadMessages(int $chatId,int $offset,int $limit,string $datetime) {
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadElementsById("EMessage",$idchat,$limit,$offset,$datetime);
+            $res = $pm->loadElementsById("EMessage",$chatId,$limit,$offset,$datetime);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
 
-                $message = new EMessage($res[$i]["id"],$res[$i]["idchat"],$res[$i]["iduser"],$res[$i]["description"],$res[$i]["datetime"]);
-                $userdata = $pm->load("EUser", array("id" => $message->getIdUser()))[0];
+                $message = new EMessage($res[$i]["id"],$res[$i]["chatId"],$res[$i]["userId"],$res[$i]["description"],$res[$i]["datetime"]);
+                $userdata = $pm->load("EUser", array("id" => $message->getUserId()))[0];
                 $user = new EUser($userdata["id"],$userdata["username"],$userdata["password"],$userdata["name"],$userdata["surname"],$userdata["birthDate"],$userdata["email"],$userdata["image"]);
                 
                 $values[] = array(

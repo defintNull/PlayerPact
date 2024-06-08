@@ -1,15 +1,15 @@
 <?php
     class CChat {
 
-        public function viewChatSection(int $idUser) {
+        public function viewChatSection(int $userId) {
             
         }
 
-        public function findChat(int $idUser) {
+        public function findChat(int $userId) {
 
         }
 
-        public function selectChat(int $idChat) {
+        public function selectChat(int $chatId) {
             
         }
 

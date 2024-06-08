@@ -24,10 +24,10 @@
             return $db->load($table,$condition);
         }
 
-        function loadElements(int $idchat,int $limit,int $offset,string $datetime) {
+        function loadElements(int $chatId,int $limit,int $offset,string $datetime) {
             $db = FDB::getInstance();
             $table = substr(__CLASS__,1);
-            $condition = "idchat=\"".$idchat."\" AND datetime<=\"".$datetime."\" ORDER BY id DESC LIMIT ".$limit." OFFSET ".$offset;
+            $condition = "chatId=\"".$chatId."\" AND datetime<=\"".$datetime."\" ORDER BY id DESC LIMIT ".$limit." OFFSET ".$offset;
             return $db->load($table,$condition);
         }
 

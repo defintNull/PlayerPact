@@ -4,19 +4,19 @@
 
         }
 
-        function selectUser(int $idUser){
+        function selectUser(int $userId){
 
         }
 
-        function findUser(int $idUser, string $name){
+        function findUser(int $userId, string $name){
 
         }
 
-        function banUser(int $idUser){
+        function banUser(int $userId){
 
         }
 
-        function confirmBan(int $idUser, int $idMod, string $description, string $userEmail, string $modEmail){
+        function confirmBan(int $userId, int $idMod, string $description, string $userEmail, string $modEmail){
 
         }
 
@@ -28,7 +28,7 @@
 
         }
 
-        function deletePost(int $idPost){
+        function deletePost(int $postId){
 
         }
 
@@ -36,15 +36,15 @@
 
         }
 
-        function confirmPostDeletion(int $idPost){
+        function confirmPostDeletion(int $postId){
 
         }
 
-        function confirmCommentDeletion(int $idComment, int $idPost) {
+        function confirmCommentDeletion(int $idComment, int $postId) {
 
         }
 
-        function reportPost(int $idPost){
+        function reportPost(int $postId){
 
         }
 
@@ -52,7 +52,7 @@
 
         }
 
-        function confirmPostReport(int $idPost){
+        function confirmPostReport(int $postId){
 
         }
 

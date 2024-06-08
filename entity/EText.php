@@ -4,15 +4,15 @@
     class EText implements FInterface{
 
         private $id;
-        private $idpoststandard;
-        private $iduser;
+        private $postStandardId;
+        private $userId;
         private $description;
         private $datetime;
 
-        public function __construct(int $id,int $idpoststandard,int $iduser,string $description,string $datetime) {
+        public function __construct(int $id, int $postStandardId, int $userId, string $description, string $datetime) {
             $this->id = $id;
-            $this->idpoststandard = $idpoststandard;
-            $this->iduser = $iduser;
+            $this->postStandardId = $postStandardId;
+            $this->userId = $userId;
             $this->description = $description;
             $this->datetime = $datetime;
         }
@@ -21,12 +21,12 @@
             return $this->id;
         }
         
-        public function getIdPostStandard() {
-            return $this->idpoststandard;
+        public function getpostStandardId() {
+            return $this->postStandardId;
         }
 
-        public function getIdUser() {
-            return $this->iduser;
+        public function getUserId() {
+            return $this->userId;
         }
 
         public function getDescription() {
@@ -40,8 +40,8 @@
         public function getValues() {
             $v = array(
                 "id" => $this->id,
-                "idpoststandard" => $this->idpoststandard,
-                "iduser" => $this->iduser,
+                "postStandardId" => $this->postStandardId,
+                "userId" => $this->userId,
                 "description" => $this->description,
                 "datetime" => $this->datetime
             );
