@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-05-29 11:28:25
+/* Smarty version 5.1.0, created on 2024-06-09 01:37:21
   from 'file:login.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6656f539d23c51_89826726',
+  'unifunc' => 'content_6664eb3106f0a0_09992012',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '18bb54d4e9901bdbd451b6ae9418abd819d7f110' => 
     array (
       0 => 'login.html',
-      1 => 1716974621,
+      1 => 1717888051,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6656f539d23c51_89826726 (\Smarty\Template $_smarty_tpl) {
+function content_6664eb3106f0a0_09992012 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -34,14 +34,14 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
     <body>
         <div class="login">
           	<?php if ($_smarty_tpl->getValue('check') == "false") {?>
-            	<div>Login Errato</div>
+            	<div>Wrong credentials</div>
           	<?php }?>
           	<form action="/login/loginRedirect" method="post">
             	<div data-mdb-input-init class="form-outline mb-4">
-                	<input type="username" id="form2Example1" name="username" class="form-control" placeholder="Username"/>
+                	<input type="username" id="form2Example1" name="username" class="form-control" placeholder="Username..."/>
             	</div>
             	<div data-mdb-input-init class="form-outline mb-4">
-	              	<input type="password" id="form2Example2" name="password" class="form-control" placeholder="Password"/>
+	              	<input type="password" id="form2Example2" name="password" class="form-control" placeholder="Password..."/>
             	</div>
 					<input type="submit" data-mdb-button-init data-mdb-ripple-init class="btn pButton" value="Login"></input>
             	</div>

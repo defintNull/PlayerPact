@@ -28,13 +28,30 @@ $(document).on('click', '.participateButton', function() {
         success: function(response) {
             console.log(response);
             if(document.getElementById(postTeamId + "-post-participate").value == 0) {
-                document.getElementById(postTeamId + "-post-participate").innerHTML = "Partecipi già";
+                document.getElementById(postTeamId + "-post-participate").innerHTML = "Already on the team";
                 document.getElementById(postTeamId + "-post-participate").value = 1;
             } else {
-                document.getElementById(postTeamId + "-post-participate").innerHTML = "Partecipa";
+                document.getElementById(postTeamId + "-post-participate").innerHTML = "Team up";
                 document.getElementById(postTeamId + "-post-participate").value = 0;
             }
         }
     });
 });
 
+$(document).on('click', '#send-message-button', function() {
+    let chatId = $(this).attr("data-id");
+    let message = document.getElementById("message-box").value;
+    document.getElementById("message-box").value = "";
+
+    if(message !== "") {
+        $.ajax({
+            url: '/user/sendmessage',
+            type: 'POST',
+            data: {"chatId": chatId, "message": message},
+            success: function(response) {
+                document.cookie = "chatMessage="
+                location.reload();
+            }
+        });
+    }
+}); 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-08 14:44:27
+/* Smarty version 5.1.0, created on 2024-06-09 03:04:59
   from 'file:messageSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6664522b8aced0_23747084',
+  'unifunc' => 'content_6664ffbb857ca5_72804157',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7bd6907da686727a6e08b7dc65df4338e9a43cdf' => 
     array (
       0 => 'messageSection.html',
-      1 => 1717810593,
+      1 => 1717894572,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6664522b8aced0_23747084 (\Smarty\Template $_smarty_tpl) {
+function content_6664ffbb857ca5_72804157 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -29,6 +29,8 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"><?php echo '</script'; ?>
 >
         <link rel="stylesheet" href="/resources/css/home.css">
+        <link rel="stylesheet" href="/resources/css/post.css">
+        <link rel="stylesheet" href="/resources/css/chat.css">
         <link rel="stylesheet" href="/resources/css/profilePage.css">
 
         <?php echo '<script'; ?>
@@ -39,6 +41,12 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 >
         <?php echo '<script'; ?>
  src="/resources/js/addmessagerows.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/userButtonInteraction.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/receiveChatMessages.js"><?php echo '</script'; ?>
 >
 
     </head>
@@ -57,19 +65,19 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">Miei post</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">My posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Post salvati</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Saved posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Partecipazioni</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Teams</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chat</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chats</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy e sicurezza</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy settings</a>
                             </li>
                         </ul>
                     </div>
@@ -77,9 +85,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
                         <div class="upperBar">
-                            <a>Pagina profilo di </a>
                             <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
 </a>
+                            <a> profile page</a>
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
@@ -87,34 +95,25 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         <div class="single-post-section">
                             <div class="row single-post" id="<?php echo $_smarty_tpl->getValue('chatId');?>
 ">
+                                <div class="chat-user" id="chat-user"><?php echo $_smarty_tpl->getValue('user');?>
+</div>
                                 <div class="post-title" id="post-title"><?php echo $_smarty_tpl->getValue('title');?>
 </div>
                                 <div class="chat-datetime" id="chat-datetime"><?php echo $_smarty_tpl->getValue('datetime');?>
 </div>
-                                <div class="chat-user" id="chat-user"><?php echo $_smarty_tpl->getValue('user');?>
-</div>
                             </div>
                             <hr class="solid">
                             <div class="row commentBox">
-                                <form action="/user/sendmessage" method="post">
-                                    <div class="form-group">
-                                        <input name="message" type="text" class="form-control" id="message" placeholder="Message">
-                                        <input type="hidden" name="postId" id="<?php echo $_smarty_tpl->getValue('postId');?>
-" value="<?php echo $_smarty_tpl->getValue('postId');?>
-">
-                                        <button type="submit" class="btn-lg commentButton">Send</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="comment-section-title">
-                                <a>Commenti:</a>
+                                <input name="message" type="text" class="form-control" id="message-box" placeholder="Message...">
+                                <button type="submit" id="send-message-button" data-id="<?php echo $_smarty_tpl->getValue('chatId');?>
+" class="btn-lg commentButton">Send</button>
                             </div>
                             <hr class="solid">
                             <div class="commentSection" id="commentSection"></div>
                         </div>
                         
                         <div class=message_section id=message-list>
-                                
+                        
                         </div>
                         <div class="ajax-loader text-center">
                             Loading more posts... 

@@ -7,18 +7,18 @@
     </head>
     <body>
         <div class="title-report-section">
-            <a>Invio segnalazioni</a>
+            <a>Report sending</a>
         </div>
         <form class="form-body" action="/post/confirmReport" method="post">
             <div class="reportDescription">
                 <div class="input-group mb-3">
-                    <input type="text" name="description" class="form-control" placeholder="Spiegaci il motivo..." aria-describedby="inputGroup-sizing-default">
+                    <input type="text" name="description" class="form-control" placeholder="Tell us the reason..." aria-describedby="inputGroup-sizing-default">
                 </div>
             </div>
             <input type="hidden" name="objToReportId" value="{$objToReportId}" class="form-control" aria-describedby="inputGroup-sizing-default">
             <input type="hidden" name="objToReportType" value="{$objToReportType}" class="form-control" aria-describedby="inputGroup-sizing-default">
             <div>
-                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn confirmReportButton">Segnala</button>
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn confirmReportButton">Report</button>
             </div>
         </form>
     </body>

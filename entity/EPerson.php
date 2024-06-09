@@ -31,6 +31,30 @@
             return $this->username;
         }
 
+        public function getPassword(){
+            return $this->password;
+        }
+
+        public function getName(){
+            return $this->name;
+        }
+
+        public function getSurname(){
+            return $this->surname;
+        }
+
+        public function getBirthdate(){
+            return $this->birthDate;
+        }
+
+        public function getEmail(){
+            return $this->email;
+        }
+
+        public function getImage(){
+            return $this->image;
+        }
+
         public function getValues() {
             $v = array(
                 "id" => $this->id,

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-06 00:40:30
+/* Smarty version 5.1.0, created on 2024-06-09 04:07:03
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6660e95ebd9247_53924723',
+  'unifunc' => 'content_66650e47dcaed8_93857010',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '745089186b557b69d8e9e52eab5a67b9decc49b1' => 
     array (
       0 => 'privacy.html',
-      1 => 1717627224,
+      1 => 1717898711,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6660e95ebd9247_53924723 (\Smarty\Template $_smarty_tpl) {
+function content_66650e47dcaed8_93857010 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -30,6 +30,13 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 >
         <link rel="stylesheet" href="/resources/css/home.css">
         <link rel="stylesheet" href="/resources/css/profilePage.css">
+
+        <?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.7.1.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="/resources/js/privacy.js"><?php echo '</script'; ?>
+>
     </head>
     <body>
         <div class="container-fluid h-100">
@@ -46,19 +53,19 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">Miei post</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">My posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Post salvati</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Saved posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Partecipazioni</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Teams</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chat</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chats</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy e sicurezza</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy settings</a>
                             </li>
                         </ul>
                     </div>
@@ -66,9 +73,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
                         <div class="upperBar">
-                            <a>Pagina profilo di </a>
                             <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
 </a>
+                            <a> profile page</a>
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
@@ -79,11 +86,11 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     <a>Username: </a>
                                 </div>
                                 <div class="col privacy-page-item">
-                                    <a class="username"><?php echo $_smarty_tpl->getValue('username');?>
-</a>
+                                    <input id="username-textbox" class="form-control" type="text" value="<?php echo $_smarty_tpl->getValue('username');?>
+" aria-label="readonly input example" readonly>
                                 </div>
                                 <div class="col privacy-page-item">
-                                    <a type="button" class="btn">Modifica</a>
+                                    <a type="button" id="change-username" class="btn">Change</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -91,11 +98,11 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     <a>Password: </a>
                                 </div>
                                 <div class="col privacy-page-item">
-                                    <a class="password"><?php echo $_smarty_tpl->getValue('censuredPassword');?>
-</a>
+                                    <input id="password-textbox" class="form-control" type="text" value="<?php echo $_smarty_tpl->getValue('censuredPassword');?>
+" aria-label="readonly input example" readonly>
                                 </div>
                                 <div class="col privacy-page-item">
-                                    <a type="button" class="btn">Modifica</a>
+                                    <a type="button" id="change-password" class="btn">Change</a>
                                 </div>
                             </div>
                         </div>

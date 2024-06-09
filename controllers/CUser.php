@@ -1,4 +1,7 @@
 <?php
+
+use Smarty\Compile\PrintExpressionCompiler;
+
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/resources/view/VUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EMessage.php");
@@ -211,15 +214,28 @@
             return array($values,$count);
         }
 
-        public function sendMessage() {
+        public function sendmessage() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
 
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $chatId = $_POST["chatId"];
+            $messageContent = $_POST["message"];
+            $datetime = date("Y-m-d H:i:s");
+
+            $pm = new FPersistentManager();
+            $message = new EMessage(0, $chatId, $user->getId(), $messageContent, $datetime);
+            $pm->store($message);
         }
 
         public function privacy() {
             $session = USession::getInstance();
             $user = $session->load("user");
             
-            $username = null;
             if($user == null){
                 header("Location: /login");
                 exit();
@@ -229,6 +245,28 @@
             $params = array("username" => $username,
                             "censuredPassword" => "*");
             $view->showPrivacyPage($params);
+        }
+
+        public function changeusername() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $newUsername = $_POST["newUsername"];
+
+            $pm = new FPersistentManager();
+            if($pm->load("EUser", array("username" => $newUsername)) != array()){
+                exit();
+            }
+
+            $newUser = new EUser($user->getId(), $newUsername, $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $user->getImage());
+            $pm->update($newUser, array("id" => $user->getId()));
+
+            $session->set("user", $newUser);
         }
     }
 ?>

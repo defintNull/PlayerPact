@@ -12,18 +12,18 @@
                     <div class="row d-flex justify-content-center align-items-center">
                       	<div class="col-xl-9">
 							{if $info != "ok"}
-								<h1 class="registration-text mb-4">Registrazione - Errore</h1>
+								<h1 class="registration-text mb-4">Registration - Error</h1>
 							{else}
-								<h1 class="registration-text mb-4">Registrazione</h1>
+								<h1 class="registration-text mb-4">Registration</h1>
 							{/if}
                         	
 							<div class="card" style="border-radius: 15px;">
 								<div class="card-body">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Nome</h6>
+											<h6 class="mb-0">Name</h6>
 											{if $name == "missing"}
-												<div class="missing"><a>Campo richiesto!</a></div>
+												<div class="missing"><a>Required field!</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
@@ -33,21 +33,21 @@
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Cognome</h6>
+											<h6 class="mb-0">Surname</h6>
 											{if $surname == "missing"}
-												<div class="missing"><a>Campo richiesto!</a></div>
+												<div class="missing"><a>Required field!</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
-											<input type="text" name="surname" class="form-control form-control-lg" />                              
+											<input type="text" name="surname" class="form-control form-control-lg" />
 										</div>
 									</div>
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Data di nascita</h6>
+											<h6 class="mb-0">Birth date</h6>
 											{if $birthdate == "missing"}
-												<div class="missing"><a>Campo richiesto!</a></div>
+												<div class="missing"><a>Required field!</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
@@ -58,11 +58,11 @@
 								<hr class="mx-n3">
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
-										<h6 class="mb-0">Indirizzo email</h6>
+										<h6 class="mb-0">Email address</h6>
 										{if $email == "missing"}
-											<div class="missing"><a>Campo richiesto!</a></div>
+											<div class="missing"><a>Required field!</a></div>
 										{else if $email == "existing"}
-											<div class="existing"><a>Hai inserito un indirizzo già utilizzato!</a></div>
+											<div class="existing"><a>This email address is already in use!</a></div>
 										{/if}
 									</div>
 									<div class="col-md-9 pe-5">
@@ -74,13 +74,13 @@
 									<div class="col-md-3 ps-5">              
 										<h6 class="mb-0">Username</h6>
 										{if $username == "missing"}
-											<div class="missing"><a>Campo richiesto!</a></div>
+											<div class="missing"><a>Required field!</a></div>
 										{else if $email == "existing"}
-											<div class="existing"><a>Hai inserito uno username già utilizzato!</a></div>
+											<div class="existing"><a>This username is already in use!</a></div>
 										{/if}
 									</div>
 									<div class="col-md-9 pe-5">
-										<input type="text" name="username" class="form-control form-control-lg" />											
+										<input type="text" name="username" class="form-control form-control-lg" />
 									</div>
 								</div>
 								<hr class="mx-n3">
@@ -88,26 +88,26 @@
 									<div class="col-md-3 ps-5">	
 										<h6 class="mb-0">Password</h6>
 										{if $password == "missing"}
-											<div class="missing"><a>Campo richiesto!</a></div>
+											<div class="missing"><a>Required field!</a></div>
 										{/if}										
 									</div>
 									<div class="col-md-9 pe-5">              
-										<input type="password" name="password" class="form-control form-control-lg" />              
+										<input type="password" name="password" class="form-control form-control-lg" />
 									</div>
-								</div>								
-								<hr class="mx-n3">								
+								</div>
+								<hr class="mx-n3">
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">              
-										<h6 class="mb-0">Immagine profilo</h6>										
+										<h6 class="mb-0">Profile picture</h6>										
 									</div>
 									<div class="col-md-9 pe-5">              
 										<input class="form-control form-control-lg" id="formFileLg" name="profilepicture" type="file" />
-										<div class="small text-muted mt-2">Upload your profile picture. Max file size 50 MB</div>
+										<div class="small text-muted mt-2">Upload your profile picture. Max file size 5 MB</div>
 									</div>
 								</div>
 								<hr class="mx-n3">              
 								<div class="px-5 py-4">
-									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Registrati</button>
+									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Sign up</button>
 								</div>              
 							</div>
                       	</div>

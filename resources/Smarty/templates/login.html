@@ -8,14 +8,14 @@
     <body>
         <div class="login">
           	{if $check == "false" }
-            	<div>Login Errato</div>
+            	<div>Wrong credentials</div>
           	{/if}
           	<form action="/login/loginRedirect" method="post">
             	<div data-mdb-input-init class="form-outline mb-4">
-                	<input type="username" id="form2Example1" name="username" class="form-control" placeholder="Username"/>
+                	<input type="username" id="form2Example1" name="username" class="form-control" placeholder="Username..."/>
             	</div>
             	<div data-mdb-input-init class="form-outline mb-4">
-	              	<input type="password" id="form2Example2" name="password" class="form-control" placeholder="Password"/>
+	              	<input type="password" id="form2Example2" name="password" class="form-control" placeholder="Password..."/>
             	</div>
 					<input type="submit" data-mdb-button-init data-mdb-ripple-init class="btn pButton" value="Login"></input>
             	</div>

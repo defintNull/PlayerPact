@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-06 00:40:27
+/* Smarty version 5.1.0, created on 2024-06-09 01:15:15
   from 'file:profilePage.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6660e95b92c582_57959995',
+  'unifunc' => 'content_6664e603437351_12121066',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '01a45d43f07dc911577661b6eeaf9dfb263e2f07' => 
     array (
       0 => 'profilePage.html',
-      1 => 1717627203,
+      1 => 1717888347,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6660e95b92c582_57959995 (\Smarty\Template $_smarty_tpl) {
+function content_6664e603437351_12121066 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -46,19 +46,19 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">Miei post</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">My posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Post salvati</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Saved posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Partecipazioni</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Teams</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chat</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chats</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy e sicurezza</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy settings</a>
                             </li>
                         </ul>
                     </div>
@@ -66,9 +66,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
                         <div class="upperBar">
-                            <a>Pagina profilo di </a>
                             <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
 </a>
+                            <a> profile page</a>
                         </div>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">

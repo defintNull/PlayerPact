@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // load the initial rows on page load
     // ajax call a scroll.php
+    
     var initialData;
 
     var offset = document.getElementById("offset").value;
@@ -36,8 +37,9 @@ $(document).ready(function(){
             windowOnScroll(initialData);
         }
     });
-        
+    
 });
+
 
 function windowOnScroll(initialData) {
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-05 20:02:22
+/* Smarty version 5.1.0, created on 2024-06-09 01:37:12
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6660a82ea8a116_91041413',
+  'unifunc' => 'content_6664eb281a67e2_64897293',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
     array (
       0 => 'home.html',
-      1 => 1717609825,
+      1 => 1717889776,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6660a82ea8a116_91041413 (\Smarty\Template $_smarty_tpl) {
+function content_6664eb281a67e2_64897293 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -48,17 +48,17 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sale posts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">New post</a>
                             </li>
                         </ul>
                     </div>
@@ -80,7 +80,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
 </a></li>
-                                        <li><a class="dropdown-item" href="/user/profile">Profilo</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
                                         <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>
@@ -97,17 +97,18 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="pWelcome">
-                                <a>Benvenuto</a>
+                                <a>Welcome</a>
                                 <a class="pUsername"><?php echo $_smarty_tpl->getValue('username');?>
 </a>
+                                <a>!</a>
                             </div>
                         <?php } else { ?>
                             <div class="pWelcome">
-                                <a>Benvenuto in PlayerPact</a>
+                                <a>Welcome to PlayerPact</a>
                             </div>
-                            <a>Qui potrai cercare nuovi amici con cui giocare online, comprare un nuovo videogioco o semplicemente esprimere un proprio pensiero sul mondo dei videogiochi!</a>
+                            <a>Here you can look for new friends to play online with, buy a new video game or simply express your thoughts on the world of video games!</a>
                             <div class="col">
-                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Registrati</a>
+                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Sign up</a>
                             </div>
                             <div class="col">
                                 <a href="/login" type="button" class="btn-lg pHomeButton">Login</a>

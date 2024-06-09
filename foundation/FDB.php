@@ -138,7 +138,6 @@
         }
 
         function update(string $class, $entity, string $condition) {
-            
             try {
 
                 $this->db->beginTransaction();
@@ -155,6 +154,8 @@
                     $counter++;
                 }
                 $sql .= " WHERE " . $condition;
+
+                //echo $sql;
 
                 $sth = $this->db->prepare($sql);
                 $sth->execute();

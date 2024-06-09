@@ -1,0 +1,501 @@
+/* Generic */
+body {
+    background-color: #222222;
+    color: white;
+}
+
+.list-section-big {
+    padding-top: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    min-width: 1250px;
+    max-width: 1250px;
+    height: auto;
+    background-color: #222222;
+}
+
+.list-section-big a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    min-width: 300px;
+    min-height: 250px;
+}
+
+.list-item-big {
+    color: white;
+    background-color: #222222;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.list-item-big:hover {
+    background-color: #333333;
+    box-shadow: 0px 0px 20px 1px #333333;
+}
+
+.list-section-small {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.list-item-small {
+    text-align: left;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.button {
+    color:white;
+    background-color: #ff8800;
+    text-decoration: none;
+    transition: none;
+    border: none;
+    padding: 20px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    width: 40%;
+    font-size: 30px;
+}
+
+.button:hover {
+    color:white;
+    background-color: #333333;
+    transition: none;
+}
+
+.button:active {
+    color:white;
+    background-color: #534535;
+}
+
+hr.solid {
+    border-top: 1px solid #bbb;
+    padding: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 300px;
+}
+
+.ajax-loader {
+    display: block;
+    text-align: center;
+    background-color: #222222;
+    height: 30px;
+}
+
+.form-control {
+    background-color: #222222;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #222222;
+}
+
+/* Navbar */
+
+.usermenu-username {
+    color: coral;
+    background-color: #222222;
+    text-decoration: none;
+}
+
+.usermenu-username:hover {
+    color: coral;
+    background-color: #222222;
+}
+
+.side-bar {
+    width: 15%;
+    min-width: 150px;
+}
+
+.dropdown {
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+.dropdown-menu{
+    background-color: #222222;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+.logo {
+    padding: 0;
+    margin: 0;
+    border-color: white;
+    border-style: none none solid none;
+    border-spacing: 15px 10px;
+}
+
+#logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 150px;
+}
+
+.side-logo {
+    display: block;
+    background-color: #222222;
+    border-color: white;
+    border-style: none solid none none;
+}
+
+.side-nav {
+    display: block;
+    padding: 5%;
+    padding-top: 7%;
+    background-color: #222222;
+    border-color: white;
+    border-style: none solid none none;
+}
+
+.main-column {
+    margin-left: max(15%, 150px);    
+}
+
+.upper-bar {
+    color: white;
+    background-color: #222222;
+    text-align: center;
+    border-color: #d1d1d1;
+    border-style: none none solid none;
+    height: 60px;
+    padding-bottom: 10;
+    margin-left: max(15%, 150px);
+    min-width: 350px
+}
+
+.search-bar-container {
+    min-width: max(75%, 250px);
+}
+
+.search-bar {
+    padding-left: 35%;
+    padding-right: 10%;
+    padding-top: 10px;
+
+}
+
+.img-col {
+    min-width: max(25%, 70px);
+}
+
+#profile-image {
+    height: 40px;
+}
+
+#profile-image:hover {
+    border-color: white;
+    border-style: solid;
+}
+
+#profile-image:active {
+    border-color: white;
+    border-style: solid;
+}
+
+.profile-image {
+    position: absolute;
+    right: 30;
+}
+
+.upper-login-button {
+    color: white;
+    text-decoration: none;
+    background-color: #ff8800;
+    transition: none;
+    border: none;
+    padding: 10px;
+    margin: 7px 2px;
+    border-radius: 8px;
+    position: absolute;
+    right: 30;
+}
+
+.upper-login-button:hover {
+    color:white;
+    background-color: #333333;
+    transition: none;
+}
+
+.upper-login-button:active {
+    color:white;
+    background-color: #534535;
+}
+
+.active-button {
+    background-color: #ff8800;
+    text-align: center;
+    transition: none;
+}
+
+.active-button:hover {
+    color: white;
+    transition: none;
+    background-color:333333;
+}
+
+.menu-element {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: none;
+}
+
+.menu-element:hover {
+    color:white;
+    background-color: #333333;
+    transition: none;
+}
+
+.menu-element:active {
+    color: white;
+    background-color: #534535;
+}
+
+#main_body {
+    margin-top: 60px;
+    text-align: center;
+    min-width: 400px;
+}
+
+/* Home */
+
+.welcome {
+    font-size: 72px;
+}
+
+.username {
+    color:white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.home-button {
+    color:white;
+    text-decoration: none;
+    background-color: #ff8800;
+    transition: none;
+    border: none;
+    padding: 20px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    width: 40%;
+    font-size: 30px;
+}
+
+.home-button:hover {
+    color:white;
+    background-color: #333333;
+    transition: none;
+}
+
+.home-button:active {
+    color:white;
+    background-color: #534535;
+}
+
+/* Post */
+
+.post-username {
+    text-align: left;
+    font-size: 16px;
+    color:coral;
+    height: 30px;
+    padding-left: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.post-description {
+    border-radius: 5px;
+    text-align: left;
+    min-height: 100px;
+    padding-left: 10;
+    padding-top: 10;
+    padding-bottom: 10;
+    text-align: justify;
+    text-justify: inter-word;
+    overflow-wrap: break-word;
+}
+
+.post-title {
+    font-weight: 650;
+    font-size: 20px;
+    max-width: 100%;
+    text-align: justify;
+    text-justify: inter-word;
+    overflow-wrap: break-word;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 10;
+}
+
+.post-datetime {
+    min-width: 20%;
+    font-size: 10px;
+    text-align: right;
+    padding-right: 20;
+    margin-bottom: 10px;
+}
+
+.post-time_ {
+    text-align: left;
+}
+
+.post-players {
+    text-align: left;
+}
+
+.post-price {
+    text-align: left;
+}
+
+.post-image {
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.post-thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 200px;
+    max-height: 200px;
+    padding: 0;
+}
+
+.post-image a{
+    padding: 0;
+}
+
+/* Post buttons */
+
+.report input {
+    text-decoration: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    float: right;
+}
+
+.report input:hover{
+    background-color: #444444;
+}
+
+.report-post input {
+    text-decoration: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    float: right;
+}
+
+.report-post input:hover{
+    background-color: #444444;
+}
+
+.save-post-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+}
+
+.save-post-button:hover {
+    background-color: #444444;
+}
+
+.save-post-image {
+    padding-right: 13px;
+    width: 40px;
+}
+
+.participate-button {
+    color: white;
+    background-color: #ff8800;
+    margin-top: 50%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+}
+
+.participate-button:hover {
+    color: white;
+    background-color: #444444;
+}
+
+.participate-button:active {
+    color: white;
+    background-color: #534535;
+}
+
+/* Comments */
+
+.comment-username {
+    color: coral;
+}
+
+.comment-description {
+    border-radius: 5px;
+    text-align: left;
+    text-align: justify;
+    text-justify: inter-word;
+    overflow:hidden;
+    overflow-wrap: break-word;
+}
+
+.comment-datetime {
+    max-width: 95px;
+    min-width: 95px;
+    font-size: 10px;
+    margin-top: 10;
+    float: right;
+}
+
+.comment-section-title {
+    padding-left: 240px;
+    text-align: left;
+}
+
+/* Login */
+
+.login {
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 15%;
+    text-align: center;
+}
+
+.registration {
+    text-align: center;
+}
+
+.create-account {
+    text-decoration: none;
+}
+
+/* Profile */
+
+/* Chat */
+
+/* Messages */

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-02 02:32:47
+/* Smarty version 5.1.0, created on 2024-06-09 01:37:07
   from 'file:registration.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665bbdafa9c714_86404912',
+  'unifunc' => 'content_6664eb237c65f5_06102563',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c1a76d194fe75cbbffa18d26ca077a0fc78fd8d5' => 
     array (
       0 => 'registration.html',
-      1 => 1717283106,
+      1 => 1717889826,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665bbdafa9c714_86404912 (\Smarty\Template $_smarty_tpl) {
+function content_6664eb237c65f5_06102563 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -38,18 +38,18 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     <div class="row d-flex justify-content-center align-items-center">
                       	<div class="col-xl-9">
 							<?php if ($_smarty_tpl->getValue('info') != "ok") {?>
-								<h1 class="registration-text mb-4">Registrazione - Errore</h1>
+								<h1 class="registration-text mb-4">Registration - Error</h1>
 							<?php } else { ?>
-								<h1 class="registration-text mb-4">Registrazione</h1>
+								<h1 class="registration-text mb-4">Registration</h1>
 							<?php }?>
                         	
 							<div class="card" style="border-radius: 15px;">
 								<div class="card-body">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Nome</h6>
+											<h6 class="mb-0">Name</h6>
 											<?php if ($_smarty_tpl->getValue('name') == "missing") {?>
-												<div class="missing"><a>Campo richiesto!</a></div>
+												<div class="missing"><a>Required field!</a></div>
 											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
@@ -59,9 +59,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Cognome</h6>
+											<h6 class="mb-0">Surname</h6>
 											<?php if ($_smarty_tpl->getValue('surname') == "missing") {?>
-												<div class="missing"><a>Campo richiesto!</a></div>
+												<div class="missing"><a>Required field!</a></div>
 											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
@@ -71,9 +71,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<hr class="mx-n3">
 									<div class="row align-items-center pt-4 pb-3">
 										<div class="col-md-3 ps-5">
-											<h6 class="mb-0">Data di nascita</h6>
+											<h6 class="mb-0">Birth date</h6>
 											<?php if ($_smarty_tpl->getValue('birthdate') == "missing") {?>
-												<div class="missing"><a>Campo richiesto!</a></div>
+												<div class="missing"><a>Required field!</a></div>
 											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
@@ -84,11 +84,11 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<hr class="mx-n3">
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
-										<h6 class="mb-0">Indirizzo email</h6>
+										<h6 class="mb-0">Email address</h6>
 										<?php if ($_smarty_tpl->getValue('email') == "missing") {?>
-											<div class="missing"><a>Campo richiesto!</a></div>
+											<div class="missing"><a>Required field!</a></div>
 										<?php } elseif ($_smarty_tpl->getValue('email') == "existing") {?>
-											<div class="existing"><a>Hai inserito un indirizzo già utilizzato!</a></div>
+											<div class="existing"><a>This email address is already in use!</a></div>
 										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
@@ -100,9 +100,9 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<div class="col-md-3 ps-5">              
 										<h6 class="mb-0">Username</h6>
 										<?php if ($_smarty_tpl->getValue('username') == "missing") {?>
-											<div class="missing"><a>Campo richiesto!</a></div>
+											<div class="missing"><a>Required field!</a></div>
 										<?php } elseif ($_smarty_tpl->getValue('email') == "existing") {?>
-											<div class="existing"><a>Hai inserito uno username già utilizzato!</a></div>
+											<div class="existing"><a>This username is already in use!</a></div>
 										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
@@ -114,7 +114,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 									<div class="col-md-3 ps-5">	
 										<h6 class="mb-0">Password</h6>
 										<?php if ($_smarty_tpl->getValue('password') == "missing") {?>
-											<div class="missing"><a>Campo richiesto!</a></div>
+											<div class="missing"><a>Required field!</a></div>
 										<?php }?>										
 									</div>
 									<div class="col-md-9 pe-5">              
@@ -124,16 +124,16 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 								<hr class="mx-n3">								
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">              
-										<h6 class="mb-0">Immagine profilo</h6>										
+										<h6 class="mb-0">Profile picture</h6>										
 									</div>
 									<div class="col-md-9 pe-5">              
 										<input class="form-control form-control-lg" id="formFileLg" name="profilepicture" type="file" />
-										<div class="small text-muted mt-2">Upload your profile picture. Max file size 50 MB</div>
+										<div class="small text-muted mt-2">Upload your profile picture. Max file size 5 MB</div>
 									</div>
 								</div>
 								<hr class="mx-n3">              
 								<div class="px-5 py-4">
-									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Registrati</button>
+									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Sign up</button>
 								</div>              
 							</div>
                       	</div>

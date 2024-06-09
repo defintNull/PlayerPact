@@ -22,17 +22,17 @@
                                 <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sale posts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">New post</a>
                             </li>
                         </ul>
                     </div>
@@ -53,7 +53,7 @@
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username">{$username}</a></li>
-                                        <li><a class="dropdown-item" href="/user/profile">Profilo</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
                                         <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>
@@ -70,16 +70,17 @@
                         </div>
                         {if $authenticated == true}
                             <div class="pWelcome">
-                                <a>Benvenuto</a>
+                                <a>Welcome</a>
                                 <a class="pUsername">{$username}</a>
+                                <a>!</a>
                             </div>
                         {else}
                             <div class="pWelcome">
-                                <a>Benvenuto in PlayerPact</a>
+                                <a>Welcome to PlayerPact</a>
                             </div>
-                            <a>Qui potrai cercare nuovi amici con cui giocare online, comprare un nuovo videogioco o semplicemente esprimere un proprio pensiero sul mondo dei videogiochi!</a>
+                            <a>Here you can look for new friends to play online with, buy a new video game or simply express your thoughts on the world of video games!</a>
                             <div class="col">
-                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Registrati</a>
+                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Sign up</a>
                             </div>
                             <div class="col">
                                 <a href="/login" type="button" class="btn-lg pHomeButton">Login</a>

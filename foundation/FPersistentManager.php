@@ -53,7 +53,7 @@
         function update($obj, array $condition) {
             $FClass = self::classConvert($obj);
             $entity = new $FClass();
-            $entity->update($obj,$condition);
+            $entity->update($obj, $condition);
         }
 
         function exists($obj) {

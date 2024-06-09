@@ -2,7 +2,6 @@ $(document).ready(function(){
     // load the initial rows on page load
     // ajax call a scroll.php
     var initialData;
-
     var offset = document.getElementById("offset").value;
     var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
@@ -48,7 +47,7 @@ function windowOnScroll(initialData) {
         }
     }
 
-    $(window).on("scroll", function(e){        
+    $(window).on("scroll", function(e){ 
         if ($(window).scrollTop() >= ($(document).height() - $(window).height() - 60)) {
             if($(".comment").length == initialData.totalcount) {
                 getMoreData(initialData)
