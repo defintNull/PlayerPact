@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-09 04:07:03
+/* Smarty version 5.1.0, created on 2024-06-09 14:47:17
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66650e47dcaed8_93857010',
+  'unifunc' => 'content_6665a45528d938_84574088',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '745089186b557b69d8e9e52eab5a67b9decc49b1' => 
     array (
       0 => 'privacy.html',
-      1 => 1717898711,
+      1 => 1717937064,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66650e47dcaed8_93857010 (\Smarty\Template $_smarty_tpl) {
+function content_6665a45528d938_84574088 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -98,7 +98,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     <a>Password: </a>
                                 </div>
                                 <div class="col privacy-page-item">
-                                    <input id="password-textbox" class="form-control" type="text" value="<?php echo $_smarty_tpl->getValue('censuredPassword');?>
+                                    <input type="password" id="password-textbox" class="form-control" value="<?php echo $_smarty_tpl->getValue('censuredPassword');?>
 " aria-label="readonly input example" readonly>
                                 </div>
                                 <div class="col privacy-page-item">

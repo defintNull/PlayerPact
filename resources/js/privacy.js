@@ -24,3 +24,30 @@ $(document).on('click', '#confirm-change-username', function() {
         }
     });
 });
+
+$(document).on('click', '#change-password', function() {
+    //console.log("Ciao");
+    document.getElementById("change-password").innerHTML = "Confirm";
+    document.getElementById("change-password").id = "confirm-change-password";
+
+    document.getElementById("password-textbox").value = "";
+    document.getElementById("password-textbox").removeAttribute('readonly');
+});
+
+$(document).on('click', '#confirm-change-password', function() {
+    let newPassword = document.getElementById("password-textbox").value;
+
+    document.getElementById("confirm-change-password").innerHTML = "Change";
+    document.getElementById("confirm-change-password").id = "change-password";
+
+    document.getElementById("password-textbox").setAttribute('readonly', "");
+
+    $.ajax({
+        url: "/user/changepassword",
+        type: "POST",
+        data: {"newPassword": newPassword},
+        success: function(response) {
+            //console.log(response);
+        }
+    });
+});

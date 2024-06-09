@@ -232,6 +232,25 @@ use Smarty\Compile\PrintExpressionCompiler;
             $pm->store($message);
         }
 
+        public function countchatmessages(){
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $chatId = $_POST["chatId"];
+
+            $pm = new FPersistentManager();
+            $res = $pm->load("EChat", array("id" => $chatId))[0];
+
+            $res = $pm->load("EMessage", array("chatId" => $res["id"]));
+
+            echo count($res);
+        }
+
         public function privacy() {
             $session = USession::getInstance();
             $user = $session->load("user");
@@ -241,9 +260,10 @@ use Smarty\Compile\PrintExpressionCompiler;
                 exit();
             }
             $username = $user->getUsername();
+            $password = $user->getPassword();
             $view = new VUser();
             $params = array("username" => $username,
-                            "censuredPassword" => "*");
+                            "censuredPassword" => str_repeat("a", strlen($password)));
             $view->showPrivacyPage($params);
         }
 
@@ -264,6 +284,24 @@ use Smarty\Compile\PrintExpressionCompiler;
             }
 
             $newUser = new EUser($user->getId(), $newUsername, $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $user->getImage());
+            $pm->update($newUser, array("id" => $user->getId()));
+
+            $session->set("user", $newUser);
+        }
+
+        public function changepassword() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+            
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $newPassword = $_POST["newPassword"];
+
+            $pm = new FPersistentManager();
+            $newUser = new EUser($user->getId(), $user->getUsername(), $newPassword, $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $user->getImage());
             $pm->update($newUser, array("id" => $user->getId()));
 
             $session->set("user", $newUser);

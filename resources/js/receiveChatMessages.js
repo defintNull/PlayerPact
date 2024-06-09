@@ -1,6 +1,7 @@
 // This script 
 
 $(document).ready(function() {
+
     let oldMsg = getCookie("chatMessage");
 
     if(oldMsg !== ""){
@@ -9,10 +10,25 @@ $(document).ready(function() {
     }
 
     var intervalId = window.setInterval(function(){
-        if($(window).scrollTop() <= 250){
-            let message = document.getElementById("message-box").value;
-            document.cookie = "chatMessage=" + message;
-            location.reload();
+        let chatId = document.getElementById("send-message-button").dataset.id;
+
+        if($(window).scrollTop() <= 400){
+            $.ajax({
+                url: "/user/countchatmessages",
+                type: "post",
+                data: {"chatId": chatId},
+                success: function(response) {
+                    let nMessages = document.getElementById("chat-datetime").dataset.nmessages;
+                    console.log(response);
+                    console.log(nMessages);
+                    if (response > nMessages) { // Non capisco perché non funziona questo controllo
+                        let message = document.getElementById("message-box").value;
+                        document.cookie = "chatMessage=" + message;
+                        //location.reload();
+                        document.getElementById("chat-datetime").dataset.nmessages = response;
+                    }
+                }
+            });
         }
     }, 5000);
 });
