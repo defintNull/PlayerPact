@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-09 01:37:07
+/* Smarty version 5.1.0, created on 2024-06-10 00:26:26
   from 'file:registration.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6664eb237c65f5_06102563',
+  'unifunc' => 'content_66662c125b7468_22179339',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c1a76d194fe75cbbffa18d26ca077a0fc78fd8d5' => 
     array (
       0 => 'registration.html',
-      1 => 1717889826,
+      1 => 1717892653,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6664eb237c65f5_06102563 (\Smarty\Template $_smarty_tpl) {
+function content_66662c125b7468_22179339 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -65,7 +65,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 											<?php }?>
 										</div>
 										<div class="col-md-9 pe-5">
-											<input type="text" name="surname" class="form-control form-control-lg" />                              
+											<input type="text" name="surname" class="form-control form-control-lg" />
 										</div>
 									</div>
 									<hr class="mx-n3">
@@ -106,7 +106,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 										<?php }?>
 									</div>
 									<div class="col-md-9 pe-5">
-										<input type="text" name="username" class="form-control form-control-lg" />											
+										<input type="text" name="username" class="form-control form-control-lg" />
 									</div>
 								</div>
 								<hr class="mx-n3">
@@ -118,10 +118,10 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 										<?php }?>										
 									</div>
 									<div class="col-md-9 pe-5">              
-										<input type="password" name="password" class="form-control form-control-lg" />              
+										<input type="password" name="password" class="form-control form-control-lg" />
 									</div>
-								</div>								
-								<hr class="mx-n3">								
+								</div>
+								<hr class="mx-n3">
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">              
 										<h6 class="mb-0">Profile picture</h6>										

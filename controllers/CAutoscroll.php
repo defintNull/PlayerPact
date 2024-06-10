@@ -28,15 +28,15 @@
                 }
                 $totalcount += $elements[1];
 
-                $session = USession::getInstance();
-                $userId = $session->load("user")->getId();
-                for($i=0;$i<count($rows);$i++) {
-                    if($userId == $rows[$i]["userId"]) {
-                        $rows[$i]["posses"] = 1;
-                    } else {
-                        $rows[$i]["posses"] = 1;
-                    }
-                }
+                // $session = USession::getInstance();
+                // $userId = $session->load("user")->getId();
+                // for($i=0;$i<count($rows);$i++) {
+                //     if($userId == $rows[$i]["userId"]) {
+                //         $rows[$i]["posses"] = 1;
+                //     } else {
+                //         $rows[$i]["posses"] = 1;
+                //     }
+                // }
 
                 $data = [
                     'rows' => $rows,

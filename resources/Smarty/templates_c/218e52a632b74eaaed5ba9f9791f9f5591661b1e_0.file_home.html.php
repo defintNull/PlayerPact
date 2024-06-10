@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-09 01:37:12
+/* Smarty version 5.1.0, created on 2024-06-10 02:27:41
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6664eb281a67e2_64897293',
+  'unifunc' => 'content_6666487d216e92_21376922',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '218e52a632b74eaaed5ba9f9791f9f5591661b1e' => 
     array (
       0 => 'home.html',
-      1 => 1717889776,
+      1 => 1717978733,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6664eb281a67e2_64897293 (\Smarty\Template $_smarty_tpl) {
+function content_6666487d216e92_21376922 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -65,17 +65,12 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <!-- <div class="col pSearchContainer">
-                            <form class="d-flex pSearch" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Cerca</button>
-                            </form>
-                        </div> -->
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="/public/4.png" alt="Avatar" id="profileImage"> <!-- Inserire immagine profilo-->
+                                        <img src=<?php echo $_smarty_tpl->getValue('profilePicture');?>
+ alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>

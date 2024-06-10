@@ -146,16 +146,20 @@
             $user = $session->load("user");
 
             $authenticated = false;
+            $username = null;
+            $PPImageURL = "/public/4.png";                
             if($user != null){
                 $authenticated = true;
                 $username = $user->getUsername();
-            } else {
-                $username = null;
+                if($user->getImage() != "") {
+                    $PPImageURL = "data:image/png;base64,".base64_encode($user->getImage());
+                }
             }
 
             $params = array("type" => "standard",
                             "authenticated" => $authenticated,
-                            "username" => $username);
+                            "username" => $username,
+                            "profilePicture" => $PPImageURL);
             $view->show($params);
         }
 
@@ -165,16 +169,20 @@
             $user = $session->load("user");
 
             $authenticated = false;
+            $username = null;
+            $PPImageURL = "/public/4.png";
             if($user != null){
                 $authenticated = true;
                 $username = $user->getUsername();
-            } else {
-                $username = null;
+                if($user->getImage() != "") {
+                    $PPImageURL = "data:image/png;base64,".base64_encode($user->getImage());
+                }
             }
 
             $params = array("type" => "sell",
                             "authenticated" => $authenticated,
-                            "username" => $username);
+                            "username" => $username,
+                            "profilePicture" => $PPImageURL);
             $view->show($params);
         }
 
@@ -184,16 +192,20 @@
             $user = $session->load("user");
 
             $authenticated = false;
+            $username = null;
+            $PPImageURL = "/public/4.png"; 
             if($user != null){
                 $authenticated = true;
                 $username = $user->getUsername();
-            } else {
-                $username = null;
+                if($user->getImage() != ""){
+                    $PPImageURL = "data:image/png;base64,".base64_encode($user->getImage());
+                }
             }
 
             $params = array("type" => "team",
                             "authenticated" => $authenticated,
-                            "username" => $username);
+                            "username" => $username,
+                            "profilePicture" => $PPImageURL);
             $view->show($params);
         }
 
@@ -206,11 +218,14 @@
             $sessionUser = $session->load("user");
 
             $authenticated = false;
+            $username = null;
+            $PPImageURL = "/public/4.png";
             if($sessionUser != null){
                 $authenticated = true;
                 $username = $sessionUser->getUsername();
-            } else {
-                $username = null;
+                if($sessionUser->getImage() != "") {
+                    $PPImageURL = "data:image/png;base64,".base64_encode($sessionUser->getImage());
+                }
             }
 
             $view = new VPost();
@@ -220,7 +235,8 @@
                             "postDescription" => $res["description"],
                             "postDatetime" => $res["datetime"],
                             "authenticated" => $authenticated,
-                            "username" => $username);
+                            "username" => $username,
+                            "profilePicture" => $PPImageURL);
             $view->showComments($params);
         }
 

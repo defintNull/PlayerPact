@@ -137,7 +137,6 @@ async function addrows(rows,type) {
                 console.error("Error:", error);
             });
             
-            
             if(row.image == "") {
                 document.getElementById("post-image").remove();
             } else {

@@ -56,3 +56,27 @@
     background-color: #534535;
     transition: none;
 }
+
+#big-profile-image {
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 200px;
+}
+
+#big-profile-image:hover {
+    border-color: white;
+    border-style: solid;
+}
+
+#big-profile-image:active {
+    border-color: white;
+    border-style: solid;
+}
+
+.privacy-row {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}

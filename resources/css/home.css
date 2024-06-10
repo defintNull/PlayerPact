@@ -96,6 +96,7 @@ body {
 
 #profileImage {
     height: 40px;
+    max-width: 40px;
 }
 
 #profileImage:hover {

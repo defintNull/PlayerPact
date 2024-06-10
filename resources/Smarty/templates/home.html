@@ -39,17 +39,11 @@
                 </div>
                 <div class="col h-100 d-flex flex-column pMainColumn">
                     <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <!-- <div class="col pSearchContainer">
-                            <form class="d-flex pSearch" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Cerca</button>
-                            </form>
-                        </div> -->
                         {if $authenticated == true}
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="/public/4.png" alt="Avatar" id="profileImage"> <!-- Inserire immagine profilo-->
+                                        <img src={$profilePicture} alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username">{$username}</a></li>

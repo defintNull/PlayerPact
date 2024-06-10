@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-09 00:43:56
+/* Smarty version 5.1.0, created on 2024-06-10 01:09:57
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6664deacbe35c3_55941368',
+  'unifunc' => 'content_666636453c8bc8_79004725',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
     array (
       0 => 'post.html',
-      1 => 1717854721,
+      1 => 1717974574,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6664deacbe35c3_55941368 (\Smarty\Template $_smarty_tpl) {
+function content_666636453c8bc8_79004725 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -60,17 +60,17 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sale posts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
                         <ul class="nav nav-pills pSideNav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">Nuovo post</a>
+                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">New post</a>
                             </li>
                         </ul>
                     </div>
@@ -80,19 +80,20 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                         <div class="col pSearchContainer">
                             <form class="d-flex pSearch" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Cerca</button>
+                                <button class="btn btn-outline-success" type="submit">Search</button>
                             </form>
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
                                 <li class="pDropdown">
                                     <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="/public/4.png" alt="Avatar" id="profileImage">
+                                        <img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
+" alt="Avatar" id="profileImage">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
 </a></li>
-                                        <li><a class="dropdown-item" href="/user/profile">Profilo</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
                                         <li><a class="dropdown-item" href="/login/logout">Logout</a></li>
                                     </ul>
                                 </li>
@@ -136,16 +137,16 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                             <div class="row commentBox">
                                 <form action="/post/addcomment" method="post">
                                     <div class="form-group">
-                                        <input name="comment" type="text" class="form-control" id="formGroupExampleInput" placeholder="Commenta">
+                                        <input name="comment" type="text" class="form-control" id="formGroupExampleInput" placeholder="Write something...">
                                         <input type="hidden" name="postId" id="<?php echo $_smarty_tpl->getValue('postId');?>
 " value="<?php echo $_smarty_tpl->getValue('postId');?>
 ">
-                                        <button type="submit" class="btn-lg commentButton">Commenta</button>
+                                        <button type="submit" class="btn-lg commentButton">Comment</button>
                                     </div>
                                 </form>
                             </div>
                             <div class="comment-section-title">
-                                <a>Commenti:</a>
+                                <a>Comments:</a>
                             </div>
                             <hr class="solid">
                             <div class="commentSection" id="commentSection"></div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-09 15:38:58
+/* Smarty version 5.1.0, created on 2024-06-10 00:23:03
   from 'file:messageSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6665b0721899f0_39739284',
+  'unifunc' => 'content_66662b47b2a753_78871619',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7bd6907da686727a6e08b7dc65df4338e9a43cdf' => 
     array (
       0 => 'messageSection.html',
-      1 => 1717940330,
+      1 => 1717971676,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6665b0721899f0_39739284 (\Smarty\Template $_smarty_tpl) {
+function content_66662b47b2a753_78871619 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -99,7 +99,8 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 </div>
                                 <div class="post-title" id="post-title"><?php echo $_smarty_tpl->getValue('title');?>
 </div>
-                                <div class="chat-datetime" id="chat-datetime" data-nmessages="0"><?php echo $_smarty_tpl->getValue('datetime');?>
+                                <div class="chat-datetime" id="chat-datetime" data-nmessages="<?php echo $_smarty_tpl->getValue('nMessages');?>
+"><?php echo $_smarty_tpl->getValue('datetime');?>
 </div>
                             </div>
                             <hr class="solid">

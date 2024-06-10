@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-09 14:47:17
+/* Smarty version 5.1.0, created on 2024-06-10 02:23:14
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6665a45528d938_84574088',
+  'unifunc' => 'content_6666477269f198_33680087',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '745089186b557b69d8e9e52eab5a67b9decc49b1' => 
     array (
       0 => 'privacy.html',
-      1 => 1717937064,
+      1 => 1717978993,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6665a45528d938_84574088 (\Smarty\Template $_smarty_tpl) {
+function content_6666477269f198_33680087 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -81,7 +81,11 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                     <div class="row justify-content-center flex-grow-1" id="main_body">
                         <!-- AGGIUNGERE CAMBIO FOTO PROFILO -->
                         <div class="col privacy-page-body">
-                            <div class="row">
+                            <div class="row privacy-row">
+                                <img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
+" id="big-profile-image">
+                            </div>
+                            <div class="row privacy-row">
                                 <div class="col privacy-page-item">
                                     <a>Username: </a>
                                 </div>
@@ -93,7 +97,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                     <a type="button" id="change-username" class="btn">Change</a>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row privacy-row">
                                 <div class="col privacy-page-item">
                                     <a>Password: </a>
                                 </div>

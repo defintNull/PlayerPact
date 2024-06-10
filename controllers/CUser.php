@@ -17,14 +17,22 @@ use Smarty\Compile\PrintExpressionCompiler;
             
             $username = null;
             $authenticated = false;
+            $PPImageURL = "/public/4.png";
+            $params = array();
+
             if($user != null){
                 $username = $user->getUsername();
                 $authenticated = true;
+
+                if($user->getImage() != ""){
+                    $PPImageURL = "data:image/png;base64,".base64_encode($user->getImage());
+                }
             }
 
             $view = new VUser();
             $params = array("authenticated" => $authenticated,
-                            "username" => $username);
+                            "username" => $username,
+                            "profilePicture" => $PPImageURL);
             $view->showHome($params);
         }
 
@@ -178,13 +186,21 @@ use Smarty\Compile\PrintExpressionCompiler;
                 
                 $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
             }
+
+            $pm = new FPersistentManager();
+            $res = $pm->load("EChat", array("id" => $chat->getId()))[0];
+
+            $res = $pm->load("EMessage", array("chatId" => $res["id"]));
+
+            $nMessages = count($res);
             
             $view = new VUser();
             $params = array(
                 "chatId" => $id,
                 "title" => $posttitle,
                 "datetime" => $chat->getDateTime(),
-                "user" => $username
+                "user" => $username,
+                "nMessages" => $nMessages
             );
             $view->showMessageSection($params);
         }
@@ -259,11 +275,17 @@ use Smarty\Compile\PrintExpressionCompiler;
                 header("Location: /login");
                 exit();
             }
+
             $username = $user->getUsername();
             $password = $user->getPassword();
+            $PPImageURL = "/public/4.png";
+            if($user->getImage() != "") {
+                $PPImageURL = "data:image/png;base64,".base64_encode($user->getImage());
+            }
             $view = new VUser();
             $params = array("username" => $username,
-                            "censuredPassword" => str_repeat("a", strlen($password)));
+                            "censuredPassword" => str_repeat("a", strlen($password)),
+                            "profilePicture" => $PPImageURL);
             $view->showPrivacyPage($params);
         }
 

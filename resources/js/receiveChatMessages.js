@@ -1,4 +1,5 @@
-// This script 
+// This script implements polling onto database, which means that if there are new messages, it refreshes the page
+// to display new messages in order.
 
 $(document).ready(function() {
 
@@ -19,18 +20,17 @@ $(document).ready(function() {
                 data: {"chatId": chatId},
                 success: function(response) {
                     let nMessages = document.getElementById("chat-datetime").dataset.nmessages;
-                    console.log(response);
-                    console.log(nMessages);
-                    if (response > nMessages) { // Non capisco perché non funziona questo controllo
+                    if (response > nMessages) {
+                        console.log("Ciao");
                         let message = document.getElementById("message-box").value;
                         document.cookie = "chatMessage=" + message;
-                        //location.reload();
+                        location.reload();
                         document.getElementById("chat-datetime").dataset.nmessages = response;
                     }
                 }
             });
         }
-    }, 5000);
+    }, 1000);
 });
 
 function getCookie(name) {

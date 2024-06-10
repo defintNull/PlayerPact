@@ -90,7 +90,7 @@
 
         public function register() {
             $missing = $this->checkMissing();
-
+            
             if($missing == array()) {
                 $name = $_POST["name"];
                 $surname = $_POST["surname"];
@@ -98,11 +98,32 @@
                 $email = $_POST["email"];
                 $username = $_POST["username"];
                 $password = $_POST["password"];
-                if(isset($_POST["image"])){
-                    $image = $_POST["image"];
-                }
-                else {
-                    $image = null;
+                
+                $image = null;
+
+                if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
+                    $file_tmp_path = $_FILES["profilepicture"]['tmp_name'];
+                    $file_name = $_FILES["profilepicture"]['name'];
+                    $file_size = $_FILES["profilepicture"]['size']; // in byte
+
+                    if($file_size > 5*1024*1024){
+                        header("Location: /login/registration?info=tooBig"); // Aggiungere messaggio a schermo
+                        exit();
+                    }
+            
+                    $allowedfileExtensions = array('jpg', 'jpeg', 'png');
+                    $file_name_cmps = explode(".", $file_name);
+                    $file_extension = strtolower(end($file_name_cmps));
+            
+                    if (in_array($file_extension, $allowedfileExtensions)) {
+                        $image = addslashes(file_get_contents($file_tmp_path));
+                    } else{
+                        header("Location: /login/registration?info=error");
+                        exit();
+                    }
+                } else{
+                    header("Location: /login/registration?info=error");
+                    exit();
                 }
 
                 $user = new EUser(1, $username, $password, $name, $surname, $birthdate, $email, $image);
