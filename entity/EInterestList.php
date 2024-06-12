@@ -5,19 +5,19 @@
         
         private $id;
         private $userId;
-        private $postSellId;
+        private $postSaleId;
 
-        public function __construct($userId, $postSellId) {
+        public function __construct($userId, $postSaleId) {
             $this->id = 0;
             $this->userId = $userId;
-            $this->postSellId = $postSellId;
+            $this->postSaleId = $postSaleId;
         }
 
         public function getValues() {
             $v = array(
                 "id" => $this->id,
                 "userId" => $this->userId,
-                "postSellId" => $this->postSellId
+                "postSaleId" => $this->postSaleId
             );
             return $v;
         }

@@ -5,15 +5,19 @@ $(document).ready(function(){
     var prevChoice;
     $('#postChoice').on('click', 'a.dropdown-item', function(){
         choice = $(this).text();
+        console.log(choice);
         document.getElementById("dropdown").innerHTML = choice;
         if(prevChoice != choice){
             if(choice == "Standard"){
+                console.log("standard");
                 createStandardChoicePage();
             }
-            else if(choice == "Vendita"){
-                createSellChoicePage();
+            else if(choice == "Sale"){
+                console.log("sale");
+                createSaleChoicePage();
             }
             else if(choice == "Team"){
+                console.log("team");
                 createTeamChoicePage();
             }
         }
@@ -38,13 +42,13 @@ async function createStandardChoicePage() {
     node.outerHTML = bodyHTML;
 }
 
-async function createSellChoicePage() {
+async function createSaleChoicePage() {
     const element = document.getElementById("jsAddedMenu");
     if(element != null){
         element.remove();
     }
     const postMenu = document.getElementById("postMenu");
-    const response = await fetch("/resources/Smarty/templates/choiceSell.html");
+    const response = await fetch("/resources/Smarty/templates/choiceSale.html");
     const text = await response.text();
     const i1 = text.indexOf("<body>");
     const i2 = text.indexOf("</body>");

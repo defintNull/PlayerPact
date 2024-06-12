@@ -1,7 +1,7 @@
 <?php
     include_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPost.php");
     
-    class EPostSell extends EPost {
+    class EPostSale extends EPost {
         
         private $price;
         private $image;

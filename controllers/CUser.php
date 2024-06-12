@@ -140,8 +140,8 @@ use Smarty\Compile\PrintExpressionCompiler;
                     $values[$i]["posttitle"] = $posttitle;
                     $values[$i]["username"] = null;
 
-                } else if ($chat->getPostType() == "sell") {
-                    $posttitle = $pm->load("EPostSell", array("id" => $chat->getPostId()))[0]["title"];
+                } else if ($chat->getPostType() == "sale") {
+                    $posttitle = $pm->load("EPostSale", array("id" => $chat->getPostId()))[0]["title"];
                     $values[$i]["posttitle"] = $posttitle;
                     $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
 
@@ -175,8 +175,8 @@ use Smarty\Compile\PrintExpressionCompiler;
             if($chat->getPostType() == "team") {
                 $posttitle = $pm->load("EPostTeam", array("id" => $chat->getPostId()))[0]["title"];
                 $username = $user->getUsername();
-            } else if ($chat->getPostType() == "sell") {
-                $posttitle = $pm->load("EPostSell", array("id" => $chat->getPostId()))[0]["title"];
+            } else if ($chat->getPostType() == "sale") {
+                $posttitle = $pm->load("EPostSale", array("id" => $chat->getPostId()))[0]["title"];
                 $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
                 if($chatUserId[0]["userId"] == $user->getId()) {
                     $chatUserId = $chatUserId[1]["userId"];

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-10 01:09:57
+/* Smarty version 5.1.0, created on 2024-06-12 23:08:46
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666636453c8bc8_79004725',
+  'unifunc' => 'content_666a0e5eb8fe66_01747083',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '62b15e2f770fe1ab3ceddecf65665d3b15415dcf' => 
+    'ffa4e98b9af5afaa54f59a3172396d35e0a53857' => 
     array (
       0 => 'post.html',
-      1 => 1717974574,
+      1 => 1718224799,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666636453c8bc8_79004725 (\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
+function content_666a0e5eb8fe66_01747083 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">

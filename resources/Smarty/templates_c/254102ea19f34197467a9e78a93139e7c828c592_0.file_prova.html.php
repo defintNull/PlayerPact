@@ -51,7 +51,7 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 <a class="nav-link pMenuElement" aria-current="page" href="postTeam.html">postTeam</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postSell.html">postSell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="postSale.html">postSale</a>
                             </li>
                         </ul>
                     </div>

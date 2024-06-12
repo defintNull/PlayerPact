@@ -1,7 +1,7 @@
 <?php
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FPersistentManager.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostStandard.php");
-    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostSell.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostSale.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EPostTeam.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EUser.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EChat.php");
@@ -57,17 +57,17 @@
 
         }
 
-        public function loadSellPosts(int $offset,int $limit,string $datetime) {
+        public function loadSalePosts(int $offset,int $limit,string $datetime) {
             $pm = new FPersistentManager();
             $values = array();
 
-            $res = $pm->loadElements("EPostSell",$limit,$offset,$datetime);
+            $res = $pm->loadElements("EPostSale",$limit,$offset,$datetime);
             //echo var_dump($res);
             $count = count($res);
 
             for($i=0;$i<$count;$i++) {
 
-                $post = new EPostSell($res[$i]["id"],$res[$i]["userId"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["price"],$res[$i]["image"]);
+                $post = new EPostSale($res[$i]["id"],$res[$i]["userId"],$res[$i]["title"],$res[$i]["description"],$res[$i]["datetime"],$res[$i]["price"],$res[$i]["image"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getuserId()));
                 //echo var_dump($post->getImage());
                 //Questo controllo teoricamente è inutile perché dopo non esisterà post senza utente
@@ -163,7 +163,7 @@
             $view->show($params);
         }
 
-        public function sell() {
+        public function sale() {
             $view = new VPost();
             $session = USession::getInstance();
             $user = $session->load("user");
@@ -179,7 +179,7 @@
                 }
             }
 
-            $params = array("type" => "sell",
+            $params = array("type" => "sale",
                             "authenticated" => $authenticated,
                             "username" => $username,
                             "profilePicture" => $PPImageURL);
@@ -315,14 +315,14 @@
                 header("Location: /post/standard");
                 exit();
 
-            } else if (isset($_POST["sell"])){
-                $values = $_POST["sell"];
+            } else if (isset($_POST["sale"])){
+                $values = $_POST["sale"];
                 
                 $image = null;
-                if (isset($_FILES['sell']['name']['image']) && $_FILES['sell']['error']['image'] == 0) {
-                    $file_tmp_path = $_FILES['sell']['tmp_name']['image'];
-                    $file_name = $_FILES['sell']['name']['image'];
-                    $file_size = $_FILES['sell']['size']['image']; // in byte
+                if (isset($_FILES['sale']['name']['image']) && $_FILES['sale']['error']['image'] == 0) {
+                    $file_tmp_path = $_FILES['sale']['tmp_name']['image'];
+                    $file_name = $_FILES['sale']['name']['image'];
+                    $file_size = $_FILES['sale']['size']['image']; // in byte
 
                     if($file_size > 5*1024*1024){
                         header("Location: /post/create?info=tooBig"); // Aggiungere messaggio a schermo
@@ -345,11 +345,11 @@
                 }
                 $datetime = date("Y-m-d H:i:s");
 
-                // Creazione del post sell
-                $post = new EPostSell(1, $userId, $values["title"], $values["description"], $datetime, $values["price"], $image);
+                // Creazione del post sale
+                $post = new EPostSale(1, $userId, $values["title"], $values["description"], $datetime, $values["price"], $image);
                 $pm->store($post);
                 
-                header("Location: /post/sell");
+                header("Location: /post/sale");
                 exit();
 
             } else if (isset($_POST["team"])){
@@ -379,7 +379,7 @@
 
         public function get_image(int $id){
             $pm = new FPersistentManager();
-            $image = $pm->load("EPostSell", array("id" => $id));
+            $image = $pm->load("EPostSale", array("id" => $id));
 
             if($image == null) {
                 header("Location: /error/e404");
@@ -401,8 +401,8 @@
                         return false;
                     }
                 }
-            } else if (isset($_POST["sell"])){
-                $values = $_POST["sell"];
+            } else if (isset($_POST["sale"])){
+                $values = $_POST["sale"];
                 foreach($values as $key => $val){
                     if($val == ""){
                         return false;
@@ -491,7 +491,7 @@
                 exit();
             }
 
-            $allowedTypes = array("standard", "team", "sell", "comment");
+            $allowedTypes = array("standard", "team", "sale", "comment");
 
             if(!in_array($objType, $allowedTypes)) {
                 header("Location: /error/e404");
@@ -570,18 +570,18 @@
             }
                 
             $pm = new FPersistentManager();
-            $postSellId = $_POST["postSellId"];     
-            $post = $pm->load("EPostSell", array("id" => $postSellId))[0];
-            $chatId = $pm->load("EChat", array("postId" => $postSellId));
+            $postSaleId = $_POST["postSaleId"];     
+            $post = $pm->load("EPostSale", array("id" => $postSaleId))[0];
+            $chatId = $pm->load("EChat", array("postId" => $postSaleId));
 
             // Controllo che se premo buy, non si creino altre chat se ci sono già
             // + controllo se premo su buy e ho creato io il post
             if($chatId == array() && $user->getId() != $post["userId"]) {
                 $datetime = date("Y-m-d H:i:s");
-                $chat = new EChat(0, $postSellId, "sell" ,$datetime);
+                $chat = new EChat(0, $postSaleId, "sale" ,$datetime);
                 $chatId = $pm->store($chat);
     
-                $idOwner = $pm->load("EPostSell",array("id" => $postSellId))[0]["userId"];
+                $idOwner = $pm->load("EPostSale",array("id" => $postSaleId))[0]["userId"];
                 $chatUser = new EChatUser($chatId, $idOwner, $datetime);            
                 $pm->store($chatUser);
     

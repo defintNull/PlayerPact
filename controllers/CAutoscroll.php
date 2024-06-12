@@ -99,10 +99,10 @@
 
         }
 
-        private static function getSellElements(int $offset,int $limit,string $datetime) {
+        private static function getsaleElements(int $offset,int $limit,string $datetime) {
 
             $controller = new CPost();       
-            $elements = $controller->loadSellPosts($offset,$limit,$datetime);
+            $elements = $controller->loadsalePosts($offset,$limit,$datetime);
             return $elements;
 
         }

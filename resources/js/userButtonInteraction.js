@@ -1,18 +1,18 @@
 $(document).on('click', '.savePostButton', function() {
-    var postSellId = $(this).attr("value");
+    var postSaleId = $(this).attr("value");
     
     $.ajax({
         url: "/interestlist/add",
         type: "POST",
-        data: {"postSellId": postSellId},
+        data: {"postSaleId": postSaleId},
         success: function(response) {
             console.log(response);
-            if(document.getElementById(postSellId + "-save-post-image").value == 0) {
-                document.getElementById(postSellId + "-save-post-image").src = "/public/saved.png";
-                document.getElementById(postSellId + "-save-post-image").value = 1;
+            if(document.getElementById(postSaleId + "-save-post-image").value == 0) {
+                document.getElementById(postSaleId + "-save-post-image").src = "/public/saved.png";
+                document.getElementById(postSaleId + "-save-post-image").value = 1;
             } else {
-                document.getElementById(postSellId + "-save-post-image").src = "/public/save.png";
-                document.getElementById(postSellId + "-save-post-image").value = 0;
+                document.getElementById(postSaleId + "-save-post-image").src = "/public/save.png";
+                document.getElementById(postSaleId + "-save-post-image").value = 0;
             }
         }
     });

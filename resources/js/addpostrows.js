@@ -85,9 +85,9 @@ async function addrows(rows,type) {
 
 
         })
-    } else if(type == "sell") {
+    } else if(type == "sale") {
         //Richiesta all'html del post
-        const response = await fetch("/resources/Smarty/templates/postsell.html");
+        const response = await fetch("/resources/Smarty/templates/postsale.html");
         const text = await response.text();
         const i1 = text.indexOf("<body>");
         const i2 = text.indexOf("</body>");
@@ -98,7 +98,7 @@ async function addrows(rows,type) {
             postList.append(node);
             node.outerHTML = bodyHTML;
 
-            document.getElementById("id-post-sell").id = row.id;
+            document.getElementById("id-post-sale").id = row.id;
             document.getElementById("post-title").innerHTML = row.title;
             document.getElementById("post-title").id = row.id + "-post-title";
             document.getElementById("post-datetime").innerHTML = row.datetime;
@@ -114,14 +114,14 @@ async function addrows(rows,type) {
             document.getElementById("post-save").value = row.id;
             document.getElementById("post-save").id = row.id + "-post-save";
             document.getElementById("save-post-image").id = row.id + "-save-post-image";
-            document.getElementById("sellpostform").id = row.id + "sellpostform";
-            document.getElementById(row.id + "sellpostform").value = row.id;
+            document.getElementById("salepostform").id = row.id + "salepostform";
+            document.getElementById(row.id + "salepostform").value = row.id;
             
             function isSaved() {
                 return $.ajax({
                     url: "/interestlist/issaved",
                     type: "POST",
-                    data: {"postSellId": row.id}
+                    data: {"postSaleId": row.id}
                 });
             }
             isSaved().then(function(response) {

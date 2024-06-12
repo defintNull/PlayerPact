@@ -1,7 +1,7 @@
 <?php
     require_once realpath(__DIR__."/FDB.php");
     
-    class FPostSell {
+    class FPostSale {
         
         function store($obj) {
             $db = FDB::getInstance();

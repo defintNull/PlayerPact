@@ -63,7 +63,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                                 <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sell">Sell</a>
+                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sale">Sale</a>
                             </li>
                         </ul>
                     </div>
