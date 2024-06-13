@@ -8,6 +8,7 @@ use Smarty\Compile\PrintExpressionCompiler;
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EChat.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/foundation/FPersistentManager.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EChatUser.php");
+    require_once realpath($_SERVER["DOCUMENT_ROOT"]."/entity/EProfile.php");
     require_once realpath($_SERVER["DOCUMENT_ROOT"]."/utility/USession.php");
 
     class CUser {
@@ -90,6 +91,7 @@ use Smarty\Compile\PrintExpressionCompiler;
                 header("Location: /login");
                 exit();
             }
+
             $username = $user->getUsername();
             $view = new VUser();
             $params = array(
@@ -299,14 +301,18 @@ use Smarty\Compile\PrintExpressionCompiler;
             }
 
             $newUsername = $_POST["newUsername"];
-
+            
             $pm = new FPersistentManager();
             if($pm->load("EUser", array("username" => $newUsername)) != array()){
                 exit();
             }
 
             $newUser = new EUser($user->getId(), $newUsername, $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $user->getImage());
+            $oldProfile = $pm->load("EProfile", array("username" => $user->getUsername()))[0];
+            $newProfile = new EProfile($oldProfile["id"], "user", $newUsername, $user->getPassword(), $user->getEmail());
+
             $pm->update($newUser, array("id" => $user->getId()));
+            $pm->update($newProfile, array("id" => $oldProfile["id"]));
 
             $session->set("user", $newUser);
         }
@@ -324,7 +330,11 @@ use Smarty\Compile\PrintExpressionCompiler;
 
             $pm = new FPersistentManager();
             $newUser = new EUser($user->getId(), $user->getUsername(), $newPassword, $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $user->getImage());
+            $oldProfile = $pm->load("EProfile", array("username" => $user->getUsername()))[0];
+            $newProfile = new EProfile($oldProfile["id"], "user", $user->getUsername(), $newPassword, $user->getEmail());
+
             $pm->update($newUser, array("id" => $user->getId()));
+            $pm->update($newProfile, array("id" => $oldProfile["id"]));
 
             $session->set("user", $newUser);
         }

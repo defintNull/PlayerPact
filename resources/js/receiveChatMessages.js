@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     let oldMsg = getCookie("chatMessage");
 
-    if(oldMsg !== ""){
+    if(oldMsg !== undefined && oldMsg !== ""){
         document.getElementById("message-box").focus();
         document.getElementById("message-box").value = oldMsg;
     }

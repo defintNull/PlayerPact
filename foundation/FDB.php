@@ -91,8 +91,6 @@
                 
                 return $id;
             }catch (PDOException $e) {
-                //return false;
-                //echo $e;
                 return $e;
             }
         }
@@ -139,7 +137,6 @@
 
         function update(string $class, $entity, string $condition) {
             try {
-
                 $this->db->beginTransaction();
 
                 $sql = "UPDATE ". self::$tables[$class] ." SET ";
@@ -147,7 +144,9 @@
                 $counter = 0;
                 $values = $entity->getValues();
                 foreach($values as $attrib=>$data) {
-                    $sql .= $attrib . "="."\"". $data . "\"";
+                    $data = addslashes($data);
+                    //echo $data."\n\n";
+                    $sql .= $attrib."="."\"".$data."\"";
                     if($counter < count($values)-1) {
                         $sql .= ", ";
                     }
@@ -155,15 +154,13 @@
                 }
                 $sql .= " WHERE " . $condition;
 
-                //echo $sql;
-
                 $sth = $this->db->prepare($sql);
                 $sth->execute();
 
                 $this->db->commit();
 
             } catch (PDOException $e) {
-                return $e->getCode();
+                return $e;
             }
         }
 

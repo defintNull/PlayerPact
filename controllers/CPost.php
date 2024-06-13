@@ -377,16 +377,20 @@
             }
         }
 
-        public function get_image(int $id){
-            $pm = new FPersistentManager();
-            $image = $pm->load("EPostSale", array("id" => $id));
+        public function get_image($id){
+            if(!is_numeric($id) || intval($id) != $id){
+                header("Location: /error/404");
+            }
 
-            if($image == null) {
+            $pm = new FPersistentManager();
+            $postSale = $pm->load("EPostSale", array("id" => $id));
+
+            if($postSale == null) {
                 header("Location: /error/e404");
                 exit();
             }
 
-            $image = $image[0]["image"];
+            $image = $postSale[0]["image"];
             
             $view = new VPost();
             $imageURL = "data:image/png;base64,".base64_encode($image);

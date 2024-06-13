@@ -284,3 +284,9 @@ hr.solid {
     color: white;
     background-color: #534535;
 }
+
+.button-buy {
+    padding: 0;
+    font-size: 15px;
+    height: 40px;
+}

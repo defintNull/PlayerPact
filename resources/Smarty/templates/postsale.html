@@ -4,11 +4,22 @@
         <div class="post-title-post-bar post-title" id="post-title"></div>
         <div class="post-description" id="post-description"></div>
         <div class="post-price" id="post-price"></div>
-        <div class="post-image" id="post-image">
-            <a id="post-thumbnailLink" href="" target="_blank">
-                <img src="" class="post-thumbnail" id="post-thumbnail">
-            </a>
+        <div class="row">
+            <div class="col">
+                <div class="post-image" id="post-image">
+                    <a id="post-thumbnailLink" href="" target="_blank">
+                        <img src="" class="post-thumbnail" id="post-thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <form action="/post/buy" method="post">
+                    <input type="hidden" id="salepostform" name="postSaleId" value=""/>
+                    <input type="submit" class="button button-buy" value="Buy"/>
+                </form>
+            </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <button class="savePostButton" id="post-save" value="">
@@ -20,10 +31,6 @@
                     <input type="hidden" id="post-report" name="objToReportId" value="">
                     <input type="hidden" id="post-report-type" name="objToReportType" value="sale">
                     <input type="image" id="report-image" src="/public/report.png">
-                </form>
-                <form action="/post/buy" method="post">
-                    <input type="hidden" id="salepostform" name="postSaleId" value=""/>
-                    <input type="submit" value="Buy"/>
                 </form>
             </div>
             <div class="col-3">

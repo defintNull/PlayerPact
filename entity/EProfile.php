@@ -17,7 +17,7 @@
             $this->email = $email;
         }
 
-        public function getuserId() {
+        public function getUserId() {
             return $this->userId;
         }
 

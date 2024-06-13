@@ -12,12 +12,12 @@ $(document).ready(function(){
     $.ajax({
         url: '/autoscroll/loadbyid'+ '?id=' + userId + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
-            //console.log(data);
+            console.log(data);
             try {
                 initialData = JSON.parse(data);
             } catch(err) {
-                //console.log(err);
-                window.location.href = "/error/e404"; //ERRORE ESCE QUI
+                console.log(err);
+                //window.location.href = "/error/e404"; //ERRORE ESCE QUI
             }
             
             if (initialData) {
