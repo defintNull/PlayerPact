@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-02 16:20:37
+/* Smarty version 5.1.0, created on 2024-06-13 15:46:37
   from 'file:selectNewPost.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_665c7fb5de2fa4_36108017',
+  'unifunc' => 'content_666af83dceb362_86275644',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5ab3d4f10e843f2014e22c051d7e9cbefa5d5955' => 
     array (
       0 => 'selectNewPost.html',
-      1 => 1717338007,
+      1 => 1717888668,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_665c7fb5de2fa4_36108017 (\Smarty\Template $_smarty_tpl) {
+function content_666af83dceb362_86275644 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -49,14 +49,14 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 				</button>
 				<ul class="dropdown-menu" id="postChoice">
 					<li><a class="dropdown-item" type="button">Standard</a></li>
-					<li><a class="dropdown-item" type="button">Vendita</a></li>
+					<li><a class="dropdown-item" type="button">Sale</a></li>
 					<li><a class="dropdown-item" type="button">Team</a></li>
 				</ul>
 			</div>
 			<div id="postMenu"></div>
 			<?php if ($_smarty_tpl->getValue('info') != "ok") {?>
 				<div class="error">
-					<a>Non hai riempito correttamente i campi!</a>
+					<a>You have not filled in all the fields correctly!</a>
 				</div>
 			<?php }?>
         </div>

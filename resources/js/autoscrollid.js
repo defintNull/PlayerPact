@@ -10,7 +10,7 @@ $(document).ready(function(){
     $.ajax({
         url: '/autoscroll/loadbyid' + '?id=' + id + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
         success: function(data) {
-            //console.log(data);
+            console.log(data);
             try {
                 initialData = JSON.parse(data);
             } catch(err) {

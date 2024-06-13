@@ -14,8 +14,8 @@ $(document).ready(function(){
             try {
                 initialData = JSON.parse(data);
             } catch(err) {
-                //console.log(err);
-                window.location.href = "/error/e404"; //ERRORE ESCE QUI
+                console.log(err);
+                //window.location.href = "/error/e404"; //ERRORE ESCE QUI
             }
             
             if (initialData) {

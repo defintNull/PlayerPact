@@ -111,6 +111,30 @@ async function addrows(rows,type) {
             document.getElementById("post-price").id = row.id + "-post-price";
             document.getElementById("post-report").value = row.id;
             document.getElementById("post-report").id = row.id + "-post-report";
+
+            function isBought() {
+                return $.ajax({
+                    url: "/post/isBought",
+                    type: "POST",
+                    data: {"postSaleId": row.id}
+                });
+            }
+            isBought().then(function(response) {
+                //console.log(response);
+                if(response == 0){
+                    document.getElementById("post-buy").value = "Buy";
+                } else if (response == 1) {
+                    document.getElementById("post-buy").value = "Chat created";
+                } // else if (response == 2) {
+                //     document.getElementById("post-buy").value = "You are\nthe owner";
+                //     document.getElementById("post-buy").disabled = true;
+                // }
+                
+                document.getElementById("post-buy").id = row.id + "-post-buy";
+            }).catch(function(error) {
+                console.error("Error:", error);
+            });
+
             document.getElementById("post-save").value = row.id;
             document.getElementById("post-save").id = row.id + "-post-save";
             document.getElementById("save-post-image").id = row.id + "-save-post-image";

@@ -1,3 +1,4 @@
+// Function to save a post on button click
 $(document).on('click', '.savePostButton', function() {
     var postSaleId = $(this).attr("value");
     
@@ -18,6 +19,7 @@ $(document).on('click', '.savePostButton', function() {
     });
 });
 
+// Function to participate to a game on button click
 $(document).on('click', '.participateButton', function() {
     var postTeamId = $(this).attr("data-id");
 
@@ -38,6 +40,7 @@ $(document).on('click', '.participateButton', function() {
     });
 });
 
+// Function that sends chat messages
 $(document).on('click', '#send-message-button', function() {
     let chatId = $(this).attr("data-id");
     let message = document.getElementById("message-box").value;
@@ -54,4 +57,4 @@ $(document).on('click', '#send-message-button', function() {
             }
         });
     }
-}); 
+});

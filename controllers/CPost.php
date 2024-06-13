@@ -574,13 +574,31 @@
             }
                 
             $pm = new FPersistentManager();
-            $postSaleId = $_POST["postSaleId"];     
+            $postSaleId = $_POST["postSaleId"];
             $post = $pm->load("EPostSale", array("id" => $postSaleId))[0];
-            $chatId = $pm->load("EChat", array("postId" => $postSaleId));
 
-            // Controllo che se premo buy, non si creino altre chat se ci sono già
-            // + controllo se premo su buy e ho creato io il post
-            if($chatId == array() && $user->getId() != $post["userId"]) {
+            $chat = $pm->load("EChat", array("postId" => $postSaleId));
+
+            // Se esiste una chat relativa a quel post, controllo se l'utente non è già nella chat e se non è colui che ha
+            // creato il post
+            $exists = false;
+            if($chat != null){
+                for($i = 0; $i < count($chat); $i++){
+                    $chatId = $chat[$i]["id"];
+                    $chatUser = $pm->load("EChatUser", array("chatId" => $chatId));
+
+                    $users = array();
+                    for($i = 0; $i < count($chatUser); $i++){
+                        $users[] = $chatUser[$i]["userId"];
+                    }
+
+                    if(in_array($user->getId(), $users)){
+                        $exists = true;
+                    }
+                }
+            }
+
+            if(!$exists && $user->getId() != $post["userId"]){
                 $datetime = date("Y-m-d H:i:s");
                 $chat = new EChat(0, $postSaleId, "sale" ,$datetime);
                 $chatId = $pm->store($chat);
@@ -596,6 +614,48 @@
 
             header("Location: /user/chats");
             exit();
+        }
+
+        public function isBought() {
+            $session = USession::getInstance();
+            $user = $session->load("user");
+
+            if($user == null){
+                header("Location: /login");
+                exit();
+            }
+
+            $postSaleId = $_POST["postSaleId"];
+            $pm = new FPersistentManager();
+
+            $post = $pm->load("EPostSale", array("id" => $postSaleId))[0];
+            if($user->getId() == $post["userId"]) {
+                echo 1;
+                exit();
+            }
+
+            $chat = $pm->load("EChat", array("postId" => $postSaleId));
+
+            $exists = 0;
+            if($chat != null){
+                for($i = 0; $i < count($chat); $i++){
+                    //echo $postSaleId." ".$i."\n";
+                    $chatId = $chat[$i]["id"];
+                    $chatUser = $pm->load("EChatUser", array("chatId" => $chatId));
+
+                    $users = array();
+                    for($i = 0; $i < count($chatUser); $i++){
+                        $users[] = $chatUser[$i]["userId"];
+                    }
+
+                    if(in_array($user->getId(), $users)){
+                        $exists = 1;
+                        break;
+                    }
+                }
+            }
+
+            echo $exists;
         }
     }
 ?>
