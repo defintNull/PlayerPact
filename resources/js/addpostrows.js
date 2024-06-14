@@ -125,11 +125,10 @@ async function addrows(rows,type) {
                     document.getElementById("post-buy").value = "Buy";
                 } else if (response == 1) {
                     document.getElementById("post-buy").value = "Chat created";
-                } // else if (response == 2) {
-                //     document.getElementById("post-buy").value = "You are\nthe owner";
-                //     document.getElementById("post-buy").disabled = true;
-                // }
-                
+                } else if (response == 2) {
+                    document.getElementById("post-buy").value = "You are\nthe owner";
+                    document.getElementById("post-buy").disabled = true;
+                }
                 document.getElementById("post-buy").id = row.id + "-post-buy";
             }).catch(function(error) {
                 console.error("Error:", error);

@@ -11,9 +11,11 @@ $(document).on('click', '.savePostButton', function() {
             if(document.getElementById(postSaleId + "-save-post-image").value == 0) {
                 document.getElementById(postSaleId + "-save-post-image").src = "/public/saved.png";
                 document.getElementById(postSaleId + "-save-post-image").value = 1;
-            } else {
+            } else if(document.getElementById(postSaleId + "-save-post-image").value == 1) {
                 document.getElementById(postSaleId + "-save-post-image").src = "/public/save.png";
                 document.getElementById(postSaleId + "-save-post-image").value = 0;
+            } else {
+                window.location.href = "/login";
             }
         }
     });
@@ -32,9 +34,11 @@ $(document).on('click', '.participateButton', function() {
             if(document.getElementById(postTeamId + "-post-participate").value == 0) {
                 document.getElementById(postTeamId + "-post-participate").innerHTML = "Already on the team";
                 document.getElementById(postTeamId + "-post-participate").value = 1;
-            } else {
+            } else if(document.getElementById(postTeamId + "-post-participate").value == 1) {
                 document.getElementById(postTeamId + "-post-participate").innerHTML = "Team up";
                 document.getElementById(postTeamId + "-post-participate").value = 0;
+            } else {
+                window.location.href = "/login";
             }
         }
     });

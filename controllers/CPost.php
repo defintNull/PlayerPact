@@ -529,14 +529,14 @@
             $postTeamId = $_POST["postTeamId"];
 
             $pm = new FPersistentManager();
-            $participation = new EParticipation($user->getId(), $postTeamId);
             $chatId = $pm->load("EChat", array("postId" => $postTeamId, "postType" => "team"))[0]["id"];
 
             if($pm->load("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId)) == array()){
+                $participation = new EParticipation($user->getId(), $postTeamId);
                 $pm->store($participation);
                 $datetime = date("Y-m-d H:i:s");
                 $chatuser = new EChatUser($chatId, $user->getId(), $datetime);
-                echo $pm->store($chatuser);
+                $pm->store($chatuser);
             } else {
                 $pm->delete("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId));
                 $pm->delete("EChatUser", array("chatId" => $chatId,"userId" => $user->getId()));
@@ -577,23 +577,25 @@
             $postSaleId = $_POST["postSaleId"];
             $post = $pm->load("EPostSale", array("id" => $postSaleId))[0];
 
-            $chat = $pm->load("EChat", array("postId" => $postSaleId));
+            $chat = $pm->load("EChat", array("postId" => $postSaleId, "postType" => "sale"));
 
             // Se esiste una chat relativa a quel post, controllo se l'utente non è già nella chat e se non è colui che ha
             // creato il post
             $exists = false;
+            //echo count($chat);
             if($chat != null){
                 for($i = 0; $i < count($chat); $i++){
                     $chatId = $chat[$i]["id"];
                     $chatUser = $pm->load("EChatUser", array("chatId" => $chatId));
 
                     $users = array();
-                    for($i = 0; $i < count($chatUser); $i++){
-                        $users[] = $chatUser[$i]["userId"];
+                    for($j = 0; $j < count($chatUser); $j++){
+                        $users[] = $chatUser[$j]["userId"];
                     }
 
                     if(in_array($user->getId(), $users)){
                         $exists = true;
+                        break;
                     }
                 }
             }
@@ -630,11 +632,11 @@
 
             $post = $pm->load("EPostSale", array("id" => $postSaleId))[0];
             if($user->getId() == $post["userId"]) {
-                echo 1;
+                echo 2;
                 exit();
             }
 
-            $chat = $pm->load("EChat", array("postId" => $postSaleId));
+            $chat = $pm->load("EChat", array("postId" => $postSaleId, "postType" => "sale"));
 
             $exists = 0;
             if($chat != null){
@@ -644,8 +646,8 @@
                     $chatUser = $pm->load("EChatUser", array("chatId" => $chatId));
 
                     $users = array();
-                    for($i = 0; $i < count($chatUser); $i++){
-                        $users[] = $chatUser[$i]["userId"];
+                    for($j = 0; $j < count($chatUser); $j++){
+                        $users[] = $chatUser[$j]["userId"];
                     }
 
                     if(in_array($user->getId(), $users)){

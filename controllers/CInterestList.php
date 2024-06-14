@@ -9,7 +9,7 @@
 
         }
 
-        public function viewInterestListSection(int $userId) {
+        public function viewInterestListSection() {
 
         }
 
@@ -44,19 +44,13 @@
             $postSaleId = $_POST["postSaleId"];
 
             $pm = new FPersistentManager();
-            $interest = new EInterestList($user->getId(), $postSaleId);
+            
             if($pm->load("EInterestList", array("userId" => $user->getId(), "postSaleId" => $postSaleId)) == array()){
+                $interest = new EInterestList($user->getId(), $postSaleId);
                 $pm->store($interest);
             } else {
                 $pm->delete("EInterestList", array("userId" => $user->getId(), "postSaleId" => $postSaleId));
             }
-            
-        
         }
-
-        public function removeProductFromList(int $userId, int $postId) {
-            
-        }
-
     }
 ?>
