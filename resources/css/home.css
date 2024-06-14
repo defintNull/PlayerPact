@@ -92,21 +92,23 @@ body {
 .profile-image {
     position: absolute;
     right: 30;
+    border-style: solid;
+    border: #ff8800;
 }
 
 #upper-profile-image {
     height: 40px;
     max-width: 40px;
+    border-style: solid;
+    border-color: white;
 }
 
 #upper-profile-image:hover {
-    border-color: white;
-    border-style: solid;
+    border-color: #555555;
 }
 
 #upper-profile-image:active {
-    border-color: white;
-    border-style: solid;
+    border-color: #534535;
 }
 
 .active-element {
