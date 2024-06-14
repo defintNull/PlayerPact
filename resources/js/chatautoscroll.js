@@ -7,7 +7,7 @@ $(document).ready(function(){
     var offset = document.getElementById("offset").value;
     var totalcount = document.getElementById("totalcount").value;
     var type = document.getElementById("type").value;
-    const userId = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
+    const userId = document.getElementsByClassName("upper-bar-username")[0].innerHTML;
     
     $.ajax({
         url: '/autoscroll/loadbyid'+ '?id=' + userId + '&offset=' + offset + '&totalcount=' + totalcount + '&type=' + type + '&date=' + date.value + '&time=' + time.value,
@@ -64,7 +64,7 @@ function getMoreData(initialData) {
     $('.ajax-loader').show();
     $(window).off("scroll");
     if(initialData.offset == initialData.totalcount) {
-        const userId = document.getElementsByClassName("upperBarUsername")[0].innerHTML;
+        const userId = document.getElementsByClassName("upper-bar-username")[0].innerHTML;
         $.ajax({
             url: "/autoscroll/loadbyid" + '?id=' + userId + '&offset=' + initialData.offset + '&totalcount=' + initialData.totalcount + '&type=' + initialData.type + '&date=' + date.value + '&time=' + time.value,
             type: "get",

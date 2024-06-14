@@ -39,42 +39,42 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
     <body>
         <div class="container-fluid h-100">
             <div class="row justify-content-center h-100">
-                <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
-                    <div class="row h-auto pSideLogo">
-                        <div class="pLogo">
+                <div class="col-2 h-100 d-flex flex-column fixed-top side-bar">
+                    <div class="row h-auto side-logo">
+                        <div class="application-logo">
                             <img src="../../public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="VHome.php">Home</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="VHome.php">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postStandard.html">PostStandard</a>
+                                <a class="nav-link menu-element" aria-current="page" href="postStandard.html">PostStandard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postTeam.html">postTeam</a>
+                                <a class="nav-link menu-element" aria-current="page" href="postTeam.html">postTeam</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="postSale.html">postSale</a>
+                                <a class="nav-link menu-element" aria-current="page" href="postSale.html">postSale</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col h-100 d-flex flex-column pMainColumn">
-                    <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <div class="col pSearchContainer">
-                            <form class="d-flex pSearch" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
+                <div class="col h-100 d-flex flex-column main-column">
+                    <div class="row justify-content-center fixed-top z-1 upper-bar">
+                        <div class="col search-container">
+                            <form class="d-flex search-bar" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Cerca</button>
                             </form>
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
-                                <li class="pDropdown">
-                                    <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../public/defaultPropic.png" alt="Avatar" id="profileImage">
+                                <li class="dropdown-menu">
+                                    <ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="../../public/defaultPropic.png" alt="Avatar" id="upper-profile-image">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Profilo</a></li>
@@ -83,12 +83,12 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                                 </li>
                             </div>
                         <?php } else { ?>
-                            <div class="col pUpperLogin">
-                                <button type="button" class="btn-lg pUpperLoginButton">Login</button>
+                            <div class="col upper-login">
+                                <button type="button" class="btn-lg upper-login-button">Login</button>
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center text-bg-dark flex-grow-1" id="main_body">
+                    <div class="row justify-content-center text-bg-dark flex-grow-1" id="main-body">
                         
                         <!-- DATA FOR JS -->
                         <div id="post-list">

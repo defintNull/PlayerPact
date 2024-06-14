@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-12 20:17:06
+/* Smarty version 5.1.0, created on 2024-06-14 19:15:42
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6669e62298eaf8_04871211',
+  'unifunc' => 'content_666c7abe5c8c43_37721670',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '05576470cfe27632654c58ec9963ee1ba5cfc584' => 
     array (
       0 => 'postSection.html',
-      1 => 1718214088,
+      1 => 1718385340,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6669e62298eaf8_04871211 (\Smarty\Template $_smarty_tpl) {
+function content_666c7abe5c8c43_37721670 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -48,50 +48,50 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
     <body>
         <div class="container-fluid h-100">
             <div class="row justify-content-center h-100">
-                <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
-                    <div class="row h-auto pSideLogo">
-                        <div class="pLogo">
+                <div class="col-2 h-100 d-flex flex-column fixed-top side-bar">
+                    <div class="row h-auto side-logo">
+                        <div class="application-logo">
                             <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team posts</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/post/team">Team posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sale">Sale posts</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/post/sale">Sale posts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">New post</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="/post/create">New post</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col h-100 d-flex flex-column pMainColumn">
-                    <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <div class="col pSearchContainer">
-                            <form class="d-flex pSearch" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
+                <div class="col h-100 d-flex flex-column main-column">
+                    <div class="row justify-content-center fixed-top z-1 upper-bar">
+                        <div class="col search-container">
+                            <form class="d-flex search-bar" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Search</button>
                             </form>
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
-                            <div class="col pImgCol">
-                                <li class="pDropdown">
-                                    <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="col">
+                                <li class="dropdown-profile-image">
+                                    <ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
-" alt="Avatar" id="profileImage">
+" alt="Avatar" id="upper-profile-image">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
@@ -102,12 +102,12 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
                                 </li>
                             </div>
                         <?php } else { ?>
-                            <div class="col pUpperLogin">
-                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
+                            <div class="col upper-login">
+                                <a href="/login" type="button" class="btn-lg upper-login-button">Login</a>
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main-body">
                         
                         <!-- DATA FOR JS -->
                         <!-- <div class="post_section" id="post-list"> -->

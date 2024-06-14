@@ -45,44 +45,44 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
     <body>
         <div class="container-fluid h-100">
             <div class="row justify-content-center h-100">
-                <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
-                    <div class="row h-auto pSideLogo">
-                        <div class="pLogo">
+                <div class="col-2 h-100 d-flex flex-column fixed-top side-bar">
+                    <div class="row h-auto side-logo">
+                        <div class="application-logo">
                             <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">Miei post</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/profile">Miei post</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Post salvati</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/saved">Post salvati</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Partecipazioni</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/participated">Partecipazioni</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chat</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/chats">Chat</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy e sicurezza</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/privacy">Privacy e sicurezza</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col h-100 d-flex flex-column pMainColumn">
-                    <div class="row justify-content-center fixed-top z-1 pUpperBar">
+                <div class="col h-100 d-flex flex-column main-column">
+                    <div class="row justify-content-center fixed-top z-1 upper-bar">
                         <div class="upperBar">
                             <a>Pagina profilo di </a>
-                            <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
+                            <a class="upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
 </a>
                         </div>
                     </div>
-                    <div class="row justify-content-center flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main-body">
                         
                         <div class="single-post-section">
                             <div class="row single-post" id="<?php echo $_smarty_tpl->getValue('chatId');?>
@@ -113,7 +113,7 @@ $_smarty_current_dir = 'C:\\Users\\Lorenzo\\Desktop\\PlayerPact\\resources\\Smar
                             <div class="commentSection" id="commentSection"></div>
                         </div>
                         
-                        <div class=message_section id=message-list>
+                        <div class=message-section id=message-list>
                                 
                         </div>
                         <div class="ajax-loader text-center">

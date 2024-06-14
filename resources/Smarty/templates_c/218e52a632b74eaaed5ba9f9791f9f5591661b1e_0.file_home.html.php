@@ -33,44 +33,44 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
     <body>
         <div class="container-fluid h-100">
             <div class="row justify-content-center h-100">
-                <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
-                    <div class="row h-auto pSideLogo">
-                        <div class="pLogo">
+                <div class="col-2 h-100 d-flex flex-column fixed-top side-bar">
+                    <div class="row h-auto side-logo">
+                        <div class="application-logo">
                             <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/standard">Forum</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/post/standard">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/team">Team posts</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/post/team">Team posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/post/sale">Sale posts</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/post/sale">Sale posts</a>
                             </li>
                         </ul>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/post/create">New post</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="/post/create">New post</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col h-100 d-flex flex-column pMainColumn">
-                    <div class="row justify-content-center fixed-top z-1 pUpperBar">
+                <div class="col h-100 d-flex flex-column main-column">
+                    <div class="row justify-content-center fixed-top z-1 upper-bar">
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="col pImgCol">
-                                <li class="pDropdown">
-                                    <ul class="nav-link pProfileImage" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <li class="dropdown-menu">
+                                    <ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img src=<?php echo $_smarty_tpl->getValue('profilePicture');?>
- alt="Avatar" id="profileImage">
+ alt="Avatar" id="upper-profile-image">
                                     </ul>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
@@ -81,32 +81,32 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
                                 </li>
                             </div>
                         <?php } else { ?>
-                            <div class="pUpperLogin">
-                                <a href="/login" type="button" class="btn-lg pUpperLoginButton">Login</a>
+                            <div class="upper-login">
+                                <a href="/login" type="button" class="btn-lg upper-login-button">Login</a>
                             </div>
                         <?php }?>
                     </div>
-                    <div class="row justify-content-center flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main-body">
                         <div class="pBanner">
                             <img src="/public/banner.png">
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
-                            <div class="pWelcome">
+                            <div class="welcome-text">
                                 <a>Welcome</a>
-                                <a class="pUsername"><?php echo $_smarty_tpl->getValue('username');?>
+                                <a class="welcome-text-username"><?php echo $_smarty_tpl->getValue('username');?>
 </a>
                                 <a>!</a>
                             </div>
                         <?php } else { ?>
-                            <div class="pWelcome">
+                            <div class="welcome-text">
                                 <a>Welcome to PlayerPact</a>
                             </div>
                             <a>Here you can look for new friends to play online with, buy a new video game or simply express your thoughts on the world of video games!</a>
                             <div class="col">
-                                <a href="/login/registration" type="button" class="btn-lg pHomeButton">Sign up</a>
+                                <a href="/login/registration" type="button" class="btn-lg home-button">Sign up</a>
                             </div>
                             <div class="col">
-                                <a href="/login" type="button" class="btn-lg pHomeButton">Login</a>
+                                <a href="/login" type="button" class="btn-lg home-button">Login</a>
                             </div>
                         <?php }?>
                     </div>

@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-.sideBar {
+.side-bar {
     width: 15%;
     min-width: 150px;
 }
@@ -27,7 +27,7 @@ body {
     background-color: #222222;
 }
 
-.pLogo {
+.application-logo {
     padding: 0;
     margin: 0;
     border-color: white;
@@ -42,14 +42,14 @@ body {
     width: 150px;
 }
 
-.pSideLogo {
+.side-logo {
     display: block;
     background-color: #222222;
     border-color: white;
     border-style: none solid none none;
 }
 
-.pSideNav {
+.side-nav {
     display: block;
     padding: 5%;
     padding-top: 7%;
@@ -58,11 +58,11 @@ body {
     border-style: none solid none none;
 }
 
-.pMainColumn {
+.main-column {
     margin-left: max(15%, 150px);    
 }
 
-.pUpperBar {
+.upper-bar {
     color: white;
     background-color: #222222;
     text-align: center;
@@ -74,93 +74,88 @@ body {
     min-width: 350px
 }
 
-.pSearchContainer {
+.search-container {
     min-width: max(75%, 250px);
 }
 
-.pSearch {
+.search-bar {
     padding-left: 35%;
     padding-right: 10%;
     padding-top: 10px;
-
 }
 
-.pImgCol {
-    min-width: max(25%, 70px);
-}
-
-.pDropdown {
+.dropdown-profile-image {
     list-style-type: none;
     padding-top: 10px;
 }
 
-#profileImage {
-    height: 40px;
-    max-width: 40px;
-}
-
-#profileImage:hover {
-    border-color: white;
-    border-style: solid;
-}
-
-#profileImage:active {
-    border-color: white;
-    border-style: solid;
-}
-
-.pProfileImage {
+.profile-image {
     position: absolute;
     right: 30;
 }
 
-.pActive {
+#upper-profile-image {
+    height: 40px;
+    max-width: 40px;
+}
+
+#upper-profile-image:hover {
+    border-color: white;
+    border-style: solid;
+}
+
+#upper-profile-image:active {
+    border-color: white;
+    border-style: solid;
+}
+
+.active-element {
     background-color: #ff8800;
     text-align: center;
     transition: none;
 }
 
-.pActive:hover {
+.active-element:hover {
     color: white;
     transition: none;
     background-color:333333;
 }
 
-.pMenuElement {
+.menu-element {
     color: white;
     text-decoration: none;
     text-align: center;
     transition: none;
 }
 
-.pMenuElement:hover {
+.menu-element:hover {
     color:white;
     background-color: #333333;
     transition: none;
 }
 
-.pMenuElement:active {
+.menu-element:active {
     color: white;
     background-color: #534535;
 }
 
-#main_body {
+#main-body {
     margin-top: 60px;
     text-align: center;
     min-width: 400px;
 }
 
-.pWelcome {
+.welcome-text {
     font-size: 72px;
 }
 
-.pUsername {
+.welcome-text-username {
     color:white;
     text-decoration: none;
     font-weight: 700;
 }
 
-.pHomeButton {
+.home-button {
     color:white;
     text-decoration: none;
     background-color: #ff8800;
@@ -173,18 +168,18 @@ body {
     font-size: 30px;
 }
 
-.pHomeButton:hover {
+.home-button:hover {
     color:white;
     background-color: #333333;
     transition: none;
 }
 
-.pHomeButton:active {
+.home-button:active {
     color:white;
     background-color: #534535;
 }
 
-.pUpperLoginButton {
+.upper-login-button {
     color: white;
     text-decoration: none;
     background-color: #ff8800;
@@ -197,13 +192,13 @@ body {
     right: 30;
 }
 
-.pUpperLoginButton:hover {
+.upper-login-button:hover {
     color:white;
     background-color: #333333;
     transition: none;
 }
 
-.pUpperLoginButton:active {
+.upper-login-button:active {
     color:white;
     background-color: #534535;
 }
@@ -242,4 +237,6 @@ body {
     max-width: 100%;
     margin: 0;
     padding: 0;
+    border-color: white;
+    border-style: none none solid none;
 }

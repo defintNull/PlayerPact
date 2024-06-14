@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-13 00:25:30
+/* Smarty version 5.1.0, created on 2024-06-14 19:02:44
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666a205a833c89_14519701',
+  'unifunc' => 'content_666c77b4ce8329_23943963',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5dd17f7a8296278710609c87463f6e62256a2333' => 
     array (
       0 => 'privacy.html',
-      1 => 1718214088,
+      1 => 1718384561,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666a205a833c89_14519701 (\Smarty\Template $_smarty_tpl) {
+function content_666c77b4ce8329_23943963 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -41,44 +41,41 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
     <body>
         <div class="container-fluid h-100">
             <div class="row justify-content-center h-100">
-                <div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
-                    <div class="row h-auto pSideLogo">
-                        <div class="pLogo">
+                <div class="col-2 h-100 d-flex flex-column fixed-top side-bar">
+                    <div class="row h-auto side-logo">
+                        <div class="application-logo">
                             <img src="/public/Logo.png" id="logo">
                         </div>
                     </div>
                     <div class="row justify-content-center text-bg-dark flex-grow-1">
-                        <ul class="nav nav-pills pSideNav">
+                        <ul class="nav nav-pills side-nav">
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement pActive" aria-current="page" href="/user/home">Home</a>
+                                <a class="nav-link menu-element active-element" aria-current="page" href="/user/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/profile">My posts</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/profile">My posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/saved">Saved posts</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/saved">Saved posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/participated">Teams</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/participated">Teams</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/chats">Chats</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/chats">Chats</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link pMenuElement" aria-current="page" href="/user/privacy">Privacy settings</a>
+                                <a class="nav-link menu-element" aria-current="page" href="/user/privacy">Privacy settings</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col h-100 d-flex flex-column pMainColumn">
-                    <div class="row justify-content-center fixed-top z-1 pUpperBar">
-                        <div class="upperBar">
-                            <a class="upperBarUsername"><?php echo $_smarty_tpl->getValue('username');?>
-</a>
-                            <a> profile page</a>
-                        </div>
+                <div class="col h-100 d-flex flex-column main-column">
+                    <div class="row justify-content-center fixed-top z-1 upper-bar">
+                        <a><span class="username upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
+</span> profile page</a>
                     </div>
-                    <div class="row justify-content-center flex-grow-1" id="main_body">
+                    <div class="row justify-content-center flex-grow-1" id="main-body">
                         <!-- AGGIUNGERE CAMBIO FOTO PROFILO -->
                         <div class="col privacy-page-body">
                             <div class="row privacy-row">
