@@ -231,3 +231,15 @@ body {
     color:white;
     background-color: #534535;
 }
+
+.home-banner-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.home-banner {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}

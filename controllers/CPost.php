@@ -147,7 +147,7 @@
 
             $authenticated = false;
             $username = null;
-            $PPImageURL = "/public/4.png";                
+            $PPImageURL = "/public/defaultPropic.png";                
             if($user != null){
                 $authenticated = true;
                 $username = $user->getUsername();
@@ -170,7 +170,7 @@
 
             $authenticated = false;
             $username = null;
-            $PPImageURL = "/public/4.png";
+            $PPImageURL = "/public/defaultPropic.png";
             if($user != null){
                 $authenticated = true;
                 $username = $user->getUsername();
@@ -193,7 +193,7 @@
 
             $authenticated = false;
             $username = null;
-            $PPImageURL = "/public/4.png"; 
+            $PPImageURL = "/public/defaultPropic.png"; 
             if($user != null){
                 $authenticated = true;
                 $username = $user->getUsername();
@@ -219,7 +219,7 @@
 
             $authenticated = false;
             $username = null;
-            $PPImageURL = "/public/4.png";
+            $PPImageURL = "/public/defaultPropic.png";
             if($sessionUser != null){
                 $authenticated = true;
                 $username = $sessionUser->getUsername();

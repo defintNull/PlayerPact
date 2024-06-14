@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-12 20:17:03
+/* Smarty version 5.1.0, created on 2024-06-14 17:00:01
   from 'file:home.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_6669e61fc1f0b2_54172432',
+  'unifunc' => 'content_666c5af118f6c1_62693231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7b5be2460b5396e6fa62bd263195951ae7da4c6b' => 
     array (
       0 => 'home.html',
-      1 => 1718214088,
+      1 => 1718377185,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6669e61fc1f0b2_54172432 (\Smarty\Template $_smarty_tpl) {
+function content_666c5af118f6c1_62693231 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
     <head>
@@ -87,8 +87,8 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
                         <?php }?>
                     </div>
                     <div class="row justify-content-center flex-grow-1" id="main_body">
-                        <div class="pBanner">
-                            <img src="/public/banner.png">
+                        <div class="home-banner-container">
+                            <img class="home-banner" src="/public/banner.png">
                         </div>
                         <?php if ($_smarty_tpl->getValue('authenticated') == true) {?>
                             <div class="pWelcome">

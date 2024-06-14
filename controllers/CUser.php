@@ -18,7 +18,7 @@ use Smarty\Compile\PrintExpressionCompiler;
             
             $username = null;
             $authenticated = false;
-            $PPImageURL = "/public/4.png";
+            $PPImageURL = "/public/defaultPropic.png";
             $params = array();
 
             if($user != null){
@@ -280,7 +280,7 @@ use Smarty\Compile\PrintExpressionCompiler;
 
             $username = $user->getUsername();
             $password = $user->getPassword();
-            $PPImageURL = "/public/4.png";
+            $PPImageURL = "/public/defaultPropic.png";
             if($user->getImage() != "") {
                 $PPImageURL = "data:image/png;base64,".base64_encode($user->getImage());
             }
