@@ -1,28 +1,28 @@
 body {
-    color: white;
-    background-color: #222222;
-    margin-left: 35%;
-    margin-right: 35%;
-    text-align: center;
+	color: white;
+	background-color: #222222;
+	margin-left: 35%;
+	margin-right: 35%;
+	text-align: center;
 }
 
 .form-body {
-    margin-top: 30%;
+	margin-top: 30%;
 }
 
 .confirmReportButton {
-    color: white;
-    background-color: #ff8800;
-    transition-duration: 0s;
+	color: white;
+	background-color: #ff8800;
+	transition-duration: 0s;
 }
 
 .confirmReportButton:hover {
-    color: white;
-    background-color: #333333;
-    transition-duration: 0s;
+	color: white;
+	background-color: #333333;
+	transition-duration: 0s;
 }
 
 .title-report-section {
-    font-size: x-large;
-    margin-top: 20%;
+	font-size: x-large;
+	margin-top: 20%;
 }

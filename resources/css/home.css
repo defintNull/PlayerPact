@@ -1,244 +1,244 @@
 body {
-    background-color: #222222;
-    color: white;
+	background-color: #222222;
+	color: white;
 }
 
 .side-bar {
-    width: 15%;
-    min-width: 150px;
+	width: 15%;
+	min-width: 150px;
 }
 
-.dropdown-menu{
-    background-color: #222222;
+.dropdown-menu {
+	background-color: #222222;
 }
 
 .dropdown-item {
-    color: white;
+	color: white;
 }
 
 .usermenu-username {
-    color: coral;
-    background-color: #222222;
-    text-decoration: none;
+	color: coral;
+	background-color: #222222;
+	text-decoration: none;
 }
 
 .usermenu-username:hover {
-    color: coral;
-    background-color: #222222;
+	color: coral;
+	background-color: #222222;
 }
 
 .application-logo {
-    padding: 0;
-    margin: 0;
-    border-color: white;
-    border-style: none none solid none;
-    border-spacing: 15px 10px;
+	padding: 0;
+	margin: 0;
+	border-color: white;
+	border-style: none none solid none;
+	border-spacing: 15px 10px;
 }
 
 #logo {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 150px;
 }
 
 .side-logo {
-    display: block;
-    background-color: #222222;
-    border-color: white;
-    border-style: none solid none none;
+	display: block;
+	background-color: #222222;
+	border-color: white;
+	border-style: none solid none none;
 }
 
 .side-nav {
-    display: block;
-    padding: 5%;
-    padding-top: 7%;
-    background-color: #222222;
-    border-color: white;
-    border-style: none solid none none;
+	display: block;
+	padding: 5%;
+	padding-top: 7%;
+	background-color: #222222;
+	border-color: white;
+	border-style: none solid none none;
 }
 
 .main-column {
-    margin-left: max(15%, 150px);    
+	margin-left: max(15%, 150px);
 }
 
 .upper-bar {
-    color: white;
-    background-color: #222222;
-    text-align: center;
-    border-color: #d1d1d1;
-    border-style: none none solid none;
-    height: 60px;
-    padding-bottom: 10;
-    margin-left: max(15%, 150px);
-    min-width: 350px
+	color: white;
+	background-color: #222222;
+	text-align: center;
+	border-color: #d1d1d1;
+	border-style: none none solid none;
+	height: 60px;
+	padding-bottom: 10;
+	margin-left: max(15%, 150px);
+	min-width: 350px;
 }
 
 .search-container {
-    min-width: max(75%, 250px);
+	min-width: max(75%, 250px);
 }
 
 .search-bar {
-    padding-left: 35%;
-    padding-right: 10%;
-    padding-top: 10px;
+	padding-left: 35%;
+	padding-right: 10%;
+	padding-top: 10px;
 }
 
 .dropdown-profile-image {
-    list-style-type: none;
-    padding-top: 10px;
+	list-style-type: none;
+	padding-top: 10px;
 }
 
 .profile-image {
-    position: absolute;
-    right: 30;
-    border-style: solid;
-    border: #ff8800;
+	position: absolute;
+	right: 30;
+	border-style: solid;
+	border: #ff8800;
 }
 
 #upper-profile-image {
-    height: 40px;
-    max-width: 40px;
-    border-style: solid;
-    border-color: white;
+	height: 40px;
+	max-width: 40px;
+	border-style: solid;
+	border-color: white;
 }
 
 #upper-profile-image:hover {
-    border-color: #555555;
+	border-color: #555555;
 }
 
 #upper-profile-image:active {
-    border-color: #534535;
+	border-color: #534535;
 }
 
 .active-element {
-    background-color: #ff8800;
-    text-align: center;
-    transition: none;
+	background-color: #ff8800;
+	text-align: center;
+	transition: none;
 }
 
 .active-element:hover {
-    color: white;
-    transition: none;
-    background-color:333333;
+	color: white;
+	transition: none;
+	background-color: 333333;
 }
 
 .menu-element {
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    transition: none;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	transition: none;
 }
 
 .menu-element:hover {
-    color:white;
-    background-color: #333333;
-    transition: none;
+	color: white;
+	background-color: #333333;
+	transition: none;
 }
 
 .menu-element:active {
-    color: white;
-    background-color: #534535;
+	color: white;
+	background-color: #534535;
 }
 
 #main-body {
-    margin-top: 60px;
-    text-align: center;
-    min-width: 400px;
+	margin-top: 60px;
+	text-align: center;
+	min-width: 400px;
 }
 
 .welcome-text {
-    font-size: 72px;
+	font-size: 72px;
 }
 
 .welcome-text-username {
-    color:white;
-    text-decoration: none;
-    font-weight: 700;
+	color: white;
+	text-decoration: none;
+	font-weight: 700;
 }
 
 .home-button {
-    color:white;
-    text-decoration: none;
-    background-color: #ff8800;
-    transition: none;
-    border: none;
-    padding: 20px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    width: 40%;
-    font-size: 30px;
+	color: white;
+	text-decoration: none;
+	background-color: #ff8800;
+	transition: none;
+	border: none;
+	padding: 20px;
+	margin: 4px 2px;
+	border-radius: 8px;
+	width: 40%;
+	font-size: 30px;
 }
 
 .home-button:hover {
-    color:white;
-    background-color: #333333;
-    transition: none;
+	color: white;
+	background-color: #333333;
+	transition: none;
 }
 
 .home-button:active {
-    color:white;
-    background-color: #534535;
+	color: white;
+	background-color: #534535;
 }
 
 .upper-login-button {
-    color: white;
-    text-decoration: none;
-    background-color: #ff8800;
-    transition: none;
-    border: none;
-    padding: 10px;
-    margin: 7px 2px;
-    border-radius: 8px;
-    position: absolute;
-    right: 30;
+	color: white;
+	text-decoration: none;
+	background-color: #ff8800;
+	transition: none;
+	border: none;
+	padding: 10px;
+	margin: 7px 2px;
+	border-radius: 8px;
+	position: absolute;
+	right: 30;
 }
 
 .upper-login-button:hover {
-    color:white;
-    background-color: #333333;
-    transition: none;
+	color: white;
+	background-color: #333333;
+	transition: none;
 }
 
 .upper-login-button:active {
-    color:white;
-    background-color: #534535;
+	color: white;
+	background-color: #534535;
 }
 
 .button {
-    color:white;
-    background-color: #ff8800;
-    text-decoration: none;
-    transition: none;
-    border: none;
-    padding: 20px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    width: 40%;
-    font-size: 30px;
+	color: white;
+	background-color: #ff8800;
+	text-decoration: none;
+	transition: none;
+	border: none;
+	padding: 20px;
+	margin: 4px 2px;
+	border-radius: 8px;
+	width: 40%;
+	font-size: 30px;
 }
 
 .button:hover {
-    color:white;
-    background-color: #333333;
-    transition: none;
+	color: white;
+	background-color: #333333;
+	transition: none;
 }
 
 .button:active {
-    color:white;
-    background-color: #534535;
+	color: white;
+	background-color: #534535;
 }
 
 .home-banner-container {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .home-banner {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    border-color: white;
-    border-style: none none solid none;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+	border-color: white;
+	border-style: none none solid none;
 }

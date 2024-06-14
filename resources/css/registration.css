@@ -1,38 +1,38 @@
 body {
-    background-color: #222222;
+	background-color: #222222;
 }
 
 .missing {
-    color: red;
+	color: red;
 }
 
 .existing {
-    color: red;
+	color: red;
 }
 
 .registration-text {
-    padding-top: 15px;
-    color: white;
+	padding-top: 15px;
+	color: white;
 }
 
 .card {
-    background-color: #222222;
-    color: white;
+	background-color: #222222;
+	color: white;
 }
 
 .send {
-    background-color: ff8800;
-    color: white;
-    font-size: larger;
-    border: none;
-    border-radius: 5px;
-    padding: 15 20 15 20;
+	background-color: ff8800;
+	color: white;
+	font-size: larger;
+	border: none;
+	border-radius: 5px;
+	padding: 15 20 15 20;
 }
 
 .send:hover {
-    background-color: #333333;
+	background-color: #333333;
 }
 
 .send:active {
-    background-color: #534535;
+	background-color: #534535;
 }

@@ -1,147 +1,147 @@
 body {
-    background-color: #222222;
-    color: white;
+	background-color: #222222;
+	color: white;
 }
 
 #createPostPage {
-    margin-left: 35%;
-    margin-right: 35%;
-    margin-top: 15%;
-    text-align: center;
+	margin-left: 35%;
+	margin-right: 35%;
+	margin-top: 15%;
+	text-align: center;
 }
 
 #dropdown {
-    color: white;
-    background-color: #222222;
-    padding-bottom: 10px;
+	color: white;
+	background-color: #222222;
+	padding-bottom: 10px;
 }
 
 .dropdown {
-    margin-bottom: 50px;
-    color: white;
-    background-color: #222222;
+	margin-bottom: 50px;
+	color: white;
+	background-color: #222222;
 }
 
 .dropdown-menu {
-    background-color: #222222;
+	background-color: #222222;
 }
 
 .dropdown-menu a {
-    width: 200px;
-    background-color: #222222;
-    color:white;
+	width: 200px;
+	background-color: #222222;
+	color: white;
 }
 
 .dropdown-menu a:hover {
-    color: white;
-    background-color: #333333;
+	color: white;
+	background-color: #333333;
 }
 
 .postButton {
-    color: white;
-    background-color: #ff8800;
-    padding: 10 10 10 10;
-    border-radius: 10px;
-    transition: none;
-    border: none;
+	color: white;
+	background-color: #ff8800;
+	padding: 10 10 10 10;
+	border-radius: 10px;
+	transition: none;
+	border: none;
 }
 
 .postButton:hover {
-    color:white;
-    background-color: #333333;
-    transition: none;
+	color: white;
+	background-color: #333333;
+	transition: none;
 }
 
 .postButton:active {
-    color:white;
-    background-color: #534535;
+	color: white;
+	background-color: #534535;
 }
 
 .form-control {
-    background-color: #222222;
-    color: white;
+	background-color: #222222;
+	color: white;
 }
 
 .form-control::placeholder {
-    color: white;
+	color: white;
 }
 
 .form-control:focus {
-    color: white;
-    background-color: #222222;
+	color: white;
+	background-color: #222222;
 }
 
 .price {
-    width: 100px;
-    position: relative;
+	width: 100px;
+	position: relative;
 }
-  
+
 .price > i {
-    position: absolute;
-    display: block;
-    transform: translate(0, -50%);
-    top: 50%;
-    pointer-events: none;
-    width: 25px;
-    text-align: center;
-    font-style: normal;
+	position: absolute;
+	display: block;
+	transform: translate(0, -50%);
+	top: 50%;
+	pointer-events: none;
+	width: 25px;
+	text-align: center;
+	font-style: normal;
 }
-  
+
 .price > input {
-    padding-left: 25px;
-    padding-right: 0;
+	padding-left: 25px;
+	padding-right: 0;
 }
-  
- .price-right > i {
-    right: 0;
+
+.price-right > i {
+	right: 0;
 }
-  
+
 .price-right > input {
-    padding-left: 0;
-    padding-right: 25px;
-    text-align: right;
+	padding-left: 0;
+	padding-right: 25px;
+	text-align: right;
 }
 
 .image {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 
 .gametime {
-    width: 100px;
+	width: 100px;
 }
 
 .playerCounter {
-    width: 70px;
-    padding-bottom: 15px;
+	width: 70px;
+	padding-bottom: 15px;
 }
 
 .maxPlayers {
-    width: 70px;
+	width: 70px;
 }
 
 input {
-    color-scheme: dark;
+	color-scheme: dark;
 }
 
 /* Chrome, Safari, Edge, Opera */
 .price input::-webkit-outer-spin-button,
 .price input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 /* Firefox */
-.price input[type=number] {
-    appearance: textfield;
-    -moz-appearance: textfield;
+.price input[type="number"] {
+	appearance: textfield;
+	-moz-appearance: textfield;
 }
 
 .error {
-    color: red;
+	color: red;
 }
 
 .backHome {
-    position: fixed;
-    top: 0;
-    padding: 20px;
+	position: fixed;
+	top: 0;
+	padding: 20px;
 }

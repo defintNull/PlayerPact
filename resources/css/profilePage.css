@@ -1,80 +1,80 @@
 .upper-bar-username {
-    padding-top: 5px;
-    font-size: 30px;
-    font-weight: 700;
+	padding-top: 5px;
+	font-size: 30px;
+	font-weight: 700;
 }
 
 .upper-bar {
-    padding-top: 5px;
-    font-size: 30px;
+	padding-top: 5px;
+	font-size: 30px;
 }
 
 .username {
-    color: coral;
-    text-decoration: none;
+	color: coral;
+	text-decoration: none;
 }
 
 .privacy-page-item {
-    padding: 0;
-    margin: 0;
-    top:0;
-    height: 40px;
-    max-width: 100px;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	height: 40px;
+	max-width: 100px;
 }
 
 .password {
-    text-decoration: none;
-    color: white;
+	text-decoration: none;
+	color: white;
 }
 
 .privacy-page-body {
-    padding-top: 100px;
-    margin-left: 20%;
-    margin-right: 20%;
-    padding-left: 15%;
-    padding-right: 15%;
-    min-width: 300px;
+	padding-top: 100px;
+	margin-left: 20%;
+	margin-right: 20%;
+	padding-left: 15%;
+	padding-right: 15%;
+	min-width: 300px;
 }
 
 .btn {
-    color: white;
-    background-color: #ff8800;
-    transition: none;
-    border: none;
+	color: white;
+	background-color: #ff8800;
+	transition: none;
+	border: none;
 }
 
 .btn:hover {
-    color: white;
-    background-color: #333333;
-    transition: none;
+	color: white;
+	background-color: #333333;
+	transition: none;
 }
 
 .btn:active {
-    color: white;
-    background-color: #534535;
-    transition: none;
+	color: white;
+	background-color: #534535;
+	transition: none;
 }
 
 #big-profile-image {
-    min-width: 100px;
-    max-width: 200px;
-    min-height: 100px;
-    max-height: 200px;
+	min-width: 100px;
+	max-width: 200px;
+	min-height: 100px;
+	max-height: 200px;
 }
 
 #big-profile-image:hover {
-    border-color: white;
-    border-style: solid;
+	border-color: white;
+	border-style: solid;
 }
 
 #big-profile-image:active {
-    border-color: white;
-    border-style: solid;
+	border-color: white;
+	border-style: solid;
 }
 
 .privacy-row {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 10px;
 }

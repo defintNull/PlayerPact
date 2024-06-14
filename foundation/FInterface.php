@@ -1,5 +1,6 @@
 <?php
-    interface FInterface {
-        public function getValues();
-    }
+interface FInterface
+{
+    public function getValues();
+}
 ?>
