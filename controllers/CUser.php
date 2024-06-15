@@ -150,7 +150,6 @@ class CUser
                 $posttitle = $pm->load("EPostTeam", array("id" => $chat->getPostId()))[0]["title"];
                 $values[$i]["posttitle"] = $posttitle;
                 $values[$i]["username"] = null;
-
             } else if ($chat->getPostType() == "sale") {
                 $posttitle = $pm->load("EPostSale", array("id" => $chat->getPostId()))[0]["title"];
                 $values[$i]["posttitle"] = $posttitle;
@@ -238,7 +237,6 @@ class CUser
                 "description" => $message->getDescription(),
                 "datetime" => $message->getDateTime()
             );
-
         }
 
         return array($values, $count);
@@ -320,8 +318,8 @@ class CUser
             header("Location: /login");
             exit();
         }
+        
         $image = null;
-
         if (isset($_FILES["newProfileImage"]['name']) && $_FILES["newProfileImage"]['error'] == 0) {
             $file_tmp_path = $_FILES["newProfileImage"]['tmp_name'];
             $file_name = $_FILES["newProfileImage"]['name'];
@@ -350,10 +348,8 @@ class CUser
         echo var_dump($file_size);
 
         $pm = new FPersistentManager();
-        $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $image);
+        $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBirthdate(), $user->getEmail(), $image);
         $pm->update($newUser, array("id" => $user->getId()));
-
-        //echo var_dump($newUser);
 
         $session->set("user", $newUser);
 
