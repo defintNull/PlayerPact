@@ -29,7 +29,12 @@ $(document).on("click", "#confirm-change-email", function () {
 		type: "POST",
 		data: { newEmail: newEmail },
 		success: function (response) {
-			//console.log(response);
+			console.log(response);
+			if (response == "error_email") {
+				window.location.href = "/user/privacy?info=error_email";
+			} else {
+				window.location.href = "/user/privacy";
+			}
 		},
 	});
 });
@@ -56,8 +61,12 @@ $(document).on("click", "#confirm-change-username", function () {
 		type: "POST",
 		data: { newUsername: newUsername },
 		success: function (response) {
-			//console.log(response);
-			document.getElementsByClassName("upper-bar-username")[0].textContent = newUsername;
+			if (response == "error_username") {
+				window.location.href = "/user/privacy?info=error_username";
+			}
+			else {
+				window.location.href = "/user/privacy";
+			}
 		},
 	});
 });
@@ -84,7 +93,12 @@ $(document).on("click", "#confirm-change-password", function () {
 		type: "POST",
 		data: { newPassword: newPassword },
 		success: function (response) {
-			//console.log(response);
+			console.log(response);
+			if (response == "error_password") {
+				window.location.href = "/user/privacy?info=error_password";
+			} else {
+				window.location.href = "/user/privacy";
+			}
 		},
 	});
 });

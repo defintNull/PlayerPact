@@ -281,7 +281,7 @@ class CUser
         echo count($res);
     }
 
-    public function privacy()
+    public function privacy($info = "ok")
     {
         $session = USession::getInstance();
         $user = $session->load("user");
@@ -304,7 +304,8 @@ class CUser
             "email" => $email,
             "username" => $username,
             "censuredPassword" => str_repeat("a", strlen($password)),
-            "profilePicture" => $PPImageURL
+            "profilePicture" => $PPImageURL,
+            "info" => $info
         );
         $view->showPrivacyPage($params);
     }
@@ -320,13 +321,14 @@ class CUser
         }
         
         $image = null;
+
         if (isset($_FILES["newProfileImage"]['name']) && $_FILES["newProfileImage"]['error'] == 0) {
             $file_tmp_path = $_FILES["newProfileImage"]['tmp_name'];
             $file_name = $_FILES["newProfileImage"]['name'];
             $file_size = $_FILES["newProfileImage"]['size']; // in byte
 
             if ($file_size > 5 * 1024 * 1024) {
-                header("Location: /error/e404"); // Aggiungere messaggio a schermo
+                header("Location: /user/privacy?info=error_image"); // Aggiungere messaggio a schermo
                 exit();
             }
 
@@ -335,17 +337,15 @@ class CUser
             $file_extension = strtolower(end($file_name_cmps));
 
             if (in_array($file_extension, $allowedfileExtensions)) {
-                $image = addslashes(file_get_contents($file_tmp_path));
+                $image = file_get_contents($file_tmp_path);
             } else {
-                header("Location: /error/e404");
+                header("Location: /user/privacy?info=error_image");
                 exit();
             }
         } else {
-            header("Location: /error/e404");
+            header("Location: /user/privacy?info=error_image");
             exit();
         }
-
-        echo var_dump($file_size);
 
         $pm = new FPersistentManager();
         $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBirthdate(), $user->getEmail(), $image);
@@ -370,6 +370,12 @@ class CUser
         $newEmail = $_POST["newEmail"];
 
         $pm = new FPersistentManager();
+        if ($pm->load("EProfile", array("email" => $newEmail)) !== array() || !preg_match("/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/", $newEmail)) {
+            echo "error_email";
+            exit();
+        }
+
+        
         $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $newEmail, $user->getImage());
         $oldProfile = $pm->load("EProfile", array("username" => $user->getUsername()))[0];
         $newProfile = new EProfile($oldProfile["id"], "user", $user->getUsername(), $user->getPassword(), $newEmail);
@@ -393,7 +399,8 @@ class CUser
         $newUsername = $_POST["newUsername"];
 
         $pm = new FPersistentManager();
-        if ($pm->load("EUser", array("username" => $newUsername)) != array()) {
+        if ($pm->load("EProfile", array("username" => $newUsername)) !== array() || $newUsername == "") {
+            echo "error_username";
             exit();
         }
 
@@ -418,6 +425,11 @@ class CUser
         }
 
         $newPassword = $_POST["newPassword"];
+
+        if ($newPassword == "") {
+            echo "error_password";
+            exit();
+        }
 
         $pm = new FPersistentManager();
         $newUser = new EUser($user->getId(), $user->getUsername(), $newPassword, $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $user->getImage());

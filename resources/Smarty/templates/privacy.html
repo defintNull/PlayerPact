@@ -53,6 +53,23 @@
 				</div>
 				<div class="row justify-content-center flex-grow-1" id="main-body">
 					<div class="col privacy-page-body">
+						{if $info == "error_image"}
+						<div class="row error">
+							<a>Error occurred in image loading!</a>
+						</div>
+						{else if $info == "error_email"}
+						<div class="row error">
+							<a>Error occurred in email change!</a>
+						</div>
+						{else if $info == "error_username"}
+						<div class="row error">
+							<a>Error occurred in username change!</a>
+						</div>
+						{else if $info == "error_password"}
+						<div class="row error">
+							<a>Error occurred in password change!</a>
+						</div>
+						{/if}
 						<div class="row privacy-row">
 							<form action="/user/changeProfileImage" method="post" enctype="multipart/form-data">
 								<img src="{$profilePicture}" id="big-profile-image" />
