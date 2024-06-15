@@ -212,7 +212,8 @@ class CUser
             "title" => $posttitle,
             "datetime" => $chat->getDateTime(),
             "user" => $username,
-            "nMessages" => $nMessages
+            "nMessages" => $nMessages,
+            "username" => $user->getUsername()
         );
         $view->showMessageSection($params);
     }
