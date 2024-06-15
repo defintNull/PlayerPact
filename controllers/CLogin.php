@@ -226,4 +226,3 @@ class CLogin
         exit();
     }
 }
-?>

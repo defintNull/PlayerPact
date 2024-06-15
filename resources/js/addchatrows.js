@@ -16,12 +16,12 @@ async function addrows(rows, type) {
 		document.getElementById("clickable").href += "?id=" + row.id;
 		document.getElementById("clickable").id = row.id;
 		document.getElementById("id-chat").id = row.id;
-		document.getElementById("post-title").innerHTML = row.posttitle;
+		document.getElementById("post-title").textContent = row.posttitle;
 		document.getElementById("post-title").id = row.id + "-post-title";
-		document.getElementById("chat-datetime").innerHTML = row.datetime;
+		document.getElementById("chat-datetime").textContent = row.datetime;
 		document.getElementById("chat-datetime").id = row.id + "-chat-datetime";
 		if (row.username) {
-			document.getElementById("chat-user").innerHTML = row.username;
+			document.getElementById("chat-user").textContent = row.username;
 			document.getElementById("chat-user").id = row.id + "-chat-user";
 		} else {
 			document.getElementById("chat-user").style.display = "none";

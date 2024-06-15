@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-14 20:24:41
+/* Smarty version 5.1.0, created on 2024-06-15 02:48:17
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666c8ae9439003_30103228',
+  'unifunc' => 'content_666ce4d1d87b75_95855709',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5dd17f7a8296278710609c87463f6e62256a2333' => 
     array (
       0 => 'privacy.html',
-      1 => 1718389359,
+      1 => 1718412457,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666c8ae9439003_30103228 (\Smarty\Template $_smarty_tpl) {
+function content_666ce4d1d87b75_95855709 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 	<head>
@@ -82,48 +82,49 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 				<div class="col h-100 d-flex flex-column main-column">
 					<div class="row justify-content-center fixed-top z-1 upper-bar">
 						<a><span class="username upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
-</span> profile page</a>
+</span>'s profile page</a>
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-						<!-- AGGIUNGERE CAMBIO FOTO PROFILO -->
 						<div class="col privacy-page-body">
 							<div class="row privacy-row">
-								<img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
+								<form action="/user/changeProfileImage" method="post" enctype="multipart/form-data">
+									<img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
 " id="big-profile-image" />
+									<input type="file" id="profile-image-upload" name="newProfileImage" />
+									<input type="submit" id="hidden-image-submit" />
+								</form>
 							</div>
 							<div class="row privacy-row">
+								<div class="col privacy-page-item privacy-item-title">
+									<a>Email: </a>
+								</div>
 								<div class="col privacy-page-item">
+									<input id="email-textbox" class="form-control" type="text" value="<?php echo $_smarty_tpl->getValue('email');?>
+" readonly />
+								</div>
+								<div class="col privacy-page-item">
+									<a type="button" id="change-email" class="btn">Change</a>
+								</div>
+							</div>
+							<div class="row privacy-row">
+								<div class="col privacy-page-item privacy-item-title">
 									<a>Username: </a>
 								</div>
 								<div class="col privacy-page-item">
-									<input
-										id="username-textbox"
-										class="form-control"
-										type="text"
-										value="<?php echo $_smarty_tpl->getValue('username');?>
-"
-										aria-label="readonly input example"
-										readonly
-									/>
+									<input id="username-textbox" class="form-control" type="text" value="<?php echo $_smarty_tpl->getValue('username');?>
+" readonly />
 								</div>
 								<div class="col privacy-page-item">
 									<a type="button" id="change-username" class="btn">Change</a>
 								</div>
 							</div>
 							<div class="row privacy-row">
-								<div class="col privacy-page-item">
+								<div class="col privacy-page-item privacy-item-title">
 									<a>Password: </a>
 								</div>
 								<div class="col privacy-page-item">
-									<input
-										type="password"
-										id="password-textbox"
-										class="form-control"
-										value="<?php echo $_smarty_tpl->getValue('censuredPassword');?>
-"
-										aria-label="readonly input example"
-										readonly
-									/>
+									<input type="password" id="password-textbox" class="form-control" value="<?php echo $_smarty_tpl->getValue('censuredPassword');?>
+" readonly />
 								</div>
 								<div class="col privacy-page-item">
 									<a type="button" id="change-password" class="btn">Change</a>

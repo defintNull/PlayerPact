@@ -292,19 +292,95 @@ class CUser
             exit();
         }
 
+        $email = $user->getEmail();
         $username = $user->getUsername();
         $password = $user->getPassword();
         $PPImageURL = "/public/defaultPropic.png";
         if ($user->getImage() != "") {
             $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
+            //echo var_dump($PPImageURL);
         }
         $view = new VUser();
         $params = array(
+            "email" => $email,
             "username" => $username,
             "censuredPassword" => str_repeat("a", strlen($password)),
             "profilePicture" => $PPImageURL
         );
         $view->showPrivacyPage($params);
+    }
+
+    public function changeProfileImage()
+    {
+        $session = USession::getInstance();
+        $user = $session->load("user");
+
+        if ($user == null) {
+            header("Location: /login");
+            exit();
+        }
+        $image = null;
+
+        if (isset($_FILES["newProfileImage"]['name']) && $_FILES["newProfileImage"]['error'] == 0) {
+            $file_tmp_path = $_FILES["newProfileImage"]['tmp_name'];
+            $file_name = $_FILES["newProfileImage"]['name'];
+            $file_size = $_FILES["newProfileImage"]['size']; // in byte
+
+            if ($file_size > 5 * 1024 * 1024) {
+                header("Location: /error/e404"); // Aggiungere messaggio a schermo
+                exit();
+            }
+
+            $allowedfileExtensions = array('jpg', 'jpeg', 'png');
+            $file_name_cmps = explode(".", $file_name);
+            $file_extension = strtolower(end($file_name_cmps));
+
+            if (in_array($file_extension, $allowedfileExtensions)) {
+                $image = addslashes(file_get_contents($file_tmp_path));
+            } else {
+                header("Location: /error/e404");
+                exit();
+            }
+        } else {
+            header("Location: /error/e404");
+            exit();
+        }
+
+        echo var_dump($file_size);
+
+        $pm = new FPersistentManager();
+        $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $user->getEmail(), $image);
+        $pm->update($newUser, array("id" => $user->getId()));
+
+        //echo var_dump($newUser);
+
+        $session->set("user", $newUser);
+
+        header("Location: /user/privacy");
+        exit();
+    }
+
+    public function changeEmail()
+    {
+        $session = USession::getInstance();
+        $user = $session->load("user");
+
+        if ($user == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $newEmail = $_POST["newEmail"];
+
+        $pm = new FPersistentManager();
+        $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $newEmail, $user->getImage());
+        $oldProfile = $pm->load("EProfile", array("username" => $user->getUsername()))[0];
+        $newProfile = new EProfile($oldProfile["id"], "user", $user->getUsername(), $user->getPassword(), $newEmail);
+
+        $pm->update($newUser, array("id" => $user->getId()));
+        $pm->update($newProfile, array("id" => $oldProfile["id"]));
+
+        $session->set("user", $newUser);
     }
 
     public function changeusername()
@@ -357,4 +433,3 @@ class CUser
         $session->set("user", $newUser);
     }
 }
-?>

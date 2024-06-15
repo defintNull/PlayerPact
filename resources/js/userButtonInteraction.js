@@ -32,10 +32,10 @@ $(document).on("click", ".participateButton", function () {
 		success: function (response) {
 			console.log(response);
 			if (document.getElementById(postTeamId + "-post-participate").value == 0) {
-				document.getElementById(postTeamId + "-post-participate").innerHTML = "Already on the team";
+				document.getElementById(postTeamId + "-post-participate").textContent = "Already on the team";
 				document.getElementById(postTeamId + "-post-participate").value = 1;
 			} else if (document.getElementById(postTeamId + "-post-participate").value == 1) {
-				document.getElementById(postTeamId + "-post-participate").innerHTML = "Team up";
+				document.getElementById(postTeamId + "-post-participate").textContent = "Team up";
 				document.getElementById(postTeamId + "-post-participate").value = 0;
 			} else {
 				window.location.href = "/login";

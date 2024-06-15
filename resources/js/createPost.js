@@ -6,7 +6,7 @@ $(document).ready(function () {
 	$("#postChoice").on("click", "a.dropdown-item", function () {
 		choice = $(this).text();
 		console.log(choice);
-		document.getElementById("dropdown").innerHTML = choice;
+		document.getElementById("dropdown").textContent = choice;
 		if (prevChoice != choice) {
 			if (choice == "Standard") {
 				console.log("standard");

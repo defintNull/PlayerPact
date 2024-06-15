@@ -19,7 +19,7 @@
 	margin: 0;
 	top: 0;
 	height: 40px;
-	max-width: 100px;
+	min-width: 250px;
 }
 
 .password {
@@ -28,12 +28,10 @@
 }
 
 .privacy-page-body {
+	position: absolute;
 	padding-top: 100px;
-	margin-left: 20%;
-	margin-right: 20%;
-	padding-left: 15%;
-	padding-right: 15%;
-	min-width: 300px;
+	min-width: 800px;
+	max-width: 800px;
 }
 
 .btn {
@@ -77,4 +75,13 @@
 	align-items: center;
 	text-align: center;
 	padding: 10px;
+	width: 800px;
+}
+
+#profile-image-upload {
+	display: none;
+}
+
+#hidden-image-submit {
+	display: none;
 }

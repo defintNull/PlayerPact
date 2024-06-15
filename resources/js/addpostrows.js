@@ -17,13 +17,13 @@ async function addrows(rows, type) {
 			document.getElementById("clickable").href += "?id=" + row.id;
 			document.getElementById("clickable").id = row.id;
 			document.getElementById("id-post-standard").id = row.id;
-			document.getElementById("post-title").innerHTML = row.title;
+			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
-			document.getElementById("post-datetime").innerHTML = row.datetime;
+			document.getElementById("post-datetime").textContent = row.datetime;
 			document.getElementById("post-datetime").id = row.id + "-post-datetime";
-			document.getElementById("post-description").innerHTML = row.description;
+			document.getElementById("post-description").textContent = row.description;
 			document.getElementById("post-description").id = row.id + "-post-description";
-			document.getElementById("post-userId").innerHTML = row.userId;
+			document.getElementById("post-userId").textContent = row.userId;
 			document.getElementById("post-userId").id = row.id + "-post-userId";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";
@@ -42,17 +42,17 @@ async function addrows(rows, type) {
 			node.outerHTML = bodyHTML;
 
 			document.getElementById("id-post-team").id = row.id;
-			document.getElementById("post-title").innerHTML = row.title;
+			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
-			document.getElementById("post-datetime").innerHTML = row.datetime;
+			document.getElementById("post-datetime").textContent = row.datetime;
 			document.getElementById("post-datetime").id = row.id + "post-datetime";
-			document.getElementById("post-description").innerHTML = row.description;
+			document.getElementById("post-description").textContent = row.description;
 			document.getElementById("post-description").id = row.id + "-post-description";
-			document.getElementById("post-userId").innerHTML = row.userId;
+			document.getElementById("post-userId").textContent = row.userId;
 			document.getElementById("post-userId").id = row.id + "-post-userId";
-			document.getElementById("post-players").innerHTML = "Current players: " + row.nPlayers + "/" + row.nMaxPlayers;
+			document.getElementById("post-players").textContent = "Current players: " + row.nPlayers + "/" + row.nMaxPlayers;
 			document.getElementById("post-players").id = row.id + "-post-players";
-			document.getElementById("post-time_").innerHTML = "Time to play: " + row.time;
+			document.getElementById("post-time_").textContent = "Time to play: " + row.time;
 			document.getElementById("post-time_").id = row.id + "-post-time_";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";
@@ -71,12 +71,12 @@ async function addrows(rows, type) {
 					//console.log(response);
 					document.getElementById(row.id + "-post-participate").value = response;
 					if (document.getElementById(row.id + "-post-participate").value == 1) {
-						document.getElementById(row.id + "-post-participate").innerHTML = "Already on the team";
+						document.getElementById(row.id + "-post-participate").textContent = "Already on the team";
 					} else if (document.getElementById(row.id + "-post-participate").value == 2) {
-						document.getElementById(row.id + "-post-participate").innerHTML = "Already on the team";
+						document.getElementById(row.id + "-post-participate").textContent = "Already on the team";
 						document.getElementById(row.id + "-post-participate").disabled = true;
 					} else {
-						document.getElementById(row.id + "-post-participate").innerHTML = "Team up";
+						document.getElementById(row.id + "-post-participate").textContent = "Team up";
 					}
 					//console.log("Done");
 				})
@@ -98,15 +98,15 @@ async function addrows(rows, type) {
 			node.outerHTML = bodyHTML;
 
 			document.getElementById("id-post-sale").id = row.id;
-			document.getElementById("post-title").innerHTML = row.title;
+			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
-			document.getElementById("post-datetime").innerHTML = row.datetime;
+			document.getElementById("post-datetime").textContent = row.datetime;
 			document.getElementById("post-datetime").id = row.id + "-post-datetime";
-			document.getElementById("post-description").innerHTML = row.description;
+			document.getElementById("post-description").textContent = row.description;
 			document.getElementById("post-description").id = row.id + "-post-description";
-			document.getElementById("post-userId").innerHTML = row.userId;
+			document.getElementById("post-userId").textContent = row.userId;
 			document.getElementById("post-userId").id = row.id + "-post-userId";
-			document.getElementById("post-price").innerHTML = "Price: " + row.price + "€";
+			document.getElementById("post-price").textContent = "Price: " + row.price + "€";
 			document.getElementById("post-price").id = row.id + "-post-price";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";

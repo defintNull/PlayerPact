@@ -15,11 +15,11 @@ async function addrows(rows, type) {
 			node.outerHTML = bodyHTML;
 
 			document.getElementById("message-id").id = row.id;
-			document.getElementById("message-username").innerHTML = row.user;
+			document.getElementById("message-username").textContent = row.user;
 			document.getElementById("message-username").id = row.id + "-message-username";
-			document.getElementById("message-datetime").innerHTML = row.datetime;
+			document.getElementById("message-datetime").textContent = row.datetime;
 			document.getElementById("message-datetime").id = row.id + "-message-datetime";
-			document.getElementById("message-description").innerHTML = row.description;
+			document.getElementById("message-description").textContent = row.description;
 			document.getElementById("message-description").id = row.id + "-message-description";
 		});
 	}

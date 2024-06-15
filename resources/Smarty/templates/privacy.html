@@ -51,45 +51,45 @@
 				</div>
 				<div class="col h-100 d-flex flex-column main-column">
 					<div class="row justify-content-center fixed-top z-1 upper-bar">
-						<a><span class="username upper-bar-username">{$username}</span> profile page</a>
+						<a><span class="username upper-bar-username">{$username}</span>'s profile page</a>
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-						<!-- AGGIUNGERE CAMBIO FOTO PROFILO -->
 						<div class="col privacy-page-body">
 							<div class="row privacy-row">
-								<img src="{$profilePicture}" id="big-profile-image" />
+								<form action="/user/changeProfileImage" method="post" enctype="multipart/form-data">
+									<img src="{$profilePicture}" id="big-profile-image" />
+									<input type="file" id="profile-image-upload" name="newProfileImage" />
+									<input type="submit" id="hidden-image-submit" />
+								</form>
 							</div>
 							<div class="row privacy-row">
+								<div class="col privacy-page-item privacy-item-title">
+									<a>Email: </a>
+								</div>
 								<div class="col privacy-page-item">
+									<input id="email-textbox" class="form-control" type="text" value="{$email}" readonly />
+								</div>
+								<div class="col privacy-page-item">
+									<a type="button" id="change-email" class="btn">Change</a>
+								</div>
+							</div>
+							<div class="row privacy-row">
+								<div class="col privacy-page-item privacy-item-title">
 									<a>Username: </a>
 								</div>
 								<div class="col privacy-page-item">
-									<input
-										id="username-textbox"
-										class="form-control"
-										type="text"
-										value="{$username}"
-										aria-label="readonly input example"
-										readonly
-									/>
+									<input id="username-textbox" class="form-control" type="text" value="{$username}" readonly />
 								</div>
 								<div class="col privacy-page-item">
 									<a type="button" id="change-username" class="btn">Change</a>
 								</div>
 							</div>
 							<div class="row privacy-row">
-								<div class="col privacy-page-item">
+								<div class="col privacy-page-item privacy-item-title">
 									<a>Password: </a>
 								</div>
 								<div class="col privacy-page-item">
-									<input
-										type="password"
-										id="password-textbox"
-										class="form-control"
-										value="{$censuredPassword}"
-										aria-label="readonly input example"
-										readonly
-									/>
+									<input type="password" id="password-textbox" class="form-control" value="{$censuredPassword}" readonly />
 								</div>
 								<div class="col privacy-page-item">
 									<a type="button" id="change-password" class="btn">Change</a>
