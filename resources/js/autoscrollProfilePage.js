@@ -19,7 +19,10 @@ $(document).ready(function () {
 			}
 
 			if(initialData.rows.length == 0){
-				console.log("No elements"); // Sostituire con messaggio a schermo
+				const node = document.createElement("div");
+				const textnode = document.createTextNode("No elements to show");
+				node.appendChild(textnode);
+				document.getElementById("main-body").appendChild(node);
 			}
 
 			if (initialData) {

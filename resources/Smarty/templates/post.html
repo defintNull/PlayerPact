@@ -21,14 +21,14 @@
 	<body>
 		<div class="container-fluid h-100">
 			<div class="row justify-content-center h-100">
-				<div class="col-2 h-100 d-flex flex-column fixed-top sideBar">
+				<div class="col-2 h-100 d-flex flex-column fixed-top side-bar">
 					<div class="row h-auto side-logo">
 						<div class="application-logo">
 							<img src="/public/Logo.png" id="logo" />
 						</div>
 					</div>
 					<div class="row justify-content-center text-bg-dark flex-grow-1">
-						<ul class="nav nav-pills pSideNav">
+						<ul class="nav nav-pills side-nav">
 							<li class="nav-item">
 								<a class="nav-link menu-element active-element" aria-current="page" href="/user/home">Home</a>
 							</li>
@@ -44,7 +44,7 @@
 						</ul>
 					</div>
 					<div class="row justify-content-center text-bg-dark flex-grow-1">
-						<ul class="nav nav-pills pSideNav">
+						<ul class="nav nav-pills side-nav">
 							<li class="nav-item">
 								<a class="nav-link menu-element active-element" aria-current="page" href="/post/create">New post</a>
 							</li>
@@ -53,7 +53,7 @@
 				</div>
 				<div class="col h-100 d-flex flex-column main-column">
 					<div class="row justify-content-center fixed-top z-1 upper-bar">
-						<div class="col search-barContainer">
+						<div class="col search-container">
 							<form class="d-flex search-bar" role="search">
 								<input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
 								<button class="btn btn-outline-success" type="submit">Search</button>
@@ -61,7 +61,7 @@
 						</div>
 						{if $authenticated == true}
 						<div class="col">
-							<li class="dropdown-menu">
+							<li class="dropdown-profile-image">
 								<ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<img src="{$profilePicture}" alt="Avatar" id="upper-profile-image" />
 								</ul>

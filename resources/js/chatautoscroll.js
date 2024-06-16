@@ -33,6 +33,13 @@ $(document).ready(function () {
 				//window.location.href = "/error/e404"; //ERRORE ESCE QUI
 			}
 
+			if(initialData.rows == null || initialData.rows.length == 0){
+				const node = document.createElement("div");
+				const textnode = document.createTextNode("No chat to show");
+				node.appendChild(textnode);
+				document.getElementById("main-body").appendChild(node);
+			}
+
 			if (initialData) {
 				if (initialData.rows) {
 					addrows(initialData.rows, initialData.type);
