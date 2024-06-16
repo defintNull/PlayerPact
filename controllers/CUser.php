@@ -16,16 +16,12 @@ class CUser
     private function checkSession($session)
     {
         $user = $session->load("user");
-
-        if ($user == null) {
-            header("Location: /login");
-            exit();
-        }
-
-        $pm = new FPersistentManager();
-        $checkUser = $pm->load("EUser", array("id" => $user->getId()));
-        if ($checkUser == null) {
-            $session->end();
+        if ($user != null) {
+            $pm = new FPersistentManager();
+            $checkUser = $pm->load("EUser", array("id" => $user->getId()));
+            if ($checkUser == array()) {
+                $session->end();
+            }
         }
     }
 
@@ -267,7 +263,6 @@ class CUser
     {
         $session = USession::getInstance();
         $this->checkSession($session);
-
         $pm = new FPersistentManager();
         $values = array();
 
@@ -342,7 +337,6 @@ class CUser
     {
         $session = USession::getInstance();
         $this->checkSession($session);
-
         $user = $session->load("user");
 
         if ($user == null) {

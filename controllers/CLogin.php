@@ -81,7 +81,7 @@ class CLogin
                 $user = new EMod($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
 
                 $session = USession::getInstance();
-                $session->set("user", $user); // DA CAPIRE SE LA CHIAVE VA LASCIATA USER O VA MESSA A MOD O ADMIN
+                $session->set("user", $user);
 
             } elseif ($profile["type"] == "admin") {
                 $val = $pm->load("EAdmin", $values)[0];

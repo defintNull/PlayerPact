@@ -14,6 +14,17 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VPost.php");
 
 class CPost
 {
+    private function checkSession($session)
+    {
+        $user = $session->load("user");
+        if ($user != null) {
+            $pm = new FPersistentManager();
+            $checkUser = $pm->load("EUser", array("id" => $user->getId()));
+            if ($checkUser == array()) {
+                $session->end();
+            }
+        }
+    }
 
     public function home()
     {
@@ -22,7 +33,8 @@ class CPost
 
     public function loadStandardPosts(int $offset, int $limit, string $datetime)
     {
-
+        $session = USession::getInstance();
+        $this->checkSession($session);
         $pm = new FPersistentManager();
         $values = array();
 
@@ -49,6 +61,9 @@ class CPost
 
     public function loadSalePosts(int $offset, int $limit, string $datetime)
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+
         $pm = new FPersistentManager();
         $values = array();
 
@@ -76,6 +91,9 @@ class CPost
 
     public function loadTeamPosts(int $offset, int $limit, string $datetime)
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+
         $pm = new FPersistentManager();
         $values = array();
 
@@ -107,6 +125,7 @@ class CPost
     {
         $view = new VPost();
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         $authenticated = false;
@@ -133,6 +152,7 @@ class CPost
     {
         $view = new VPost();
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         $authenticated = false;
@@ -159,6 +179,7 @@ class CPost
     {
         $view = new VPost();
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         $authenticated = false;
@@ -183,12 +204,13 @@ class CPost
 
     public function comments(int $id)
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $sessionUser = $session->load("user");
+
         $pm = new FPersistentManager();
         $res = $pm->load("EPostStandard", array("id" => $id))[0];
         $user = $pm->load("EUser", array("id" => $res["userId"]))[0];
-
-        $session = USession::getInstance();
-        $sessionUser = $session->load("user");
 
         $authenticated = false;
         $username = null;
@@ -217,6 +239,9 @@ class CPost
 
     public function loadComments(int $postId, int $offset, int $limit, string $datetime)
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+
         $pm = new FPersistentManager();
         $values = array();
 
@@ -252,6 +277,7 @@ class CPost
     public function create($info = "ok")
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -266,6 +292,7 @@ class CPost
     public function confirmCreation()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -354,6 +381,9 @@ class CPost
 
     public function get_image($id)
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+
         if (!is_numeric($id) || intval($id) != $id) {
             header("Location: /error/404");
         }
@@ -415,6 +445,7 @@ class CPost
     public function addcomment()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -440,6 +471,7 @@ class CPost
     public function report()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -459,8 +491,8 @@ class CPost
 
     public function confirmReport()
     {
-        //Controllo aggiuntivo, valutare se serve
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -502,6 +534,7 @@ class CPost
     public function participate()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -529,6 +562,7 @@ class CPost
     public function isparticipating()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -551,6 +585,7 @@ class CPost
     public function buy()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -606,6 +641,7 @@ class CPost
     public function isBought()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {

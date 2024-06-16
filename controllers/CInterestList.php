@@ -5,6 +5,17 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
 
 class CInterestList
 {
+    private function checkSession($session)
+    {
+        $user = $session->load("user");
+        if ($user != null) {
+            $pm = new FPersistentManager();
+            $checkUser = $pm->load("EUser", array("id" => $user->getId()));
+            if ($checkUser == array()) {
+                $session->end();
+            }
+        }
+    }
 
     public function home()
     {
@@ -19,6 +30,7 @@ class CInterestList
     public function issaved()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -39,6 +51,7 @@ class CInterestList
     public function add()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
