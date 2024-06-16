@@ -14,8 +14,13 @@ async function addrows(rows, type) {
 			messageList.append(node);
 			node.outerHTML = bodyHTML;
 
+			username = row.user;
+			if(row.user == undefined || row.user == "" || row.user == null){
+				username = "Deleted user";
+			}
+
 			document.getElementById("message-id").id = row.id;
-			document.getElementById("message-username").textContent = row.user;
+			document.getElementById("message-username").textContent = username;
 			document.getElementById("message-username").id = row.id + "-message-username";
 			document.getElementById("message-datetime").textContent = row.datetime;
 			document.getElementById("message-datetime").id = row.id + "-message-datetime";

@@ -25,7 +25,7 @@ $(document).ready(function () {
 			"&time=" +
 			time.value,
 		success: function (data) {
-			//console.log(data);
+			console.log(data);
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-15 19:29:44
+/* Smarty version 5.1.0, created on 2024-06-16 20:38:29
   from 'file:messageSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666dcf88495784_36168463',
+  'unifunc' => 'content_666f31255fac72_74841603',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1d820f4a368f7964386624704d2ebecb57f05a1d' => 
     array (
       0 => 'messageSection.html',
-      1 => 1718461353,
+      1 => 1718562863,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666dcf88495784_36168463 (\Smarty\Template $_smarty_tpl) {
+function content_666f31255fac72_74841603 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 
@@ -95,8 +95,23 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 </span>'s profile page</a>
                 </div>
                 <div class="row justify-content-center flex-grow-1" id="main-body">
-
                     <div class="single-post-section">
+                        <?php if ($_smarty_tpl->getValue('deletedPost')) {?>
+                            <div class="chat-user">
+                                Deleted post
+                            </div>
+                            <div hidden class="row single-post" id="<?php echo $_smarty_tpl->getValue('chatId');?>
+">
+                                <div class="chat-user" id="chat-user"><?php echo $_smarty_tpl->getValue('user');?>
+</div>
+                                <div class="post-title" id="post-title"><?php echo $_smarty_tpl->getValue('title');?>
+</div>
+                                <div class="chat-datetime" id="chat-datetime" data-nmessages="<?php echo $_smarty_tpl->getValue('nMessages');?>
+"><?php echo $_smarty_tpl->getValue('datetime');?>
+
+                                </div>
+                            </div>
+                        <?php } else { ?>
                         <div class="row single-post" id="<?php echo $_smarty_tpl->getValue('chatId');?>
 ">
                             <div class="chat-user" id="chat-user"><?php echo $_smarty_tpl->getValue('user');?>
@@ -108,6 +123,7 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 
                             </div>
                         </div>
+                        <?php }?>
                         <hr class="solid">
                         <div class="row commentBox">
                             <input name="message" type="text" class="form-control" id="message-box"
@@ -116,6 +132,7 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 "
                                 class="btn-lg button button-send-text">Send</button>
                         </div>
+                        
                         <hr class="solid">
                         <div class=message-section id=message-list></div>
                     </div>

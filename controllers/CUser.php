@@ -13,9 +13,26 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 
 class CUser
 {
+    private function checkSession($session)
+    {
+        $user = $session->load("user");
+
+        if ($user == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $pm = new FPersistentManager();
+        $checkUser = $pm->load("EUser", array("id" => $user->getId()));
+        if ($checkUser == null) {
+            $session->end();
+        }
+    }
+
     public function home()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         $username = null;
@@ -44,13 +61,14 @@ class CUser
     public function profile()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
-        $username = null;
         if ($user == null) {
             header("Location: /login");
             exit();
         }
+
         $username = $user->getUsername();
         $view = new VUser();
         $params = array("username" => $username);
@@ -60,9 +78,9 @@ class CUser
     public function saved()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
-        $username = null;
         if ($user == null) {
             header("Location: /login");
             exit();
@@ -76,6 +94,7 @@ class CUser
     public function participated()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         $username = null;
@@ -92,6 +111,7 @@ class CUser
     public function chats()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         $username = null;
@@ -111,6 +131,7 @@ class CUser
     public function loadChats(string $username, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -122,7 +143,6 @@ class CUser
         $values = array();
 
         $userId = $pm->load("EUser", array("username" => $username))[0]["id"];
-
         // Prendo tutte le chat relative all'utente attuale loggato
         $chatusers = $pm->load("EChatUser", array("userId" => $userId));
 
@@ -147,21 +167,35 @@ class CUser
             $values[$i]["datetime"] = $chat->getDateTime();
 
             if ($chat->getPostType() == "team") {
-                $posttitle = $pm->load("EPostTeam", array("id" => $chat->getPostId()))[0]["title"];
+                $post = $pm->load("EPostTeam", array("id" => $chat->getPostId()));
+                if ($post != array()) {
+                    $posttitle = $post[0]["title"];
+                } else {
+                    $posttitle = "Deleted post";
+                }
+
                 $values[$i]["posttitle"] = $posttitle;
                 $values[$i]["username"] = null;
             } else if ($chat->getPostType() == "sale") {
-                $posttitle = $pm->load("EPostSale", array("id" => $chat->getPostId()))[0]["title"];
+                $post = $pm->load("EPostSale", array("id" => $chat->getPostId()));
+                if ($post != array()) {
+                    $posttitle = $post[0]["title"];
+                } else {
+                    $posttitle = "Deleted post";
+                }
                 $values[$i]["posttitle"] = $posttitle;
                 $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
 
-                if ($chatUserId[0]["userId"] == $user->getId()) {
-                    $chatUserId = $chatUserId[1]["userId"];
+                if (count($chatUserId) > 1) {
+                    if ($chatUserId[0]["userId"] == $user->getId()) {
+                        $chatUserId = $chatUserId[1]["userId"];
+                    } else {
+                        $chatUserId = $chatUserId[0]["userId"];
+                    }
+                    $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
                 } else {
-                    $chatUserId = $chatUserId[0]["userId"];
+                    $username = "Deleted user";
                 }
-
-                $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
                 $values[$i]["username"] = $username;
             }
         }
@@ -171,36 +205,47 @@ class CUser
     public function messages(int $id)
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
-
-        if ($user == null) {
-            header("Location: /login");
-            exit();
-        }
 
         $pm = new FPersistentManager();
         $res = $pm->load("EChat", array("id" => $id))[0];
         //echo var_dump($res);
         $chat = new EChat($id, $res["postId"], $res["postType"], $res["datetime"]);
+        $deletedPost = false;
 
         if ($chat->getPostType() == "team") {
-            $posttitle = $pm->load("EPostTeam", array("id" => $chat->getPostId()))[0]["title"];
-            $username = $user->getUsername();
-        } else if ($chat->getPostType() == "sale") {
-            $posttitle = $pm->load("EPostSale", array("id" => $chat->getPostId()))[0]["title"];
-            $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
-            if ($chatUserId[0]["userId"] == $user->getId()) {
-                $chatUserId = $chatUserId[1]["userId"];
+            $post = $pm->load("EPostTeam", array("id" => $chat->getPostId()));
+            if ($post != array()) {
+                $posttitle = $post[0]["title"];
+                $username = $post[0]["username"];
             } else {
-                $chatUserId = $chatUserId[0]["userId"];
+                $posttitle = "Deleted post";
+                $username = "Deleted user";
             }
-
-            $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
+        } else if ($chat->getPostType() == "sale") {
+            $post = $pm->load("EPostSale", array("id" => $chat->getPostId()));
+            if ($post != array()) {
+                $posttitle = $post[0]["title"];
+            } else {
+                $posttitle = "Deleted post";
+            }
+            $chatUserId = $pm->load("EChatUser", array("chatId" => $chat->getId()));
+            if (count($chatUserId) > 1) {
+                if ($chatUserId[0]["userId"] == $user->getId()) {
+                    $chatUserId = $chatUserId[1]["userId"];
+                } else {
+                    $chatUserId = $chatUserId[0]["userId"];
+                }
+                $username = $pm->load("EUser", array("id" => $chatUserId))[0]["username"];
+            } else {
+                $username = "Deleted user";
+                $deletedPost = true;
+            }
         }
 
         $pm = new FPersistentManager();
         $res = $pm->load("EChat", array("id" => $chat->getId()))[0];
-
         $res = $pm->load("EMessage", array("chatId" => $res["id"]));
 
         $nMessages = count($res);
@@ -212,13 +257,17 @@ class CUser
             "datetime" => $chat->getDateTime(),
             "user" => $username,
             "nMessages" => $nMessages,
-            "username" => $user->getUsername()
+            "username" => $user->getUsername(),
+            "deletedPost" => $deletedPost
         );
         $view->showMessageSection($params);
     }
 
     public function loadMessages(int $chatId, int $offset, int $limit, string $datetime)
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+
         $pm = new FPersistentManager();
         $values = array();
 
@@ -228,12 +277,18 @@ class CUser
         for ($i = 0; $i < $count; $i++) {
 
             $message = new EMessage($res[$i]["id"], $res[$i]["chatId"], $res[$i]["userId"], $res[$i]["description"], $res[$i]["datetime"]);
-            $userdata = $pm->load("EUser", array("id" => $message->getUserId()))[0];
-            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+            $userdata = $pm->load("EUser", array("id" => $message->getUserId()));
+            if ($userdata != array()) {
+                $userdata = $userdata[0];
+                $username = $userdata["username"];
+            } else {
+                $username = "Deleted user";
+            }
+
 
             $values[] = array(
                 "id" => $message->getId(),
-                "user" => $user->getUsername(),
+                "user" => $username,
                 "description" => $message->getDescription(),
                 "datetime" => $message->getDateTime()
             );
@@ -245,6 +300,7 @@ class CUser
     public function sendmessage()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -264,6 +320,7 @@ class CUser
     public function countchatmessages()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -281,11 +338,14 @@ class CUser
         echo count($res);
     }
 
-    public function loadMyPosts(int $offset, int $limit, string $datetime) {
+    public function loadMyPosts(int $offset, int $limit, string $datetime)
+    {
         $session = USession::getInstance();
+        $this->checkSession($session);
+
         $user = $session->load("user");
 
-        if($user == null){
+        if ($user == null) {
             header("Location: /error/e404");
             exit();
         }
@@ -299,24 +359,24 @@ class CUser
 
         $res = array();
 
-        if($myStandard != array()){
+        if ($myStandard != array()) {
             $res = array_merge($res, $myStandard);
         }
-        if($myTeam != array()){
+        if ($myTeam != array()) {
             $res = array_merge($res, $myTeam);
         }
-        if($mySale != array()){
+        if ($mySale != array()) {
             $res = array_merge($res, $mySale);
         }
 
-        usort($res, function($a, $b) {
+        usort($res, function ($a, $b) {
             $ad = new DateTime($a['datetime']);
             $bd = new DateTime($b['datetime']);
-          
+
             if ($ad == $bd) {
-              return 0;
+                return 0;
             }
-          
+
             return $ad < $bd ? 1 : -1;
         });
 
@@ -325,10 +385,10 @@ class CUser
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {
-            if(in_array($res[$i], $myStandard)){
+            if (in_array($res[$i], $myStandard)) {
                 $post = new EPostStandard($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getUserId()))[0];
-    
+
                 $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
                 $values[] = array(
                     "type" => "standard",
@@ -338,7 +398,7 @@ class CUser
                     "description" => $post->getDescription(),
                     "datetime" => $post->getDateTime()
                 );
-            } else if(in_array($res[$i], $myTeam)){
+            } else if (in_array($res[$i], $myTeam)) {
                 $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
 
@@ -354,10 +414,10 @@ class CUser
                     "nPlayers" => $post->getNPlayers(),
                     "time" => $post->getTime()
                 );
-            } else if(in_array($res[$i], $mySale)){
+            } else if (in_array($res[$i], $mySale)) {
                 $post = new EPostSale($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["price"], $res[$i]["image"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
-                
+
                 $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
                 $values[] = array(
                     "type" => "sale",
@@ -375,11 +435,13 @@ class CUser
         return array($values, $count);
     }
 
-    public function loadSavedPosts(int $offset, int $limit, string $datetime) {
+    public function loadSavedPosts(int $offset, int $limit, string $datetime)
+    {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
-        if($user == null){
+        if ($user == null) {
             header("Location: /error/e404");
             exit();
         }
@@ -390,17 +452,17 @@ class CUser
         $interest = $pm->load("EInterestList", array("userId" => $user->getId()));
         //echo var_dump($part);
         $res = array();
-        for($i = 0; $i < count($interest); $i++){
+        for ($i = 0; $i < count($interest); $i++) {
             $res = array_merge($res, $pm->loadElementsByCondition("EPostSale", array("id" => $interest[$i]["postSaleId"]), $limit, $offset, $datetime));
         }
-        usort($res, function($a, $b) {
+        usort($res, function ($a, $b) {
             $ad = new DateTime($a['datetime']);
             $bd = new DateTime($b['datetime']);
-          
+
             if ($ad == $bd) {
-              return 0;
+                return 0;
             }
-          
+
             return $ad < $bd ? 1 : -1;
         });
         $count = count($res);
@@ -408,7 +470,7 @@ class CUser
         for ($i = 0; $i < $count; $i++) {
             $post = new EPostSale($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["price"], $res[$i]["image"]);
             $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
-            
+
             $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
             $values[] = array(
                 "type" => "sale",
@@ -425,11 +487,13 @@ class CUser
         return array($values, $count);
     }
 
-    public function loadTeams(int $offset, int $limit, string $datetime) {
+    public function loadTeams(int $offset, int $limit, string $datetime)
+    {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
-        if($user == null){
+        if ($user == null) {
             header("Location: /error/e404");
             exit();
         }
@@ -438,19 +502,19 @@ class CUser
         $values = array();
 
         $interest = $pm->load("EParticipation", array("userId" => $user->getId()));
-        
+
         $res = array();
-        for($i = 0; $i < count($interest); $i++){
+        for ($i = 0; $i < count($interest); $i++) {
             $res = array_merge($res, $pm->loadElementsByCondition("EPostTeam", array("id" => $interest[$i]["postTeamId"]), $limit, $offset, $datetime));
         }
-        usort($res, function($a, $b) {
+        usort($res, function ($a, $b) {
             $ad = new DateTime($a['datetime']);
             $bd = new DateTime($b['datetime']);
-          
+
             if ($ad == $bd) {
-              return 0;
+                return 0;
             }
-          
+
             return $ad < $bd ? 1 : -1;
         });
         $count = count($res);
@@ -479,6 +543,7 @@ class CUser
     public function privacy($info = "ok")
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -507,13 +572,14 @@ class CUser
     public function changeProfileImage()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
             header("Location: /login");
             exit();
         }
-        
+
         $image = null;
 
         if (isset($_FILES["newProfileImage"]['name']) && $_FILES["newProfileImage"]['error'] == 0) {
@@ -554,6 +620,7 @@ class CUser
     public function changeEmail()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -569,7 +636,7 @@ class CUser
             exit();
         }
 
-        
+
         $newUser = new EUser($user->getId(), $user->getUsername(), $user->getPassword(), $user->getName(), $user->getSurname(), $user->getBIrthdate(), $newEmail, $user->getImage());
         $oldProfile = $pm->load("EProfile", array("username" => $user->getUsername()))[0];
         $newProfile = new EProfile($oldProfile["id"], "user", $user->getUsername(), $user->getPassword(), $newEmail);
@@ -583,6 +650,7 @@ class CUser
     public function changeusername()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
@@ -611,6 +679,7 @@ class CUser
     public function changepassword()
     {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $user = $session->load("user");
 
         if ($user == null) {
