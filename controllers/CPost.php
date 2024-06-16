@@ -32,32 +32,19 @@ class CPost
         for ($i = 0; $i < $count; $i++) {
 
             $post = new EPostStandard($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"]);
-            $userdata = $pm->load("EUser", array("id" => $post->getUserId()));
+            $userdata = $pm->load("EUser", array("id" => $post->getUserId()))[0];
 
-            //DA CORREGGERE
-            if (count($userdata) !== 0) {
-                $userdata = $userdata[0];
-                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
-                $values[] = array(
-                    "id" => $post->getId(),
-                    "userId" => $user->getUsername(),
-                    "title" => $post->getTitle(),
-                    "description" => $post->getDescription(),
-                    "datetime" => $post->getDateTime()
-                );
-            } else {
-                $values[] = array(
-                    "id" => $post->getId(),
-                    "title" => $post->getTitle(),
-                    "description" => $post->getDescription(),
-                    "datetime" => $post->getDateTime()
-                );
-            }
-
+            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+            $values[] = array(
+                "id" => $post->getId(),
+                "userId" => $user->getUsername(),
+                "title" => $post->getTitle(),
+                "description" => $post->getDescription(),
+                "datetime" => $post->getDateTime()
+            );
         }
 
         return array($values, $count);
-
     }
 
     public function loadSalePosts(int $offset, int $limit, string $datetime)
@@ -66,37 +53,22 @@ class CPost
         $values = array();
 
         $res = $pm->loadElements("EPostSale", $limit, $offset, $datetime);
-        //echo var_dump($res);
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {
-
             $post = new EPostSale($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["price"], $res[$i]["image"]);
-            $userdata = $pm->load("EUser", array("id" => $post->getuserId()));
-            //echo var_dump($post->getImage());
-            //Questo controllo teoricamente è inutile perché dopo non esisterà post senza utente
-            if (count($userdata) !== 0) {
-                $userdata = $userdata[0];
-                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
-                $values[] = array(
-                    "id" => $post->getId(),
-                    "userId" => $user->getUsername(),
-                    "title" => $post->getTitle(),
-                    "description" => $post->getDescription(),
-                    "datetime" => $post->getDateTime(),
-                    "price" => $post->getPrice(),
-                    "image" => base64_encode($post->getImage())
-                );
-            } else {
-                $values[] = array(
-                    "id" => $post->getId(),
-                    "title" => $post->getTitle(),
-                    "description" => $post->getDescription(),
-                    "datetime" => $post->getDateTime(),
-                    "price" => $post->getPrice(),
-                    "image" => base64_encode($post->getImage())
-                );
-            }
+            $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+
+            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+            $values[] = array(
+                "id" => $post->getId(),
+                "userId" => $user->getUsername(),
+                "title" => $post->getTitle(),
+                "description" => $post->getDescription(),
+                "datetime" => $post->getDateTime(),
+                "price" => $post->getPrice(),
+                "image" => base64_encode($post->getImage())
+            );
         }
         //echo var_dump(array($values,$count));
         return array($values, $count);
@@ -113,33 +85,19 @@ class CPost
         for ($i = 0; $i < $count; $i++) {
 
             $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
-            $userdata = $pm->load("EUser", array("id" => $post->getuserId()));
+            $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
 
-            if (count($userdata) !== 0) {
-                $userdata = $userdata[0];
-                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
-                $values[] = array(
-                    "id" => $post->getId(),
-                    "userId" => $user->getUsername(),
-                    "title" => $post->getTitle(),
-                    "description" => $post->getDescription(),
-                    "datetime" => $post->getDateTime(),
-                    "nMaxPlayers" => $post->getNMaxPlayers(),
-                    "nPlayers" => $post->getNPlayers(),
-                    "time" => $post->getTime()
-                );
-            } else {
-                $values[] = array(
-                    "id" => $post->getId(),
-                    "title" => $post->getTitle(),
-                    "description" => $post->getDescription(),
-                    "datetime" => $post->getDateTime(),
-                    "nMaxPlayers" => $post->getNMaxPlayers(),
-                    "nPlayers" => $post->getNPlayers(),
-                    "time" => $post->getTime()
-                );
-            }
-
+            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+            $values[] = array(
+                "id" => $post->getId(),
+                "userId" => $user->getUsername(),
+                "title" => $post->getTitle(),
+                "description" => $post->getDescription(),
+                "datetime" => $post->getDateTime(),
+                "nMaxPlayers" => $post->getNMaxPlayers(),
+                "nPlayers" => $post->getNPlayers(),
+                "time" => $post->getTime()
+            );
         }
 
         return array($values, $count);
@@ -286,7 +244,6 @@ class CPost
                     "datetime" => $comment->getDateTime()
                 );
             }
-
         }
 
         return array($values, $count);
@@ -334,7 +291,6 @@ class CPost
 
             header("Location: /post/standard");
             exit();
-
         } else if (isset($_POST["sale"])) {
             $values = $_POST["sale"];
 
@@ -371,7 +327,6 @@ class CPost
 
             header("Location: /post/sale");
             exit();
-
         } else if (isset($_POST["team"])) {
             $values = $_POST["team"];
             $datetime = date("Y-m-d H:i:s");
@@ -691,4 +646,3 @@ class CPost
         echo $exists;
     }
 }
-?>

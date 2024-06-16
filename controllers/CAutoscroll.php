@@ -10,7 +10,7 @@
             $session = USession::getInstance();
 
             $everybodyTypes = array("standard", "team", "sale", "comment");
-            $userTypes = array("standard", "team", "sale", "comment", "chat", "saved", "participations", "interest");
+            $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "myPosts", "saved", "teams");
             $modTypes = array("report");
             $adminTypes = array();
 
@@ -125,7 +125,7 @@
 
         }
 
-        private static function getsaleElements(int $offset,int $limit,string $datetime) {
+        private static function getSaleElements(int $offset,int $limit,string $datetime) {
 
             $controller = new CPost();       
             $elements = $controller->loadsalePosts($offset,$limit,$datetime);
@@ -157,6 +157,12 @@
         private function getMessageElements(int $chatId,int $offset,int $limit,string $datetime) {
             $controller = new CUser();
             $elements = $controller->loadMessages($chatId,$offset,$limit,$datetime);
+            return $elements;
+        }
+
+        private function getMyPostsElements(int $offset,int $limit,string $datetime) {
+            $controller = new CUser();
+            $elements = $controller->loadMyPosts($offset,$limit,$datetime);
             return $elements;
         }
     }

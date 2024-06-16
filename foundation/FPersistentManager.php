@@ -50,6 +50,14 @@ class FPersistentManager
         return $results;
     }
 
+    function loadElementsByCondition(string $EClass, array $cond, int $limit, int $offset, string $datetime)
+    {
+        $FClass = "F" . substr($EClass, 1);
+        $entity = new $FClass();
+        $results = $entity->loadElementsByCondition($cond, $limit, $offset, $datetime);
+        return $results;
+    }
+
     function delete($CClass, array $arr)
     {
         $FClass = "F" . substr($CClass, 1);

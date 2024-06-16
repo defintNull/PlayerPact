@@ -13,6 +13,33 @@ class VUser extends View
     public function showProfile($params)
     {
         $this->assignSmartyParams($params);
+
+        $this->smarty->assign("type", "myPosts");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
+
+        $this->smarty->display("profilePage.html");
+    }
+
+    public function showSavedPosts($params)
+    {
+        $this->assignSmartyParams($params);
+
+        $this->smarty->assign("type", "saved");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
+
+        $this->smarty->display("profilePage.html");
+    }
+
+    public function showTeams($params)
+    {
+        $this->assignSmartyParams($params);
+
+        $this->smarty->assign("type", "teams");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
+
         $this->smarty->display("profilePage.html");
     }
 
@@ -40,4 +67,3 @@ class VUser extends View
         $this->smarty->display("messageSection.html");
     }
 }
-?>

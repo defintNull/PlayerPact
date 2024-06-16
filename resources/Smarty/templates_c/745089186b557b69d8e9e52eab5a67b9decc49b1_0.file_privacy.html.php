@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-15 15:28:13
+/* Smarty version 5.1.0, created on 2024-06-16 14:40:17
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666d96ed1cc978_62316614',
+  'unifunc' => 'content_666edd3166ced5_80646637',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '745089186b557b69d8e9e52eab5a67b9decc49b1' => 
     array (
       0 => 'privacy.html',
-      1 => 1718458092,
+      1 => 1718541604,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666d96ed1cc978_62316614 (\Smarty\Template $_smarty_tpl) {
+function content_666edd3166ced5_80646637 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 
@@ -84,6 +84,23 @@ $_smarty_current_dir = 'D:\\Università\\Programmazione web\\Github\\PlayerPact\
 				</div>
 				<div class="row justify-content-center flex-grow-1" id="main-body">
 					<div class="col privacy-page-body">
+						<?php if ($_smarty_tpl->getValue('info') == "error_image") {?>
+						<div class="row error">
+							<a>Error occurred in image loading!</a>
+						</div>
+						<?php } elseif ($_smarty_tpl->getValue('info') == "error_email") {?>
+						<div class="row error">
+							<a>Error occurred in email change!</a>
+						</div>
+						<?php } elseif ($_smarty_tpl->getValue('info') == "error_username") {?>
+						<div class="row error">
+							<a>Error occurred in username change!</a>
+						</div>
+						<?php } elseif ($_smarty_tpl->getValue('info') == "error_password") {?>
+						<div class="row error">
+							<a>Error occurred in password change!</a>
+						</div>
+						<?php }?>
 						<div class="row privacy-row">
 							<form action="/user/changeProfileImage" method="post" enctype="multipart/form-data">
 								<img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>

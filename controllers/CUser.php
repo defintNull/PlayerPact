@@ -70,7 +70,7 @@ class CUser
         $username = $user->getUsername();
         $view = new VUser();
         $params = array("username" => $username);
-        $view->showProfile($params);
+        $view->showSavedPosts($params);
     }
 
     public function participated()
@@ -86,7 +86,7 @@ class CUser
         $username = $user->getUsername();
         $view = new VUser();
         $params = array("username" => $username);
-        $view->showProfile($params);
+        $view->showTeams($params);
     }
 
     public function chats()
@@ -279,6 +279,100 @@ class CUser
         $res = $pm->load("EMessage", array("chatId" => $res["id"]));
 
         echo count($res);
+    }
+
+    public function loadMyPosts(int $offset, int $limit, string $datetime) {
+        $session = USession::getInstance();
+        $user = $session->load("user");
+
+        if($user == null){
+            header("Location: /error/e404");
+            exit();
+        }
+
+        $pm = new FPersistentManager();
+        $values = array();
+
+        $myStandard = $pm->loadElementsByCondition("EPostStandard", array("userId" => $user->getId()), $limit, $offset, $datetime);
+        $myTeam = $pm->loadElementsByCondition("EPostTeam", array("userId" => $user->getId()), $limit, $offset, $datetime);
+        $mySale = $pm->loadElementsByCondition("EPostSale", array("userId" => $user->getId()), $limit, $offset, $datetime);
+
+        $res = array();
+
+        if($myStandard != array()){
+            $res = array_merge($res, $myStandard);
+        }
+        if($myTeam != array()){
+            $res = array_merge($res, $myTeam);
+        }
+        if($mySale != array()){
+            $res = array_merge($res, $mySale);
+        }
+
+        usort($res, function($a, $b) {
+            $ad = new DateTime($a['datetime']);
+            $bd = new DateTime($b['datetime']);
+          
+            if ($ad == $bd) {
+              return 0;
+            }
+          
+            return $ad < $bd ? 1 : -1;
+        });
+
+        //echo var_dump($res);
+
+        $count = count($res);
+
+        for ($i = 0; $i < $count; $i++) {
+            if(in_array($res[$i], $myStandard)){
+                $post = new EPostStandard($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"]);
+                $userdata = $pm->load("EUser", array("id" => $post->getUserId()))[0];
+    
+                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+                $values[] = array(
+                    "type" => "standard",
+                    "id" => $post->getId(),
+                    "userId" => $user->getUsername(),
+                    "title" => $post->getTitle(),
+                    "description" => $post->getDescription(),
+                    "datetime" => $post->getDateTime()
+                );
+            } else if(in_array($res[$i], $myTeam)){
+                $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
+                $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+
+                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+                $values[] = array(
+                    "type" => "team",
+                    "id" => $post->getId(),
+                    "userId" => $user->getUsername(),
+                    "title" => $post->getTitle(),
+                    "description" => $post->getDescription(),
+                    "datetime" => $post->getDateTime(),
+                    "nMaxPlayers" => $post->getNMaxPlayers(),
+                    "nPlayers" => $post->getNPlayers(),
+                    "time" => $post->getTime()
+                );
+            } else if(in_array($res[$i], $mySale)){
+                $post = new EPostSale($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["price"], $res[$i]["image"]);
+                $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+                
+                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+                $values[] = array(
+                    "type" => "sale",
+                    "id" => $post->getId(),
+                    "userId" => $user->getUsername(),
+                    "title" => $post->getTitle(),
+                    "description" => $post->getDescription(),
+                    "datetime" => $post->getDateTime(),
+                    "price" => $post->getPrice(),
+                    "image" => base64_encode($post->getImage())
+                );
+            }
+        }
+
+        return array($values, $count);
     }
 
     public function privacy($info = "ok")
