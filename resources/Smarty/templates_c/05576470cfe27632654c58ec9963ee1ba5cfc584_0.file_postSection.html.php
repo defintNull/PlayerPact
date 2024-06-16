@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-14 20:24:31
+/* Smarty version 5.1.0, created on 2024-06-16 17:00:07
   from 'file:postSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666c8adf805686_99728873',
+  'unifunc' => 'content_666efdf763fe39_92987245',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '05576470cfe27632654c58ec9963ee1ba5cfc584' => 
     array (
       0 => 'postSection.html',
-      1 => 1718389352,
+      1 => 1718548375,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666c8adf805686_99728873 (\Smarty\Template $_smarty_tpl) {
+function content_666efdf763fe39_92987245 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 	<head>
@@ -117,7 +117,6 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
 						<!-- DATA FOR JS -->
-						<!-- <div class="post_section" id="post-list"> -->
 						<div class="post_section" id="post-list">
 							<input type="hidden" name="totalcount" id="totalcount" value="0" />
 							<input type="hidden" name="offset" id="offset" value="0" />

@@ -375,6 +375,107 @@ class CUser
         return array($values, $count);
     }
 
+    public function loadSavedPosts(int $offset, int $limit, string $datetime) {
+        $session = USession::getInstance();
+        $user = $session->load("user");
+
+        if($user == null){
+            header("Location: /error/e404");
+            exit();
+        }
+
+        $pm = new FPersistentManager();
+        $values = array();
+
+        $interest = $pm->load("EInterestList", array("userId" => $user->getId()));
+        //echo var_dump($part);
+        $res = array();
+        for($i = 0; $i < count($interest); $i++){
+            $res = array_merge($res, $pm->loadElementsByCondition("EPostSale", array("id" => $interest[$i]["postSaleId"]), $limit, $offset, $datetime));
+        }
+        usort($res, function($a, $b) {
+            $ad = new DateTime($a['datetime']);
+            $bd = new DateTime($b['datetime']);
+          
+            if ($ad == $bd) {
+              return 0;
+            }
+          
+            return $ad < $bd ? 1 : -1;
+        });
+        $count = count($res);
+
+        for ($i = 0; $i < $count; $i++) {
+            $post = new EPostSale($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["price"], $res[$i]["image"]);
+            $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+            
+            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+            $values[] = array(
+                "type" => "sale",
+                "id" => $post->getId(),
+                "userId" => $user->getUsername(),
+                "title" => $post->getTitle(),
+                "description" => $post->getDescription(),
+                "datetime" => $post->getDateTime(),
+                "price" => $post->getPrice(),
+                "image" => base64_encode($post->getImage())
+            );
+        }
+
+        return array($values, $count);
+    }
+
+    public function loadTeams(int $offset, int $limit, string $datetime) {
+        $session = USession::getInstance();
+        $user = $session->load("user");
+
+        if($user == null){
+            header("Location: /error/e404");
+            exit();
+        }
+
+        $pm = new FPersistentManager();
+        $values = array();
+
+        $interest = $pm->load("EParticipation", array("userId" => $user->getId()));
+        
+        $res = array();
+        for($i = 0; $i < count($interest); $i++){
+            $res = array_merge($res, $pm->loadElementsByCondition("EPostTeam", array("id" => $interest[$i]["postTeamId"]), $limit, $offset, $datetime));
+        }
+        usort($res, function($a, $b) {
+            $ad = new DateTime($a['datetime']);
+            $bd = new DateTime($b['datetime']);
+          
+            if ($ad == $bd) {
+              return 0;
+            }
+          
+            return $ad < $bd ? 1 : -1;
+        });
+        $count = count($res);
+
+        for ($i = 0; $i < $count; $i++) {
+            $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
+            $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+
+            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+            $values[] = array(
+                "type" => "team",
+                "id" => $post->getId(),
+                "userId" => $user->getUsername(),
+                "title" => $post->getTitle(),
+                "description" => $post->getDescription(),
+                "datetime" => $post->getDateTime(),
+                "nMaxPlayers" => $post->getNMaxPlayers(),
+                "nPlayers" => $post->getNPlayers(),
+                "time" => $post->getTime()
+            );
+        }
+
+        return array($values, $count);
+    }
+
     public function privacy($info = "ok")
     {
         $session = USession::getInstance();
@@ -391,7 +492,6 @@ class CUser
         $PPImageURL = "/public/defaultPropic.png";
         if ($user->getImage() != "") {
             $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
-            //echo var_dump($PPImageURL);
         }
         $view = new VUser();
         $params = array(

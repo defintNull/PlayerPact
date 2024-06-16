@@ -25,7 +25,7 @@ class VUser extends View
     {
         $this->assignSmartyParams($params);
 
-        $this->smarty->assign("type", "saved");
+        $this->smarty->assign("type", "savedPosts");
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 
@@ -36,7 +36,7 @@ class VUser extends View
     {
         $this->assignSmartyParams($params);
 
-        $this->smarty->assign("type", "teams");
+        $this->smarty->assign("type", "participations");
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 

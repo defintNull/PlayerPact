@@ -6,12 +6,12 @@
     
     class CAutoscroll {
 
-        public function load($offset,$totalcount,$type,$date,$time) {
+        public function load($offset, $totalcount, $type, $date, $time) {
             $session = USession::getInstance();
 
             $everybodyTypes = array("standard", "team", "sale", "comment");
-            $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "myPosts", "saved", "teams");
-            $modTypes = array("report");
+            $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "myPosts", "savedPosts", "participations");
+            $modTypes = array("report", "users");
             $adminTypes = array();
 
             $user = $session->load("user");
@@ -163,6 +163,18 @@
         private function getMyPostsElements(int $offset,int $limit,string $datetime) {
             $controller = new CUser();
             $elements = $controller->loadMyPosts($offset,$limit,$datetime);
+            return $elements;
+        }
+
+        private function getSavedPostsElements(int $offset,int $limit,string $datetime) {
+            $controller = new CUser();
+            $elements = $controller->loadSavedPosts($offset,$limit,$datetime);
+            return $elements;
+        }
+
+        private function getParticipationsElements(int $offset,int $limit,string $datetime) {
+            $controller = new CUser();
+            $elements = $controller->loadTeams($offset,$limit,$datetime);
             return $elements;
         }
     }

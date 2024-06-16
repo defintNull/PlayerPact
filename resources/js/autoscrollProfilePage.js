@@ -14,8 +14,12 @@ $(document).ready(function () {
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {
-				console.log(err);
-				//window.location.href = "/error/e404";
+				//console.log(err);
+				window.location.href = "/error/e404";
+			}
+
+			if(initialData.rows.length == 0){
+				console.log("No elements"); // Sostituire con messaggio a schermo
 			}
 
 			if (initialData) {
@@ -32,6 +36,7 @@ $(document).ready(function () {
 					}
 				}
 			}
+			
 			windowOnScroll(initialData);
 		},
 	});
@@ -56,8 +61,6 @@ function windowOnScroll(initialData) {
 function getMoreData(initialData) {
 	$(".ajax-loader").show();
 	$(window).off("scroll");
-	console.log(initialData.offset);
-	console.log(initialData.totalcount);
 	if (initialData.offset <= initialData.totalcount) {
 		$.ajax({
 			url:
