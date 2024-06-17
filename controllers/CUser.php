@@ -254,8 +254,9 @@ class CUser
         if ($chat->getPostType() == "team") {
             $post = $pm->load("EPostTeam", array("id" => $chat->getPostId()));
             if ($post != array()) {
+                $postUser = $pm->load("EUser", array("id" => $post[0]["userId"]));
                 $posttitle = $post[0]["title"];
-                $username = $post[0]["username"];
+                $username = $postUser[0]["username"];
             } else {
                 $posttitle = "Deleted post";
                 $username = "Deleted user";
