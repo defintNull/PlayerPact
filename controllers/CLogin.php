@@ -126,7 +126,7 @@ class CLogin
             $password = $_POST["password"];
 
             $image = null;
-
+            
             if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
                 $file_tmp_path = $_FILES["profilepicture"]['tmp_name'];
                 $file_name = $_FILES["profilepicture"]['name'];
@@ -147,9 +147,6 @@ class CLogin
                     header("Location: /login/registration?info=error");
                     exit();
                 }
-            } else {
-                header("Location: /login/registration?info=error");
-                exit();
             }
 
             $user = new EUser(1, $username, $password, $name, $surname, $birthdate, $email, $image);
