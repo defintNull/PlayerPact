@@ -79,23 +79,21 @@
 						{/if}
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-						<div class="single-post-section">
-							<div class="post-section">
-								<div class="row single-post" id="{$postId}">
-									<div class="post-username">{$postUsername}</div>
-									<div class="post-title">{$postTitle}</div>
-									<div class="post-description">{$postDescription}</div>
-									<div class="row">
-										<div class="col reportPost text-end float-end">
-											<form action="/post/report" method="post">
-												<input type="hidden" id="post-report" name="objToReportId" value="{$postId}" />
-												<input type="hidden" id="post-report-type" name="objToReportType" value="standard" />
-												<input type="image" id="report-image" src="/public/report.png" />
-											</form>
-										</div>
-										<div class="col-3">
-											<div class="post-datetime" id="post-datetime">{$postDatetime}</div>
-										</div>
+						<div class="post_section">
+							<div class="row post-item" id="{$postId}">
+								<div class="post-username">{$postUsername}</div>
+								<div class="post-title">{$postTitle}</div>
+								<div class="post-description">{$postDescription}</div>
+								<div class="row">
+									<div class="col reportPost text-end float-end">
+										<form action="/post/report" method="post">
+											<input type="hidden" id="post-report" name="objToReportId" value="{$postId}" />
+											<input type="hidden" id="post-report-type" name="objToReportType" value="standard" />
+											<input type="image" id="report-image" src="/public/report.png" />
+										</form>
+									</div>
+									<div class="col-3">
+										<div class="post-datetime" id="post-datetime">{$postDatetime}</div>
 									</div>
 								</div>
 							</div>

@@ -5,7 +5,7 @@ $(document).ready(function () {
 	var offset = document.getElementById("offset").value;
 	var totalcount = document.getElementById("totalcount").value;
 	var type = document.getElementById("type").value;
-	var id = document.getElementsByClassName("single-post")[0].id;
+	var id = document.getElementsByClassName("post-item")[0].id;
 
 	$.ajax({
 		url:

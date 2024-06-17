@@ -58,35 +58,11 @@ body {
 	background-color: #444444;
 }
 
-.single-post {
-	text-decoration: none;
-	color: white;
-	background-color: #333333;
-	box-shadow: 0px 0px 20px 1px #333333;
-	border-radius: 18px;
-	margin-left: 20%;
-	margin-right: 20%;
-	padding: 10px;
-	min-width: 300px;
-	min-height: 250px;
-}
-
-.single-post-section {
-	padding-top: 3%;
-	padding-left: 5%;
-	padding-right: 5%;
-	min-width: 1250px;
-	max-width: 1250px;
-	height: auto;
-	background-color: #222222;
-}
-
 .post_section a {
 	text-decoration: none;
 	color: white;
 	padding: 0px;
-	min-width: 300px;
-	min-height: 230px;
+	margin: 0px;
 }
 
 .post_section {
