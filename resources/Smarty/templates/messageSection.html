@@ -87,24 +87,24 @@
                         <div class="row post-item" id="{$chatId}">
                             <div class="chat-user" id="chat-user">{$user}</div>
                             <div class="post-title" id="post-title">{$title}</div>
-                            <div class="chat-datetime" id="chat-datetime" data-nmessages="{$nMessages}">{$datetime}
+                            <div class="post-datetime" id="chat-datetime" data-nmessages="{$nMessages}">{$datetime}
                             </div>
                         </div>
                         {/if}
                         <hr class="solid">
-                        <div class="row commentBox">
-                            <input name="message" type="text" class="form-control" id="message-box"
-                                placeholder="Message...">
-                            <button type="submit" id="send-message-button" data-id="{$chatId}"
-                                class="btn-lg button button-send-text">Send</button>
+                        <div class="row comment-box">
+                            <div class="col">
+                                <textarea name="message" type="text" class="form-control" id="message-box"
+                                    placeholder="Message..."></textarea>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" id="send-message-button" data-id="{$chatId}"
+                                    class="btn-lg button button-send-text">Send</button>
+                            </div>
                         </div>
-                        
                         <hr class="solid">
                         <div class=message-section id=message-list></div>
                     </div>
-
-
-
                 </div>
                 <div class="ajax-loader text-center">
                     Loading more posts...

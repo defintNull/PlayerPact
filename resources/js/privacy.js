@@ -29,7 +29,7 @@ $(document).on("click", "#confirm-change-email", function () {
 		type: "POST",
 		data: { newEmail: newEmail },
 		success: function (response) {
-			console.log(response);
+			//console.log(response);
 			if (response == "error_email") {
 				window.location.href = "/user/privacy?info=error_email";
 			} else {
@@ -93,7 +93,7 @@ $(document).on("click", "#confirm-change-password", function () {
 		type: "POST",
 		data: { newPassword: newPassword },
 		success: function (response) {
-			console.log(response);
+			//console.log(response);
 			if (response == "error_password") {
 				window.location.href = "/user/privacy?info=error_password";
 			} else {

@@ -97,3 +97,11 @@
 .error {
 	color: red;
 }
+
+.button-send-text {
+	margin: 0;
+	width: 100px;
+	height: 35px;
+	font-size: 20;
+	padding-top: 2px;
+}

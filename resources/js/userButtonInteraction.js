@@ -1,3 +1,13 @@
+$(document).ready(function() {
+	let t = document.getElementById("message-box");
+
+	t.addEventListener("keypress", function(event) {
+		if(event.key === "Enter"){
+			document.getElementById("send-message-button").click();
+		}
+	});
+});
+
 // Function to save a post on button click
 $(document).on("click", ".savePostButton", function () {
 	var postSaleId = $(this).attr("value");
@@ -7,7 +17,7 @@ $(document).on("click", ".savePostButton", function () {
 		type: "POST",
 		data: { postSaleId: postSaleId },
 		success: function (response) {
-			console.log(response);
+			//console.log(response);
 			if (document.getElementById(postSaleId + "-save-post-image").value == 0) {
 				document.getElementById(postSaleId + "-save-post-image").src = "/public/saved.png";
 				document.getElementById(postSaleId + "-save-post-image").value = 1;
@@ -30,7 +40,7 @@ $(document).on("click", ".participateButton", function () {
 		type: "POST",
 		data: { postTeamId: postTeamId },
 		success: function (response) {
-			console.log(response);
+			//console.log(response);
 			if (document.getElementById(postTeamId + "-post-participate").value == 0) {
 				document.getElementById(postTeamId + "-post-participate").textContent = "Already on the team";
 				document.getElementById(postTeamId + "-post-participate").value = 1;

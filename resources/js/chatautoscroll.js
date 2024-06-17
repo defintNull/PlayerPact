@@ -25,7 +25,7 @@ $(document).ready(function () {
 			"&time=" +
 			time.value,
 		success: function (data) {
-			console.log(data);
+			//console.log(data);
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {
@@ -69,7 +69,6 @@ function windowOnScroll(initialData) {
 	$(window).on("scroll", function (e) {
 		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 60) {
 			if ($(".chat-item").length == initialData.totalcount) {
-				console.log("no");
 				getMoreData(initialData);
 			}
 		}
