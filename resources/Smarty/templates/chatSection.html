@@ -51,7 +51,21 @@
 			</div>
 			<div class="col h-100 d-flex flex-column main-column">
 				<div class="row justify-content-center fixed-top z-1 upper-bar">
-					<a><span class="username upper-bar-username">{$username}</span>'s profile page</a>
+					<div class="col upper-bar-title">
+						<a><span class="username upper-bar-username">{$username}</span>'s profile page</a>
+					</div>
+					<div class="col">
+						<li class="dropdown-profile-image">
+							<ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="{$profilePicture}" alt="Avatar" id="upper-profile-image" />
+							</ul>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item usermenu-username">{$username}</a></li>
+								<li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+								<li><a class="dropdown-item" href="/login/logout">Logout</a></li>
+							</ul>
+						</li>
+					</div>
 				</div>
 				<div class="row justify-content-center flex-grow-1" id="main-body">
 					<div class="chat-section" id="chat-list">

@@ -3,6 +3,8 @@
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VLogin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EMod.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EAdmin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 
@@ -11,17 +13,31 @@ class CLogin
 {
     public function home()
     {
-        $session = USession::getInstance();
-        $user = $session->load("user");
-        if ($user != null) {
-            header("Location: /user/home");
-            exit();
-        }
         $this->login();
     }
 
     public function login(string $check = "ok")
     {
+        $session = USession::getInstance();
+        $user = $session->load("user");
+        $mod = $session->load("mod");
+        $admin = $session->load("admin");
+        
+        if ($user != null) {
+            header("Location: /user/home");
+            exit();
+        }
+        if ($mod != null) {
+            $session->end();
+            header("Location: /mod/home");
+            exit();
+        }
+        if ($admin != null) {
+            $session->end();
+            header("Location: /admin/home");
+            exit();
+        }
+
         $view = new VLogin();
         $view->show($check);
     }
@@ -49,7 +65,7 @@ class CLogin
         $check = $this->authentication($username, $password);
 
         if ($check) {
-            header("Location: /user/home");
+            header("Location: /".$check."/home");
             exit();
         }
         header("Location: /login/login?check=false");
@@ -75,23 +91,24 @@ class CLogin
 
                 $session = USession::getInstance();
                 $session->set("user", $user);
+                return "user";
 
             } elseif ($profile["type"] == "mod") {
                 $val = $pm->load("EMod", $values)[0];
-                $user = new EMod($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
+                $mod = new EMod($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
 
                 $session = USession::getInstance();
-                $session->set("user", $user);
+                $session->set("mod", $mod);
+                return "mod";
 
             } elseif ($profile["type"] == "admin") {
                 $val = $pm->load("EAdmin", $values)[0];
-                $user = new EAdmin($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
+                $admin = new EAdmin($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
 
                 $session = USession::getInstance();
-                $session->set("user", $user);
+                $session->set("admin", $admin);
+                return "admin";
             }
-
-            return true;
         }
         return false;
     }

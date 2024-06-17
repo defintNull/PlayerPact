@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-16 20:38:29
+/* Smarty version 5.1.0, created on 2024-06-17 01:22:19
   from 'file:messageSection.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666f31255fac72_74841603',
+  'unifunc' => 'content_666f73abec99a1_89802863',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1d820f4a368f7964386624704d2ebecb57f05a1d' => 
     array (
       0 => 'messageSection.html',
-      1 => 1718562863,
+      1 => 1718579484,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666f31255fac72_74841603 (\Smarty\Template $_smarty_tpl) {
+function content_666f73abec99a1_89802863 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 
@@ -91,8 +91,24 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
             </div>
             <div class="col h-100 d-flex flex-column main-column">
                 <div class="row justify-content-center fixed-top z-1 upper-bar">
-                    <a><span class="username upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
+                    <div class="col upper-bar-title">
+						<a><span class="username upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
 </span>'s profile page</a>
+					</div>
+					<div class="col">
+						<li class="dropdown-profile-image">
+							<ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
+" alt="Avatar" id="upper-profile-image" />
+							</ul>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
+</a></li>
+								<li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+								<li><a class="dropdown-item" href="/login/logout">Logout</a></li>
+							</ul>
+						</li>
+					</div>
                 </div>
                 <div class="row justify-content-center flex-grow-1" id="main-body">
                     <div class="single-post-section">

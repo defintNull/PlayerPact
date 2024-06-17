@@ -5,8 +5,16 @@
 }
 
 .upper-bar {
-	padding-top: 5px;
+	white-space:nowrap;
+} 
+
+.upper-bar-title {
+	padding-left: 35%;
+	padding-right: 5%;
+	text-decoration: none;
+	color: white;
 	font-size: 30px;
+	white-space:nowrap;
 }
 
 .username {

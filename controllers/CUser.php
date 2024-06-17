@@ -65,9 +65,17 @@ class CUser
             exit();
         }
 
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($user->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
+        }
+
         $username = $user->getUsername();
         $view = new VUser();
-        $params = array("username" => $username);
+        $params = array(
+            "username" => $username,
+            "profilePicture" => $PPImageURL
+        );
         $view->showProfile($params);
     }
 
@@ -81,9 +89,18 @@ class CUser
             header("Location: /login");
             exit();
         }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($user->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
+        }
+
         $username = $user->getUsername();
         $view = new VUser();
-        $params = array("username" => $username);
+        $params = array(
+            "username" => $username,
+            "profilePicture" => $PPImageURL
+        );
         $view->showSavedPosts($params);
     }
 
@@ -98,9 +115,18 @@ class CUser
             header("Location: /login");
             exit();
         }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($user->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
+        }
+
         $username = $user->getUsername();
         $view = new VUser();
-        $params = array("username" => $username);
+        $params = array(
+            "username" => $username,
+            "profilePicture" => $PPImageURL
+        );
         $view->showTeams($params);
     }
 
@@ -110,16 +136,21 @@ class CUser
         $this->checkSession($session);
         $user = $session->load("user");
 
-        $username = null;
         if ($user == null) {
             header("Location: /login");
             exit();
         }
 
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($user->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
+        }
+
         $username = $user->getUsername();
         $view = new VUser();
         $params = array(
-            "username" => $username
+            "username" => $username,
+            "profilePicture" => $PPImageURL
         );
         $view->showChatSection($params);
     }
@@ -204,6 +235,16 @@ class CUser
         $this->checkSession($session);
         $user = $session->load("user");
 
+        if ($user == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($user->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
+        }
+
         $pm = new FPersistentManager();
         $res = $pm->load("EChat", array("id" => $id))[0];
         //echo var_dump($res);
@@ -254,7 +295,8 @@ class CUser
             "user" => $username,
             "nMessages" => $nMessages,
             "username" => $user->getUsername(),
-            "deletedPost" => $deletedPost
+            "deletedPost" => $deletedPost,
+            "profilePicture" => $PPImageURL
         );
         $view->showMessageSection($params);
     }

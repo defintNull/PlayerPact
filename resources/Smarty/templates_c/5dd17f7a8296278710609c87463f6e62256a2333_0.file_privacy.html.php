@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-15 19:40:29
+/* Smarty version 5.1.0, created on 2024-06-17 01:01:22
   from 'file:privacy.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666dd20d4ef248_52872367',
+  'unifunc' => 'content_666f6ec2d56bc7_41821697',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5dd17f7a8296278710609c87463f6e62256a2333' => 
     array (
       0 => 'privacy.html',
-      1 => 1718472600,
+      1 => 1718578882,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666dd20d4ef248_52872367 (\Smarty\Template $_smarty_tpl) {
+function content_666f6ec2d56bc7_41821697 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 
@@ -79,8 +79,24 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 			</div>
 			<div class="col h-100 d-flex flex-column main-column">
 				<div class="row justify-content-center fixed-top z-1 upper-bar">
-					<a><span class="username upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
+					<div class="col upper-bar-title">
+						<a><span class="username upper-bar-username"><?php echo $_smarty_tpl->getValue('username');?>
 </span>'s profile page</a>
+					</div>
+					<div class="col">
+						<li class="dropdown-profile-image">
+							<ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="<?php echo $_smarty_tpl->getValue('profilePicture');?>
+" alt="Avatar" id="upper-profile-image" />
+							</ul>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item usermenu-username"><?php echo $_smarty_tpl->getValue('username');?>
+</a></li>
+								<li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+								<li><a class="dropdown-item" href="/login/logout">Logout</a></li>
+							</ul>
+						</li>
+					</div>
 				</div>
 				<div class="row justify-content-center flex-grow-1" id="main-body">
 					<div class="col privacy-page-body">
