@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-06-17 01:20:12
+/* Smarty version 5.1.0, created on 2024-06-17 17:54:31
   from 'file:post.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_666f732ce0fde6_97305954',
+  'unifunc' => 'content_66705c37b80e97_97923415',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ffa4e98b9af5afaa54f59a3172396d35e0a53857' => 
     array (
       0 => 'post.html',
-      1 => 1718562886,
+      1 => 1718639669,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_666f732ce0fde6_97305954 (\Smarty\Template $_smarty_tpl) {
+function content_66705c37b80e97_97923415 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione per il web\\PlayerPact\\resources\\Smarty\\templates';
 ?><html>
 	<head>
@@ -113,29 +113,27 @@ $_smarty_current_dir = 'E:\\Università\\III anno\\II semestre\\Programmazione p
 						<?php }?>
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-						<div class="single-post-section">
-							<div class="post-section">
-								<div class="row single-post" id="<?php echo $_smarty_tpl->getValue('postId');?>
+						<div class="post_section">
+							<div class="row post-item" id="<?php echo $_smarty_tpl->getValue('postId');?>
 ">
-									<div class="post-username"><?php echo $_smarty_tpl->getValue('postUsername');?>
+								<div class="post-username"><?php echo $_smarty_tpl->getValue('postUsername');?>
 </div>
-									<div class="post-title"><?php echo $_smarty_tpl->getValue('postTitle');?>
+								<div class="post-title"><?php echo $_smarty_tpl->getValue('postTitle');?>
 </div>
-									<div class="post-description"><?php echo $_smarty_tpl->getValue('postDescription');?>
+								<div class="post-description"><?php echo $_smarty_tpl->getValue('postDescription');?>
 </div>
-									<div class="row">
-										<div class="col reportPost text-end float-end">
-											<form action="/post/report" method="post">
-												<input type="hidden" id="post-report" name="objToReportId" value="<?php echo $_smarty_tpl->getValue('postId');?>
+								<div class="row">
+									<div class="col reportPost text-end float-end">
+										<form action="/post/report" method="post">
+											<input type="hidden" id="post-report" name="objToReportId" value="<?php echo $_smarty_tpl->getValue('postId');?>
 " />
-												<input type="hidden" id="post-report-type" name="objToReportType" value="standard" />
-												<input type="image" id="report-image" src="/public/report.png" />
-											</form>
-										</div>
-										<div class="col-3">
-											<div class="post-datetime" id="post-datetime"><?php echo $_smarty_tpl->getValue('postDatetime');?>
+											<input type="hidden" id="post-report-type" name="objToReportType" value="standard" />
+											<input type="image" id="report-image" src="/public/report.png" />
+										</form>
+									</div>
+									<div class="col-3">
+										<div class="post-datetime" id="post-datetime"><?php echo $_smarty_tpl->getValue('postDatetime');?>
 </div>
-										</div>
 									</div>
 								</div>
 							</div>
