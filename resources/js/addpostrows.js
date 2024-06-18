@@ -27,6 +27,7 @@ async function addrows(rows, type) {
 			document.getElementById("post-userId").id = row.id + "-post-userId";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";
+			document.getElementById("post-delete").id = row.id + "-post-delete-standard";
 
 			function isOwner() {
 				return $.ajax({
@@ -39,7 +40,7 @@ async function addrows(rows, type) {
 				.then(async function (response) {
 					console.log(response);
 					if(response == "1") {
-						const deleteSection = document.getElementById("post-delete");
+						const deleteSection = document.getElementById(row.id + "-post-delete-standard");
 
 						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
 						const textD = await d.text();
@@ -51,7 +52,6 @@ async function addrows(rows, type) {
 						deleteSection.append(nodeD);
 						nodeD.outerHTML = bodyHTMLD;
 
-						document.getElementById("post-delete").id = row.id + "-post-delete";
 						document.getElementById("post-delete-button").id = row.id + "-post-delete-button";
 						document.getElementById(row.id + "-post-delete-button").dataset.type = "standard";
 						document.getElementById(row.id + "-post-delete-button").dataset.id = row.id;
@@ -91,6 +91,7 @@ async function addrows(rows, type) {
 			document.getElementById("post-report").id = row.id + "-post-report";
 			document.getElementById("post-participate").dataset.id = row.id;
 			document.getElementById("post-participate").id = row.id + "-post-participate";
+			document.getElementById("post-delete").id = row.id + "-post-delete-team";
 
 			function isOwner() {
 				return $.ajax({
@@ -103,7 +104,7 @@ async function addrows(rows, type) {
 				.then(async function (response) {
 					//console.log(response);
 					if(response == "1") {
-						const deleteSection = document.getElementById("post-delete");
+						const deleteSection = document.getElementById(row.id + "-post-delete-team");
 
 						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
 						const textD = await d.text();
@@ -115,7 +116,6 @@ async function addrows(rows, type) {
 						deleteSection.append(nodeD);
 						nodeD.outerHTML = bodyHTMLD;
 
-						document.getElementById("post-delete").id = row.id + "-post-delete";
 						document.getElementById("post-delete-button").id = row.id + "-post-delete-button";
 						document.getElementById(row.id + "-post-delete-button").dataset.type = "team";
 						document.getElementById(row.id + "-post-delete-button").dataset.id = row.id;
@@ -176,6 +176,7 @@ async function addrows(rows, type) {
 			document.getElementById("post-price").id = row.id + "-post-price";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";
+			document.getElementById("post-delete").id = row.id + "-post-delete-sale";
 
 			function isOwner() {
 				return $.ajax({
@@ -188,7 +189,7 @@ async function addrows(rows, type) {
 				.then(async function (response) {
 					//console.log(response);
 					if(response == "1") {
-						const deleteSection = document.getElementById("post-delete");
+						const deleteSection = document.getElementById(row.id + "-post-delete-sale");
 
 						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
 						const textD = await d.text();
@@ -200,7 +201,6 @@ async function addrows(rows, type) {
 						deleteSection.append(nodeD);
 						nodeD.outerHTML = bodyHTMLD;
 
-						document.getElementById("post-delete").id = row.id + "-post-delete";
 						document.getElementById("post-delete-button").id = row.id + "-post-delete-button";
 						document.getElementById(row.id + "-post-delete-button").dataset.type = "sale";
 						document.getElementById(row.id + "-post-delete-button").dataset.id = row.id;
