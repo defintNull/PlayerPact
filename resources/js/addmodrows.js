@@ -19,8 +19,14 @@ async function addrows(rows, type) {
 			document.getElementById("mod-username").id = row.id + "-mod-username";
 			document.getElementById("mod-email").textContent = row.email;
 			document.getElementById("mod-email").id = row.id + "-mod-email";
-			document.getElementById("mod-profile-image").textContent = row.image;
-			document.getElementById("mod-profile-image").id = row.id + "-mod-profile-image";
+
+			if (row.image == "") {
+				document.getElementById("mod-profile-image").remove();
+			} else {
+				document.getElementById("mod-thumbnail").src = "data:image/png;base64," + row.image;
+				document.getElementById("mod-thumbnail").id = row.id + "-mod-thumbnail";
+				document.getElementById("mod-profile-image").id = row.id + "-mod-profile-image";
+			}
 		});
 	}
 }
