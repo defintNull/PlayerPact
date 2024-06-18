@@ -11,7 +11,6 @@ $(document).ready(function () {
 
 	var intervalId = window.setInterval(function () {
 		let chatId = document.getElementById("send-message-button").dataset.id;
-
 		if ($(window).scrollTop() <= 400) {
 			$.ajax({
 				url: "/user/countchatmessages",
