@@ -13,6 +13,9 @@ class VAdmin extends View
     public function showModsPage($params)
     {
         $this->assignSmartyParams($params);
+        $this->smarty->assign("type", "moderator");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
         $this->smarty->display("admin/modsPage.html");
     }
 

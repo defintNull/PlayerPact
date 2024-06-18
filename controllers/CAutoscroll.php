@@ -2,6 +2,8 @@
 
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CPost.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CUser.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CAdmin.php");
+//require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CMod.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 
 class CAutoscroll
@@ -26,7 +28,7 @@ class CAutoscroll
         $everybodyTypes = array("standard", "team", "sale", "comment");
         $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "myPosts", "savedPosts", "participations");
         $modTypes = array("report", "users");
-        $adminTypes = array();
+        $adminTypes = array("moderator");
 
         $user = $session->load("user");
         $mod = $session->load("mod");
@@ -59,6 +61,7 @@ class CAutoscroll
             if (method_exists(__CLASS__, $method)) {
                 $elements = $this->{$method}($offset, $limit, $datetime);
                 $rows = $elements[0];
+                
                 if ($totalcount >= $offset) {
                     $offset += $limit;
                 }
@@ -199,6 +202,13 @@ class CAutoscroll
     {
         $controller = new CUser();
         $elements = $controller->loadTeams($offset, $limit, $datetime);
+        return $elements;
+    }
+
+    private function getModeratorElements(int $offset, int $limit, string $datetime)
+    {
+        $controller = new CAdmin();
+        $elements = $controller->loadModerators($offset, $limit, $datetime);
         return $elements;
     }
 }

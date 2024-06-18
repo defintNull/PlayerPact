@@ -11,7 +11,7 @@ class FDB
         "Comment" => "comment",
         "InterestList" => "interestlist",
         "Message" => "message",
-        "Mod" => "mod",
+        "Moderator" => "moderator",
         "ModerationComment" => "moderationcomment",
         "ModerationPost" => "moderationpost",
         "ModerationUser" => "moderationuser",
@@ -108,7 +108,6 @@ class FDB
             $this->db->beginTransaction();
 
             $sql = "SELECT * FROM " . self::$tables[$class] . " WHERE " . $condition;
-
             $sth = $this->db->prepare($sql);
             $sth->execute();
             $results = [];

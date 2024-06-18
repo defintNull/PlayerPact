@@ -3,7 +3,7 @@
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VLogin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EMod.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EAdmin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
@@ -99,8 +99,8 @@ class CLogin
                 return "user";
 
             } elseif ($profile["type"] == "mod") {
-                $val = $pm->load("EMod", $values)[0];
-                $mod = new EMod($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
+                $val = $pm->load("EModerator", $values)[0];
+                $mod = new EModerator($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
 
                 $session = USession::getInstance();
                 $session->set("mod", $mod);

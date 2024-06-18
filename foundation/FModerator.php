@@ -1,7 +1,7 @@
 <?php
 require_once realpath(__DIR__ . "/FDB.php");
 
-class FMod
+class FModerator
 {
 
     function store($obj)
@@ -56,6 +56,14 @@ class FMod
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
         return $db->exists($table, $obj);
+    }
+
+    function loadElements(int $limit, int $offset, string $datetime)
+    {
+        $db = FDB::getInstance();
+        $table = substr(__CLASS__, 1);
+        $condition = "1=1 ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        return $db->load($table, $condition);
     }
 
 }
