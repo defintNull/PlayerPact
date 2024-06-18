@@ -5,17 +5,13 @@ $(document).ready(function () {
 	var prevChoice;
 	$("#postChoice").on("click", "a.dropdown-item", function () {
 		choice = $(this).text();
-		console.log(choice);
 		document.getElementById("dropdown").textContent = choice;
 		if (prevChoice != choice) {
 			if (choice == "Standard") {
-				console.log("standard");
 				createStandardChoicePage();
 			} else if (choice == "Sale") {
-				console.log("sale");
 				createSaleChoicePage();
 			} else if (choice == "Team") {
-				console.log("team");
 				createTeamChoicePage();
 			}
 		}

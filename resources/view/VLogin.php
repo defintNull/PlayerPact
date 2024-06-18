@@ -17,4 +17,3 @@ class VLogin extends View
         $this->smarty->display("registration.html");
     }
 }
-?>

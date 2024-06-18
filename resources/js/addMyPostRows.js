@@ -15,8 +15,8 @@ async function addrows(rows) {
 			node.outerHTML = bodyHTML;
 
 			document.getElementById("clickable").href += "?id=" + row.id;
-			document.getElementById("clickable").id = row.id;
-			document.getElementById("id-post-standard").id = row.id;
+			document.getElementById("clickable").id = row.id + "-clickable";
+			document.getElementById("id-post-standard").id = row.id + "-standard";
 			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
 			document.getElementById("post-datetime").textContent = row.datetime;
@@ -27,6 +27,40 @@ async function addrows(rows) {
 			document.getElementById("post-userId").id = row.id + "-post-userId";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";
+
+			function isOwner() {
+				return $.ajax({
+					url: "/post/isowner",
+					type: "POST",
+					data: { postStandardId: row.id },
+				});
+			}
+			isOwner()
+				.then(async function (response) {
+					//console.log(response);
+					if(response == "1") {
+						const deleteSection = document.getElementById("post-delete");
+
+						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
+						const textD = await d.text();
+						const i1D = textD.indexOf("<body>");
+						const i2D = textD.indexOf("</body>");
+						const bodyHTMLD = textD.substring(i1D + "<body>".length, i2D);
+
+						let nodeD = document.createElement("div");
+						deleteSection.append(nodeD);
+						nodeD.outerHTML = bodyHTMLD;
+
+						document.getElementById("post-delete").id = row.id + "-post-delete";
+						document.getElementById("post-delete-button").id = row.id + "-post-delete-button";
+						document.getElementById(row.id + "-post-delete-button").dataset.type = "standard";
+						document.getElementById(row.id + "-post-delete-button").dataset.id = row.id;
+					}
+				})
+				.catch(function (error) {
+					console.error("Error:", error);
+				});
+
 		}
 		else if (row.type == "team") {
 			//Richiesta all'html del post
@@ -41,7 +75,7 @@ async function addrows(rows) {
 			postList.append(node);
 			node.outerHTML = bodyHTML;
 
-			document.getElementById("id-post-team").id = row.id;
+			document.getElementById("id-post-team").id = row.id + "-team";
 			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
 			document.getElementById("post-datetime").textContent = row.datetime;
@@ -58,6 +92,38 @@ async function addrows(rows) {
 			document.getElementById("post-report").id = row.id + "-post-report";
 			document.getElementById("post-participate").dataset.id = row.id;
 			document.getElementById("post-participate").id = row.id + "-post-participate";
+			function isOwner() {
+				return $.ajax({
+					url: "/post/isowner",
+					type: "POST",
+					data: { postTeamId: row.id },
+				});
+			}
+			isOwner()
+				.then(async function (response) {
+					//console.log(response);
+					if(response == "1") {
+						const deleteSection = document.getElementById("post-delete");
+
+						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
+						const textD = await d.text();
+						const i1D = textD.indexOf("<body>");
+						const i2D = textD.indexOf("</body>");
+						const bodyHTMLD = textD.substring(i1D + "<body>".length, i2D);
+
+						let nodeD = document.createElement("div");
+						deleteSection.append(nodeD);
+						nodeD.outerHTML = bodyHTMLD;
+
+						document.getElementById("post-delete").id = row.id + "-post-delete";
+						document.getElementById("post-delete-button").id = row.id + "-post-delete-button";
+						document.getElementById(row.id + "-post-delete-button").dataset.type = "team";
+						document.getElementById(row.id + "-post-delete-button").dataset.id = row.id;
+					}
+				})
+				.catch(function (error) {
+					console.error("Error:", error);
+				});
 
 			function isSaved() {
 				return $.ajax({
@@ -94,7 +160,7 @@ async function addrows(rows) {
 			postList.append(node);
 			node.outerHTML = bodyHTML;
 
-			document.getElementById("id-post-sale").id = row.id;
+			document.getElementById("id-post-sale").id = row.id + "-sale";
 			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
 			document.getElementById("post-datetime").textContent = row.datetime;
@@ -107,6 +173,39 @@ async function addrows(rows) {
 			document.getElementById("post-price").id = row.id + "-post-price";
 			document.getElementById("post-report").value = row.id;
 			document.getElementById("post-report").id = row.id + "-post-report";
+
+			function isOwner() {
+				return $.ajax({
+					url: "/post/isowner",
+					type: "POST",
+					data: { postSaleId: row.id },
+				});
+			}
+			isOwner()
+				.then(async function (response) {
+					//console.log(response);
+					if(response == "1") {
+						const deleteSection = document.getElementById("post-delete");
+
+						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
+						const textD = await d.text();
+						const i1D = textD.indexOf("<body>");
+						const i2D = textD.indexOf("</body>");
+						const bodyHTMLD = textD.substring(i1D + "<body>".length, i2D);
+
+						let nodeD = document.createElement("div");
+						deleteSection.append(nodeD);
+						nodeD.outerHTML = bodyHTMLD;
+
+						document.getElementById("post-delete").id = row.id + "-post-delete";
+						document.getElementById("post-delete-button").id = row.id + "-post-delete-button";
+						document.getElementById(row.id + "-post-delete-button").dataset.type = "sale";
+						document.getElementById(row.id + "-post-delete-button").dataset.id = row.id;
+					}
+				})
+				.catch(function (error) {
+					console.error("Error:", error);
+				});
 
 			function isBought() {
 				return $.ajax({

@@ -91,6 +91,7 @@ body {
 }
 
 .post-username {
+	margin: 0;
 	text-align: left;
 	font-size: 16px;
 	color: coral;
@@ -160,30 +161,6 @@ hr.solid {
 	text-align: left;
 }
 
-.commentButton {
-	color: white;
-	background-color: #ff8800;
-	transition: none;
-	border: none;
-	padding: 10px;
-	margin: 7px 2px;
-	border-radius: 8px;
-	max-width: 400px;
-	width: 300px;
-	position: relative;
-	right: 0;
-}
-
-.commentButton:hover {
-	background-color: #333333;
-	transition: none;
-}
-
-.commentButton:active {
-	background-color: #534535;
-	transition: none;
-}
-
 .form-control {
 	background-color: #222222;
 	color: white;
@@ -198,7 +175,7 @@ hr.solid {
 	background-color: #222222;
 }
 
-.commentBox {
+.comment-box {
 	margin-left: 20%;
 	margin-right: 20%;
 }
@@ -229,6 +206,7 @@ hr.solid {
 }
 
 .savePostButton {
+	background: transparent;
 	width: 40px;
 	height: 40px;
 	border: none;
@@ -244,7 +222,7 @@ hr.solid {
 	width: 40px;
 }
 
-.participateButton {
+.participate-button {
 	color: white;
 	background-color: #ff8800;
 	margin-top: 50%;
@@ -253,12 +231,12 @@ hr.solid {
 	padding: 10px 18px;
 }
 
-.participateButton:hover {
+.participate-button:hover {
 	color: white;
 	background-color: #444444;
 }
 
-.participateButton:active {
+.participate-button:active {
 	color: white;
 	background-color: #534535;
 }
@@ -266,4 +244,31 @@ hr.solid {
 .button-buy {
 	font-size: 15px;
 	padding: 10px;
+}
+
+.button-send-comment {
+	margin: 0;
+	width: 150px;
+	height: 35px;
+	font-size: 18;
+	padding: 2;
+}
+
+.delete-button {
+	background-color: #222222;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+}
+
+.delete-button:hover {
+	background-color: white;	
+}
+
+.delete-button-img {
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	height: 40px;
 }

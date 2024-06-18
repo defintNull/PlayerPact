@@ -11,4 +11,3 @@
 
     $frontcontroller = new FrontController();
     $frontcontroller->run($uri);
-?>

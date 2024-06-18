@@ -1,3 +1,15 @@
+$(document).ready(function() {
+	let t = document.getElementById("message-box");
+
+	if(t != null){
+		t.addEventListener("keypress", function(event) {
+			if(event.key === "Enter"){
+				document.getElementById("send-message-button").click();
+			}
+		});
+	}	
+});
+
 // Function to save a post on button click
 $(document).on("click", ".savePostButton", function () {
 	var postSaleId = $(this).attr("value");
@@ -22,7 +34,7 @@ $(document).on("click", ".savePostButton", function () {
 });
 
 // Function to participate to a game on button click
-$(document).on("click", ".participateButton", function () {
+$(document).on("click", ".participate-button", function () {
 	var postTeamId = $(this).attr("data-id");
 
 	$.ajax({
@@ -30,12 +42,17 @@ $(document).on("click", ".participateButton", function () {
 		type: "POST",
 		data: { postTeamId: postTeamId },
 		success: function (response) {
-			console.log(response);
 			if (document.getElementById(postTeamId + "-post-participate").value == 0) {
 				document.getElementById(postTeamId + "-post-participate").textContent = "Already on the team";
+				let nPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[0]);
+				let nMaxPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[1]);
+				document.getElementById(postTeamId + "-post-players").textContent = "Current players: " + (nPlayers + 1) + "/" + nMaxPlayers;
 				document.getElementById(postTeamId + "-post-participate").value = 1;
 			} else if (document.getElementById(postTeamId + "-post-participate").value == 1) {
 				document.getElementById(postTeamId + "-post-participate").textContent = "Team up";
+				let nPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[0]);
+				let nMaxPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[1]);
+				document.getElementById(postTeamId + "-post-players").textContent = "Current players: " + (nPlayers - 1) + "/" + nMaxPlayers;
 				document.getElementById(postTeamId + "-post-participate").value = 0;
 			} else {
 				window.location.href = "/login";
@@ -60,5 +77,28 @@ $(document).on("click", "#send-message-button", function () {
 				location.reload();
 			},
 		});
+	}
+});
+
+$(document).on("click", ".delete-button", function (event) {
+	event.preventDefault();
+	event.stopPropagation();
+	console.log("D");
+	if(confirm("Are you sure you want to delete the post?")) {
+		let postId = $(this).attr("data-id");
+		let postType = $(this).attr("data-type");
+
+		$.ajax({
+			url: "/post/delete",
+			type: "POST",
+			data: { postId: postId, postType: postType },
+			success: function (response) {
+				console.log(response);
+				console.log(document.getElementById(postId + "-" + postType));
+				document.getElementById(postId + "-" + postType).remove();
+				window.location.href = "/user/profile";
+			},
+		});
+
 	}
 });

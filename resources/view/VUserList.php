@@ -15,4 +15,3 @@ class VUserList extends View
 
 }
 
-?>

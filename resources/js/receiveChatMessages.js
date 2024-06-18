@@ -19,7 +19,6 @@ $(document).ready(function () {
 				success: function (response) {
 					let nMessages = document.getElementById("chat-datetime").dataset.nmessages;
 					if (response > nMessages) {
-						console.log("Ciao");
 						let message = document.getElementById("message-box").value;
 						document.cookie = "chatMessage=" + message;
 						location.reload();

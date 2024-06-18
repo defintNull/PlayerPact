@@ -31,11 +31,12 @@ class FChatUser
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
+
         $condition = "";
         $i = 0;
-        foreach ($arr as $key => $val) {
-            $condition .= $key . "=\"" . $val . "\"";
-            if ($i != count($arr) - 1) {
+        foreach($arr as $key => $val){
+            $condition .= $key."=".$val;
+            if($i < count($arr) - 1){ 
                 $condition .= " AND ";
             }
             $i++;
@@ -68,4 +69,3 @@ class FChatUser
         return $db->exists($table, $obj);
     }
 }
-?>

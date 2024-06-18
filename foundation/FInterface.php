@@ -3,4 +3,3 @@ interface FInterface
 {
     public function getValues();
 }
-?>

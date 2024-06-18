@@ -14,4 +14,3 @@ class EModerationUser extends EModeration
     }
 
 }
-?>

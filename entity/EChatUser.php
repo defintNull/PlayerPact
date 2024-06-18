@@ -28,4 +28,3 @@ class EChatUser implements FInterface
         return $v;
     }
 }
-?>

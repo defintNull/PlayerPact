@@ -26,4 +26,3 @@ class EInterestList implements FInterface
     }
 
 }
-?>

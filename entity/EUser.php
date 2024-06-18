@@ -5,4 +5,3 @@ class EUser extends EPerson
 {
 
 }
-?>

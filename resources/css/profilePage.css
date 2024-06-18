@@ -5,8 +5,8 @@
 }
 
 .upper-bar {
-	white-space:nowrap;
-} 
+	white-space: nowrap;
+}
 
 .upper-bar-title {
 	padding-left: 35%;
@@ -14,7 +14,7 @@
 	text-decoration: none;
 	color: white;
 	font-size: 30px;
-	white-space:nowrap;
+	white-space: nowrap;
 }
 
 .username {
@@ -63,14 +63,17 @@
 
 #big-profile-image {
 	min-width: 100px;
-	max-width: 200px;
 	min-height: 100px;
+	max-width: 200px;
 	max-height: 200px;
+	box-shadow: 0px 0px 20px 10px #111111;
+	transition: .5s ease;
 }
 
 #big-profile-image:hover {
-	border-color: white;
-	border-style: solid;
+	transition: .5s ease;
+	box-shadow: 0px 0px 20px 10px #444444;
+	cursor: pointer;
 }
 
 #big-profile-image:active {
@@ -96,4 +99,12 @@
 
 .error {
 	color: red;
+}
+
+.button-send-text {
+	margin: 0;
+	width: 100px;
+	height: 35px;
+	font-size: 20;
+	padding-top: 2px;
 }

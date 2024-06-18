@@ -5,4 +5,3 @@ class EComment extends EText
 {
 
 }
-?>

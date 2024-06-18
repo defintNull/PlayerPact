@@ -80,7 +80,6 @@ function getMoreData(initialData) {
 				time.value,
 			type: "get",
 			success: function (response) {
-				console.log("AAAAA");
 				try {
 					initialData = JSON.parse(response);
 				} catch (err) {

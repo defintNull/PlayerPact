@@ -5,4 +5,3 @@ class EMod extends EPerson
 {
 
 }
-?>

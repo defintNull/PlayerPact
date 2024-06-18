@@ -46,4 +46,3 @@ class VPost extends View
         $this->smarty->display("reportPage.html");
     }
 }
-?>

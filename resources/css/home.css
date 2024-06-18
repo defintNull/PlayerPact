@@ -3,6 +3,10 @@ body {
 	color: white;
 }
 
+textarea {
+	resize: none;
+}
+
 .side-bar {
 	width: 15%;
 	min-width: 150px;
@@ -214,8 +218,6 @@ body {
 	padding: 20px;
 	margin: 4px 2px;
 	border-radius: 8px;
-	width: 40%;
-	font-size: 30px;
 }
 
 .button:hover {

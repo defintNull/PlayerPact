@@ -5,4 +5,3 @@ class EModerationPost extends EModeration
 {
 
 }
-?>

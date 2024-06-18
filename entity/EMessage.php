@@ -57,4 +57,3 @@ class EMessage extends EText implements FInterface
         return $v;
     }
 }
-?>
