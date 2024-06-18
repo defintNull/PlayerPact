@@ -22,3 +22,8 @@ body {
 .pCreateAccount {
 	text-decoration: none;
 }
+
+.error {
+	color: red;
+	margin-bottom: 20px;
+}

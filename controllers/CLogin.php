@@ -22,7 +22,7 @@ class CLogin
         $user = $session->load("user");
         $mod = $session->load("mod");
         $admin = $session->load("admin");
-        
+
         if ($user != null) {
             header("Location: /user/home");
             exit();
@@ -65,7 +65,7 @@ class CLogin
         $check = $this->authentication($username, $password);
 
         if ($check) {
-            header("Location: /".$check."/home");
+            header("Location: /" . $check . "/home");
             exit();
         }
         header("Location: /login/login?check=false");
@@ -74,8 +74,15 @@ class CLogin
 
     private static function authentication(string $username, string $password)
     {
-        //CLogin::check($username);
-        //CLogin::check($password);
+        if (!CLogin::check($username)) {
+            header("Location: /login/login?check=bad");
+            exit();
+        }
+        
+        if(!CLogin::check($password)) {
+            header("Location: /login/login?check=bad");
+            exit();
+        }
 
         $pm = new FPersistentManager();
         $values = array("username" => $username, "password" => $password);
@@ -85,7 +92,7 @@ class CLogin
             header("Location: /error/e404");
             exit();
         }
-        
+
         if ($profile != array()) {
             $profile = $profile[0];
 
@@ -131,7 +138,7 @@ class CLogin
             $password = $_POST["password"];
 
             $image = null;
-            
+
             if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
                 $file_tmp_path = $_FILES["profilepicture"]['tmp_name'];
                 $file_name = $_FILES["profilepicture"]['name'];
@@ -237,8 +244,12 @@ class CLogin
         return $existing;
     }
 
-    public function check() {
-        
+    private static function check($s)
+    {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü#!_%]*$/", $s)) {
+            return false;
+        }
+        return true;
     }
 
     public function logout()
