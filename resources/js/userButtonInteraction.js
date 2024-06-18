@@ -42,20 +42,23 @@ $(document).on("click", ".participate-button", function () {
 		type: "POST",
 		data: { postTeamId: postTeamId },
 		success: function (response) {
-			if (document.getElementById(postTeamId + "-post-participate").value == 0) {
-				document.getElementById(postTeamId + "-post-participate").textContent = "Already on the team";
-				let nPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[0]);
-				let nMaxPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[1]);
-				document.getElementById(postTeamId + "-post-players").textContent = "Current players: " + (nPlayers + 1) + "/" + nMaxPlayers;
-				document.getElementById(postTeamId + "-post-participate").value = 1;
-			} else if (document.getElementById(postTeamId + "-post-participate").value == 1) {
-				document.getElementById(postTeamId + "-post-participate").textContent = "Team up";
-				let nPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[0]);
-				let nMaxPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[1]);
-				document.getElementById(postTeamId + "-post-players").textContent = "Current players: " + (nPlayers - 1) + "/" + nMaxPlayers;
-				document.getElementById(postTeamId + "-post-participate").value = 0;
-			} else {
-				window.location.href = "/login";
+			console.log(response);
+			if(response != "Full") {
+				if (document.getElementById(postTeamId + "-post-participate").value == 0) {
+					document.getElementById(postTeamId + "-post-participate").textContent = "Already on the team";
+					let nPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[0]);
+					let nMaxPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[1]);
+					document.getElementById(postTeamId + "-post-players").textContent = "Current players: " + (nPlayers + 1) + "/" + nMaxPlayers;
+					document.getElementById(postTeamId + "-post-participate").value = 1;
+				} else if (document.getElementById(postTeamId + "-post-participate").value == 1) {
+					document.getElementById(postTeamId + "-post-participate").textContent = "Team up";
+					let nPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[0]);
+					let nMaxPlayers = parseInt(document.getElementById(postTeamId + "-post-players").textContent.split(": ")[1].split("/")[1]);
+					document.getElementById(postTeamId + "-post-players").textContent = "Current players: " + (nPlayers - 1) + "/" + nMaxPlayers;
+					document.getElementById(postTeamId + "-post-participate").value = 0;
+				} else {
+					window.location.href = "/login";
+				}
 			}
 		},
 	});
