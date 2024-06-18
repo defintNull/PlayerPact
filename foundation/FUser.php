@@ -28,11 +28,21 @@ class FUser
         return $db->load($table, $condition);
     }
 
-    function delete(string $condition)
+    function delete(array $arr)
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        $db->load($table, $condition);
+
+        $condition = "";
+        $i = 0;
+        foreach($arr as $key => $val){
+            $condition .= $key."=".$val;
+            if($i < count($arr) - 1){ 
+                $condition .= " AND ";
+            }
+            $i++;
+        }
+        return $db->delete($table, $condition);
     }
 
     // FUNZIONA
