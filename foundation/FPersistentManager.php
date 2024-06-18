@@ -11,6 +11,14 @@ foreach (scandir(dirname(__FILE__)) as $filename) {
 
 class FPersistentManager
 {
+    public function query(string $query) {
+        $entity = new FAdmin();
+        try {
+            return $entity->query($query);
+        } catch (Exception $e) {
+            throw new Exception($e);
+        }
+    }
 
     function store($obj)
     {

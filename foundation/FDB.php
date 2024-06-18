@@ -45,9 +45,25 @@ class FDB
         return self::$instance;
     }
 
-    function query()
+    function query(string $query)
     {
+        try {
+            $this->db->beginTransaction();
 
+            $sql = $query;
+            $sth = $this->db->prepare($sql);
+            $sth->execute();
+            $results = [];
+            while ($result = $sth->fetch(PDO::FETCH_ASSOC)) {
+                $results[] = $result;
+            }
+
+            $this->db->commit();
+            return $results;
+
+        } catch (PDOException $e) {
+            throw new Exception($e);
+        }
     }
 
     function close()

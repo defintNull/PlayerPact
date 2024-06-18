@@ -58,4 +58,10 @@ class FAdmin
         $table = substr(__CLASS__, 1);
         return $db->exists($table, $obj);
     }
+
+    function query(string $query)
+    {
+        $db = FDB::getInstance();
+        return $db->query($query);
+    }
 }

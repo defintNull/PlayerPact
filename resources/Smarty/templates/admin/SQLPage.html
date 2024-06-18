@@ -52,7 +52,13 @@
 						</div>
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-						
+						<form action="/admin/query" method="post">
+							<input name='sqlquery' type="text"/>
+							<input type="submit"/>
+						</form>
+						<textarea rows="5" class="sql-result">
+							{$result}
+						</textarea>
 					</div>
 				</div>
 			</div>

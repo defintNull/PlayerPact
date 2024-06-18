@@ -256,4 +256,30 @@ class CAdmin
         }
         return true;
     }
+
+    public function query() {
+        $session = USession::getInstance();
+        $admin = $session->load('admin');
+
+        if ($admin == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($admin->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($admin->getImage());
+        }
+
+        $query = $_POST['sqlquery'];
+
+        $pm = new FPersistentManager();
+        $result = $pm->query($query);
+        $view = new VAdmin();
+        $arr = array(
+            'result' => json_encode($result),
+            'profilePicture' => $PPImageURL
+    );
+        $view->showSQLPage($arr);
+    }
 }
