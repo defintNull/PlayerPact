@@ -121,7 +121,7 @@ class FDB
             return $results;
 
         } catch (PDOException $e) {
-            return $e;
+            throw new Exception($e);
         }
     }
 

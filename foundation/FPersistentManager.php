@@ -23,7 +23,11 @@ class FPersistentManager
     {
         $FClass = "F" . substr($EClass, 1);
         $entity = new $FClass();
-        return $entity->load($arr);
+        try {
+            return $entity->load($arr);
+        } catch (Exception $e) {
+            throw new Exception($e);
+        }
     }
 
     function loadElements(string $EClass, int $limit, int $offset, string $datetime)

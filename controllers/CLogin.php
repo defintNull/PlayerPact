@@ -79,8 +79,13 @@ class CLogin
 
         $pm = new FPersistentManager();
         $values = array("username" => $username, "password" => $password);
-        $profile = $pm->load("Eprofile", $values);
-
+        try {
+            $profile = $pm->load("Eprofile", $values);
+        } catch (Exception $e) {
+            header("Location: /error/e404");
+            exit();
+        }
+        
         if ($profile != array()) {
             $profile = $profile[0];
 
@@ -230,6 +235,10 @@ class CLogin
         }
 
         return $existing;
+    }
+
+    public function check() {
+        
     }
 
     public function logout()

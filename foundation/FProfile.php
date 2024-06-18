@@ -25,7 +25,11 @@ class FProfile
             $i++;
         }
 
-        return $db->load($table, $condition);
+        try {
+            return $db->load($table, $condition);
+        } catch (Exception $e){
+            throw new Exception($e);
+        }
     }
 
     function delete(array $arr)
