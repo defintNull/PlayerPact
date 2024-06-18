@@ -99,7 +99,7 @@ class CAdmin
                 "id" => $mod->getId(),
                 "username" => $mod->getUsername(),
                 "email" => $mod->getEmail(),
-                "image" => $mod->getImage()
+                "image" => base64_encode($mod->getImage())
             );
         }
         //echo var_dump(array($values,$count));
