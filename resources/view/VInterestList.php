@@ -14,4 +14,3 @@ class VInterestList extends View
     }
 }
 
-?>

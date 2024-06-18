@@ -34,4 +34,3 @@ class EReport implements FInterface
         return $v;
     }
 }
-?>

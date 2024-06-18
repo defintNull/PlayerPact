@@ -91,6 +91,7 @@ body {
 }
 
 .post-username {
+	margin: 0;
 	text-align: left;
 	font-size: 16px;
 	color: coral;
@@ -221,7 +222,7 @@ hr.solid {
 	width: 40px;
 }
 
-.participateButton {
+.participate-button {
 	color: white;
 	background-color: #ff8800;
 	margin-top: 50%;
@@ -230,12 +231,12 @@ hr.solid {
 	padding: 10px 18px;
 }
 
-.participateButton:hover {
+.participate-button:hover {
 	color: white;
 	background-color: #444444;
 }
 
-.participateButton:active {
+.participate-button:active {
 	color: white;
 	background-color: #534535;
 }
@@ -251,4 +252,23 @@ hr.solid {
 	height: 35px;
 	font-size: 18;
 	padding: 2;
+}
+
+.delete-button {
+	background-color: #222222;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+}
+
+.delete-button:hover {
+	background-color: white;	
+}
+
+.delete-button-img {
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	height: 40px;
 }

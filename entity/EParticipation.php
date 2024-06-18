@@ -25,4 +25,3 @@ class EParticipation implements FInterface
     }
 
 }
-?>

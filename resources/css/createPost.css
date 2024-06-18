@@ -37,7 +37,7 @@ body {
 	background-color: #333333;
 }
 
-.postButton {
+.post-button {
 	color: white;
 	background-color: #ff8800;
 	padding: 10 10 10 10;
@@ -46,13 +46,13 @@ body {
 	border: none;
 }
 
-.postButton:hover {
+.post-button:hover {
 	color: white;
 	background-color: #333333;
 	transition: none;
 }
 
-.postButton:active {
+.post-button:active {
 	color: white;
 	background-color: #534535;
 }

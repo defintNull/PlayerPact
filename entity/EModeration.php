@@ -21,4 +21,3 @@ class EModeration implements FInterface
         return $v;
     }
 }
-?>

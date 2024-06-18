@@ -49,4 +49,3 @@ class FAdmin
         return $db->exists($table, $obj);
     }
 }
-?>

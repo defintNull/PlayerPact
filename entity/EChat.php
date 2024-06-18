@@ -49,4 +49,3 @@ class EChat implements FInterface
     }
 
 }
-?>

@@ -202,4 +202,3 @@ class CAutoscroll
         return $elements;
     }
 }
-?>

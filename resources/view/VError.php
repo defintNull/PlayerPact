@@ -9,4 +9,3 @@ class VError extends View
         $this->smarty->display("404.html");
     }
 }
-?>

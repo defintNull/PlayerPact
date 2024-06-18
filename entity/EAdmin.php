@@ -10,4 +10,3 @@ class EAdmin extends EPerson
     }
 
 }
-?>

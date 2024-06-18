@@ -68,4 +68,3 @@ class FChatUser
         return $db->exists($table, $obj);
     }
 }
-?>

@@ -139,8 +139,8 @@ class FDB
             return true;
 
         } catch (PDOException $e) {
-            return false;
-            //return $e;
+            //return false;
+            return $e;
         }
     }
 
@@ -236,4 +236,3 @@ class FDB
         }
     }
 }
-?>

@@ -86,4 +86,3 @@ class FPersistentManager
         return $FClass;
     }
 }
-?>

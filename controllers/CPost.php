@@ -93,29 +93,39 @@ class CPost
     {
         $session = USession::getInstance();
         $this->checkSession($session);
+        $sessionUser = $session->load("user");
 
         $pm = new FPersistentManager();
         $values = array();
 
         $res = $pm->loadElements("EPostTeam", $limit, $offset, $datetime);
-        $count = count($res);
+        $count = 0;
 
-        for ($i = 0; $i < $count; $i++) {
-
+        for ($i = 0; $i < count($res); $i++) {
             $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
-            $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+            $participations = $pm->load("EParticipation", array("postTeamId" => $res[$i]["id"]));
 
-            $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
-            $values[] = array(
-                "id" => $post->getId(),
-                "userId" => $user->getUsername(),
-                "title" => $post->getTitle(),
-                "description" => $post->getDescription(),
-                "datetime" => $post->getDateTime(),
-                "nMaxPlayers" => $post->getNMaxPlayers(),
-                "nPlayers" => $post->getNPlayers(),
-                "time" => $post->getTime()
-            );
+            $participatingUserIds = array();
+            for($j = 0; $j < count($participations); $j++) {
+                $participatingUserIds[] = $participations[$j]["userId"];
+            }
+
+            if($res[$i]["nMaxPlayers"] > $res[$i]["nPlayers"] || ($sessionUser != null && in_array($sessionUser->getId(), $participatingUserIds))) {
+                $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
+
+                $user = new EUser($userdata["id"], $userdata["username"], $userdata["password"], $userdata["name"], $userdata["surname"], $userdata["birthDate"], $userdata["email"], $userdata["image"]);
+                $values[] = array(
+                    "id" => $post->getId(),
+                    "userId" => $user->getUsername(),
+                    "title" => $post->getTitle(),
+                    "description" => $post->getDescription(),
+                    "datetime" => $post->getDateTime(),
+                    "nMaxPlayers" => $post->getNMaxPlayers(),
+                    "nPlayers" => $post->getNPlayers(),
+                    "time" => $post->getTime()
+                );
+                $count++;
+            }
         }
 
         return array($values, $count);
@@ -531,6 +541,31 @@ class CPost
         }
     }
 
+    public function isowner() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $user = $session->load("user");
+
+        $pm = new FPersistentManager();
+
+        if(isset($_POST["postStandardId"])) {
+            $postId = $_POST["postStandardId"];
+            $postUserId = $pm->load("EPostStandard", array("id"=> $postId))[0]["userId"];
+        } else if(isset($_POST["postSaleId"])) {
+            $postId = $_POST["postSaleId"];
+            $postUserId = $pm->load("EPostSale", array("id"=> $postId))[0]["userId"];
+        } else if(isset($_POST["postTeamId"])) {
+            $postId = $_POST["postTeamId"];
+            $postUserId = $pm->load("EPostTeam", array("id"=> $postId))[0]["userId"];
+        }
+
+        if($user->getId() == $postUserId) {
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
     public function participate()
     {
         $session = USession::getInstance();
@@ -545,17 +580,35 @@ class CPost
         $postTeamId = $_POST["postTeamId"];
 
         $pm = new FPersistentManager();
+
+        $postTeam = $pm->load("EPostTeam", array("id" => $postTeamId));
+
+        if($postTeam == array()) {
+            header("Location: /error/e404");
+            exit();
+        }
+        
+        $postTeam = $postTeam[0];
+
         $chatId = $pm->load("EChat", array("postId" => $postTeamId, "postType" => "team"))[0]["id"];
 
         if ($pm->load("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId)) == array()) {
+            if($postTeam["nPlayers"] == $postTeam["nMaxPlayers"]){
+                echo "Full";
+                exit();
+            }
             $participation = new EParticipation($user->getId(), $postTeamId);
             $pm->store($participation);
             $datetime = date("Y-m-d H:i:s");
             $chatuser = new EChatUser($chatId, $user->getId(), $datetime);
             $pm->store($chatuser);
+            $newPostTeam = new EPostTeam($postTeam["id"], $postTeam["userId"], $postTeam["title"], $postTeam["description"], $postTeam["datetime"], $postTeam["nMaxPlayers"], $postTeam["nPlayers"] + 1, $postTeam["time"]);
+            $pm->update($newPostTeam, array("id" => $postTeamId));
         } else {
             $pm->delete("EParticipation", array("userId" => $user->getId(), "postTeamId" => $postTeamId));
             $pm->delete("EChatUser", array("chatId" => $chatId, "userId" => $user->getId()));
+            $newPostTeam = new EPostTeam($postTeam["id"], $postTeam["userId"], $postTeam["title"], $postTeam["description"], $postTeam["datetime"], $postTeam["nMaxPlayers"], $postTeam["nPlayers"] - 1, $postTeam["time"]);
+            $pm->update($newPostTeam, array("id" => $postTeamId));
         }
     }
 
@@ -595,7 +648,14 @@ class CPost
 
         $pm = new FPersistentManager();
         $postSaleId = $_POST["postSaleId"];
-        $post = $pm->load("EPostSale", array("id" => $postSaleId))[0];
+        $post = $pm->load("EPostSale", array("id" => $postSaleId));
+
+        if($post == array()) {
+            header("Location: /error/e404");
+            exit();
+        }
+
+        $post = $post[0];
 
         $chat = $pm->load("EChat", array("postId" => $postSaleId, "postType" => "sale"));
 
@@ -680,5 +740,28 @@ class CPost
         }
 
         echo $exists;
+    }
+
+    public function delete() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $user = $session->load("user");
+
+        if($user == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $postId = $_POST["postId"];
+        $postType = $_POST["postType"];
+
+        $pm = new FPersistentManager();
+        if($postType == "standard") {
+            $pm->delete("EPostStandard", array("id" => $postId));
+        } else if($postType == "team") {
+            $pm->delete("EPostTeam", array("id" => $postId));
+        } else if($postType == "sale") {
+            $pm->delete("EPostSale", array("id" => $postId));
+        }
     }
 }

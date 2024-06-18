@@ -56,4 +56,3 @@ class EPost implements FInterface
         return $v;
     }
 }
-?>

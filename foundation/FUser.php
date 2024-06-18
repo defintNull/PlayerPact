@@ -35,6 +35,7 @@ class FUser
         $db->load($table, $condition);
     }
 
+    // FUNZIONA
     function update($obj, array $arr)
     {
         $db = FDB::getInstance();

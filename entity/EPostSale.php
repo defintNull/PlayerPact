@@ -32,4 +32,3 @@ class EPostSale extends EPost
         return $v;
     }
 }
-?>

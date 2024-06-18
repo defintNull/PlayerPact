@@ -56,4 +56,3 @@ class EText implements FInterface
         return $v;
     }
 }
-?>

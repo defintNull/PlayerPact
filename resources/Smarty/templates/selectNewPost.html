@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<div class="backHome">
-			<a class="btn postButton" href="/user/home">Home</a>
+			<a class="btn post-button" href="/user/home">Home</a>
 		</div>
 		<div id="createPostPage">
 			<div class="dropup">
@@ -32,9 +32,13 @@
 				</ul>
 			</div>
 			<div id="postMenu"></div>
-			{if $info != "ok"}
+			{if $info == "error"}
 			<div class="error">
 				<a>You have not filled in all the fields correctly!</a>
+			</div>
+			{else if $info == "tooBig"}
+			<div class="error">
+				<a>The image was too large to upload (max size: 5MB)</a>
 			</div>
 			{/if}
 		</div>
