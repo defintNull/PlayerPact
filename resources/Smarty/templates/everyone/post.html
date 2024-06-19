@@ -26,11 +26,11 @@
 				<div class="row justify-content-center text-bg-dark flex-grow-1">
 					<ul class="nav nav-pills side-nav">
 						<li class="nav-item">
-							<a class="nav-link menu-element active-element" aria-current="page"
+							<a class="nav-link menu-element" aria-current="page"
 								href="/user/home">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link menu-element" aria-current="page" href="/post/standard">Forum</a>
+							<a class="nav-link menu-element active-element" aria-current="page" href="/post/standard">Forum</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link menu-element" aria-current="page" href="/post/team">Team posts</a>
@@ -102,7 +102,7 @@
 						<form class="row comment-box" action="/post/addcomment" method="post">
 							<div class="col">
 								<div class="form-group">
-									<input name="comment" type="text" class="form-control"
+									<input maxlength="256" name="comment" type="text" class="form-control"
 										id="formGroupExampleInput" placeholder="Write something..." />
 									<input type="hidden" name="postId" id="{$postId}" value="{$postId}" />
 								</div>

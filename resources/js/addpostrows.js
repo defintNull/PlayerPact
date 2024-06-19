@@ -2,6 +2,9 @@ async function addrows(rows, type) {
 	const postList = document.getElementById("post-list");
 
 	if (type == "standard") {
+		document.getElementById("standard-button").classList.add("active-element");
+		document.getElementById("team-button").classList.remove("active-element");
+		document.getElementById("sale-button").classList.remove("active-element");
 		//Richiesta all'html del post
 		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/poststandard.html");
 		const text = await response.text();
@@ -62,6 +65,9 @@ async function addrows(rows, type) {
 				});
 		});
 	} else if (type == "team") {
+		document.getElementById("standard-button").classList.remove("active-element");
+		document.getElementById("team-button").classList.add("active-element");
+		document.getElementById("sale-button").classList.temove("active-element");
 		//Richiesta all'html del post
 		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postteam.html");
 		const text = await response.text();
@@ -151,6 +157,9 @@ async function addrows(rows, type) {
 				});
 		});
 	} else if (type == "sale") {
+		document.getElementById("standard-button").classList.remove("active-element");
+		document.getElementById("team-button").classList.remove("active-element");
+		document.getElementById("sale-button").classList.add("active-element");
 		//Richiesta all'html del post
 		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postsale.html");
 		const text = await response.text();

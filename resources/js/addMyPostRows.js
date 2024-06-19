@@ -1,5 +1,18 @@
-async function addrows(rows) {
+async function addrows(rows, type) {
 	const postList = document.getElementById("post-list");
+	if (type == "myPosts") {
+		document.getElementById("my-posts-button").classList.add("active-element");
+		document.getElementById("my-saved-button").classList.remove("active-element");
+		document.getElementById("my-participations-button").classList.remove("active-element");
+	} else if(type == "savedPosts"){
+		document.getElementById("my-posts-button").classList.remove("active-element");
+		document.getElementById("my-saved-button").classList.add("active-element");
+		document.getElementById("my-participations-button").classList.remove("active-element");
+	} else if(type == "participations") {
+		document.getElementById("my-posts-button").classList.remove("active-element");
+		document.getElementById("my-saved-button").classList.remove("active-element");
+		document.getElementById("my-participations-button").classList.add("active-element");
+	}
 
 	$.each(rows, async function (i, row) {
 		if (row.type == "standard") {

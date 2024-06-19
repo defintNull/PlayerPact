@@ -666,10 +666,16 @@ class CUser
         }
 
         $newEmail = $_POST["newEmail"];
+        if($newEmail == $user->getEmail()) {
+            exit();
+        }
 
         $pm = new FPersistentManager();
-        if ($pm->load("EProfile", array("email" => $newEmail)) !== array() || !preg_match("/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/", $newEmail)) {
+        if (!preg_match("/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/", $newEmail)) {
             echo "error_email";
+            exit();
+        } else if($pm->load("EProfile", array("email" => $newEmail)) !== array()) {
+            echo "email_exists";
             exit();
         }
 
@@ -696,10 +702,16 @@ class CUser
         }
 
         $newUsername = $_POST["newUsername"];
+        if(strcmp($newUsername, $user->getUsername()) == 0) {
+            exit();
+        }
 
         $pm = new FPersistentManager();
-        if ($pm->load("EProfile", array("username" => $newUsername)) !== array() || $newUsername == "") {
-            echo "error_username";
+        if ($newUsername == "") {
+            echo "username_missing";
+            exit();
+        } else if($pm->load("EProfile", array("username" => $newUsername)) !== array()) {
+            echo "username_exists";
             exit();
         }
 

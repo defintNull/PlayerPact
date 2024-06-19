@@ -21,9 +21,9 @@
 					<div class="row d-flex justify-content-center align-items-center">
 						<div class="col-xl-9">
 							{if $info != "ok"}
-							<h1 class="registration-text mb-4">Add Moderator - Error</h1>
+							<h1 class="registration-text mb-4">Mod creation - You entered bad values</h1>
 							{else}
-							<h1 class="registration-text mb-4">Add Moderator</h1>
+							<h1 class="registration-text mb-4">Mod creation</h1>
 							{/if}
 
 							<div class="card" style="border-radius: 15px">
@@ -33,10 +33,12 @@
 											<h6 class="mb-0">Name</h6>
 											{if $name == "missing"}
 											<div class="missing"><a>Required field!</a></div>
+											{else if $name == "bad"}
+											<div class="missing"><a>You used some forbidden characters</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
-											<input type="text" name="name" class="form-control form-control-lg" />
+											<input maxlength="64" type="text" name="name" class="form-control form-control-lg" />
 										</div>
 									</div>
 									<hr class="mx-n3" />
@@ -45,10 +47,12 @@
 											<h6 class="mb-0">Surname</h6>
 											{if $surname == "missing"}
 											<div class="missing"><a>Required field!</a></div>
+											{else if $surname == "bad"}
+											<div class="missing"><a>You used some forbidden characters</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
-											<input type="text" name="surname" class="form-control form-control-lg" />
+											<input maxlength="64" type="text" name="surname" class="form-control form-control-lg" />
 										</div>
 									</div>
 									<hr class="mx-n3" />
@@ -57,6 +61,8 @@
 											<h6 class="mb-0">Birth date</h6>
 											{if $birthdate == "missing"}
 											<div class="missing"><a>Required field!</a></div>
+											{else if $birthdate == "bad"}
+											<div class="missing"><a>You used some forbidden characters</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
@@ -72,10 +78,12 @@
 										<div class="missing"><a>Required field!</a></div>
 										{else if $email == "existing"}
 										<div class="existing"><a>This email address is already in use!</a></div>
+										{else if $email == "bad"}
+											<div class="missing"><a>You used some forbidden characters</a></div>
 										{/if}
 									</div>
 									<div class="col-md-9 pe-5">
-										<input type="email" name="email" class="form-control form-control-lg" placeholder="example@example.com" />
+										<input maxlength="128" type="email" name="email" class="form-control form-control-lg" placeholder="example@example.com" />
 									</div>
 								</div>
 								<hr class="mx-n3" />
@@ -84,12 +92,14 @@
 										<h6 class="mb-0">Username</h6>
 										{if $username == "missing"}
 										<div class="missing"><a>Required field!</a></div>
-										{else if $email == "existing"}
+										{else if $username == "existing"}
 										<div class="existing"><a>This username is already in use!</a></div>
+										{else if $username == "bad"}
+											<div class="missing"><a>You used some forbidden characters</a></div>
 										{/if}
 									</div>
 									<div class="col-md-9 pe-5">
-										<input type="text" name="username" class="form-control form-control-lg" />
+										<input maxlength="32" type="text" name="username" class="form-control form-control-lg" />
 									</div>
 								</div>
 								<hr class="mx-n3" />
@@ -98,16 +108,21 @@
 										<h6 class="mb-0">Password</h6>
 										{if $password == "missing"}
 										<div class="missing"><a>Required field!</a></div>
+										{else if $password == "bad"}
+										<div class="missing"><a>You used some forbidden characters</a></div>
 										{/if}
 									</div>
 									<div class="col-md-9 pe-5">
-										<input type="password" name="password" class="form-control form-control-lg" />
+										<input maxlength="32" type="password" name="password" class="form-control form-control-lg" />
 									</div>
 								</div>
 								<hr class="mx-n3" />
 								<div class="row align-items-center py-3">
 									<div class="col-md-3 ps-5">
 										<h6 class="mb-0">Profile picture</h6>
+										{if $info == "tooBig"}
+										<div class="missing"><a>Max size allowed: 5MB!</a></div>
+										{/if}
 									</div>
 									<div class="col-md-9 pe-5">
 										<input class="form-control form-control-lg" id="formFileLg" name="profilepicture" type="file" />
@@ -116,7 +131,7 @@
 								</div>
 								<hr class="mx-n3" />
 								<div class="px-5 py-4">
-									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">ADD</button>
+									<button type="submit" data-mdb-button-init data-mdb-ripple-init class="send btn-lg">Add moderator</button>
 								</div>
 							</div>
 						</div>

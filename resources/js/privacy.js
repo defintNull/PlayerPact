@@ -32,6 +32,8 @@ $(document).on("click", "#confirm-change-email", function () {
 			//console.log(response);
 			if (response == "error_email") {
 				window.location.href = "/user/privacy?info=error_email";
+			} else if (response == "email_exists") {
+				window.location.href = "/user/privacy?info=email_exists";
 			} else {
 				window.location.href = "/user/privacy";
 			}
@@ -61,8 +63,10 @@ $(document).on("click", "#confirm-change-username", function () {
 		type: "POST",
 		data: { newUsername: newUsername },
 		success: function (response) {
-			if (response == "error_username") {
-				window.location.href = "/user/privacy?info=error_username";
+			if (response == "username_missing") {
+				window.location.href = "/user/privacy?info=username_missing";
+			} else if (response == "username_exists") {
+				window.location.href = "/user/privacy?info=username_exists";
 			}
 			else {
 				window.location.href = "/user/privacy";

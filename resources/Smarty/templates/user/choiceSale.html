@@ -3,12 +3,13 @@
 		<form name="sale" action="/post/confirmCreation" method="post" enctype="multipart/form-data">
 			<div class="postTitle">
 				<div class="input-group mb-3">
-					<input type="text" name="sale[title]" class="form-control" placeholder="Title..." aria-describedby="inputGroup-sizing-default" />
+					<input maxlength="128" type="text" name="sale[title]" class="form-control" placeholder="Title..." aria-describedby="inputGroup-sizing-default" />
 				</div>
 			</div>
 			<div class="postDescription">
 				<div class="input-group mb-3">
 					<textarea
+						maxlength="1024" 
 						type="text"
 						name="sale[description]"
 						class="form-control"

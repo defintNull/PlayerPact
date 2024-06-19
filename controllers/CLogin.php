@@ -137,6 +137,32 @@ class CLogin
             $username = $_POST["username"];
             $password = $_POST["password"];
 
+            $bad = array();
+
+            if (!CLogin::check($name)) {
+                $bad["name"] = "bad";
+            }
+            if (!CLogin::check($surname)) {
+                $bad["surname"] = "bad";
+            }
+            if (!CLogin::check($birthdate)) {
+                $bad["birthdate"] = "bad";
+            }
+            if (!CLogin::check($email)) {
+                $bad["email"] = "bad";
+            }
+            if (!CLogin::check($username)) {
+                $bad["username"] = "bad";
+            }
+            if (!CLogin::check($password)) {
+                $bad["password"] = "bad";
+            }
+
+            if(count($bad) > 0) {
+                header("Location: /login/registration?info=error&" . http_build_query($bad));
+                exit();
+            }
+
             $image = null;
 
             if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
@@ -185,8 +211,6 @@ class CLogin
 
     private static function checkMissing()
     {
-        //funzione da fare per formattare stringe per prevenire sql injection
-        //Aggiungere controllo se già esiste l'utente
         $name = $_POST["name"];
         $surname = $_POST["surname"];
         $birthdate = $_POST["birthdate"];
@@ -196,7 +220,6 @@ class CLogin
 
         $missing = array();
 
-        // Controllo sui campi vuoti
         if ($name == "") {
             $missing["name"] = "missing";
         }
@@ -246,7 +269,7 @@ class CLogin
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü#!_%]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/\-@.#!_%]*$/", $s)) {
             return false;
         }
         return true;

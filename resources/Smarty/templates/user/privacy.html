@@ -25,7 +25,7 @@
 				<div class="row justify-content-center text-bg-dark flex-grow-1">
 					<ul class="nav nav-pills side-nav">
 						<li class="nav-item">
-							<a class="nav-link menu-element active-element" aria-current="page"
+							<a class="nav-link menu-element" aria-current="page"
 								href="/user/home">Home</a>
 						</li>
 						<li class="nav-item">
@@ -41,7 +41,7 @@
 							<a class="nav-link menu-element" aria-current="page" href="/user/chats">Chats</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link menu-element" aria-current="page" href="/user/privacy">Privacy
+							<a class="nav-link menu-element active-element" aria-current="page" href="/user/privacy">Privacy
 								settings</a>
 						</li>
 					</ul>
@@ -80,15 +80,23 @@
 						</div>
 						{else if $info == "error_email"}
 						<div class="row error">
-							<a>Error occurred in email change!</a>
+							<a>The email format is wrong!</a>
 						</div>
-						{else if $info == "error_username"}
+						{else if $info == "email_exists"}
 						<div class="row error">
-							<a>Error occurred in username change!</a>
+							<a>This email address is already taken!</a>
+						</div>
+						{else if $info == "username_missing"}
+						<div class="row error">
+							<a>Username field cannot be empty!</a>
+						</div>
+						{else if $info == "username_exists"}
+						<div class="row error">
+							<a>This username is already taken!</a>
 						</div>
 						{else if $info == "error_password"}
 						<div class="row error">
-							<a>Error occurred in password change!</a>
+							<a>Password field cannot be empty!</a>
 						</div>
 						{/if}
 						<div class="row privacy-row">
@@ -103,7 +111,7 @@
 								<a>Email: </a>
 							</div>
 							<div class="col privacy-page-item">
-								<input id="email-textbox" class="form-control" type="text" value="{$email}" readonly />
+								<input id="email-textbox" class="form-control" type="email" maxlength="128" value="{$email}" readonly />
 							</div>
 							<div class="col privacy-page-item">
 								<a type="button" id="change-email" class="btn">Change</a>
@@ -114,7 +122,7 @@
 								<a>Username: </a>
 							</div>
 							<div class="col privacy-page-item">
-								<input id="username-textbox" class="form-control" type="text" value="{$username}"
+								<input id="username-textbox" class="form-control" maxlength="32" type="text" value="{$username}"
 									readonly />
 							</div>
 							<div class="col privacy-page-item">
@@ -126,7 +134,7 @@
 								<a>Password: </a>
 							</div>
 							<div class="col privacy-page-item">
-								<input type="password" id="password-textbox" class="form-control"
+								<input maxlength="32" type="password" id="password-textbox" class="form-control"
 									value="{$censuredPassword}" readonly />
 							</div>
 							<div class="col privacy-page-item">

@@ -163,6 +163,32 @@ class CAdmin
             $username = $_POST["username"];
             $password = $_POST["password"];
 
+            $bad = array();
+
+            if (!CAdmin::check($name)) {
+                $bad["name"] = "bad";
+            }
+            if (!CAdmin::check($surname)) {
+                $bad["surname"] = "bad";
+            }
+            if (!CAdmin::check($birthdate)) {
+                $bad["birthdate"] = "bad";
+            }
+            if (!CAdmin::check($email)) {
+                $bad["email"] = "bad";
+            }
+            if (!CAdmin::check($username)) {
+                $bad["username"] = "bad";
+            }
+            if (!CAdmin::check($password)) {
+                $bad["password"] = "bad";
+            }
+
+            if(count($bad) > 0) {
+                header("Location: /admin/createMod?info=error&" . http_build_query($bad));
+                exit();
+            }
+
             $image = null;
 
             if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
@@ -171,7 +197,7 @@ class CAdmin
                 $file_size = $_FILES["profilepicture"]['size']; // in byte
 
                 if ($file_size > 5 * 1024 * 1024) {
-                    header("Location: /admin/createMod?info=tooBig"); // Aggiungere messaggio a schermo
+                    header("Location: /admin/createMod?info=tooBig");
                     exit();
                 }
 
@@ -269,10 +295,9 @@ class CAdmin
         return $existing;
     }
 
-    // Mettilo nella registrazione
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü#!_%]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/\-@.#!_%]*$/", $s)) {
             return false;
         }
         return true;
