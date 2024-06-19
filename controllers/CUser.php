@@ -259,7 +259,7 @@ class CUser
                 $username = $postUser[0]["username"];
             } else {
                 $posttitle = "Deleted post";
-                $username = "Deleted user";
+                $username = "";
             }
         } else if ($chat->getPostType() == "sale") {
             $post = $pm->load("EPostSale", array("id" => $chat->getPostId()));
