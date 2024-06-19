@@ -4,6 +4,7 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CPost.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CAdmin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CModerator.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 
 class CAutoscroll
@@ -209,6 +210,13 @@ class CAutoscroll
     {
         $controller = new CAdmin();
         $elements = $controller->loadModerators($offset, $limit, $datetime);
+        return $elements;
+    }
+
+    private function getReportElements(int $offset, int $limit, string $datetime)
+    {
+        $controller = new CModerator();
+        $elements = $controller->loadReports($offset, $limit, $datetime);
         return $elements;
     }
 }
