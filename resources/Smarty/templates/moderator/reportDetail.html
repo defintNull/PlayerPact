@@ -12,6 +12,8 @@
 			crossorigin="anonymous"
 		></script>
 		<link rel="stylesheet" href="/resources/css/home.css" />
+		<link rel="stylesheet" href="/resources/css/post.css" />
+		<link rel="stylesheet" href="/resources/css/moderator.css" />
 
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	</head>
@@ -56,7 +58,8 @@
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
                         <div class="post-section">
-                            <div class="row post-item" id="{$postId}">
+                            {if $type=='standard'}
+							<div class="row post-item" id="{$postId}">
                                 <div class="post-username">{$postUsername}</div>
                                 <div class="post-title">{$postTitle}</div>
                                 <div class="post-description">{$postDescription}</div>
@@ -66,6 +69,7 @@
                                     </div>
                                 </div>
                             </div>
+							
                             <hr class="solid" />
                             <div class="report-item">
                                 <div class="row" id="{$reportId}">
