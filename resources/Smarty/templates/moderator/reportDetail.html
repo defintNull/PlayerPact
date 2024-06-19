@@ -69,7 +69,45 @@
                                     </div>
                                 </div>
                             </div>
-							
+							<hr class="solid" />
+							{elseif $type=='team'}
+							<div class="row post-item" id="{$postId}">
+								<div class="col post-username" id="post-username">{$postUsername}</div>
+								<div class="title-post-bar post-title" id="post-title">{$postTitle}</div>
+								<div class="row">
+									<div class="col-9 post-description" id="post-description">{$postDescription}</div>
+								</div>
+								<div class="post-time_" id="post-time">{$postTime}</div>
+								<div class="post-players" id="post-players">{$nPlayers}/{$maxPlayers}</div>
+								<div class="row">
+									<div class="col-3">
+										<div class="post-datetime" id="post-datetime">{$datetime}</div>
+									</div>
+								</div>
+							</div>
+							<hr class="solid" />
+							{elseif $type=='sale'}
+							<div class="row post-item" id="{$postId}">
+								<div class="col post-username" id="post-username">{$postUsername}</div>
+								<div class="post-title-post-bar post-title" id="post-title">{$postTitle}</div>
+								<div class="post-description" id="post-description">{$postDescription}</div>
+								<div class="post-price" id="post-price">{$postPrice}</div>
+								<div class="row">
+									<div class="col post-image" id="post-image">
+										<a id="post-thumbnailLink" href="" target="_blank">
+											<img src="{$image}" class="post-thumbnail" id="post-thumbnail" />
+										</a>
+									</div>
+								</div>
+						
+								<div class="row">
+									<div class="col-3">
+										<div class="post-datetime" id="post-datetime">{$postDatetime}</div>
+									</div>
+								</div>
+							</div>
+							<hr class="solid" />
+							{/if}
                             <hr class="solid" />
                             <div class="report-item">
                                 <div class="row" id="{$reportId}">
