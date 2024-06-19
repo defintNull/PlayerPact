@@ -429,7 +429,7 @@ class CPost
                     return false;
                 }
             }
-            if (!is_numeric($values["price"])) {
+            if (!is_numeric($values["price"]) || $values["price"] <= 0) {
                 return false;
             }
         } else if (isset($_POST["team"])) {
