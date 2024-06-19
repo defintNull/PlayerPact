@@ -174,4 +174,25 @@ class CModerator
         }
         return array($values, $count);
     }
+
+    public function deleteUser() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $moderator = $session->load('moderator');
+
+        if ($moderator == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $userId = $_POST["userId"];
+
+        $pm = new FPersistentManager();
+        $user = $pm->load("EUser", array("id" => $userId));
+        if($user != array()) {
+            $user = $user[0];
+            $pm->delete("EUser", array("id" => $userId));
+            $pm->delete("EProfile", array("username" => $user["username"], "type" => "user"));
+        }
+    }
 }

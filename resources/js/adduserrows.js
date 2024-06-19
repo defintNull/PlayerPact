@@ -19,6 +19,8 @@ async function addrows(rows, type) {
 			document.getElementById("user-username").id = row.id + "-user-username";
 			document.getElementById("user-email").textContent = row.email;
 			document.getElementById("user-email").id = row.id + "-user-email";
+			document.getElementById("user-delete-button").dataset.id = row.id;
+			document.getElementById("user-delete-button").id = row.id + "-user-delete-button";
 			
 			if (row.image == "/public/defaultPropic.png") {
 				document.getElementById("user-thumbnail").src = "/public/defaultPropic.png";
