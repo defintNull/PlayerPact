@@ -7,7 +7,7 @@ class VAdmin extends View
     public function showHome($params)
     {
         $this->assignSmartyParams($params);
-        $this->smarty->display("admin/adminHome.html");
+        $this->smarty->display("admin/home.html");
     }
 
     public function showModCreationPage($params)

@@ -65,19 +65,7 @@ function getMoreData(initialData) {
 	$(window).off("scroll");
 	if (initialData.offset == initialData.totalcount) {
 		$.ajax({
-			url:
-				"/autoscroll/load" +
-				"?offset=" +
-				initialData.offset +
-				"&totalcount=" +
-				initialData.totalcount +
-				"&type=" +
-				initialData.type +
-				"&date=" +
-				date.value +
-				"&time=" +
-				time.value,
-			type: "get",
+			url:"/autoscroll/load" +"?offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value,type: "get",
 			success: function (response) {
 				try {
 					initialData = JSON.parse(response);

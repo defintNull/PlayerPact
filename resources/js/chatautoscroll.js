@@ -1,7 +1,6 @@
 $(document).ready(function () {
 	// load the initial rows on page load
 	// ajax call a scroll.php
-
 	var initialData;
 
 	var offset = document.getElementById("offset").value;
@@ -10,20 +9,7 @@ $(document).ready(function () {
 	const userId = document.getElementsByClassName("upper-bar-username")[0].textContent;
 
 	$.ajax({
-		url:
-			"/autoscroll/loadbyid" +
-			"?id=" +
-			userId +
-			"&offset=" +
-			offset +
-			"&totalcount=" +
-			totalcount +
-			"&type=" +
-			type +
-			"&date=" +
-			date.value +
-			"&time=" +
-			time.value,
+		url: "/autoscroll/loadbyid" + "?id=" + userId + "&offset=" + offset + "&totalcount=" + totalcount + "&type=" + type + "&date=" + date.value + "&time=" + time.value,
 		success: function (data) {
 			//console.log(data);
 			try {
@@ -33,7 +19,7 @@ $(document).ready(function () {
 				//window.location.href = "/error/e404"; //ERRORE ESCE QUI
 			}
 
-			if(initialData.rows == null || initialData.rows.length == 0){
+			if (initialData.rows == null || initialData.rows.length == 0) {
 				const node = document.createElement("div");
 				const textnode = document.createTextNode("No chat to show");
 				node.appendChild(textnode);
@@ -81,26 +67,12 @@ function getMoreData(initialData) {
 	if (initialData.offset == initialData.totalcount) {
 		const userId = document.getElementsByClassName("upper-bar-username")[0].textContent;
 		$.ajax({
-			url:
-				"/autoscroll/loadbyid" +
-				"?id=" +
-				userId +
-				"&offset=" +
-				initialData.offset +
-				"&totalcount=" +
-				initialData.totalcount +
-				"&type=" +
-				initialData.type +
-				"&date=" +
-				date.value +
-				"&time=" +
-				time.value,
-			type: "get",
+			url:"/autoscroll/loadbyid" +"?id=" +userId +"&offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value,type: "get",
 			success: function (response) {
 				try {
 					initialData = JSON.parse(response);
 				} catch (err) {
-					//window.location.href = "/error/e404";
+					window.location.href = "/error/e404";
 				}
 
 				if (initialData.rows) {

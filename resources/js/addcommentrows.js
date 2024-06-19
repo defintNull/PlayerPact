@@ -3,7 +3,7 @@ async function addrows(rows, type) {
 
 	if (type == "comment") {
 		//Richiesta all'html del commento
-		const response = await fetch("/resources/Smarty/templates/comment.html");
+		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/comment.html");
 		const text = await response.text();
 		const i1 = text.indexOf("<body>");
 		const i2 = text.indexOf("</body>");

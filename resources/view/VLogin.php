@@ -8,12 +8,12 @@ class VLogin extends View
     public function show(string $check = "true")
     {
         $this->smarty->assign("check", $check);
-        $this->smarty->display("login.html");
+        $this->smarty->display("login/login.html");
     }
 
     public function registration($params)
     {
         $this->assignSmartyParams($params);
-        $this->smarty->display("registration.html");
+        $this->smarty->display("login/registration.html");
     }
 }

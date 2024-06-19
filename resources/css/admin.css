@@ -1,0 +1,138 @@
+#main-body {
+    ::-webkit-scrollbar{
+        height: 6px;
+        width: 10px;
+        background: #444444;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:horizontal{
+        background: #ff8800;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:vertical{
+        background: #ff8800;
+        width: 10px;
+        border-radius: 10px;
+    }
+}
+
+.mod-thumbnail {
+    height: 40px;
+	max-width: 40px;
+	border-style: solid;
+	border-color: white;
+}
+
+.col {
+    text-align: center;
+}
+
+.mod-section {
+    padding-top: 50px;
+    margin-left: 20%;
+	margin-right: 20%;
+}
+
+.mod-item {
+    text-align: left;
+	margin-left: 20%;
+	margin-right: 20%;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.mod-delete-button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+}
+
+.mod-delete-button:hover {
+    background-color: white;
+}
+
+.mod-delete-image {
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+}
+
+hr.solid {
+	border-top: 1px solid #bbb;
+	padding: 0;
+	margin-left: 20%;
+	margin-right: 20%;
+	min-width: 300px;
+}
+
+.mod-email {
+    overflow: auto;
+    padding-left: 0;
+    text-align: left;
+    padding-top: 8px;
+    max-width: 450px;
+}
+
+.mod-username {
+    overflow: hidden;
+    padding-left: 0;
+    padding-top: 8px;
+    color: coral;
+    max-width: 450px;
+}
+
+.mod-profile-image {
+    width: 70px;
+}
+
+.sql-result {
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #333333;
+    width: 70%;
+    height: 60%;
+    resize: none;
+    color: white;
+}
+
+.sql-result:focus {
+    background-color: #333333;
+    color: white;
+}
+
+.sql-result::placeholder {
+    color:white;
+}
+
+textarea {
+    overflow-y: scroll;
+}
+
+.query-textbox {
+    background-color: #333333;
+    color: white;
+    width: 70%;
+    margin: auto;
+}
+
+.query-textbox:focus {
+    background-color: #333333;
+    color: white;
+}
+
+.query-textbox::placeholder {
+    color: white;
+}
+
+.sql-form {
+    margin-top: 50px;
+}
+
+.execute-query-button {
+    width: 10%;
+    min-width: 100px;
+}

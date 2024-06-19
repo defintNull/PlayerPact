@@ -20,7 +20,7 @@ class CLogin
     {
         $session = USession::getInstance();
         $user = $session->load("user");
-        $mod = $session->load("mod");
+        $mod = $session->load("moderator");
         $admin = $session->load("admin");
 
         if ($user != null) {
@@ -29,7 +29,7 @@ class CLogin
         }
         if ($mod != null) {
             $session->end();
-            header("Location: /mod/home");
+            header("Location: /moderator/home");
             exit();
         }
         if ($admin != null) {
@@ -105,13 +105,13 @@ class CLogin
                 $session->set("user", $user);
                 return "user";
 
-            } elseif ($profile["type"] == "mod") {
+            } elseif ($profile["type"] == "moderator") {
                 $val = $pm->load("EModerator", $values)[0];
                 $mod = new EModerator($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
 
                 $session = USession::getInstance();
-                $session->set("mod", $mod);
-                return "mod";
+                $session->set("moderator", $mod);
+                return "moderator";
 
             } elseif ($profile["type"] == "admin") {
                 $val = $pm->load("EAdmin", $values)[0];

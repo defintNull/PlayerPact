@@ -25,7 +25,7 @@ async function createStandardChoicePage() {
 		element.remove();
 	}
 	const postMenu = document.getElementById("postMenu");
-	const response = await fetch("/resources/Smarty/templates/choiceStandard.html");
+	const response = await fetch("/resources/Smarty/templates/user/choiceStandard.html");
 	const text = await response.text();
 	const i1 = text.indexOf("<body>");
 	const i2 = text.indexOf("</body>");
@@ -42,7 +42,7 @@ async function createSaleChoicePage() {
 		element.remove();
 	}
 	const postMenu = document.getElementById("postMenu");
-	const response = await fetch("/resources/Smarty/templates/choiceSale.html");
+	const response = await fetch("/resources/Smarty/templates/user/choiceSale.html");
 	const text = await response.text();
 	const i1 = text.indexOf("<body>");
 	const i2 = text.indexOf("</body>");
@@ -59,7 +59,7 @@ async function createTeamChoicePage() {
 		element.remove();
 	}
 	const postMenu = document.getElementById("postMenu");
-	const response = await fetch("/resources/Smarty/templates/choiceTeam.html");
+	const response = await fetch("/resources/Smarty/templates/user/choiceTeam.html");
 	const text = await response.text();
 	const i1 = text.indexOf("<body>");
 	const i2 = text.indexOf("</body>");

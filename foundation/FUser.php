@@ -11,6 +11,7 @@ class FUser
         return $db->store($table, $obj);
     }
 
+    // Funziona
     function load(array $arr)
     {
         $db = FDB::getInstance();

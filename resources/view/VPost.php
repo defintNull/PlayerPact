@@ -14,7 +14,7 @@ class VPost extends View
 
         $this->smarty->assign("date", date("Y/m/d")); // Date
         $this->smarty->assign("time", date("H:i:s")); // Time
-        $this->smarty->display("postSection.html");
+        $this->smarty->display("everyone/postSection.html");
     }
 
     public function showComments($params)
@@ -25,24 +25,24 @@ class VPost extends View
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 
-        $this->smarty->display("post.html");
+        $this->smarty->display("everyone/post.html");
     }
 
     public function showSelectNewPost($info)
     {
         $this->smarty->assign("info", $info);
-        $this->smarty->display("selectNewPost.html");
+        $this->smarty->display("user/selectNewPost.html");
     }
 
     public function showImage($imageURL)
     {
         $this->smarty->assign("image", $imageURL);
-        $this->smarty->display("fullscreenImage.html");
+        $this->smarty->display("everyone/fullscreenImage.html");
     }
 
     public function showReportPage($params)
     {
         $this->assignSmartyParams($params);
-        $this->smarty->display("reportPage.html");
+        $this->smarty->display("user/reportPage.html");
     }
 }

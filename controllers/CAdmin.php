@@ -23,7 +23,8 @@ class CAdmin
     public function home()
     {
         $session = USession::getInstance();
-        $admin = $session->load("admin");
+        $this->checkSession($session);
+        $admin = $session->load('admin');
 
         if ($admin == null) {
             header("Location: /login");
@@ -43,7 +44,8 @@ class CAdmin
     function manageMods()
     {
         $session = USession::getInstance();
-        $admin = $session->load("admin");
+        $this->checkSession($session);
+        $admin = $session->load('admin');
 
         if ($admin == null) {
             header("Location: /login");
@@ -64,7 +66,8 @@ class CAdmin
     function sql()
     {
         $session = USession::getInstance();
-        $admin = $session->load("admin");
+        $this->checkSession($session);
+        $admin = $session->load('admin');
 
         if ($admin == null) {
             header("Location: /login");
@@ -86,6 +89,12 @@ class CAdmin
     {
         $session = USession::getInstance();
         $this->checkSession($session);
+        $admin = $session->load('admin');
+
+        if ($admin == null) {
+            header("Location: /login");
+            exit();
+        }
 
         $pm = new FPersistentManager();
         $values = array();
@@ -98,11 +107,14 @@ class CAdmin
             $values[] = array(
                 "id" => $mod->getId(),
                 "username" => $mod->getUsername(),
-                "email" => $mod->getEmail(),
-                "image" => base64_encode($mod->getImage())
+                "email" => $mod->getEmail()
             );
+            if($mod->getImage() != ""){
+                $values[$i]["image"] = base64_encode($mod->getImage());
+            } else {
+                $values[$i]["image"] = "/public/defaultPropic.png";
+            }
         }
-        //echo var_dump(array($values,$count));
         return array($values, $count);
     }
 
@@ -132,6 +144,15 @@ class CAdmin
 
     public function confirmModCreation()
     {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $admin = $session->load('admin');
+
+        if ($admin == null) {
+            header("Location: /login");
+            exit();
+        }
+
         $missing = $this->checkMissing();
 
         if ($missing == array()) {
@@ -259,6 +280,7 @@ class CAdmin
 
     public function query() {
         $session = USession::getInstance();
+        $this->checkSession($session);
         $admin = $session->load('admin');
 
         if ($admin == null) {
@@ -274,12 +296,40 @@ class CAdmin
         $query = $_POST['sqlquery'];
 
         $pm = new FPersistentManager();
+        $error = false;
+        try {
         $result = $pm->query($query);
+        } catch (Exception $e) {
+            $error = true;
+            $result = $e;
+        }
+
         $view = new VAdmin();
-        $arr = array(
-            'result' => json_encode($result),
-            'profilePicture' => $PPImageURL
-    );
-        $view->showSQLPage($arr);
+        $params = array('username'=> $admin->getUsername() . " (admin)",
+                        'profilePicture' => $PPImageURL);
+        if(!$error){
+            $params['result'] = json_encode($result);
+        } else {
+            $params['result'] = $result;
+        }
+        $view->showSQLPage($params);
+    }
+
+    public function deleteMod() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $admin = $session->load('admin');
+
+        if ($admin == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $modId = $_POST["modId"];
+
+        $pm = new FPersistentManager();
+        $mod = $pm->load("EModerator", array("id" => $modId))[0];
+        $pm->delete("EModerator", array("id" => $modId));
+        $pm->delete("EProfile", array("username" => $mod["username"], "type" => "moderator"));
     }
 }

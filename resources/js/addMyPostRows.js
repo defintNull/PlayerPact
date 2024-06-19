@@ -4,12 +4,12 @@ async function addrows(rows) {
 	$.each(rows, async function (i, row) {
 		if (row.type == "standard") {
 			//Richiesta all'html del post
-			const response = await fetch("/resources/Smarty/templates/poststandard.html");
+			const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/poststandard.html");
 			const text = await response.text();
 			const i1 = text.indexOf("<body>");
 			const i2 = text.indexOf("</body>");
 			const bodyHTML = text.substring(i1 + "<body>".length, i2);
-		
+
 			let node = document.createElement("div");
 			postList.append(node);
 			node.outerHTML = bodyHTML;
@@ -39,10 +39,10 @@ async function addrows(rows) {
 			isOwner()
 				.then(async function (response) {
 					//console.log(response);
-					if(response == "1") {
+					if (response == "1") {
 						const deleteSection = document.getElementById(row.id + "-post-delete-standard");
 
-						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
+						const d = await fetch("/resources/Smarty/templates/user/autoscrollCards/deleteButton.html");
 						const textD = await d.text();
 						const i1D = textD.indexOf("<body>");
 						const i2D = textD.indexOf("</body>");
@@ -60,17 +60,14 @@ async function addrows(rows) {
 				.catch(function (error) {
 					console.error("Error:", error);
 				});
-
-		}
-		else if (row.type == "team") {
+		} else if (row.type == "team") {
 			//Richiesta all'html del post
-			const response = await fetch("/resources/Smarty/templates/postteam.html");
+			const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postteam.html");
 			const text = await response.text();
 			const i1 = text.indexOf("<body>");
 			const i2 = text.indexOf("</body>");
 			const bodyHTML = text.substring(i1 + "<body>".length, i2);
-	
-			
+
 			let node = document.createElement("div");
 			postList.append(node);
 			node.outerHTML = bodyHTML;
@@ -103,10 +100,10 @@ async function addrows(rows) {
 			isOwner()
 				.then(async function (response) {
 					//console.log(response);
-					if(response == "1") {
+					if (response == "1") {
 						const deleteSection = document.getElementById(row.id + "-post-delete-team");
 
-						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
+						const d = await fetch("/resources/Smarty/templates/user/autoscrollCards/deleteButton.html");
 						const textD = await d.text();
 						const i1D = textD.indexOf("<body>");
 						const i2D = textD.indexOf("</body>");
@@ -148,10 +145,10 @@ async function addrows(rows) {
 				})
 				.catch(function (error) {
 					console.error("Error:", error);
-			});
+				});
 		} else if (row.type == "sale") {
 			//Richiesta all'html del post
-			const response = await fetch("/resources/Smarty/templates/postsale.html");
+			const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postsale.html");
 			const text = await response.text();
 			const i1 = text.indexOf("<body>");
 			const i2 = text.indexOf("</body>");
@@ -185,10 +182,10 @@ async function addrows(rows) {
 			isOwner()
 				.then(async function (response) {
 					//console.log(response);
-					if(response == "1") {
+					if (response == "1") {
 						const deleteSection = document.getElementById(row.id + "-post-delete-sale");
 
-						const d = await fetch("/resources/Smarty/templates/deleteButton.html");
+						const d = await fetch("/resources/Smarty/templates/user/autoscrollCards/deleteButton.html");
 						const textD = await d.text();
 						const i1D = textD.indexOf("<body>");
 						const i2D = textD.indexOf("</body>");

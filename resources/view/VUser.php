@@ -7,7 +7,7 @@ class VUser extends View
     public function showHome($params)
     {
         $this->assignSmartyParams($params);
-        $this->smarty->display("home.html");
+        $this->smarty->display("everyone/home.html");
     }
 
     public function showProfile($params)
@@ -18,7 +18,7 @@ class VUser extends View
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 
-        $this->smarty->display("profilePage.html");
+        $this->smarty->display("user/profilePage.html");
     }
 
     public function showSavedPosts($params)
@@ -29,7 +29,7 @@ class VUser extends View
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 
-        $this->smarty->display("profilePage.html");
+        $this->smarty->display("user/profilePage.html");
     }
 
     public function showTeams($params)
@@ -40,13 +40,13 @@ class VUser extends View
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 
-        $this->smarty->display("profilePage.html");
+        $this->smarty->display("user/profilePage.html");
     }
 
     public function showPrivacyPage($params)
     {
         $this->assignSmartyParams($params);
-        $this->smarty->display("privacy.html");
+        $this->smarty->display("user/privacy.html");
     }
 
     public function showChatSection($params)
@@ -55,7 +55,7 @@ class VUser extends View
         $this->smarty->assign("type", "chat");
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
-        $this->smarty->display("chatSection.html");
+        $this->smarty->display("user/chatSection.html");
     }
 
     public function showMessageSection($params)
@@ -64,6 +64,6 @@ class VUser extends View
         $this->smarty->assign("type", "message");
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
-        $this->smarty->display("messageSection.html");
+        $this->smarty->display("user/messageSection.html");
     }
 }

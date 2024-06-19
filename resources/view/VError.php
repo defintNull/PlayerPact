@@ -6,6 +6,6 @@ class VError extends View
 {
     public function show()
     {
-        $this->smarty->display("404.html");
+        $this->smarty->display("error/404.html");
     }
 }

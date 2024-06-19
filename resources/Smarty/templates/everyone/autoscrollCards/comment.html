@@ -1,0 +1,21 @@
+<body>
+	<div class="comment">
+		<div class="row" id="comment-id">
+			<div class="comment-username" id="comment-username"></div>
+			<div class="comment-description" id="comment-description"></div>
+		</div>
+		<div class="row">
+			<div class="col report text-end float-end">
+				<form action="/post/report" method="post">
+					<input type="hidden" id="comment-report" name="objToReportId" value="" />
+					<input type="hidden" id="obj-to-report-type" name="objToReportType" value="comment" />
+					<input type="image" id="report-image" src="/public/report.png" />
+				</form>
+			</div>
+			<div class="col-3">
+				<div class="comment-datetime" id="comment-datetime"></div>
+			</div>
+		</div>
+	</div>
+	<hr class="solid" />
+</body>

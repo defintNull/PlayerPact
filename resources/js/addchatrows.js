@@ -2,7 +2,7 @@ async function addrows(rows, type) {
 	const chatList = document.getElementById("chat-list");
 
 	//Richiesta all'html della chat
-	const response = await fetch("/resources/Smarty/templates/chatitem.html");
+	const response = await fetch("/resources/Smarty/templates/user/autoscrollCards/chatitem.html");
 	const text = await response.text();
 	const i1 = text.indexOf("<body>");
 	const i2 = text.indexOf("</body>");
