@@ -276,8 +276,7 @@ class CModerator
             if($respost != array()) {
                 $respost = $respost[0];
             } else {
-                echo var_dump($idpost);
-                //header("Location: /moderator/reports");
+                header("Location: /moderator/reports");
                 exit();
             }
             $resuser = $pm->load("EUser", array("id" => $respost["userId"]));
@@ -298,8 +297,30 @@ class CModerator
                 "postPrice" => $respost["price"],
                 "image" => "data:image/png;base64,".base64_encode($respost["image"])
             );
+        } elseif($type=="comment") {
+            $respost = $pm->load("EComment", array("id" => $idpost));
+            if($respost != array()) {
+                $respost = $respost[0];
+            } else {
+                header("Location: /moderator/reports");
+                exit();
+            }
+            $resuser = $pm->load("EUser", array("id" => $respost["userId"]));
+            if($resuser != array()) {
+                $resuser = $resuser[0];
+            } else {
+                $resuser = array("username" =>"Deleted user");
+            }
+            $params = array(
+                "username" => $moderator->getUsername() . " (mod)",
+                "profilePicture" => $PPImageURL,
+                "commentId" => $id,
+                "type" => $type,
+                "commentUsername" => $resuser["username"],
+                "commentDescription" => $respost["description"],
+                "commentDatetime" => $respost["datetime"]
+            );
         }
-
         $view = new VModerator();
         $view->showReportDetail($params);
     }

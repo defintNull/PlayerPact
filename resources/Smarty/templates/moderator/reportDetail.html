@@ -107,6 +107,19 @@
 								</div>
 							</div>
 							<hr class="solid" />
+							{elseif $type=='comment'}
+							<div class="comment">
+								<div class="row" id="{$commentId}">
+									<div class="comment-username" id="comment-username">{$commentUsername}</div>
+									<div class="comment-description" id="comment-description">{$commentDescription}</div>
+								</div>
+								<div class="row">
+									<div class="col-3">
+										<div class="comment-datetime" id="comment-datetime">{$commentDatetime}</div>
+									</div>
+								</div>
+							</div>
+							<hr class="solid" />
 							{/if}
                             <hr class="solid" />
                             <div class="report-item">
