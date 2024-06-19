@@ -125,12 +125,17 @@ class CModerator
 
         for ($i = 0; $i < $count; $i++) {
             $report = new EReport($res[$i]["id"], $res[$i]["userId"], $res[$i]["idToReport"], $res[$i]["type"], $res[$i]["description"], $res[$i]["datetime"]);
+            $reportUser = $pm->load("EUser", array("id" => $report->getUserId()));
+            if($reportUser != array()) {
+                $reportUsername = $reportUser[0]["username"];
+            } else {
+                $reportUsername = "Deleted User";
+            }
             $values[] = array(
                 "id" => $report->getId(),
-                "userId" => $report->getUserId(),
+                "username" => $reportUsername,
                 "idToReport" => $report->getIdToReport(),
                 "type" => $report->getType(),
-                "description" => $report->getDescription(),
                 "datetime" => $report->getDateTime()
             );
         }

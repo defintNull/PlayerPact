@@ -15,14 +15,12 @@ async function addrows(rows, type) {
 			node.outerHTML = bodyHTML;
 
 			document.getElementById("report-id").id = row.id;
-			document.getElementById("report-iduser").textContent = row.idUser;
-			document.getElementById("report-iduser").id = row.id + "-report-iduser";
+			document.getElementById("report-username").textContent = row.username;
+			document.getElementById("report-username").id = row.id + "-report-username";
 			document.getElementById("report-idToReport").textContent = row.idToReport;
 			document.getElementById("report-idToReport").id = row.id + "-report-idToReport";
 			document.getElementById("report-type").textContent = row.type;
 			document.getElementById("report-type").id = row.id + "-report-type";
-			document.getElementById("report-description").textContent = row.description;
-			document.getElementById("report-description").id = row.id + "-report-description";
 			document.getElementById("report-datetime").textContent = row.datetime;
 			document.getElementById("report-datetime").id = row.id + "-report-datetime";
 			
