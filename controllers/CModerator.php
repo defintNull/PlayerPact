@@ -82,4 +82,25 @@ class CModerator
         $view = new VModerator();
         $view->showUsers($params);
     }
+
+    public function profile() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $mod = $session->load("moderator");
+
+        if ($mod == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($mod->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($mod->getImage());
+        }
+
+        $params = array("username" => $mod->getUsername() . " (mod)",
+                        "profilePicture" => $PPImageURL);
+        $view = new VModerator();
+        $view->showProfile($params);
+    }
 }
