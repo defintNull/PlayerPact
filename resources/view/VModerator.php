@@ -22,6 +22,9 @@ class VModerator extends View
     public function showUsers($params)
     {
         $this->assignSmartyParams($params);
+        $this->smarty->assign("type", "user");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
         $this->smarty->display("moderator/usersPage.html");
     }
 

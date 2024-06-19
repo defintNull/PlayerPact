@@ -1,6 +1,7 @@
 <?php
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EReport.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
@@ -132,6 +133,39 @@ class CModerator
                 "description" => $report->getDescription(),
                 "datetime" => $report->getDateTime()
             );
+        }
+        return array($values, $count);
+    }
+
+    public function loadUsers(int $offset, int $limit, string $datetime)
+    {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $admin = $session->load('moderator');
+
+        if ($admin == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $pm = new FPersistentManager();
+        $values = array();
+
+        $res = $pm->loadElements("EUser", $limit, $offset, $datetime);
+        $count = count($res);
+
+        for ($i = 0; $i < $count; $i++) {
+            $user = new EUser($res[$i]["id"], $res[$i]["username"], $res[$i]["password"], $res[$i]["name"], $res[$i]["surname"], $res[$i]["birthDate"], $res[$i]["email"], $res[$i]["image"]);
+            $values[] = array(
+                "id" => $user->getId(),
+                "username" => $user->getUsername(),
+                "email" => $user->getEmail()
+            );
+            if($user->getImage() != ""){
+                $values[$i]["image"] = base64_encode($user->getImage());
+            } else {
+                $values[$i]["image"] = "/public/defaultPropic.png";
+            }
         }
         return array($values, $count);
     }
