@@ -13,6 +13,9 @@ class VModerator extends View
     public function showReports($params)
     {
         $this->assignSmartyParams($params);
+        $this->smarty->assign("type", "report");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
         $this->smarty->display("moderator/reportsPage.html");
     }
 

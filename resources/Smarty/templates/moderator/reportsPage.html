@@ -53,6 +53,15 @@
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
 						
+						<div class="report-section" id="report-list">
+							<input type="hidden" name="totalcount" id="totalcount" value="0" />
+							<input type="hidden" name="offset" id="offset" value="0" />
+							<input type="hidden" name="type" id="type" value="{$type}" />
+							<input type="hidden" name="date" id="date" value="{$date}" />
+							<input type="hidden" name="dtime" id="time" value="{$time}" />
+						</div>
+						<div class="ajax-loader text-center">Loading reports...</div>
+
 					</div>
 				</div>
 			</div>
