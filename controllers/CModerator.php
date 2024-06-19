@@ -196,7 +196,7 @@ class CModerator
         }
     }
 
-    public function reportDetail(int $id) {
+    public function reportDetail(int $id, string $type) {
         $session = USession::getInstance();
         $this->checkSession($session);
         $moderator = $session->load('moderator');
@@ -210,12 +210,95 @@ class CModerator
         if ($moderator->getImage() != "") {
             $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
         }
-
-        $params = array(
-            "username" => $moderator->getUsername() . " (mod)",
-            "profilePicture" => $PPImageURL,
-            "id" => $id
-        );
+    
+        $pm = new FPersistentManager();
+        $report = $pm->load("EReport", array("id" => $id));
+        if($report != array()) {
+            $report = $report[0];
+        } else {
+            header("Location: /moderator/reports");
+            exit();
+        }
+        $idpost = $report["idToReport"];
+        if($type=="standard") {
+            $respost = $pm->load("EPostStandard", array("id" => $idpost));
+            if($respost != array()) {
+                $respost = $respost[0];
+            } else {
+                header("Location: /moderator/reports");
+                exit();
+            }
+            $resuser = $pm->load("EUser", array("id" => $respost["userId"]));
+            if($resuser != array()) {
+                $resuser = $resuser[0];
+            } else {
+                $resuser = array("username" =>"Deleted user");
+            }
+            $params = array(
+                "username" => $moderator->getUsername() . " (mod)",
+                "profilePicture" => $PPImageURL,
+                "postId" => $id,
+                "type" => $type,
+                "postUsernme" => $resuser["username"],
+                "postTitle" => $respost["title"],
+                "postDescription" => $respost["description"],
+                "postDatetime" => $respost["datetime"]
+            );
+        } elseif($type=="team") {
+            $respost = $pm->load("EPostTeam", array("id" => $idpost));
+            if($respost != array()) {
+                $respost = $respost[0];
+            } else {
+                header("Location: /moderator/reports");
+                exit();
+            }
+            $resuser = $pm->load("EUser", array("id" => $respost["userId"]));
+            if($resuser != array()) {
+                $resuser = $resuser[0];
+            } else {
+                $resuser = array("username" =>"Deleted user");
+            }
+            $params = array(
+                "username" => $moderator->getUsername() . " (mod)",
+                "profilePicture" => $PPImageURL,
+                "postId" => $id,
+                "type" => $type,
+                "postUsernme" => $resuser["username"],
+                "postTitle" => $respost["title"],
+                "postDescription" => $respost["description"],
+                "postTime" => $respost["time"],
+                "nPlayers" => $respost["nPlayers"],
+                "maxPlayers" => $respost["nMaxPlayers"],
+                "postDatetime" => $respost["datetime"]
+            );
+        } elseif($type=="sale") {
+            $respost = $pm->load("EPostSale", array("id" => $idpost));
+            if($respost != array()) {
+                $respost = $respost[0];
+            } else {
+                echo var_dump($idpost);
+                //header("Location: /moderator/reports");
+                exit();
+            }
+            $resuser = $pm->load("EUser", array("id" => $respost["userId"]));
+            if($resuser != array()) {
+                $resuser = $resuser[0];
+            } else {
+                $resuser = array("username" =>"Deleted user");
+            }
+            $params = array(
+                "username" => $moderator->getUsername() . " (mod)",
+                "profilePicture" => $PPImageURL,
+                "postId" => $id,
+                "type" => $type,
+                "postUsernme" => $resuser["username"],
+                "postTitle" => $respost["title"],
+                "postDescription" => $respost["description"],
+                "postDatetime" => $respost["datetime"],
+                "postPrice" => $respost["price"],
+                "image" => "data:image/png;base64,".base64_encode($respost["image"])
+            );
+        }
 
         $view = new VModerator();
         $view->showReportDetail($params);
