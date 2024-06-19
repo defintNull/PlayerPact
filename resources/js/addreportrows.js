@@ -14,6 +14,8 @@ async function addrows(rows, type) {
 			moderatorList.append(node);
 			node.outerHTML = bodyHTML;
 
+			document.getElementById("clickable").href += "?id=" + row.id;
+			document.getElementById("clickable").id = row.id + "-clickable";
 			document.getElementById("report-id").id = row.id;
 			document.getElementById("report-username").textContent = row.username;
 			document.getElementById("report-username").id = row.id + "-report-username";

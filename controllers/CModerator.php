@@ -195,4 +195,29 @@ class CModerator
             $pm->delete("EProfile", array("username" => $user["username"], "type" => "user"));
         }
     }
+
+    public function reportDetail(int $id) {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $moderator = $session->load('moderator');
+
+        if ($moderator == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($moderator->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
+        }
+
+        $params = array(
+            "username" => $moderator->getUsername() . " (mod)",
+            "profilePicture" => $PPImageURL,
+            "id" => $id
+        );
+
+        $view = new VModerator();
+        $view->showReportDetail($params);
+    }
 }
