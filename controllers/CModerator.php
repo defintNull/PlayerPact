@@ -252,6 +252,8 @@ class CModerator
         } elseif($type=="team") {
             $post = $pm->load("EPostTeam", array("id" => $reportedId));
             if($post == array()) {
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
             }
@@ -278,6 +280,8 @@ class CModerator
         } elseif($type=="sale") {
             $post = $pm->load("EPostSale", array("id" => $reportedId));
             if($post == array()) {
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
             }
@@ -303,6 +307,8 @@ class CModerator
         } elseif($type=="comment") {
             $comment = $pm->load("EComment", array("id" => $reportedId));
             if($comment == array()) {
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
             }
