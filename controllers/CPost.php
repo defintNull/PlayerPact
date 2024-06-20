@@ -219,7 +219,12 @@ class CPost
         $sessionUser = $session->load("user");
 
         $pm = new FPersistentManager();
-        $res = $pm->load("EPostStandard", array("id" => $id))[0];
+        $res = $pm->load("EPostStandard", array("id" => $id));
+        if($res == array()) {
+            header("Location: /post/standard");
+            exit();
+        }
+        $res = $res[0];
         $user = $pm->load("EUser", array("id" => $res["userId"]))[0];
 
         $authenticated = false;

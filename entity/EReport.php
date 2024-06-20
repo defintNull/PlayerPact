@@ -10,8 +10,9 @@ class EReport implements FInterface
     private $type;
     private $description;
     private $datetime;
+    private $status;
 
-    public function __construct(int $id, int $userId, int $idToReport, string $type, string $description, $datetime)
+    public function __construct(int $id, int $userId, int $idToReport, string $type, string $description, $datetime, string $status = "received")
     {
         $this->id = $id;
         $this->userId = $userId;
@@ -19,6 +20,7 @@ class EReport implements FInterface
         $this->idToReport = $idToReport;
         $this->description = $description;
         $this->datetime = $datetime;
+        $this->status = $status;
     }
 
     public function getId() {
@@ -53,6 +55,7 @@ class EReport implements FInterface
             "idToReport" => $this->idToReport,
             "type" => $this->type,
             "description" => $this->description,
+            "status" => $this->status,
             "datetime" => $this->datetime
         );
         return $v;

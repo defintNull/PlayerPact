@@ -6,22 +6,21 @@ class FDB
     private static $instance;
     private static array $tables = array(
         "Admin" => "admin",
+        "BannedUser" => "banneduser",
         "Chat" => "chat",
         "ChatUser" => "chatuser",
         "Comment" => "comment",
         "InterestList" => "interestlist",
         "Message" => "message",
         "Moderator" => "moderator",
-        "ModerationComment" => "moderationcomment",
-        "ModerationPost" => "moderationpost",
-        "ModerationUser" => "moderationuser",
+        "ModerationResult" => "moderationresult",
         "Participation" => "participation",
         "PostSale" => "postsale",
         "PostStandard" => "poststandard",
         "PostTeam" => "postteam",
+        "Profile" => "profile",
         "Report" => "report",
-        "User" => "user",
-        "Profile" => "profile"
+        "User" => "user"
     );
 
     private $db;

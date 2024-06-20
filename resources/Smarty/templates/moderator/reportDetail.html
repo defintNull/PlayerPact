@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="/resources/css/moderator.css" />
 
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="/resources/js/moderatorButtonInteraction.js"></script>
 	</head>
 
 	<body>
@@ -59,93 +60,70 @@
 					<div class="row justify-content-center flex-grow-1" id="main-body">
                         <div class="post-section">
                             {if $type=='standard'}
-							<div class="row post-item" id="{$postId}">
+							<div class="row post-item" id="reported" data-ownerId="{$ownerId}" data-id={$idToReport} data-type={$reportType}>
                                 <div class="post-username">{$postUsername}</div>
                                 <div class="post-title">{$postTitle}</div>
                                 <div class="post-description">{$postDescription}</div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="post-datetime" id="post-datetime">{$postDatetime}</div>
-                                    </div>
-                                </div>
+                                <div class="post-datetime" id="post-datetime">{$postDatetime}</div>
                             </div>
-							<hr class="solid" />
 							{elseif $type=='team'}
-							<div class="row post-item" id="{$postId}">
-								<div class="col post-username" id="post-username">{$postUsername}</div>
+							<div class="row post-item" id="reported" data-ownerId="{$ownerId}" data-id={$idToReport} data-type={$reportType}>
+								<div class="post-username" id="post-username">{$postUsername}</div>
 								<div class="title-post-bar post-title" id="post-title">{$postTitle}</div>
-								<div class="row">
-									<div class="col-9 post-description" id="post-description">{$postDescription}</div>
-								</div>
-								<div class="post-time_" id="post-time">{$postTime}</div>
-								<div class="post-players" id="post-players">{$nPlayers}/{$maxPlayers}</div>
-								<div class="row">
-									<div class="col-3">
-										<div class="post-datetime" id="post-datetime">{$datetime}</div>
-									</div>
-								</div>
+								<div class="post-description" id="post-description">{$postDescription}</div>
+								<div class="post-time_" id="post-time">Time to play: {$postTime}</div>
+								<div class="post-players" id="post-players">Current players: {$nPlayers}/{$maxPlayers}</div>
+								<div class="post-datetime" id="post-datetime">{$postDatetime}</div>
 							</div>
-							<hr class="solid" />
 							{elseif $type=='sale'}
-							<div class="row post-item" id="{$postId}">
-								<div class="col post-username" id="post-username">{$postUsername}</div>
+							<div class="row post-item" id="reported" data-ownerId="{$ownerId}" data-id={$idToReport} data-type={$reportType}>
+								<div class="post-username" id="post-username">{$postUsername}</div>
 								<div class="post-title-post-bar post-title" id="post-title">{$postTitle}</div>
 								<div class="post-description" id="post-description">{$postDescription}</div>
-								<div class="post-price" id="post-price">{$postPrice}</div>
+								<div class="post-price" id="post-price">Price: {$postPrice}€</div>
 								<div class="row">
 									<div class="col post-image" id="post-image">
-										<a id="post-thumbnailLink" href="" target="_blank">
+										<a id="post-thumbnailLink" href="/post/get_image?id={$idToReport}" target="_blank">
 											<img src="{$image}" class="post-thumbnail" id="post-thumbnail" />
 										</a>
 									</div>
 								</div>
-						
-								<div class="row">
-									<div class="col-3">
-										<div class="post-datetime" id="post-datetime">{$postDatetime}</div>
-									</div>
-								</div>
+								<div class="post-datetime" id="post-datetime">{$postDatetime}</div>
 							</div>
-							<hr class="solid" />
 							{elseif $type=='comment'}
 							<div class="comment">
-								<div class="row" id="{$commentId}">
+								<div id="reported" data-ownerId="{$ownerId}" data-id={$idToReport} data-type={$reportType}>
 									<div class="comment-username" id="comment-username">{$commentUsername}</div>
 									<div class="comment-description" id="comment-description">{$commentDescription}</div>
 								</div>
-								<div class="row">
-									<div class="col-3">
-										<div class="comment-datetime" id="comment-datetime">{$commentDatetime}</div>
-									</div>
-								</div>
+								<div class="comment-datetime" id="comment-datetime">{$commentDatetime}</div>
 							</div>
-							<hr class="solid" />
 							{/if}
                             <hr class="solid" />
                             <div class="report-item">
-                                <div class="row" id="{$reportId}">
-                                    <div class="report-username" id="report-username"></div>
-                                    <div class="report-idToReport" id="report-idToReport"></div>
-                                    <div class="report-type" id="report-type"></div>
-                                    <div class="report-description" id="report-description"></div>
-                                    <div class="report-datetime" id="report-datetime"></div>
+                                <div class="row" id="report" data-id={$reportId}>
+                                    <div class="report-username" id="report-username">Reported by: {$reportUsername}</div>
+                                    <div class="report-idToReport" id="report-idToReport">Id: {$idToReport}</div>
+                                    <div class="report-type" id="report-type">Type: {$reportType}</div>
+                                    <div class="report-description" id="report-description">Reason: {$reportDescription}</div>
+                                    <div class="report-datetime" id="report-datetime">{$reportDatetime}</div>
                                 </div>
                             </div>
-                            <hr class="solid" />
+                            <hr/>
                             <div class="report-form">
                                 <div class="row">
                                     <div class="col">
-                                        <button class="report-ignore" id="report-ignore">Ignore</button>
+                                        <button class="button moderation-button" id="report-ignore">Ignore</button>
                                     </div>
                                     <div class="col">
-                                        <button class="report-delete-post" id="report-delete-post">Delete post</button>
+                                        <button class="button moderation-button" id="report-delete-post">Delete post/comment</button>
+                                    </div>
+                                    <div class="col text-center">
+                                        <button class="button moderation-button" id="report-ban-user">Ban user until</button>
+                                        <input class="form-control datetime-picker" id="ban-until" type="datetime-local">
                                     </div>
                                     <div class="col">
-                                        <button class="report-ban-user" id="report-ban-user">Ban user for</button>
-                                        <input type="datetime-local">
-                                    </div>
-                                    <div class="col">
-                                        <button class="report-delete-user" id="report-delete-user">Delete user</button>
+                                        <button class="button moderation-button" id="report-delete-user">Delete user</button>
                                     </div>
                                 </div>
                             </div>

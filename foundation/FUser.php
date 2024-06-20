@@ -3,7 +3,7 @@ require_once realpath(__DIR__ . "/FDB.php");
 
 class FUser
 {
-
+    // Funziona
     function store($obj)
     {
         $db = FDB::getInstance();
@@ -29,6 +29,7 @@ class FUser
         return $db->load($table, $condition);
     }
 
+    //Funziona
     function delete(array $arr)
     {
         $db = FDB::getInstance();
@@ -37,12 +38,13 @@ class FUser
         $condition = "";
         $i = 0;
         foreach($arr as $key => $val){
-            $condition .= $key."=".$val;
+            $condition .= $key . "=\"" . $val . "\"";
             if($i < count($arr) - 1){ 
                 $condition .= " AND ";
             }
             $i++;
         }
+        echo $condition;
         return $db->delete($table, $condition);
     }
 

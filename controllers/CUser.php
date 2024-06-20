@@ -198,6 +198,10 @@ class CUser
                 if ($post != array()) {
                     $posttitle = $post[0]["title"];
                 } else {
+                    $users = $pm->load("EChatUser", array("chatId" => $chat->getId()));
+                    if(count($users) <= 1) {
+                        $pm->delete("EChat", array("id" => $chat->getId()));
+                    }
                     $posttitle = "Deleted post";
                 }
 

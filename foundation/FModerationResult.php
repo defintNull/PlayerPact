@@ -1,9 +1,10 @@
 <?php
 require_once realpath(__DIR__ . "/FDB.php");
 
-class FModerationPost
+class FModerationResult
 {
 
+    // Funziona
     function store($obj)
     {
         $db = FDB::getInstance();
@@ -11,6 +12,7 @@ class FModerationPost
         return $db->store($table, $obj);
     }
 
+    // Funziona
     function load(array $arr)
     {
         $db = FDB::getInstance();
@@ -18,15 +20,17 @@ class FModerationPost
         $condition = "";
         $i = 0;
         foreach ($arr as $key => $val) {
-            $condition .= $key . "=" . $val;
+            $condition .= $key . "=\"" . $val . "\"";
             if ($i != count($arr) - 1) {
                 $condition .= " AND ";
             }
             $i++;
         }
+
         return $db->load($table, $condition);
     }
 
+    // Funziona
     function delete(array $arr)
     {
         $db = FDB::getInstance();
@@ -35,19 +39,31 @@ class FModerationPost
         $condition = "";
         $i = 0;
         foreach($arr as $key => $val){
-            $condition .= $key."=".$val;
+            $condition .= $key . "=\"" . $val . "\"";
             if($i < count($arr) - 1){ 
                 $condition .= " AND ";
             }
             $i++;
         }
+        echo $condition;
         return $db->delete($table, $condition);
     }
 
-    function update($obj, string $condition)
+    // Funziona
+    function update($obj, array $arr)
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
+        $condition = "";
+        $i = 0;
+        foreach ($arr as $key => $val) {
+            $condition .= $key . "=\"" . $val . "\"";
+
+            if ($i != count($arr) - 1) {
+                $condition .= " AND ";
+            }
+            $i++;
+        }
         $db->update($table, $obj, $condition);
     }
 
