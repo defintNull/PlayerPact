@@ -485,7 +485,7 @@ class CModerator
         $values = array();
 
         $res = $pm->loadElementsByCondition("EReport", array("status" => "closed"), $limit, $offset, $datetime);
-        $count = 0;
+        $count = count($res);
         
         for ($i = 0; $i < count($res); $i++) {
             $report = new EReport($res[$i]["id"], $res[$i]["userId"], $res[$i]["idToReport"], $res[$i]["type"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["status"]);
