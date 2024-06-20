@@ -170,7 +170,7 @@ class CUser
         $pm = new FPersistentManager();
         $values = array();
 
-        $userId = $pm->load("EUser", array("username" => $username))[0]["id"];
+        $userId = $user->getId();
         // Prendo tutte le chat relative all'utente attuale loggato
         $chatusers = $pm->load("EChatUser", array("userId" => $userId));
 
@@ -199,10 +199,10 @@ class CUser
                 if ($post != array()) {
                     $posttitle = $post[0]["title"];
                 } else {
-                    $users = $pm->load("EChatUser", array("chatId" => $chat->getId()));
-                    if(count($users) <= 1) {
-                        $pm->delete("EChat", array("id" => $chat->getId()));
-                    }
+                    // $users = $pm->load("EChatUser", array("chatId" => $chat->getId()));
+                    // if(count($users) <= 1) {
+                    //     $pm->delete("EChat", array("id" => $chat->getId()));
+                    // }
                     $posttitle = "Deleted post";
                 }
 
