@@ -140,6 +140,7 @@ class CModerator
                 "type" => $report->getType(),
                 "datetime" => $report->getDateTime()
             );
+            $count++;
         }
         return array($values, $count);
     }
