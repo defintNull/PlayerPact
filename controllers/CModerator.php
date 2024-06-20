@@ -489,19 +489,26 @@ class CModerator
         
         for ($i = 0; $i < count($res); $i++) {
             $report = new EReport($res[$i]["id"], $res[$i]["userId"], $res[$i]["idToReport"], $res[$i]["type"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["status"]);
-            $reportUser = $pm->load("EUser", array("id" => $report->getUserId()));
-            if($reportUser != array()) {
-                $reportUsername = $reportUser[0]["username"];
-            } else {
-                $reportUsername = "Deleted User";
+            $moderationResult = $pm->load("EmoderationResult", array("reportId" => $res[$i]["id"]));
+            
+            
+            if($moderationResult != array()) {
+                $reportUser = $pm->load("EUser", array("id" => $report->getUserId()));
+                if($reportUser != array()) {
+                    $reportUsername = $reportUser[0]["username"];
+                } else {
+                    $reportUsername = "Deleted User";
+                }
+                $values[] = array(
+                    "id" => $report->getId(),
+                    "username" => $reportUsername,
+                    "idToReport" => $report->getIdToReport(),
+                    "type" => $report->getType(),
+                    "datetime" => $report->getDateTime()
+                );
+                $count++;
             }
-            $values[] = array(
-                "id" => $report->getId(),
-                "username" => $reportUsername,
-                "idToReport" => $report->getIdToReport(),
-                "type" => $report->getType(),
-                "datetime" => $report->getDateTime()
-            );
+            
         }
         return array($values, $count);
     }
