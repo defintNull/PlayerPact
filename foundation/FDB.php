@@ -124,6 +124,7 @@ class FDB
             $this->db->beginTransaction();
 
             $sql = "SELECT * FROM " . self::$tables[$class] . " WHERE " . $condition;
+            //echo $sql;
             $sth = $this->db->prepare($sql);
             $sth->execute();
             $results = [];
