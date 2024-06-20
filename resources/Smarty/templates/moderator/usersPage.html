@@ -48,6 +48,12 @@
 				</div>
 				<div class="col h-100 d-flex flex-column main-column">
 					<div class="row justify-content-center fixed-top z-1 upper-bar">
+						<div class="col search-container">
+							<form class="d-flex search-bar" role="search" action="/moderator/users" method="get">
+								<input class="form-control me-2" type="search" name="search" placeholder="Search..." aria-label="Search" />
+								<button class="btn btn-outline-success" type="submit">Search</button>
+							</form>
+						</div>
 						<div class="col">
 							<li class="dropdown-profile-image">
 								<ul class="nav-link profile-image" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -69,6 +75,7 @@
 							<input type="hidden" name="type" id="type" value="{$type}" />
 							<input type="hidden" name="date" id="date" value="{$date}" />
 							<input type="hidden" name="dtime" id="time" value="{$time}" />
+							<input type="hidden" name="search" id="search" value="{$search}" />
 						</div>
 						<div class="ajax-loader text-center">Loading users...</div>
 

@@ -66,7 +66,7 @@ class CModerator
         $view->showReports($params);
     }
 
-    public function users() {
+    public function users(string $search = "") {
         $session = USession::getInstance();
         $this->checkSession($session);
         $mod = $session->load("moderator");
@@ -81,8 +81,12 @@ class CModerator
             $PPImageURL = "data:image/png;base64," . base64_encode($mod->getImage());
         }
 
-        $params = array("username" => $mod->getUsername() . " (mod)",
-                        "profilePicture" => $PPImageURL);
+        $params = array(
+            "username" => $mod->getUsername() . " (mod)",
+            "profilePicture" => $PPImageURL,
+            "search" => $search
+        );
+                        
         $view = new VModerator();
         $view->showUsers($params);
     }
