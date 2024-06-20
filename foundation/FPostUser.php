@@ -38,7 +38,7 @@ class FPostUser
         foreach($cond as $key => $val){
             $condition .= $key."=\"".$val."\" AND ";
         }
-        $condition .= "datetime<=\"" . $datetime . "\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        $condition .= "datetime<=\"" . $datetime . "\" ORDER BY datetime DESC LIMIT " . $limit . " OFFSET " . $offset;
         return $db->load($table, $condition);
     }
 

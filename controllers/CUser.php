@@ -6,6 +6,7 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EMessage.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChat.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EParticipation.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChatUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
@@ -393,40 +394,17 @@ class CUser
 
         $pm = new FPersistentManager();
         $values = array();
-
-        $myStandard = $pm->loadElementsByCondition("EPostStandard", array("userId" => $user->getId()), $limit, $offset, $datetime);
-        $myTeam = $pm->loadElementsByCondition("EPostTeam", array("userId" => $user->getId()), $limit, $offset, $datetime);
-        $mySale = $pm->loadElementsByCondition("EPostSale", array("userId" => $user->getId()), $limit, $offset, $datetime);
-
         $res = array();
 
-        if ($myStandard != array()) {
-            $res = array_merge($res, $myStandard);
-        }
-        if ($myTeam != array()) {
-            $res = array_merge($res, $myTeam);
-        }
-        if ($mySale != array()) {
-            $res = array_merge($res, $mySale);
-        }
-
-        usort($res, function ($a, $b) {
-            $ad = new DateTime($a['datetime']);
-            $bd = new DateTime($b['datetime']);
-
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? 1 : -1;
-        });
+        $myPosts = $pm->loadElementsByCondition("EPostUser", array("userId" => $user->getId()), $limit, $offset, $datetime);
 
         //echo var_dump($res);
 
-        $count = count($res);
+        $count = count($myPosts);
 
         for ($i = 0; $i < $count; $i++) {
-            if (in_array($res[$i], $myStandard)) {
+            if ($myPosts[$i]["type"] == "standard") {
+                $res[] = $pm->load("EPostStandard", array("id" => $myPosts[$i]["postId"]))[0];
                 $post = new EPostStandard($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getUserId()))[0];
 
@@ -439,7 +417,8 @@ class CUser
                     "description" => $post->getDescription(),
                     "datetime" => $post->getDateTime()
                 );
-            } else if (in_array($res[$i], $myTeam)) {
+            } else if ($myPosts[$i]["type"] == "team") {
+                $res[] = $pm->load("EPostTeam", array("id" => $myPosts[$i]["postId"]))[0];
                 $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
 
@@ -455,7 +434,8 @@ class CUser
                     "nPlayers" => $post->getNPlayers(),
                     "time" => $post->getTime()
                 );
-            } else if (in_array($res[$i], $mySale)) {
+            } else if ($myPosts[$i]["type"] == "sale") {
+                $res[] = $pm->load("EPostSale", array("id" => $myPosts[$i]["postId"]))[0];
                 $post = new EPostSale($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["price"], $res[$i]["image"]);
                 $userdata = $pm->load("EUser", array("id" => $post->getuserId()))[0];
 
@@ -490,22 +470,13 @@ class CUser
         $pm = new FPersistentManager();
         $values = array();
 
-        $interest = $pm->load("EInterestList", array("userId" => $user->getId()));
+        $interest = $pm->loadElementsByCondition("EInterestList",array("userId" => $user->getId()),$limit,$offset,"null");
         //echo var_dump($part);
         $res = array();
         for ($i = 0; $i < count($interest); $i++) {
-            $res = array_merge($res, $pm->loadElementsByCondition("EPostSale", array("id" => $interest[$i]["postSaleId"]), $limit, $offset, $datetime));
+            $res = array_merge($res, $pm->load("EPostSale", array("id" => $interest[$i]["postSaleId"])));
         }
-        usort($res, function ($a, $b) {
-            $ad = new DateTime($a['datetime']);
-            $bd = new DateTime($b['datetime']);
-
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? 1 : -1;
-        });
+        
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {
@@ -542,22 +513,13 @@ class CUser
         $pm = new FPersistentManager();
         $values = array();
 
-        $interest = $pm->load("EParticipation", array("userId" => $user->getId()));
-
+        $participation = $pm->loadElementsByCondition("EParticipation",array("userId" => $user->getId()),$limit,$offset,"null");
+        //echo var_dump($part);
         $res = array();
-        for ($i = 0; $i < count($interest); $i++) {
-            $res = array_merge($res, $pm->loadElementsByCondition("EPostTeam", array("id" => $interest[$i]["postTeamId"]), $limit, $offset, $datetime));
+        for ($i = 0; $i < count($participation); $i++) {
+            $res = array_merge($res, $pm->load("EPostTeam", array("id" => $participation[$i]["postTeamId"])));
         }
-        usort($res, function ($a, $b) {
-            $ad = new DateTime($a['datetime']);
-            $bd = new DateTime($b['datetime']);
 
-            if ($ad == $bd) {
-                return 0;
-            }
-
-            return $ad < $bd ? 1 : -1;
-        });
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {

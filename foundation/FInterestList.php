@@ -27,6 +27,18 @@ class FInterestList
         return $db->load($table, $condition);
     }
 
+    function loadElementsByCondition(array $cond, int $limit, int $offset, string $datetime)
+    {
+        $db = FDB::getInstance();
+        $table = substr(__CLASS__, 1);
+        $condition = "";
+        foreach($cond as $key => $val){
+            $condition .= $key."=\"".$val."\" AND ";
+        }
+        $condition .= "1=1 ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        return $db->load($table, $condition);
+    }
+
     function delete(array $arr)
     {
         $db = FDB::getInstance();

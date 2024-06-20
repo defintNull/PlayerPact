@@ -27,7 +27,7 @@ class CAutoscroll
         $this->checkSession($session);
 
         $everybodyTypes = array("standard", "team", "sale", "comment");
-        $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "myPosts", "savedPosts", "participations");
+        $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "postUser", "savedPosts", "participations");
         $modTypes = array("report", "user","oldreport");
         $adminTypes = array("moderator");
 
@@ -185,7 +185,7 @@ class CAutoscroll
         return $elements;
     }
 
-    private function getPostUsers(int $offset, int $limit, string $datetime)
+    private function getPostUserElements(int $offset, int $limit, string $datetime)
     {
         $controller = new CUser();
         $elements = $controller->loadPostUsers($offset, $limit, $datetime);
