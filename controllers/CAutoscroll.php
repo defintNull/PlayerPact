@@ -185,10 +185,10 @@ class CAutoscroll
         return $elements;
     }
 
-    private function getMyPostsElements(int $offset, int $limit, string $datetime)
+    private function getPostUsers(int $offset, int $limit, string $datetime)
     {
         $controller = new CUser();
-        $elements = $controller->loadMyPosts($offset, $limit, $datetime);
+        $elements = $controller->loadPostUsers($offset, $limit, $datetime);
         return $elements;
     }
 

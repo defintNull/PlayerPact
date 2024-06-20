@@ -6,18 +6,18 @@ $(document).ready(function () {
 	var offset = document.getElementById("offset").value;
 	var totalcount = document.getElementById("totalcount").value;
 	var type = document.getElementById("type").value;
-
+	
 	$.ajax({
 		url: "/autoscroll/load" + "?offset=" + offset + "&totalcount=" + totalcount + "&type=" + type + "&date=" + date.value + "&time=" + time.value,
 		success: function (data) {
-			console.log(data);
+			//console.log(data);
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {
 				console.log(err);
 				//window.location.href = "/error/e404"; //ERRORE ESCE QUI
 			}
-
+			
 			if(initialData.rows.length == 0){
 				const node = document.createElement("div");
 				const textnode = document.createTextNode("No post to show");
@@ -39,23 +39,17 @@ $(document).ready(function () {
 					}
 				}
 			}
+			
 			windowOnScroll(initialData);
 		},
 	});
 });
 
 function windowOnScroll(initialData) {
-	if ($(document).height() == $(window).height()) {
-		if ($(".post-item").length == initialData.totalcount) {
-			getMoreData(initialData);
-		}
-	}
 
 	$(window).on("scroll", function (e) {
 		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 60) {
-			if ($(".post-item").length == initialData.totalcount) {
-				getMoreData(initialData);
-			}
+			getMoreData(initialData);
 		}
 	});
 }
@@ -63,16 +57,18 @@ function windowOnScroll(initialData) {
 function getMoreData(initialData) {
 	$(".ajax-loader").show();
 	$(window).off("scroll");
+
 	if (initialData.offset == initialData.totalcount) {
 		$.ajax({
 			url:"/autoscroll/load" +"?offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value,type: "get",
 			success: function (response) {
+				//console.log(response);
 				try {
 					initialData = JSON.parse(response);
 				} catch (err) {
 					window.location.href = "/error/e404";
 				}
-
+				
 				if (initialData.rows) {
 					addrows(initialData.rows, initialData.type);
 					if (initialData.offset) {

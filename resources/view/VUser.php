@@ -14,7 +14,7 @@ class VUser extends View
     {
         $this->assignSmartyParams($params);
 
-        $this->smarty->assign("type", "myPosts");
+        $this->smarty->assign("type", "postUser");
         $this->smarty->assign("date", date("Y/m/d"));
         $this->smarty->assign("time", date("H:i:s"));
 

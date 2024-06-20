@@ -18,6 +18,7 @@ class FDB
         "PostSale" => "postsale",
         "PostStandard" => "poststandard",
         "PostTeam" => "postteam",
+        "PostUser" => "postuser",
         "Profile" => "profile",
         "Report" => "report",
         "User" => "user"

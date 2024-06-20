@@ -380,7 +380,7 @@ class CUser
         echo count($res);
     }
 
-    public function loadMyPosts(int $offset, int $limit, string $datetime)
+    public function loadPostUsers(int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
         $this->checkSession($session);

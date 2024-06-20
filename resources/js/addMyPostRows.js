@@ -1,6 +1,6 @@
 async function addrows(rows, type) {
 	const postList = document.getElementById("post-list");
-	if (type == "myPosts") {
+	if (type == "postUser") {
 		document.getElementById("my-posts-button").classList.add("active-element");
 		document.getElementById("my-saved-button").classList.remove("active-element");
 		document.getElementById("my-participations-button").classList.remove("active-element");
