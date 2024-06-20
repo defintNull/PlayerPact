@@ -149,7 +149,7 @@ class CModerator
         return array($values, $count);
     }
 
-    public function loadUsers(int $offset, int $limit, string $datetime)
+    public function loadUsers(string $condition, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -163,7 +163,7 @@ class CModerator
         $pm = new FPersistentManager();
         $values = array();
 
-        $res = $pm->loadElements("EUser", $limit, $offset, $datetime);
+        $res = $pm->loadElementsLike("EUser", $condition, $limit, $offset, $datetime);
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {
