@@ -227,7 +227,7 @@ class CModerator
         if($type=="standard") {
             $post = $pm->load("EPostStandard", array("id" => $reportedId));
             if($post == array()) {
-                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
                 $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
@@ -252,7 +252,7 @@ class CModerator
         } elseif($type=="team") {
             $post = $pm->load("EPostTeam", array("id" => $reportedId));
             if($post == array()) {
-                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
                 $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
@@ -280,7 +280,7 @@ class CModerator
         } elseif($type=="sale") {
             $post = $pm->load("EPostSale", array("id" => $reportedId));
             if($post == array()) {
-                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
                 $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
@@ -307,7 +307,7 @@ class CModerator
         } elseif($type=="comment") {
             $comment = $pm->load("EComment", array("id" => $reportedId));
             if($comment == array()) {
-                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+                $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
                 $pm->update($report, array("id"=> $report->getId()));
                 header("Location: /moderator/reports");
                 exit();
@@ -364,7 +364,7 @@ class CModerator
             header("Location: /moderator/reports");
             exit();
         }
-        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
         $pm->update($report, array("id"=> $report->getId()));
 
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), "Report ignored", date("Y-m-d H:i:s"));
@@ -407,7 +407,7 @@ class CModerator
             $moderationDescription = "Deleted comment";
         }
 
-        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
         $pm->update($report, array("id"=> $report->getId()));
 
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), $moderationDescription, date("Y-m-d H:i:s"));
@@ -437,7 +437,7 @@ class CModerator
             exit();
         }
 
-        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "end");
+        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
         $pm->update($report, array("id"=> $report->getId()));
 
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), "User banned", date("Y-m-d H:i:s"));
@@ -445,5 +445,97 @@ class CModerator
 
         $bannedUser = new EBannedUser(0, $userId, $moderationId, $banDate, date("Y-m-d H:i:s"));
         $pm->store($bannedUser);
+    }
+
+    public function oldReports() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $moderator = $session->load('moderator');
+
+        if ($moderator == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($moderator->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
+        }
+
+        $params = array(
+            "username" => $moderator->getUsername() . " (mod)",
+            "profilePicture" => $PPImageURL
+        );
+        $view = new VModerator();
+        $view->showOldReports($params);
+    }
+
+    public function loadOldReports(int $offset, int $limit, string $datetime)
+    {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $admin = $session->load('moderator');
+
+        if ($admin == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $pm = new FPersistentManager();
+        $values = array();
+
+        $res = $pm->loadElementsByCondition("EReport", array("status" => "closed"), $limit, $offset, $datetime);
+        $count = 0;
+        
+        for ($i = 0; $i < count($res); $i++) {
+            $report = new EReport($res[$i]["id"], $res[$i]["userId"], $res[$i]["idToReport"], $res[$i]["type"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["status"]);
+            $reportUser = $pm->load("EUser", array("id" => $report->getUserId()));
+            if($reportUser != array()) {
+                $reportUsername = $reportUser[0]["username"];
+            } else {
+                $reportUsername = "Deleted User";
+            }
+            $values[] = array(
+                "id" => $report->getId(),
+                "username" => $reportUsername,
+                "idToReport" => $report->getIdToReport(),
+                "type" => $report->getType(),
+                "datetime" => $report->getDateTime()
+            );
+        }
+        return array($values, $count);
+    }
+
+    public function oldreportDetail($id) {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $moderator = $session->load('moderator');
+
+        if ($moderator == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $PPImageURL = "/public/defaultPropic.png";
+        if ($moderator->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
+        }
+
+        $pm = new FPersistentManager();
+        $moderation = $pm->load("EModerationResult", array("reportId" => $id))[0];
+        
+        $params = array(
+            "username" => $moderator->getUsername() . " (mod)",
+            "profilePicture" => $PPImageURL,
+            "moderationId" => $moderation["id"],
+            "reportId" => $moderation["reportId"],
+            "modId" => $moderation["modId"],
+            "description" => $moderation["description"],
+            "datetime" => $moderation["datetime"]
+            
+        );
+        
+        $view = new VModerator();
+        $view->showOldReportDetail($params);
     }
 }

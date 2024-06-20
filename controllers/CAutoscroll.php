@@ -28,7 +28,7 @@ class CAutoscroll
 
         $everybodyTypes = array("standard", "team", "sale", "comment");
         $userTypes = array("standard", "team", "sale", "comment", "chat", "message", "myPosts", "savedPosts", "participations");
-        $modTypes = array("report", "user");
+        $modTypes = array("report", "user","oldreport");
         $adminTypes = array("moderator");
 
         $user = $session->load("user");
@@ -224,6 +224,13 @@ class CAutoscroll
     {
         $controller = new CModerator();
         $elements = $controller->loadUsers($offset, $limit, $datetime);
+        return $elements;
+    }
+
+    private function getOldreportElements(int $offset, int $limit, string $datetime)
+    {
+        $controller = new CModerator();
+        $elements = $controller->loadOldReports($offset, $limit, $datetime);
         return $elements;
     }
 }

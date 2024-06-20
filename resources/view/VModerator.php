@@ -39,4 +39,19 @@ class VModerator extends View
         $this->assignSmartyParams($params);
         $this->smarty->display("moderator/reportDetail.html");
     }
+
+    public function showOldReports($params)
+    {
+        $this->assignSmartyParams($params);
+        $this->smarty->assign("type", "oldreport");
+        $this->smarty->assign("date", date("Y/m/d"));
+        $this->smarty->assign("time", date("H:i:s"));
+        $this->smarty->display("moderator/oldReports.html");
+    }
+
+    public function showOldReportDetail($params)
+    {
+        $this->assignSmartyParams($params);
+        $this->smarty->display("moderator/oldreportDetail.html");
+    }
 }

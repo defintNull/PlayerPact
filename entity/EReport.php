@@ -47,6 +47,10 @@ class EReport implements FInterface
         return $this->datetime;
     }
 
+    public function getStatus() {
+        return $this->status;
+    }
+
     public function getValues()
     {
         $v = array(

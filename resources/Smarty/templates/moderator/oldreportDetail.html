@@ -12,6 +12,11 @@
 			crossorigin="anonymous"
 		></script>
 		<link rel="stylesheet" href="/resources/css/home.css" />
+		<link rel="stylesheet" href="/resources/css/post.css" />
+		<link rel="stylesheet" href="/resources/css/moderator.css" />
+
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="/resources/js/moderatorButtonInteraction.js"></script>
 	</head>
 
 	<body>
@@ -26,10 +31,10 @@
 					<div class="row justify-content-center text-bg-dark flex-grow-1">
 						<ul class="nav nav-pills side-nav">
 							<li class="nav-item">
-								<a class="nav-link menu-element active-element" aria-current="page" href="/moderator/home">Home</a>
+								<a class="nav-link menu-element" aria-current="page" href="/moderator/home">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link menu-element" aria-current="page" href="/moderator/reports">Reports</a>
+								<a class="nav-link menu-element active-element" aria-current="page" href="/moderator/reports">Reports</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link menu-element" aria-current="page" href="/moderator/oldReports">Handled Reports</a>
@@ -37,6 +42,7 @@
 							<li class="nav-item">
 								<a class="nav-link menu-element" aria-current="page" href="/moderator/users">Users</a>
 							</li>
+							
 						</ul>
 					</div>
 				</div>
@@ -56,12 +62,15 @@
 						</div>
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-						<div class="home-banner-container">
-							<img class="home-banner" src="/public/banner.png" />
-						</div>
-						<div class="welcome-text">
-							<a>Moderator panel</a>
-						</div>
+                        <div class="post-section">
+                            <div class="moderation-result">
+                                <div id="moderation-id">{$moderationId}</div>
+                                <div id="report-id">{$reportId}</div>
+                                <div id="mod-id">{$modId}</div>
+                                <div id="description">{$description}</div>
+                                <div id="datetime">{$datetime}</div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
