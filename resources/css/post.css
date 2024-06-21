@@ -253,6 +253,10 @@ hr.solid {
 	padding: 2;
 }
 
+.post-delete {
+	text-align: right;
+}
+
 .delete-button {
 	background-color: #222222;
 	width: 40px;
@@ -270,4 +274,8 @@ hr.solid {
 	padding: 0;
 	width: 40px;
 	height: 40px;
+}
+
+.form-participate {
+	text-align: right;
 }

@@ -1,24 +1,22 @@
 <body>
 	<div class="row post-item" id="id-post-sale">
 		<div class="col post-username" id="post-userId"></div>
-		<div class="col" id="post-delete">
+		<div class="col post-delete" id="post-delete">
 			
 		</div>
 		<div class="post-title-post-bar post-title" id="post-title"></div>
 		<div class="post-description" id="post-description"></div>
 		<div class="post-price" id="post-price"></div>
 		<div class="row">
-			<div class="col post-image" id="post-image">
+			<div class="col-9 post-image" id="post-image">
 				<a id="post-thumbnailLink" href="" target="_blank">
 					<img src="" class="post-thumbnail" id="post-thumbnail" />
 				</a>
 			</div>
-			<div class="col">
-				<form action="/post/buy" method="post">
-					<input type="hidden" id="salepostform" name="postSaleId" value="" />
-					<input type="submit" class="button button-buy" id="post-buy" value="Buy" />
-				</form>
-			</div>
+			<form class="col form-participate" action="/post/buy" method="post">
+				<input type="hidden" id="salepostform" name="postSaleId" value="" />
+				<input type="submit" class="button button-buy" id="post-buy" value="Buy" />
+			</form>
 		</div>
 
 		<div class="row">
