@@ -27,11 +27,19 @@ class FPostStandard
         return $db->load($table, $condition);
     }
 
-    function loadElements(int $limit, int $offset, string $datetime)
+    // function loadElements(int $limit, int $offset, string $datetime)
+    // {
+    //     $db = FDB::getInstance();
+    //     $table = substr(__CLASS__, 1);
+    //     $condition = "datetime<=\"" . $datetime . "\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+    //     return $db->load($table, $condition);
+    // }
+
+    function loadElementsLike(string $search, int $limit, int $offset, string $datetime)
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        $condition = "datetime<=\"" . $datetime . "\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        $condition = "datetime<=\"" . $datetime ."\" AND title LIKE \"".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
         return $db->load($table, $condition);
     }
 

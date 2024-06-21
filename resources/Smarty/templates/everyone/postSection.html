@@ -16,7 +16,7 @@
 
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script src="/resources/js/addpostrows.js"></script>
-		<script src="/resources/js/autoscroll.js"></script>
+		<script src="/resources/js/autoscrollSearch.js"></script>
 		<script src="/resources/js/userButtonInteraction.js"></script>
 	</head>
 	<body>
@@ -55,8 +55,8 @@
 				<div class="col h-100 d-flex flex-column main-column">
 					<div class="row justify-content-center fixed-top z-1 upper-bar">
 						<div class="col search-container">
-							<form class="d-flex search-bar" role="search">
-								<input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" />
+							<form class="d-flex search-bar" role="search" action="/post/{$type}" method="get">
+								<input class="form-control me-2" type="search" name="search" placeholder="{$placeholder}" aria-label="Search" />
 								<button class="btn btn-outline-success" type="submit">Search</button>
 							</form>
 						</div>
@@ -73,7 +73,7 @@
 								</ul>
 							</li>
 						</div>
-						{else}
+					{else}
 						<div class="col upper-login">
 							<a href="/login" type="button" class="btn-lg upper-login-button">Login</a>
 						</div>
@@ -87,6 +87,7 @@
 							<input type="hidden" name="type" id="type" value="{$type}" />
 							<input type="hidden" name="date" id="date" value="{$date}" />
 							<input type="hidden" name="dtime" id="time" value="{$time}" />
+							<input type="hidden" name="search" id="search" value="{$search}" />
 						</div>
 						<div class="ajax-loader text-center">Loading more posts...</div>
 					</div>

@@ -61,7 +61,7 @@ function getMoreData(initialData) {
 
 	if (initialData.offset == initialData.totalcount) {
 		$.ajax({
-			url:"/autoscroll/loadbycondition" +"?offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value  + "&condition=" + search, type: "get",
+			url:"/autoscroll/loadbycondition" +"?offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value  + "&condition=" + search.value, type: "get",
 			success: function (response) {
 				//console.log(response);
 				try {

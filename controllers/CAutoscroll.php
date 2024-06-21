@@ -174,29 +174,29 @@ class CAutoscroll
     }
 
 
-    private static function getStandardElements(int $offset, int $limit, string $datetime)
+    private static function getStandardElements(string $search,int $offset, int $limit, string $datetime)
     {
 
         $controller = new CPost();
-        $elements = $controller->loadStandardPosts($offset, $limit, $datetime);
+        $elements = $controller->loadStandardPosts($search,$offset, $limit, $datetime);
         return $elements;
 
     }
 
-    private static function getSaleElements(int $offset, int $limit, string $datetime)
+    private static function getSaleElements(string $search, int $offset, int $limit, string $datetime)
     {
 
         $controller = new CPost();
-        $elements = $controller->loadsalePosts($offset, $limit, $datetime);
+        $elements = $controller->loadsalePosts($search, $offset, $limit, $datetime);
         return $elements;
 
     }
 
-    private static function getTeamElements(int $offset, int $limit, string $datetime)
+    private static function getTeamElements(string $search, int $offset, int $limit, string $datetime)
     {
 
         $controller = new CPost();
-        $elements = $controller->loadTeamPosts($offset, $limit, $datetime);
+        $elements = $controller->loadTeamPosts($search, $offset, $limit, $datetime);
         return $elements;
 
     }

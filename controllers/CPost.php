@@ -31,14 +31,14 @@ class CPost
         $this->standard();
     }
 
-    public function loadStandardPosts(int $offset, int $limit, string $datetime)
+    public function loadStandardPosts(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
         $this->checkSession($session);
         $pm = new FPersistentManager();
         $values = array();
 
-        $res = $pm->loadElements("EPostStandard", $limit, $offset, $datetime);
+        $res = $pm->loadElementsLike("EPostStandard",$search, $limit, $offset, $datetime);
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {
@@ -59,7 +59,7 @@ class CPost
         return array($values, $count);
     }
 
-    public function loadSalePosts(int $offset, int $limit, string $datetime)
+    public function loadSalePosts(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -67,7 +67,7 @@ class CPost
         $pm = new FPersistentManager();
         $values = array();
 
-        $res = $pm->loadElements("EPostSale", $limit, $offset, $datetime);
+        $res = $pm->loadElementsLike("EPostSale", $search, $limit, $offset, $datetime);
         $count = count($res);
 
         for ($i = 0; $i < $count; $i++) {
@@ -89,7 +89,7 @@ class CPost
         return array($values, $count);
     }
 
-    public function loadTeamPosts(int $offset, int $limit, string $datetime)
+    public function loadTeamPosts(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -98,8 +98,8 @@ class CPost
         $pm = new FPersistentManager();
         $values = array();
 
-        $res = $pm->loadElements("EPostTeam", $limit, $offset, $datetime);
-        $count = 0;
+        $res = $pm->loadElementsLike("EPostTeam", $search, $limit, $offset, $datetime);
+        $count = count($res);
 
         for ($i = 0; $i < count($res); $i++) {
             $post = new EPostTeam($res[$i]["id"], $res[$i]["userId"], $res[$i]["title"], $res[$i]["description"], $res[$i]["datetime"], $res[$i]["nMaxPlayers"], $res[$i]["nPlayers"], $res[$i]["time"]);
@@ -124,14 +124,14 @@ class CPost
                     "nPlayers" => $post->getNPlayers(),
                     "time" => $post->getTime()
                 );
-                $count++;
+                
             }
         }
 
         return array($values, $count);
     }
 
-    public function standard()
+    public function standard($search = "")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -147,18 +147,26 @@ class CPost
             if ($user->getImage() != "") {
                 $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
             }
+        }
+
+        if($search == "") {
+            $placeholder = "Search...";
+        } else {
+            $placeholder = $search;
         }
 
         $params = array(
             "type" => "standard",
             "authenticated" => $authenticated,
             "username" => $username,
-            "profilePicture" => $PPImageURL
+            "profilePicture" => $PPImageURL,
+            "search" => $search,
+            "placeholder" => $placeholder
         );
         $view->show($params);
     }
 
-    public function sale()
+    public function sale($search = "")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -174,18 +182,26 @@ class CPost
             if ($user->getImage() != "") {
                 $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
             }
+        }
+
+        if($search == "") {
+            $placeholder = "Search...";
+        } else {
+            $placeholder = $search;
         }
 
         $params = array(
             "type" => "sale",
             "authenticated" => $authenticated,
             "username" => $username,
-            "profilePicture" => $PPImageURL
+            "profilePicture" => $PPImageURL,
+            "search" => $search,
+            "placeholder" => $placeholder
         );
         $view->show($params);
     }
 
-    public function team()
+    public function team($search = "")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -203,11 +219,19 @@ class CPost
             }
         }
 
+        if($search == "") {
+            $placeholder = "Search...";
+        } else {
+            $placeholder = $search;
+        }
+
         $params = array(
             "type" => "team",
             "authenticated" => $authenticated,
             "username" => $username,
-            "profilePicture" => $PPImageURL
+            "profilePicture" => $PPImageURL,
+            "search" => $search,
+            "placeholder" => $placeholder
         );
         $view->show($params);
     }
