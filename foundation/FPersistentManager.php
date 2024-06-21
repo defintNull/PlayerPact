@@ -24,7 +24,7 @@ class FPersistentManager
         try {
             return $entity->store($obj);
         } catch (Exception $e) {
-            throw new Exception($e);
+            return 0;
         }
         
     }
@@ -36,7 +36,7 @@ class FPersistentManager
         try {
             return $entity->load($arr);
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
     }
 
@@ -49,7 +49,7 @@ class FPersistentManager
         try {
             return $results;
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
         
     }
@@ -63,7 +63,7 @@ class FPersistentManager
         try {
             return $results;
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
     }
 
@@ -76,7 +76,7 @@ class FPersistentManager
         try {
             return $results;
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
     }
 
@@ -89,7 +89,7 @@ class FPersistentManager
         try {
             return $results;
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
     }
 
@@ -102,7 +102,7 @@ class FPersistentManager
         try {
             return $results;
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
     }
 
@@ -115,7 +115,7 @@ class FPersistentManager
         try {
             return $results;
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
     }
 
@@ -127,7 +127,7 @@ class FPersistentManager
         try {
             $entity->delete($arr);
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
         
     }
@@ -140,7 +140,7 @@ class FPersistentManager
         try {
             $entity->update($obj, $condition);
         } catch (Exception $e) {
-            throw new Exception($e);
+            return array();
         }
         
     }

@@ -87,11 +87,10 @@ class CLogin
         $pm = new FPersistentManager();
 
         $values = array("username" => $username);
-        try {
-            $profile = $pm->load("Eprofile", $values);
-        } catch (Exception $e) {
-            header("Location: /error/e404");
-            exit();
+
+        $profile = $pm->load("Eprofile", $values);
+        if($profile == array()) {
+            return false;
         }
 
         if (password_verify($password, $profile[0]["password"])) {

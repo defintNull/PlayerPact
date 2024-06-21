@@ -65,7 +65,12 @@ class CInterestList
 
         if ($pm->load("EInterestList", array("userId" => $user->getId(), "postSaleId" => $postSaleId)) == array()) {
             $interest = new EInterestList($user->getId(), $postSaleId);
-            $pm->store($interest);
+
+            if(!$pm->store($interest)) {
+                header("Location: /error/e404");
+                exit();
+            }
+            
         } else {
             $pm->delete("EInterestList", array("userId" => $user->getId(), "postSaleId" => $postSaleId));
         }

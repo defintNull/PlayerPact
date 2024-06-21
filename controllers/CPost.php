@@ -353,7 +353,12 @@ class CPost
 
             // Creazione dei post standard
             $post = new EPostStandard(1, $userId, $values["title"], $values["description"], date("Y-m-d H:i:s"));
-            $pm->store($post);
+            
+            if(!$pm->store($post)) {
+                header("Location: /error/e404");
+                exit();
+            }
+            
 
             header("Location: /post/standard");
             exit();

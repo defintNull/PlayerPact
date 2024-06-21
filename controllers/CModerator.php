@@ -373,7 +373,12 @@ class CModerator
         $pm->update($report, array("id"=> $report->getId()));
 
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), "Report ignored", date("Y-m-d H:i:s"));
-        $pm->store($moderation);
+        
+        if(!$pm->store($moderation)) {
+            header("Location: /error/e404");
+            exit();
+        }
+        
     }
 
     public function deleteReportedElement() {
@@ -416,7 +421,11 @@ class CModerator
         $pm->update($report, array("id"=> $report->getId()));
 
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), $moderationDescription, date("Y-m-d H:i:s"));
-        $pm->store($moderation);
+        
+        if(!$pm->store($moderation)) {
+            header("Location: /error/e404");
+            exit();
+        }
     }
     public function banUser() {
         $session = USession::getInstance();
@@ -448,8 +457,17 @@ class CModerator
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), "User banned", date("Y-m-d H:i:s"));
         $moderationId = $pm->store($moderation);
 
+        if($moderationId == 0) {
+            header("Location: /error/e404");
+            exit();
+        }
+
         $bannedUser = new EBannedUser(0, $userId, $moderationId, $banDate, date("Y-m-d H:i:s"));
-        $pm->store($bannedUser);
+        
+        if(!$pm->store($bannedUser)) {
+            header("Location: /error/e404");
+            exit();
+        }
     }
 
     public function oldReports(string $search = "") {
