@@ -65,6 +65,8 @@
 											<div class="missing"><a>Required field!</a></div>
 											{else if $birthdate == "bad"}
 											<div class="missing"><a>You used some forbidden characters</a></div>
+											{else if $birthdate == "not valid"}
+											<div class="missing"><a>Not a valid date</a></div>
 											{/if}
 										</div>
 										<div class="col-md-9 pe-5">
