@@ -137,6 +137,8 @@ class CLogin
             $username = $_POST["username"];
             $password = $_POST["password"];
 
+            $birthdayCheck = explode("-", $birthdate);
+
             $bad = array();
 
             if (!CLogin::check($name)) {
@@ -156,6 +158,10 @@ class CLogin
             }
             if (!CLogin::check($password)) {
                 $bad["password"] = "bad";
+            }
+
+            if(checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $birthdate > date("Y-m-d")) {
+                $bad["birthdate"] = "not valid";
             }
 
             if(count($bad) > 0) {
