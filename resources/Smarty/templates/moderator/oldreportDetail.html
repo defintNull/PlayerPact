@@ -36,10 +36,10 @@
 								<a class="nav-link menu-element" aria-current="page" href="/moderator/home">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link menu-element active-element" aria-current="page" href="/moderator/reports">Reports</a>
+								<a class="nav-link menu-element" aria-current="page" href="/moderator/reports">Reports</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link menu-element" aria-current="page" href="/moderator/oldReports">Handled Reports</a>
+								<a class="nav-link menu-element active-element" aria-current="page" href="/moderator/oldReports">Handled Reports</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link menu-element" aria-current="page" href="/moderator/users">Users</a>
@@ -64,13 +64,12 @@
 						</div>
 					</div>
 					<div class="row justify-content-center flex-grow-1" id="main-body">
-                        <div class="post-section">
+                        <div class="moderation-section">
                             <div class="moderation-result">
-                                <div id="moderation-id">{$moderationId}</div>
-                                <div id="report-id">{$reportId}</div>
-                                <div id="mod-id">{$modId}</div>
-                                <div id="description">{$description}</div>
-                                <div id="datetime">{$datetime}</div>
+								<div class="moderator-username" id="mod-id">Handled by: {$moderatorUsername}</div>
+                                <div class="report-id" id="report-id">Report id: {$reportId}</div>
+                                <div class="moderation-description" id="description">Description: {$description}</div>
+                                <div class="moderation-datetime" id="datetime">{$datetime}</div>
                             </div>
                         </div>
 					</div>

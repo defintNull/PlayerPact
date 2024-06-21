@@ -547,30 +547,35 @@ class CModerator
     public function oldreportDetail($id) {
         $session = USession::getInstance();
         $this->checkSession($session);
-        $moderator = $session->load('moderator');
+        $moderatorSession = $session->load('moderator');
 
-        if ($moderator == null) {
+        if ($moderatorSession == null) {
             header("Location: /login");
             exit();
         }
 
         $PPImageURL = "/public/defaultPropic.png";
-        if ($moderator->getImage() != "") {
-            $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
+        if ($moderatorSession->getImage() != "") {
+            $PPImageURL = "data:image/png;base64," . base64_encode($moderatorSession->getImage());
         }
 
         $pm = new FPersistentManager();
         $moderation = $pm->load("EModerationResult", array("reportId" => $id))[0];
-        
+        $moderator = $pm->load("EModerator", array("id" => $moderation["modId"]));
+
+        if($moderator == array()){
+            $username = "Deleted moderator";
+        } else {
+            $username = $moderator[0]["username"];
+        }
+
         $params = array(
-            "username" => $moderator->getUsername() . " (mod)",
+            "username" => $moderatorSession->getUsername() . " (mod)",
             "profilePicture" => $PPImageURL,
-            "moderationId" => $moderation["id"],
             "reportId" => $moderation["reportId"],
-            "modId" => $moderation["modId"],
+            "moderatorUsername" => $username,
             "description" => $moderation["description"],
             "datetime" => $moderation["datetime"]
-            
         );
         
         $view = new VModerator();
@@ -579,7 +584,7 @@ class CModerator
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/\-@.#!_%]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%-]*$/", $s)) {
             return false;
         }
         return true;
