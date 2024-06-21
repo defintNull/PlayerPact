@@ -393,8 +393,12 @@ class CPost
             $datetime = date("Y-m-d H:i:s");
 
             // Creazione del post sale
-            $post = new EPostSale(1, $userId, $values["title"], $values["description"], $datetime, round($values["price"], 2), $image);
-            $pm->store($post);
+            $post = new EPostSale(1, $userId, $values["title"], $values["description"], $datetime, $values["price"], $image);
+            
+            if(!$pm->store($post)) {
+                header("Location: /error/e404");
+                exit();
+            }
 
             header("Location: /post/sale");
             exit();
@@ -406,17 +410,31 @@ class CPost
             $post = new EPostTeam(1, $userId, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
             $postTeamId = $pm->store($post);
 
+            if(!$postTeamId) {
+                header("Location: /error/e404");
+                exit();
+            }
+
             // Creazione della partecipazione
             $participation = new EParticipation($userId, $postTeamId);
-            $pm->store($participation);
+            if(!$pm->store($participation)) {
+                header("Location: /error/e404");
+                exit();
+            }
 
             // Creazione della chat
             $chat = new EChat(0, $postTeamId, "team", $datetime);
-            $chatId = $pm->store($chat);
+            if(!$chatId = $pm->store($chat)) {
+                header("Location: /error/e404");
+                exit();
+            }
 
             // Creazione del legame chat-user
             $chatuser = new EChatUser($chatId, $userId, $datetime);
-            $pm->store($chatuser);
+            if(!$pm->store($chatuser)) {
+                header("Location: /error/e404");
+                exit();
+            }
 
             header("Location: /post/team");
             exit();
@@ -506,7 +524,11 @@ class CPost
         $userId = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
         $comment = new EComment(1, $_POST["postId"], $userId, $_POST["comment"], date("Y-m-d H:i:s"));
-        $pm->store($comment);
+        if(!$pm->store($comment)) {
+            header("Location: /error/e404");
+            exit();
+        }
+        
 
         header("Location: /post/comments?id=" . $_POST["postId"]);
         exit();
@@ -562,7 +584,10 @@ class CPost
 
         $pm = new FPersistentManager();
         $report = new EReport(1, $user->getId(), $objId, $objType, $description, date("Y-m-d H:i:s"));
-        $pm->store($report);
+        if(!$pm->store($report)) {
+            header("Location: /error/e404");
+            exit();
+        }
 
         if (strcmp($objType, "comment") == 0) {
             $comment = $pm->load("EComment", array("id" => $objId))[0];
@@ -632,10 +657,18 @@ class CPost
                 exit();
             }
             $participation = new EParticipation($user->getId(), $postTeamId);
-            $pm->store($participation);
+            if(!$pm->store($participation)) {
+                header("Location: /error/e404");
+                exit();
+            }
+            
             $datetime = date("Y-m-d H:i:s");
             $chatuser = new EChatUser($chatId, $user->getId(), $datetime);
-            $pm->store($chatuser);
+            if(!$pm->store($chatuser)) {
+                header("Location: /error/e404");
+                exit();
+            }
+            
             $newPostTeam = new EPostTeam($postTeam["id"], $postTeam["userId"], $postTeam["title"], $postTeam["description"], $postTeam["datetime"], $postTeam["nMaxPlayers"], $postTeam["nPlayers"] + 1, $postTeam["time"]);
             $pm->update($newPostTeam, array("id" => $postTeamId));
         } else {
@@ -717,15 +750,24 @@ class CPost
         if (!$exists && $user->getId() != $post["userId"]) {
             $datetime = date("Y-m-d H:i:s");
             $chat = new EChat(0, $postSaleId, "sale", $datetime);
-            $chatId = $pm->store($chat);
+            if(!$chatId = $pm->store($chat)) {
+                header("Location: /error/e404");
+                exit();
+            }
 
             $idOwner = $pm->load("EPostSale", array("id" => $postSaleId))[0]["userId"];
             $chatUser = new EChatUser($chatId, $idOwner, $datetime);
-            $pm->store($chatUser);
+            if(!$pm->store($chatUser)) {
+                header("Location: /error/e404");
+                exit();
+            }
 
             $userId = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
             $chatUser = new EChatUser($chatId, $userId, $datetime);
-            $pm->store($chatUser);
+            if(!$pm->store($chatUser)) {
+                header("Location: /error/e404");
+                exit();
+            }
         }
 
         header("Location: /user/chats");

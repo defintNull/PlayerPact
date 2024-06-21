@@ -357,7 +357,10 @@ class CUser
 
         $pm = new FPersistentManager();
         $message = new EMessage(0, $chatId, $user->getId(), $messageContent, $datetime);
-        $pm->store($message);
+        if(!$pm->store($message)) {
+            header("Location: /error/e404");
+            exit();
+        }
     }
 
     public function countchatmessages()
