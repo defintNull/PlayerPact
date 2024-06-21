@@ -445,7 +445,7 @@ class CModerator
         $userId = $_POST["userId"];
         $banDate =$_POST["banDate"];
         $datetime = new DateTime($banDate);
-        $banDate = $datetime->format("Y-m-d 00:00:00");
+        $banDate = $datetime->format("Y-m-d");
         $reportId = $_POST["reportId"];
 
         $pm = new FPersistentManager();
@@ -456,7 +456,7 @@ class CModerator
             exit();
         }
 
-        if($banDate < date("Y-m-d H:i:s")) {
+        if($banDate < date("Y-m-d")) {
             echo "dateNotValid";
             exit();
         }
