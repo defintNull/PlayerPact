@@ -1,5 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
     RewriteCond %{REQUEST_URI} !^/exec.php$
     RewriteCond %{REQUEST_URI} !^/resources/css/.*$
     RewriteCond %{REQUEST_URI} !^/resources/js/.*$
