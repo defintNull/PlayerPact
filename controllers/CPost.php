@@ -23,6 +23,10 @@ class CPost
             if ($checkUser == array()) {
                 $session->end();
             }
+            $banned = $pm->load("EBannedUser", array("userId" => $user->getId()));
+            if($banned != array()) {
+                $session->end();
+            }
         }
     }
 
@@ -85,7 +89,6 @@ class CPost
                 "image" => base64_encode($post->getImage())
             );
         }
-        //echo var_dump(array($values,$count));
         return array($values, $count);
     }
 
@@ -150,14 +153,8 @@ class CPost
         }
 
         if(!CPost::check($search)) {
-            header("Location: /post/team?info=badInput");
+            header("Location: /post/standard?info=badInput");
             exit();
-        }
-
-        if($search == "") {
-            $placeholder = "Search...";
-        } else {
-            $placeholder = $search;
         }
 
         $params = array(
@@ -165,8 +162,7 @@ class CPost
             "authenticated" => $authenticated,
             "username" => $username,
             "profilePicture" => $PPImageURL,
-            "search" => $search,
-            "placeholder" => $placeholder
+            "search" => $search
         );
         $view->show($params);
     }
@@ -190,14 +186,8 @@ class CPost
         }
 
         if(!CPost::check($search)) {
-            header("Location: /post/team?info=badInput");
+            header("Location: /post/sale?info=badInput");
             exit();
-        }
-
-        if($search == "") {
-            $placeholder = "Search...";
-        } else {
-            $placeholder = $search;
         }
 
         $params = array(
@@ -205,8 +195,7 @@ class CPost
             "authenticated" => $authenticated,
             "username" => $username,
             "profilePicture" => $PPImageURL,
-            "search" => $search,
-            "placeholder" => $placeholder
+            "search" => $search
         );
         $view->show($params);
     }
@@ -350,7 +339,6 @@ class CPost
         $pm = new FPersistentManager();
         $userId = $pm->load("EUser", array("username" => $user->getUsername()))[0]["id"];
 
-        // Ho aggiunto così il controllo sui campi (se un campo presenta problemi, si scrive solo che c'è stato un problema)
         if (!$this->checkNewPostFields()) {
             header("Location: /post/create?info=error");
             exit();
@@ -369,7 +357,6 @@ class CPost
                 exit();
             }
 
-            // Creazione dei post standard
             $post = new EPostStandard(1, $userId, $values["title"], $values["description"], date("Y-m-d H:i:s"));
             
             if(!$pm->store($post)) {
@@ -400,10 +387,10 @@ class CPost
             if (isset($_FILES['sale']['name']['image']) && $_FILES['sale']['error']['image'] == 0) {
                 $file_tmp_path = $_FILES['sale']['tmp_name']['image'];
                 $file_name = $_FILES['sale']['name']['image'];
-                $file_size = $_FILES['sale']['size']['image']; // in byte
+                $file_size = $_FILES['sale']['size']['image'];
 
                 if ($file_size > 5 * 1024 * 1024) {
-                    header("Location: /post/create?info=tooBig"); // Aggiungere messaggio a schermo
+                    header("Location: /post/create?info=tooBig");
                     exit();
                 }
 
@@ -423,7 +410,6 @@ class CPost
             }
             $datetime = date("Y-m-d H:i:s");
 
-            // Creazione del post sale
             $post = new EPostSale(1, $userId, $values["title"], $values["description"], $datetime, $values["price"], $image);
             
             if(!$pm->store($post)) {
@@ -897,7 +883,7 @@ class CPost
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%?, \-]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_?:<>;, \-]*$/", $s)) {
             return false;
         }
         return true;

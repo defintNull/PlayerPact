@@ -51,7 +51,7 @@ class FPostSale
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        $condition = "datetime<=\"" . $datetime ."\" AND title LIKE \"".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        $condition = "datetime<=\"" . $datetime ."\" AND title LIKE \"%".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
         
         try {
             return $db->load($table, $condition);

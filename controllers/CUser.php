@@ -23,6 +23,10 @@ class CUser
             if ($checkUser == array()) {
                 $session->end();
             }
+            $banned = $pm->load("EBannedUser", array("userId" => $user->getId()));
+            if($banned != array()) {
+                $session->end();
+            }
         }
     }
 
@@ -728,7 +732,7 @@ class CUser
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%?, \-]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_?, \-]*$/", $s)) {
             return false;
         }
         return true;

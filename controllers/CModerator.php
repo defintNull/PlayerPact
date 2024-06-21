@@ -445,32 +445,39 @@ class CModerator
         $userId = $_POST["userId"];
         $banDate =$_POST["banDate"];
         $datetime = new DateTime($banDate);
-        $banDate = $datetime->format("Y-m-d H:i:s");
+        $banDate = $datetime->format("Y-m-d 00:00:00");
         $reportId = $_POST["reportId"];
 
         $pm = new FPersistentManager();
 
         $report = $pm->load("EReport", array("id"=> $reportId))[0];
         if($report["status"] != "received") {
-            header("Location: /moderator/reports");
+            echo "reportNotValid";
             exit();
         }
 
-        $report = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
-        $pm->update($report, array("id"=> $report->getId()));
+        if($banDate < date("Y-m-d H:i:s")) {
+            echo "dateNotValid";
+            exit();
+        }
+
+        $reportUpdate = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
+        $pm->update($reportUpdate, array("id"=> $reportUpdate->getId()));
 
         $moderation = new EModerationResult(0, $reportId, $moderator->getId(), "User banned", date("Y-m-d H:i:s"));
         $moderationId = $pm->store($moderation);
 
         if($moderationId == 0) {
-            header("Location: /error/e404");
+            $reportUpdate = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "received");
+            $pm->update($reportUpdate, array("id"=> $reportUpdate->getId()));
             exit();
         }
 
         $bannedUser = new EBannedUser(0, $userId, $moderationId, $banDate, date("Y-m-d H:i:s"));
         
         if(!$pm->store($bannedUser)) {
-            header("Location: /error/e404");
+            $reportUpdate = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "received");
+            $pm->update($reportUpdate, array("id"=> $reportUpdate->getId()));
             exit();
         }
     }
@@ -563,7 +570,12 @@ class CModerator
         }
 
         $pm = new FPersistentManager();
-        $moderation = $pm->load("EModerationResult", array("reportId" => $id))[0];
+        $moderation = $pm->load("EModerationResult", array("reportId" => $id));
+        if($moderation == array()) {
+            header("Location: /error/e404");
+            exit();
+        }
+        $moderation = $moderation[0];
         $moderator = $pm->load("EModerator", array("id" => $moderation["modId"]));
 
         if($moderator == array()){
@@ -587,7 +599,7 @@ class CModerator
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%-]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_-]*$/", $s)) {
             return false;
         }
         return true;

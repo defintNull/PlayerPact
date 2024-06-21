@@ -89,7 +89,7 @@ async function addrows(rows, type) {
 			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
 			document.getElementById("post-datetime").textContent = row.datetime;
-			document.getElementById("post-datetime").id = row.id + "post-datetime";
+			document.getElementById("post-datetime").id = row.id + "-post-datetime";
 			document.getElementById("post-description").textContent = row.description;
 			document.getElementById("post-description").id = row.id + "-post-description";
 			document.getElementById("post-userId").textContent = row.userId;
@@ -159,6 +159,17 @@ async function addrows(rows, type) {
 				.catch(function (error) {
 					console.error("Error:", error);
 				});
+
+			const [hours, minutes, seconds] = row.time.split(':');
+			let postTime = new Date();
+			postTime.setHours(hours);
+			postTime.setMinutes(minutes);
+			postTime.setSeconds(seconds);
+			postTime.setMilliseconds(0);
+
+			if(postTime.getTime() + 60000< Date.parse(document.getElementById(row.id + "-post-datetime").textContent)) {
+				document.getElementById(row.id + "-post-time_").textContent = document.getElementById(row.id + "-post-time_").textContent + " (next day)";
+			}
 		} else if (row.type == "sale") {
 			//Richiesta all'html del post
 			const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postsale.html");

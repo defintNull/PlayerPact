@@ -7,6 +7,7 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EAdmin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EBannedUser.php");
 
 
 class CLogin
@@ -16,7 +17,7 @@ class CLogin
         $this->login();
     }
 
-    public function login(string $check = "ok")
+    public function login(string $check = "ok", $date = "")
     {
         $session = USession::getInstance();
         $user = $session->load("user");
@@ -39,7 +40,7 @@ class CLogin
         }
 
         $view = new VLogin();
-        $view->show($check);
+        $view->show($check, $date);
     }
 
     public function registration($info = "ok", $name = "ok", $surname = "ok", $birthdate = "ok", $email = "ok", $username = "ok", $password = "ok")
@@ -93,12 +94,20 @@ class CLogin
             return false;
         }
 
+
         if (password_verify($password, $profile[0]["password"])) {
             $profile = $profile[0];
 
             if ($profile["type"] == "user") {
                 unset($profile["type"]);
                 $val = $pm->load("EUser", $values)[0];
+                $banned = $pm->load("EBannedUser", array("userId" => $val["id"]));
+                
+                if($banned != array()) {
+                    header("Location: /login/login?check=banned&date=".$banned[0]["banDate"]);
+                    exit();
+                }
+
                 $user = new EUser($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
 
                 $session = USession::getInstance();
@@ -281,7 +290,7 @@ class CLogin
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%\-]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_\-]*$/", $s)) {
             return false;
         }
         return true;

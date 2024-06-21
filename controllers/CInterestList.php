@@ -14,6 +14,10 @@ class CInterestList
             if ($checkUser == array()) {
                 $session->end();
             }
+            $banned = $pm->load("EBannedUser", array("userId" => $user->getId()));
+            if($banned != array()) {
+                $session->end();
+            }
         }
     }
 

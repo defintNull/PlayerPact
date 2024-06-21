@@ -18,6 +18,26 @@ class CAutoscroll
             if ($checkUser == array()) {
                 $session->end();
             }
+            $banned = $pm->load("EBannedUser", array("userId" => $user->getId()));
+            if($banned != array()) {
+                $session->end();
+            }
+        }
+        $moderator = $session->load("moderator");
+        if ($moderator != null) {
+            $pm = new FPersistentManager();
+            $checkUser = $pm->load("EModerator", array("id" => $moderator->getId()));
+            if ($checkUser == array()) {
+                $session->end();
+            }
+        }
+        $admin = $session->load("admin");
+        if ($admin != null) {
+            $pm = new FPersistentManager();
+            $checkUser = $pm->load("EAdmin", array("id" => $admin->getId()));
+            if ($checkUser == array()) {
+                $session->end();
+            }
         }
     }
 

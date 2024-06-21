@@ -12,6 +12,8 @@
             	<div class="error">Wrong credentials</div>
 			{else if $check == "bad"}
 				<div class="error">You are not allowed to use some special characters</div>
+			{else if $check == "banned"}
+				<div class="error">Your account has been suspended until {$banDate}</div>
           	{/if}
           	<form action="/login/loginRedirect" method="post">
             	<div data-mdb-input-init class="form-outline mb-4">

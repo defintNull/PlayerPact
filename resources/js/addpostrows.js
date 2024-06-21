@@ -5,7 +5,7 @@ async function addrows(rows, type) {
 		document.getElementById("standard-button").classList.add("active-element");
 		document.getElementById("team-button").classList.remove("active-element");
 		document.getElementById("sale-button").classList.remove("active-element");
-		//Richiesta all'html del post
+		
 		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/poststandard.html");
 		const text = await response.text();
 		const i1 = text.indexOf("<body>");
@@ -41,7 +41,7 @@ async function addrows(rows, type) {
 			}
 			isOwner()
 				.then(async function (response) {
-					console.log(response);
+					//console.log(response);
 					if (response == "1") {
 						const deleteSection = document.getElementById(row.id + "-post-delete-standard");
 
@@ -68,7 +68,7 @@ async function addrows(rows, type) {
 		document.getElementById("standard-button").classList.remove("active-element");
 		document.getElementById("team-button").classList.add("active-element");
 		document.getElementById("sale-button").classList.remove("active-element");
-		//Richiesta all'html del post
+		
 		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postteam.html");
 		const text = await response.text();
 		const i1 = text.indexOf("<body>");
@@ -84,7 +84,7 @@ async function addrows(rows, type) {
 			document.getElementById("post-title").textContent = row.title;
 			document.getElementById("post-title").id = row.id + "-post-title";
 			document.getElementById("post-datetime").textContent = row.datetime;
-			document.getElementById("post-datetime").id = row.id + "post-datetime";
+			document.getElementById("post-datetime").id = row.id + "-post-datetime";
 			document.getElementById("post-description").textContent = row.description;
 			document.getElementById("post-description").id = row.id + "-post-description";
 			document.getElementById("post-userId").textContent = row.userId;
@@ -155,12 +155,23 @@ async function addrows(rows, type) {
 				.catch(function (error) {
 					console.error("Error:", error);
 				});
+
+			const [hours, minutes, seconds] = row.time.split(':');
+			let postTime = new Date();
+			postTime.setHours(hours);
+			postTime.setMinutes(minutes);
+			postTime.setSeconds(seconds);
+			postTime.setMilliseconds(0);
+
+			if(postTime.getTime() + 60000< Date.parse(document.getElementById(row.id + "-post-datetime").textContent)) {
+				document.getElementById(row.id + "-post-time_").textContent = document.getElementById(row.id + "-post-time_").textContent + " (next day)";
+			}
 		});
 	} else if (type == "sale") {
 		document.getElementById("standard-button").classList.remove("active-element");
 		document.getElementById("team-button").classList.remove("active-element");
 		document.getElementById("sale-button").classList.add("active-element");
-		//Richiesta all'html del post
+		
 		const response = await fetch("/resources/Smarty/templates/everyone/autoscrollCards/postsale.html");
 		const text = await response.text();
 		const i1 = text.indexOf("<body>");

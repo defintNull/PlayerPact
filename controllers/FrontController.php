@@ -35,13 +35,15 @@ class FrontController
                     try {
                         $controller->{$method}(...$query);
                     } catch (Error $e) {
-                        header("Location: /error/e404");
+                        echo $e;
+                        //header("Location: /error/e404");
                     }
                 } else {
                     try {
                         $controller->{$method}();
                     } catch (Error $e) {
-                        header("Location: /error/e404");
+                        echo $e;
+                        //header("Location: /error/e404");
                     }
                 }
 

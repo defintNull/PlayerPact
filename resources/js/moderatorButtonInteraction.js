@@ -41,7 +41,7 @@ $(document).on("click", "#report-ban-user", function () {
         var banDate = document.getElementById("ban-until").value;
         var userId = document.getElementById("reported").dataset.ownerid;
 
-        console.log(banDate);
+        //console.log(banDate);
 
         $.ajax({
             url: "/moderator/banUser",
@@ -52,7 +52,12 @@ $(document).on("click", "#report-ban-user", function () {
             },
             success: function (response) {
                 //console.log(response);
-                window.location.href = "/moderator/reports";
+                if(response == "dateNotValid"){
+                    let reportType = document.getElementById("report-type").textContent.split(": ")[1];
+                    window.location.href = "/moderator/reportDetail?id=" + reportId + "&type=" + reportType;
+                } else {
+                    window.location.href = "/moderator/reports";
+                }
             },
         });
     }

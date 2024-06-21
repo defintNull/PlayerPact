@@ -308,7 +308,7 @@ class CAdmin
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%\-]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_\-]*$/", $s)) {
             return false;
         }
         return true;
