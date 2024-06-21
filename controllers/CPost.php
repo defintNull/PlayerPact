@@ -131,7 +131,7 @@ class CPost
         return array($values, $count);
     }
 
-    public function standard($search = "")
+    public function standard($search = "", $info = "ok")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -147,6 +147,11 @@ class CPost
             if ($user->getImage() != "") {
                 $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
             }
+        }
+
+        if(!CPost::check($search)) {
+            header("Location: /post/team?info=badInput");
+            exit();
         }
 
         if($search == "") {
@@ -166,7 +171,7 @@ class CPost
         $view->show($params);
     }
 
-    public function sale($search = "")
+    public function sale($search = "", $info = "ok")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -182,6 +187,11 @@ class CPost
             if ($user->getImage() != "") {
                 $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
             }
+        }
+
+        if(!CPost::check($search)) {
+            header("Location: /post/team?info=badInput");
+            exit();
         }
 
         if($search == "") {
@@ -201,7 +211,7 @@ class CPost
         $view->show($params);
     }
 
-    public function team($search = "")
+    public function team($search = "", $info = "ok")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -217,6 +227,11 @@ class CPost
             if ($user->getImage() != "") {
                 $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
             }
+        }
+
+        if(!CPost::check($search)) {
+            header("Location: /post/team?info=badInput");
+            exit();
         }
 
         if($search == "") {
@@ -351,6 +366,16 @@ class CPost
         if (isset($_POST["standard"])) {
             $values = $_POST["standard"];
 
+            // if(!CPost::check($values["title"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
+
+            // if(!CPost::check($values["description"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
+
             // Creazione dei post standard
             $post = new EPostStandard(1, $userId, $values["title"], $values["description"], date("Y-m-d H:i:s"));
             
@@ -364,6 +389,19 @@ class CPost
             exit();
         } else if (isset($_POST["sale"])) {
             $values = $_POST["sale"];
+
+            // if(!CPost::check($values["title"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
+            // if(!CPost::check($values["description"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
+            // if(!CPost::check($values["price"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
 
             $image = null;
             if (isset($_FILES['sale']['name']['image']) && $_FILES['sale']['error']['image'] == 0) {
@@ -405,6 +443,19 @@ class CPost
         } else if (isset($_POST["team"])) {
             $values = $_POST["team"];
             $datetime = date("Y-m-d H:i:s");
+
+            // if(!CPost::check($values["title"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
+            // if(!CPost::check($values["description"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
+            // if(!CPost::check($values["time"])) {
+            //     header("Location: /post/create?info=badInput");
+            //     exit();
+            // }
 
             //Creazione del post team
             $post = new EPostTeam(1, $userId, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
@@ -534,7 +585,7 @@ class CPost
         exit();
     }
 
-    public function report()
+    public function report($info = "ok")
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -569,6 +620,11 @@ class CPost
         $description = $_POST["description"];
         $objId = $_POST["objToReportId"];
         $objType = $_POST["objToReportType"];
+
+        if(!CPost::check($description)) {
+            header("Location: /post/report?info=badInput");
+            exit();
+        }
 
         if ($description == "" || strlen($description) > 256) { // Se la lunghezza massima è maggiore di 256 va rimandato alla report ma bisogna passargli i parametri del commento da segnalare
             header("Location: /post/standard");
