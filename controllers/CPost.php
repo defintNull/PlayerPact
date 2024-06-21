@@ -388,7 +388,7 @@ class CPost
             $datetime = date("Y-m-d H:i:s");
 
             // Creazione del post sale
-            $post = new EPostSale(1, $userId, $values["title"], $values["description"], $datetime, $values["price"], $image);
+            $post = new EPostSale(1, $userId, $values["title"], $values["description"], $datetime, round($values["price"], 2), $image);
             $pm->store($post);
 
             header("Location: /post/sale");
