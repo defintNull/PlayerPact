@@ -92,4 +92,16 @@ class FReport
         $condition .= "datetime<=\"" . $datetime . "\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
         return $db->load($table, $condition);
     }
+
+    function loadElementsLikeByCondition(string $search, array $cond, int $limit, int $offset, string $datetime)
+    {
+        $db = FDB::getInstance();
+        $table = substr(__CLASS__, 1);
+        $condition = "";
+        foreach($cond as $key => $val){
+            $condition .= $key . "=\"" . $val . "\""." AND ";
+        }
+        $condition = "datetime<=\"" . $datetime ."\" AND id LIKE \"".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        return $db->load($table, $condition);
+    }
 }

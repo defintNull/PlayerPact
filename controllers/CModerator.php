@@ -452,7 +452,7 @@ class CModerator
         $pm->store($bannedUser);
     }
 
-    public function oldReports() {
+    public function oldReports(string $search = "") {
         $session = USession::getInstance();
         $this->checkSession($session);
         $moderator = $session->load('moderator');
@@ -467,15 +467,23 @@ class CModerator
             $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
         }
 
+        if($search == "") {
+            $placeholder = "Search...";
+        } else {
+            $placeholder = $search;
+        }
+
         $params = array(
             "username" => $moderator->getUsername() . " (mod)",
-            "profilePicture" => $PPImageURL
+            "profilePicture" => $PPImageURL,
+            "search" => $search,
+            "placeholder" => $placeholder
         );
         $view = new VModerator();
         $view->showOldReports($params);
     }
 
-    public function loadOldReports(int $offset, int $limit, string $datetime)
+    public function loadOldReports(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -489,7 +497,7 @@ class CModerator
         $pm = new FPersistentManager();
         $values = array();
 
-        $res = $pm->loadElementsByCondition("EReport", array("status" => "closed"), $limit, $offset, $datetime);
+        $res = $pm->loadElementsLikeByCondition("EReport", $search, array("status" => "closed"), $limit, $offset, $datetime);
         $count = count($res);
         
         for ($i = 0; $i < count($res); $i++) {

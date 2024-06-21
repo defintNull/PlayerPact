@@ -265,10 +265,10 @@ class CAutoscroll
         return $elements;
     }
 
-    private function getOldreportElements(int $offset, int $limit, string $datetime)
+    private function getOldreportElements(string $search, int $offset, int $limit, string $datetime)
     {
         $controller = new CModerator();
-        $elements = $controller->loadOldReports($offset, $limit, $datetime);
+        $elements = $controller->loadOldReports($search, $offset, $limit, $datetime);
         return $elements;
     }
 }
