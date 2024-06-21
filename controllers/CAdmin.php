@@ -213,6 +213,9 @@ class CAdmin
                 }
             }
 
+            //HASH
+            $password = password_hash($password, PASSWORD_DEFAULT);
+
             $moderator = new EModerator(1, $username, $password, $name, $surname, $birthdate, $email, $image);
             $profile = new EProfile(1, "moderator", $username, $password, $email);
 
