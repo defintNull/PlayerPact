@@ -20,10 +20,10 @@ class USession
     {
         session_set_cookie_params(
             array(
-                'lifetime' => 43200
-                
+                'lifetime' => 43200,
+                'secure' => 1
             )
-            );
+        );
         session_start();
     }
 
