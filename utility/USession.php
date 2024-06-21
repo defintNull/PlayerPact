@@ -18,6 +18,12 @@ class USession
 
     public function start()
     {
+        session_set_cookie_params(
+            array(
+                'lifetime' => 43200
+                
+            )
+            );
         session_start();
     }
 
