@@ -160,9 +160,9 @@ class CLogin
                 $bad["password"] = "bad";
             }
 
-            if(checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $birthdate > date("Y-m-d")) {
-                $bad["birthdate"] = "not valid";
-            }
+            // if(checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $birthdate > date("Y-m-d")) {
+            //     $bad["birthdate"] = "not valid";
+            // }
 
             if(count($bad) > 0) {
                 header("Location: /login/registration?info=error&" . http_build_query($bad));
