@@ -20,6 +20,14 @@
 		<link rel="stylesheet" href="/resources/css/home.css" />
 		<link rel="stylesheet" href="/resources/css/post.css" />
 		<link rel="stylesheet" href="/resources/css/profilePage.css" />
+
+		{if $type == "postUser"}
+		<title>My posts</title>
+		{else if $type == "savedPosts"}
+		<title>Saved posts</title>
+		{else if $type == "participations"}
+		<title>Teams</title>
+		{/if}
 	</head>
 
 	<body>

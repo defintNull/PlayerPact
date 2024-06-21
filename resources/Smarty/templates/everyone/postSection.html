@@ -18,6 +18,14 @@
 		<script src="/resources/js/addpostrows.js"></script>
 		<script src="/resources/js/autoscrollSearch.js"></script>
 		<script src="/resources/js/userButtonInteraction.js"></script>
+
+		{if $type == "standard"}
+		<title>Forum</title>
+		{else if $type == "sale"}
+		<title>Sale posts</title>
+		{else if $type == "team"}
+		<title>Team posts</title>
+		{/if}
 	</head>
 	<body>
 		<div class="container-fluid h-100">
