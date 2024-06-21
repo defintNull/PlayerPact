@@ -556,7 +556,6 @@ class CUser
 
         $email = $user->getEmail();
         $username = $user->getUsername();
-        $password = $user->getPassword();
         $PPImageURL = "/public/defaultPropic.png";
         if ($user->getImage() != "") {
             $PPImageURL = "data:image/png;base64," . base64_encode($user->getImage());
@@ -565,7 +564,6 @@ class CUser
         $params = array(
             "email" => $email,
             "username" => $username,
-            "censuredPassword" => str_repeat("a", strlen($password)),
             "profilePicture" => $PPImageURL,
             "info" => $info
         );
