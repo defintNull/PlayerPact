@@ -85,7 +85,8 @@ class CLogin
         }
 
         $pm = new FPersistentManager();
-        $values = array("username" => $username, "password" => $password);
+
+        $values = array("username" => $username);
         try {
             $profile = $pm->load("Eprofile", $values);
         } catch (Exception $e) {
@@ -93,7 +94,7 @@ class CLogin
             exit();
         }
 
-        if ($profile != array()) {
+        if (password_verify($password, $profile[0]["password"])) {
             $profile = $profile[0];
 
             if ($profile["type"] == "user") {
@@ -186,6 +187,9 @@ class CLogin
                     exit();
                 }
             }
+
+            //HASH
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
             $user = new EUser(1, $username, $password, $name, $surname, $birthdate, $email, $image);
             $profile = new EProfile(1, "user", $username, $password, $email);
