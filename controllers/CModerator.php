@@ -66,7 +66,7 @@ class CModerator
         $view->showReports($params);
     }
 
-    public function users(string $search = "") {
+    public function users(string $search = "", string $info = "ok") {
         $session = USession::getInstance();
         $this->checkSession($session);
         $mod = $session->load("moderator");
@@ -79,6 +79,11 @@ class CModerator
         $PPImageURL = "/public/defaultPropic.png";
         if ($mod->getImage() != "") {
             $PPImageURL = "data:image/png;base64," . base64_encode($mod->getImage());
+        }
+
+        if(!CModerator::check($search)) {
+            header("Location: /moderator/users?info=badInput");
+            exit();
         }
 
         $params = array(
@@ -470,7 +475,7 @@ class CModerator
         }
     }
 
-    public function oldReports(string $search = "") {
+    public function oldReports(string $search = "", string $info = "ok") {
         $session = USession::getInstance();
         $this->checkSession($session);
         $moderator = $session->load('moderator');
@@ -485,17 +490,15 @@ class CModerator
             $PPImageURL = "data:image/png;base64," . base64_encode($moderator->getImage());
         }
 
-        if($search == "") {
-            $placeholder = "Search...";
-        } else {
-            $placeholder = $search;
+        if(!CModerator::check($search)) {
+            header("Location: /moderator/oldReports?info=badInput");
+            exit();
         }
 
         $params = array(
             "username" => $moderator->getUsername() . " (mod)",
             "profilePicture" => $PPImageURL,
-            "search" => $search,
-            "placeholder" => $placeholder
+            "search" => $search
         );
         $view = new VModerator();
         $view->showOldReports($params);

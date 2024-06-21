@@ -186,10 +186,12 @@ class CAdmin
                 $bad["password"] = "bad";
             }
 
-            if(checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $birthdate > date("Y-m-d")) {
+            $d1 = new DateTime($birthdate);
+            $d2 = new DateTime(date("Y-m-d"));
+
+            if(!checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $d1 > $d2) {
                 $bad["birthdate"] = "not valid";
             }
-
             if(count($bad) > 0) {
                 header("Location: /admin/createMod?info=error&" . http_build_query($bad));
                 exit();
@@ -306,7 +308,7 @@ class CAdmin
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/\-@.#!_%]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%\-]*$/", $s)) {
             return false;
         }
         return true;

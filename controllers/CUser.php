@@ -355,6 +355,11 @@ class CUser
         $messageContent = $_POST["message"];
         $datetime = date("Y-m-d H:i:s");
 
+        if(!CUser::check($messageContent)) {
+            header("Location: /user/messages?id=" . $chatId);
+            exit();
+        }
+
         $pm = new FPersistentManager();
         $message = new EMessage(0, $chatId, $user->getId(), $messageContent, $datetime);
         if(!$pm->store($message)) {
@@ -723,7 +728,7 @@ class CUser
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/\-@.#!_%]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%?, \-]*$/", $s)) {
             return false;
         }
         return true;

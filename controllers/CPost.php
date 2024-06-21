@@ -234,19 +234,12 @@ class CPost
             exit();
         }
 
-        if($search == "") {
-            $placeholder = "Search...";
-        } else {
-            $placeholder = $search;
-        }
-
         $params = array(
             "type" => "team",
             "authenticated" => $authenticated,
             "username" => $username,
             "profilePicture" => $PPImageURL,
-            "search" => $search,
-            "placeholder" => $placeholder
+            "search" => $search
         );
         $view->show($params);
     }
@@ -366,15 +359,15 @@ class CPost
         if (isset($_POST["standard"])) {
             $values = $_POST["standard"];
 
-            // if(!CPost::check($values["title"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
+            if(!CPost::check($values["title"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
 
-            // if(!CPost::check($values["description"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
+            if(!CPost::check($values["description"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
 
             // Creazione dei post standard
             $post = new EPostStandard(1, $userId, $values["title"], $values["description"], date("Y-m-d H:i:s"));
@@ -390,18 +383,18 @@ class CPost
         } else if (isset($_POST["sale"])) {
             $values = $_POST["sale"];
 
-            // if(!CPost::check($values["title"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
-            // if(!CPost::check($values["description"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
-            // if(!CPost::check($values["price"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
+            if(!CPost::check($values["title"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
+            if(!CPost::check($values["description"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
+            if(!CPost::check($values["price"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
 
             $image = null;
             if (isset($_FILES['sale']['name']['image']) && $_FILES['sale']['error']['image'] == 0) {
@@ -444,18 +437,18 @@ class CPost
             $values = $_POST["team"];
             $datetime = date("Y-m-d H:i:s");
 
-            // if(!CPost::check($values["title"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
-            // if(!CPost::check($values["description"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
-            // if(!CPost::check($values["time"])) {
-            //     header("Location: /post/create?info=badInput");
-            //     exit();
-            // }
+            if(!CPost::check($values["title"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
+            if(!CPost::check($values["description"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
+            if(!CPost::check($values["time"])) {
+                header("Location: /post/create?info=badInput");
+                exit();
+            }
 
             //Creazione del post team
             $post = new EPostTeam(1, $userId, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
@@ -567,6 +560,11 @@ class CPost
         }
 
         if ($_POST["comment"] == "") {
+            header("Location: /post/comments?id=" . $_POST["postId"]);
+            exit();
+        }
+
+        if(!CPost::check($_POST["comment"])) {
             header("Location: /post/comments?id=" . $_POST["postId"]);
             exit();
         }
@@ -899,7 +897,7 @@ class CPost
 
     private static function check($s)
     {
-        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/\-@.#!_%]*$/", $s)) {
+        if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_%?, \-]*$/", $s)) {
             return false;
         }
         return true;
