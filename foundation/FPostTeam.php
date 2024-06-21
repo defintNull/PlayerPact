@@ -8,7 +8,13 @@ class FPostTeam
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        return $db->store($table, $obj);
+
+        try {
+            return $db->store($table, $obj);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function load(array $arr)
@@ -24,7 +30,13 @@ class FPostTeam
             }
             $i++;
         }
-        return $db->load($table, $condition);
+
+        try {
+            return $db->load($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     // function loadElements(int $limit, int $offset, string $datetime)
@@ -40,7 +52,13 @@ class FPostTeam
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
         $condition = "datetime<=\"" . $datetime ."\" AND title LIKE \"".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
-        return $db->load($table, $condition);
+        
+        try {
+            return $db->load($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function loadElementsByCondition(array $cond, int $limit, int $offset, string $datetime)
@@ -52,7 +70,13 @@ class FPostTeam
             $condition .= $key."=".$val." AND ";
         }
         $condition .= "datetime<=\"" . $datetime . "\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
-        return $db->load($table, $condition);
+        
+        try {
+            return $db->load($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function delete(array $arr)
@@ -63,13 +87,19 @@ class FPostTeam
         $condition = "";
         $i = 0;
         foreach($arr as $key => $val){
-            $condition .= $key."=".$val;
+            $condition .= $key. "=\"" . $val . "\"";
             if($i < count($arr) - 1){ 
                 $condition .= " AND ";
             }
             $i++;
         }
-        return $db->delete($table, $condition);
+
+        try {
+            return $db->delete($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function update($obj, array $arr)
@@ -86,14 +116,26 @@ class FPostTeam
             }
             $i++;
         }
-        $db->update($table, $obj, $condition);
+
+        try {
+            $db->update($table, $obj, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function exists($obj)
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        return $db->exists($table, $obj);
+
+        try {
+            return $db->exists($table, $obj);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
 }

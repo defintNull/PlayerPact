@@ -32,7 +32,7 @@ class FDB
         try {
             $this->db = new PDO("mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"], $_ENV["DB_USER_NAME"], $_ENV["DB_PASSWORD"]);
         } catch (PDOException $e) {
-            return $e->getCode();
+            throw new Exception($e);
         }
 
     }
@@ -114,7 +114,7 @@ class FDB
 
             return $id;
         } catch (PDOException $e) {
-            return $e;
+            throw new Exception($e);
         }
     }
 
@@ -155,8 +155,7 @@ class FDB
             return true;
 
         } catch (PDOException $e) {
-            //return false;
-            return $e;
+            throw new Exception($e);
         }
     }
 
@@ -186,7 +185,7 @@ class FDB
             $this->db->commit();
 
         } catch (PDOException $e) {
-            return $e;
+            throw new Exception($e);
         }
     }
 
@@ -224,7 +223,7 @@ class FDB
             }
 
         } catch (PDOException $e) {
-            return $e;
+            throw new Exception($e);
         }
     }
 
@@ -248,7 +247,7 @@ class FDB
             return $results;
 
         } catch (PDOException $e) {
-            return $e->getCode();
+            throw new Exception($e);
         }
     }
 }

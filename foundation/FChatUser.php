@@ -8,7 +8,13 @@ class FChatUser
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        return $db->store($table, $obj);
+
+        try {
+            return $db->store($table, $obj);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function load(array $arr)
@@ -24,7 +30,13 @@ class FChatUser
             }
             $i++;
         }
-        return $db->load($table, $condition);
+
+        try {
+            return $db->load($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function delete(array $arr)
@@ -35,13 +47,19 @@ class FChatUser
         $condition = "";
         $i = 0;
         foreach($arr as $key => $val){
-            $condition .= $key."=".$val;
+            $condition .= $key. "=\"" . $val . "\"";
             if($i < count($arr) - 1){ 
                 $condition .= " AND ";
             }
             $i++;
         }
-        return $db->delete($table, $condition);
+
+        try {
+            return $db->delete($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function update($obj, array $arr)
@@ -59,13 +77,24 @@ class FChatUser
             $i++;
         }
 
-        $db->update($table, $obj, $condition);
+        try {
+            $db->update($table, $obj, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function exists($obj)
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        return $db->exists($table, $obj);
+
+        try {
+            return $db->exists($table, $obj);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 }

@@ -9,7 +9,13 @@ class FModerationResult
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        return $db->store($table, $obj);
+
+        try {
+            return $db->store($table, $obj);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     // Funziona
@@ -27,7 +33,12 @@ class FModerationResult
             $i++;
         }
 
-        return $db->load($table, $condition);
+        try {
+            return $db->load($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     // Funziona
@@ -45,8 +56,13 @@ class FModerationResult
             }
             $i++;
         }
-        echo $condition;
-        return $db->delete($table, $condition);
+        
+        try {
+            return $db->delete($table, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     // Funziona
@@ -64,14 +80,26 @@ class FModerationResult
             }
             $i++;
         }
-        $db->update($table, $obj, $condition);
+
+        try {
+            $db->update($table, $obj, $condition);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
     function exists($obj)
     {
         $db = FDB::getInstance();
         $table = substr(__CLASS__, 1);
-        return $db->exists($table, $obj);
+
+        try {
+            return $db->exists($table, $obj);
+        } catch(Exception $e) {
+            throw new Exception($e);
+        }
+        
     }
 
 }
