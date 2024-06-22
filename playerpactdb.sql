@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 21, 2024 alle 19:16
+-- Creato il: Giu 22, 2024 alle 12:39
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -84,7 +84,7 @@ CREATE TABLE `banneduser` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `moderationId` int(11) NOT NULL,
-  `banDate` datetime NOT NULL,
+  `banDate` date NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -100,6 +100,21 @@ CREATE TABLE `chat` (
   `postType` varchar(16) NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `chat`
+--
+
+INSERT INTO `chat` (`id`, `postId`, `postType`, `datetime`) VALUES
+(79, 69, 'team', '2024-06-21 20:43:54'),
+(80, 70, 'team', '2024-06-21 21:01:11'),
+(81, 71, 'team', '2024-06-21 21:02:13'),
+(82, 72, 'team', '2024-06-21 21:04:56'),
+(83, 73, 'team', '2024-06-21 21:11:54'),
+(84, 74, 'team', '2024-06-21 21:12:09'),
+(85, 75, 'team', '2024-06-21 21:12:19'),
+(86, 76, 'team', '2024-06-21 21:12:28'),
+(87, 77, 'team', '2024-06-21 23:24:31');
 
 --
 -- Trigger `chat`
@@ -127,6 +142,21 @@ CREATE TABLE `chatuser` (
   `userId` int(11) NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `chatuser`
+--
+
+INSERT INTO `chatuser` (`id`, `chatId`, `userId`, `datetime`) VALUES
+(152, 79, 55, '2024-06-21 20:43:54'),
+(153, 80, 55, '2024-06-21 21:01:11'),
+(154, 81, 55, '2024-06-21 21:02:13'),
+(155, 82, 55, '2024-06-21 21:04:56'),
+(156, 83, 55, '2024-06-21 21:11:54'),
+(157, 84, 55, '2024-06-21 21:12:09'),
+(158, 85, 55, '2024-06-21 21:12:19'),
+(159, 86, 55, '2024-06-21 21:12:28'),
+(160, 87, 55, '2024-06-21 23:24:31');
 
 -- --------------------------------------------------------
 
@@ -181,6 +211,19 @@ CREATE TABLE `moderationresult` (
   `description` varchar(256) NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `moderationresult`
+--
+
+INSERT INTO `moderationresult` (`id`, `reportId`, `modId`, `description`, `datetime`) VALUES
+(17, 63, 29, 'User banned', '2024-06-21 21:30:01'),
+(18, 64, 29, 'User banned', '2024-06-21 21:33:44'),
+(19, 65, 29, 'User banned', '2024-06-21 21:35:57'),
+(20, 66, 29, 'User banned', '2024-06-21 21:40:35'),
+(21, 67, 29, 'User banned', '2024-06-21 22:50:11'),
+(22, 68, 29, 'User banned', '2024-06-21 23:00:30'),
+(23, 69, 29, 'User banned', '2024-06-21 23:15:04');
 
 -- --------------------------------------------------------
 
@@ -365,6 +408,19 @@ CREATE TABLE `report` (
   `status` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `report`
+--
+
+INSERT INTO `report` (`id`, `userId`, `idToReport`, `type`, `datetime`, `description`, `status`) VALUES
+(63, 55, 76, 'team', '2024-06-21 21:29:45', 'a', 'closed'),
+(64, 55, 76, 'team', '2024-06-21 21:33:31', 'a', 'closed'),
+(65, 55, 76, 'team', '2024-06-21 21:35:39', 'a', 'closed'),
+(66, 55, 76, 'team', '2024-06-21 21:40:21', 'a', 'closed'),
+(67, 55, 76, 'team', '2024-06-21 21:48:02', 'a', 'closed'),
+(68, 55, 69, 'standard', '2024-06-21 23:00:08', 'a', 'closed'),
+(69, 55, 69, 'standard', '2024-06-21 23:14:54', 'a', 'closed');
+
 -- --------------------------------------------------------
 
 --
@@ -548,19 +604,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT per la tabella `banneduser`
 --
 ALTER TABLE `banneduser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT per la tabella `chatuser`
 --
 ALTER TABLE `chatuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT per la tabella `comment`
@@ -572,7 +628,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT per la tabella `interestlist`
 --
 ALTER TABLE `interestlist`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT per la tabella `message`
@@ -584,7 +640,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT per la tabella `moderationresult`
 --
 ALTER TABLE `moderationresult`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT per la tabella `moderator`
@@ -596,31 +652,31 @@ ALTER TABLE `moderator`
 -- AUTO_INCREMENT per la tabella `participation`
 --
 ALTER TABLE `participation`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- AUTO_INCREMENT per la tabella `postsale`
 --
 ALTER TABLE `postsale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT per la tabella `poststandard`
 --
 ALTER TABLE `poststandard`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT per la tabella `postteam`
 --
 ALTER TABLE `postteam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT per la tabella `postuser`
 --
 ALTER TABLE `postuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT per la tabella `profile`
@@ -632,7 +688,7 @@ ALTER TABLE `profile`
 -- AUTO_INCREMENT per la tabella `report`
 --
 ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
@@ -685,6 +741,8 @@ CREATE DEFINER=`root`@`localhost` EVENT `chat_clean` ON SCHEDULE EVERY 1 DAY STA
     CALL sale_chat_clean();
     CALL team_chat_clean();
 END$$
+
+CREATE DEFINER=`root`@`localhost` EVENT `ban_clean` ON SCHEDULE EVERY 1 DAY STARTS '2024-06-20 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM banneduser WHERE CURRENT_DATE >= banneduser.banDate$$
 
 DELIMITER ;
 COMMIT;
