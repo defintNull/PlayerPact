@@ -41,8 +41,6 @@ class FDB
      *
      * @throws Excepiton if the creation fails
      * 
-     * @return int
-     * 
      */
     private function __construct()
     {
