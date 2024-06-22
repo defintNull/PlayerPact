@@ -1,9 +1,29 @@
 <?php
 require_once realpath(__DIR__ . "/FDB.php");
 
+/**
+ * Manage foundation layer for ChatUser objects
+ *
+ * Manage the foundation layer of ChatUser object implementing
+ * the CRUD operations
+ *
+ * @package Playerpact\Foundation
+ */
 class FChatUser
 {
 
+    /**
+     * Store ChatUser objects
+     *
+     * Store the object of type EChatUser in the corresponding table
+     *
+     * @param $obj The object to store
+     *
+     * @throws Excepiton if the store fails
+     * 
+     * @return int
+     * 
+     */
     function store($obj)
     {
         $db = FDB::getInstance();
@@ -17,6 +37,20 @@ class FChatUser
         
     }
 
+    /**
+     * Load ChatUser attributes
+     *
+     * Load the object of type EChatUser from the corresponding table cycling
+     * the array param to get the attributes and find the object
+     *
+     * @param array $arr Array with key=>value where key is the attribute
+     *                         of the object and value its value
+     *
+     * @throws Excepiton if the load fails
+     * 
+     * @return array
+     * 
+     */
     function load(array $arr)
     {
         $db = FDB::getInstance();
@@ -39,6 +73,20 @@ class FChatUser
         
     }
 
+    /**
+     * Delete ChatUser object
+     *
+     * Delete the object of type EChatUser in the corresponding tablecycling
+     * the array param to get the attributes and delete the object
+     *
+     * @param array $arr Array with key=>value where key is the attribute
+     *                         of the object and value its value
+     *
+     * @throws Excepiton if the delete fails
+     * 
+     * @return int
+     * 
+     */
     function delete(array $arr)
     {
         $db = FDB::getInstance();
@@ -62,6 +110,20 @@ class FChatUser
         
     }
 
+    /**
+     * Update ChatUser object
+     *
+     * Update the object of type EChatUser in the corresponding table
+     *
+     * @param $obj The updatet object to store
+     * @param array $arr Array with key=>value where key is the attribute
+     *                         of the object and value its value
+     *
+     * @throws Excepiton if the update fails
+     * 
+     * @return void
+     * 
+     */
     function update($obj, array $arr)
     {
         $db = FDB::getInstance();
@@ -85,6 +147,18 @@ class FChatUser
         
     }
 
+    /**
+     * Check exsistance of ChatUser object
+     *
+     * Check exsistance of the object of type EChatUser in the corresponding table
+     *
+     * @param $obj The object to check
+     *
+     * @throws Excepiton if the exists fails
+     * 
+     * @return bool
+     * 
+     */
     function exists($obj)
     {
         $db = FDB::getInstance();
