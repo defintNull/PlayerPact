@@ -4,7 +4,7 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VAdmin.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VAdmin.php");
 
 class CAdmin
 {

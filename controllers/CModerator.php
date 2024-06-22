@@ -7,7 +7,7 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerationResult.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EBannedUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VModerator.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VModerator.php");
 
 class CModerator
 {

@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VLogin.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VLogin.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");

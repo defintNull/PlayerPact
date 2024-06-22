@@ -1,5 +1,5 @@
 <?php
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VError.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VError.php");
 
 class CError
 {

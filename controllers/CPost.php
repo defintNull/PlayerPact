@@ -10,7 +10,7 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChatUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EComment.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EReport.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EParticipation.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VPost.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VPost.php");
 
 class CPost
 {

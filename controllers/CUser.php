@@ -2,7 +2,7 @@
 
 use Smarty\Compile\PrintExpressionCompiler;
 
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/resources/view/VUser.php");
+require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EMessage.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChat.php");
