@@ -80,7 +80,7 @@ class FInterestList
      * Load multiple objects of type EInterestList from the corresponding table 
      * cycling the array condition to get the attributes and find the object
      *
-     * @param array $cond Array with array of key=>value where key is 
+     * @param array $cond Array of key=>value where key is 
      *                         the attribute of the object and value its value
      * @param int $limit The limit of results returned by the query
      * @param int $offset The offset for the query

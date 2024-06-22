@@ -1,9 +1,30 @@
 <?php
 require_once realpath(__DIR__ . "/FDB.php");
 
+/**
+ * Manage foundation layer for PostStandard objects
+ *
+ * Manage the foundation layer of PostStandard object implementing
+ * the CRUD operations and a method for multiple load with
+ * offset and limit
+ *
+ * @package Playerpact\Foundation
+ */
 class FPostStandard
 {
 
+    /**
+     * Store PostStandard objects
+     *
+     * Store the object of type EPostStandard in the corresponding table
+     *
+     * @param $obj The object to store
+     *
+     * @throws Excepiton if the store fails
+     * 
+     * @return int
+     * 
+     */
     function store($obj)
     {
         $db = FDB::getInstance();
@@ -17,6 +38,20 @@ class FPostStandard
         
     }
 
+    /**
+     * Load PostStandard attributes
+     *
+     * Load the object of type EPostStandard from the corresponding table cycling
+     * the array param to get the attributes and find the object
+     *
+     * @param array $arr Array with key=>value where key is the attribute
+     *                         of the object and value its value
+     *
+     * @throws Excepiton if the load fails
+     * 
+     * @return array
+     * 
+     */
     function load(array $arr)
     {
         $db = FDB::getInstance();
@@ -39,14 +74,23 @@ class FPostStandard
         
     }
 
-    // function loadElements(int $limit, int $offset, string $datetime)
-    // {
-    //     $db = FDB::getInstance();
-    //     $table = substr(__CLASS__, 1);
-    //     $condition = "datetime<=\"" . $datetime . "\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
-    //     return $db->load($table, $condition);
-    // }
-
+    /**
+     * Load multiple PostStandard attributes
+     *
+     * Load multiple objects of type EPostStandard from the corresponding table
+     * using the search param 
+     *
+     * @param string $search Used in the query to find post with title LIKE param
+     * @param int $limit The limit of results returned by the query
+     * @param int $offset The offset for the query
+     * @param string $datetime The datetime for the query to define from when
+     *                                      loading the chats
+     *
+     * @throws Excepiton if the load fails
+     * 
+     * @return array
+     * 
+     */
     function loadElementsLike(string $search, int $limit, int $offset, string $datetime)
     {
         $db = FDB::getInstance();
@@ -61,6 +105,24 @@ class FPostStandard
         
     }
 
+    /**
+     * Load multiple PostStandard attributes
+     *
+     * Load multiple objects of type EPostStandard from the corresponding table cycling
+     * the array param to get the attributes and find the object
+     *
+     * @param array $cond Array of key=>value where key is 
+     *                         the attribute of the object and value its value
+     * @param int $limit The limit of results returned by the query
+     * @param int $offset The offset for the query
+     * @param string $datetime The datetime for the query to define from when
+     *                                      loading the chats
+     *
+     * @throws Excepiton if the load fails
+     * 
+     * @return array
+     * 
+     */
     function loadElementsByCondition(array $cond, int $limit, int $offset, string $datetime)
     {
         $db = FDB::getInstance();
@@ -79,6 +141,20 @@ class FPostStandard
         
     }
 
+    /**
+     * Delete PostStandard object
+     *
+     * Delete the object of type EPostStandard in the corresponding tablecycling
+     * the array param to get the attributes and delete the object
+     *
+     * @param array $arr Array with key=>value where key is the attribute
+     *                         of the object and value its value
+     *
+     * @throws Excepiton if the delete fails
+     * 
+     * @return int
+     * 
+     */
     function delete(array $arr)
     {
         $db = FDB::getInstance();
@@ -102,6 +178,20 @@ class FPostStandard
         
     }
 
+    /**
+     * Update PostStandard object
+     *
+     * Update the object of type EPostStandard in the corresponding table
+     *
+     * @param $obj The updatet object to store
+     * @param array $arr Array with key=>value where key is the attribute
+     *                         of the object and value its value
+     *
+     * @throws Excepiton if the update fails
+     * 
+     * @return void
+     * 
+     */
     function update($obj, array $arr)
     {
         $db = FDB::getInstance();
@@ -125,6 +215,18 @@ class FPostStandard
         
     }
 
+    /**
+     * Check exsistance of PostStandard object
+     *
+     * Check exsistance of the object of type EPostStandard in the corresponding table
+     *
+     * @param $obj The object to check
+     *
+     * @throws Excepiton if the exists fails
+     * 
+     * @return bool
+     * 
+     */
     function exists($obj)
     {
         $db = FDB::getInstance();

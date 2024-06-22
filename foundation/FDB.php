@@ -1,6 +1,14 @@
 <?php
 require realpath($_SERVER["DOCUMENT_ROOT"] . "/envloader.php");
 
+/**
+ * Manage foundation layer of DB
+ *
+ * Manage connection, table-class conversion, CRUD method
+ * and method for multiple loads
+ *
+ * @package Playerpact\Foundation
+ */
 class FDB
 {
     private static $instance;
@@ -26,6 +34,16 @@ class FDB
 
     private $db;
 
+    /**
+     * Private constructor for the PDO db istance
+     *
+     * Create the new PDO instance with the connection to the DB
+     *
+     * @throws Excepiton if the creation fails
+     * 
+     * @return int
+     * 
+     */
     private function __construct()
     {
 
@@ -37,6 +55,14 @@ class FDB
 
     }
 
+    /**
+     * Static method to get db istance
+     *
+     * Return istance of the PDO connection to the DB
+     * 
+     * @return object
+     * 
+     */
     static function getInstance(): FDB
     {
         if (self::$instance == null) {
@@ -45,6 +71,18 @@ class FDB
         return self::$instance;
     }
 
+    /**
+     * Execute directly a query
+     *
+     * Execute directly a query using the param given
+     *
+     * @param $query The query to execute
+     *
+     * @throws Excepiton if the query fails
+     * 
+     * @return array|string
+     * 
+     */
     function query(string $query)
     {
         try {
@@ -66,11 +104,33 @@ class FDB
         }
     }
 
+    /**
+     * Discard the PDO DB instace
+     *
+     * Discard the PDO DB instace
+     * 
+     * @return void
+     * 
+     */
     function close()
     {
         self::$instance == null;
     }
 
+
+    /**
+     * Store Object
+     *
+     * Store the object of class $class in the corresponding table
+     *
+     * @param string $class The class(without E) of the object to store
+     * @param $entity The object to store
+     *
+     * @throws Excepiton if the store fails
+     * 
+     * @return int
+     * 
+     */
     function store(string $class, $entity)
     {
         try {
@@ -118,6 +178,19 @@ class FDB
         }
     }
 
+    /**
+     * Load Object attributes
+     *
+     * Load the object of class $class form the corresponding table
+     *
+     * @param string $class The class(without E) of the object to load
+     * @param string $condition The condition used to load the object
+     *
+     * @throws Excepiton if the load fails
+     * 
+     * @return array|string
+     * 
+     */
     function load(string $class, string $condition)
     {
         try {
@@ -141,6 +214,19 @@ class FDB
         }
     }
 
+    /**
+     * Delete Object
+     *
+     * Delete the object of class $class form the corresponding table
+     *
+     * @param string $class The class(without E) of the object to delete
+     * @param string $condition The condition used to delete the object
+     *
+     * @throws Excepiton if the delete fails
+     * 
+     * @return bool
+     * 
+     */
     function delete(string $class, string $condition)
     {
         try {
@@ -159,6 +245,20 @@ class FDB
         }
     }
 
+    /**
+     * Update Object
+     *
+     * Update the object of class $class in the corresponding table
+     *
+     * @param string $class The class(without E) of the object to delete
+     * @param $entity The object to update
+     * @param string $condition The condition used to update the object
+     *
+     * @throws Excepiton if the delete fails
+     * 
+     * @return bool
+     * 
+     */
     function update(string $class, $entity, string $condition)
     {
         try {
@@ -189,6 +289,19 @@ class FDB
         }
     }
 
+    /**
+     * Check Object exsistence
+     *
+     * Check Object exsistence in the corresponding table
+     *
+     * @param string $class The class(without E) of the object to delete
+     * @param $entity The object to check
+     *
+     * @throws Excepiton if the delete fails
+     * 
+     * @return bool
+     * 
+     */
     function exists(string $class, $entity)
     {
         try {
@@ -227,6 +340,18 @@ class FDB
         }
     }
 
+    /**
+     * Count elements of a table
+     *
+     * Count elements of a table given by param
+     *
+     * @param $class The class(without E) to determine the table to count
+     *
+     * @throws Excepiton if the query fails
+     * 
+     * @return int
+     * 
+     */
     function getItemCount($class)
     {
         try {
