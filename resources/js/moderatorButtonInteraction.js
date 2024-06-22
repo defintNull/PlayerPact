@@ -66,11 +66,14 @@ $(document).on("click", "#report-ban-user", function () {
 $(document).on("click", "#report-delete-user", function () {
 	if(confirm("Are you sure you want to delete this user?")){
 		var userId = document.getElementById("reported").dataset.ownerid;
+        var reportId = document.getElementById("report").dataset.id;
 
 		$.ajax({
-			url: "/moderator/deleteUser",
+			url: "/moderator/deleteUserAfterReport",
 			type: "POST",
-			data: { userId: userId },
+			data: { userId: userId ,
+                    reportId: reportId
+            },
 			success: function (response) {
 				//console.log(response);
 				window.location.href = "/moderator/users";

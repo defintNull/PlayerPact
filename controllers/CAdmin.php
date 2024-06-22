@@ -6,20 +6,44 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VAdmin.php");
 
+/**
+ * Manage admin related operations in controller level
+ *
+ * Manages all the admin related operations, like adding and
+ * deleting moderators or interact with DB at a low level.
+ *
+ * @package Playerpact\Controllers
+ */
 class CAdmin
 {
+    /**
+     * Check current session
+     *
+     * Checks if the current session is valid, that is to say if
+     * the admin is still in DB or not
+     *
+     * @param $session The session to check
+     * 
+     */
     private function checkSession($session)
     {
-        $user = $session->load("admin");
-        if ($user != null) {
+        $admin = $session->load("admin");
+        if ($admin != null) {
             $pm = new FPersistentManager();
-            $checkUser = $pm->load("EAdmin", array("id" => $user->getId()));
-            if ($checkUser == array()) {
+            $checkAdmin = $pm->load("EAdmin", array("id" => $admin->getId()));
+            if ($checkAdmin == array()) {
                 $session->end();
             }
         }
     }
 
+    /**
+     * Admin home page controller
+     *
+     * Manages the visualization of the admin home page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function home()
     {
         $session = USession::getInstance();
@@ -41,6 +65,14 @@ class CAdmin
         $view = new VAdmin();
         $view->showHome($params);
     }
+
+    /**
+     * Moderators management page
+     *
+     * Manages the visualization of the moderators management page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     function manageMods()
     {
         $session = USession::getInstance();
@@ -63,6 +95,13 @@ class CAdmin
         $view->showModsPage($params);
     }
 
+    /**
+     * SQL query page
+     *
+     * Manages the visualization of the SQL query page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     function sql()
     {
         $session = USession::getInstance();
@@ -85,6 +124,19 @@ class CAdmin
         $view->showSQLPage($params);
     }
 
+    /**
+     * Moderator load
+     *
+     * Loads moderators according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of moderators loaded.
+     * 
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadModerators(int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -118,6 +170,14 @@ class CAdmin
         return array($values, $count);
     }
 
+    /**
+     * Moderator creation page
+     *
+     * Manages the visualization of the SQL query page, with session check,
+     * view initialization and the call to the relative show method. View parameters
+     * are used for error visualization.
+     * 
+     */    
     public function createMod($info = "ok", $name = "ok", $surname = "ok", $birthdate = "ok", $email = "ok", $username = "ok", $password = "ok")
     {
         $session = USession::getInstance();
@@ -142,6 +202,13 @@ class CAdmin
         $view->showModCreationPage($params);
     }
 
+    /**
+     * Create moderator
+     *
+     * Adds to DB, through PM, a new moderator with all the data given in the
+     * moderator creation page.
+     * 
+     */
     public function confirmModCreation()
     {
         $session = USession::getInstance();
@@ -202,7 +269,7 @@ class CAdmin
             if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
                 $file_tmp_path = $_FILES["profilepicture"]['tmp_name'];
                 $file_name = $_FILES["profilepicture"]['name'];
-                $file_size = $_FILES["profilepicture"]['size']; // in byte
+                $file_size = $_FILES["profilepicture"]['size'];
 
                 if ($file_size > 5 * 1024 * 1024) {
                     header("Location: /admin/createMod?info=tooBig");
@@ -221,7 +288,6 @@ class CAdmin
                 }
             }
 
-            //HASH
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             $moderator = new EModerator(1, $username, $password, $name, $surname, $birthdate, $email, $image);
@@ -245,10 +311,16 @@ class CAdmin
         header("Location: /admin/createMod?info=error&" . http_build_query($missing));
         exit();
     }
+
+    /**
+     * Check for missing fields
+     *
+     * Checks if required fields in moderator creation page are not empty.
+     * 
+     * @return array
+     */
     private static function checkMissing()
     {
-        //funzione da fare per formattare stringe per prevenire sql injection
-        //Aggiungere controllo se già esiste l'utente
         $name = $_POST["name"];
         $surname = $_POST["surname"];
         $birthdate = $_POST["birthdate"];
@@ -258,7 +330,6 @@ class CAdmin
 
         $missing = array();
 
-        // Controllo sui campi vuoti
         if ($name == "") {
             $missing["name"] = "missing";
         }
@@ -286,6 +357,13 @@ class CAdmin
         return $missing;
     }
 
+    /**
+     * Check for existing username/email
+     *
+     * Checks if username and email are not already in use.
+     * 
+     * @return array
+     */
     private static function checkExisting()
     {
         $email = $_POST["email"];
@@ -306,7 +384,17 @@ class CAdmin
         return $existing;
     }
 
-    private static function check($s)
+    /**
+     * Check for illegal characters
+     *
+     * Checks if required fields contains or not some illegal characters
+     * to prevent SQL injections.
+     * 
+     * @param string $s The string to check
+     * 
+     * @return boolean
+     */
+    private static function check(string $s)
     {
         if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_\-]*$/", $s)) {
             return false;
@@ -314,6 +402,11 @@ class CAdmin
         return true;
     }
 
+    /**
+     * Execute query as admin
+     *
+     * Upload into DB, through PM, the query to be executed and shows the result.
+     */
     public function query() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -351,6 +444,11 @@ class CAdmin
         $view->showSQLPage($params);
     }
 
+    /**
+     * Delete selected moderator
+     *
+     * Deletes a moderator depending on his id
+     */
     public function deleteMod() {
         $session = USession::getInstance();
         $this->checkSession($session);

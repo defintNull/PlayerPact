@@ -9,8 +9,25 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EBannedUser.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VModerator.php");
 
+/**
+ * Manage moderator related operations in controller level
+ *
+ * Manages all the moderator related operations, like deleting/ban users,
+ * managing reports and deleting posts/comments.
+ *
+ * @package Playerpact\Controllers
+ */
 class CModerator
 {
+    /**
+     * Check current session
+     *
+     * Checks if the current session is valid, that is to say if
+     * the moderator is still in DB or not
+     *
+     * @param $session The session to check
+     * 
+     */
     private function checkSession($session)
     {
         $user = $session->load("moderator");
@@ -23,6 +40,13 @@ class CModerator
         }
     }
 
+    /**
+     * Moderator home page controller
+     *
+     * Manages the visualization of the moderator home page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function home()
     {
         $session = USession::getInstance();
@@ -45,6 +69,12 @@ class CModerator
         $view->showHome($params);
     }
 
+    /**
+     * Show reports
+     *
+     * Shows active reports page
+     * 
+     */
     public function reports() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -66,6 +96,14 @@ class CModerator
         $view->showReports($params);
     }
 
+    /**
+     * Show users
+     *
+     * Manage the view that shows the users list page.
+     * 
+     * @param string $search This string is used to load the search parameter into JS
+     * @param string $info This string is used to show any errors on the page related to the search bar
+     */
     public function users(string $search = "", string $info = "ok") {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -96,6 +134,12 @@ class CModerator
         $view->showUsers($params);
     }
 
+    /**
+     * Show moderator profile page
+     *
+     * Shows the moderator profile page.
+     * 
+     */
     public function profile() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -117,6 +161,19 @@ class CModerator
         $view->showProfile($params);
     }
 
+    /**
+     * Report load
+     *
+     * Loads reports according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of reports loaded.
+     * 
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadReports(int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -154,6 +211,20 @@ class CModerator
         return array($values, $count);
     }
 
+    /**
+     * Users load
+     *
+     * Loads users according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of users loaded.
+     * 
+     * @param string $condition The search field that matches the username
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadUsers(string $condition, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -187,6 +258,11 @@ class CModerator
         return array($values, $count);
     }
 
+    /**
+     * Delete a user
+     *
+     * Deletes a user depending on the user id sent from JS.
+     */
     public function deleteUser() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -208,6 +284,11 @@ class CModerator
         }
     }
 
+    /**
+     * Manage the report detail view
+     *
+     * Assigns parameter to associated view to show the report detail page depending on the report id.
+     */
     public function reportDetail(int $id, string $type) {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -356,6 +437,11 @@ class CModerator
         $view->showReportDetail($params);
     }
 
+    /**
+     * Ignore a report
+     *
+     * Mark a report as closed and redirect to the reports page.
+     */
     public function ignoreReport() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -386,6 +472,11 @@ class CModerator
         
     }
 
+    /**
+     * Delete a post/comment
+     *
+     * Deletes a post/comment previously reported and marks the report as closed.
+     */
     public function deleteReportedElement() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -432,6 +523,13 @@ class CModerator
             exit();
         }
     }
+
+    /**
+     * Ban a user
+     *
+     * Bans a user depending on the user id sent from JS and set the ban date until which the user cannot
+     * access the application.
+     */
     public function banUser() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -482,6 +580,51 @@ class CModerator
         }
     }
 
+    /**
+     * Delete a user
+     *
+     * Deletes a user depending on the user id sent from JS after a report.
+     */
+    public function deleteUserAfterReport() {
+        $session = USession::getInstance();
+        $this->checkSession($session);
+        $moderator = $session->load('moderator');
+
+        if ($moderator == null) {
+            header("Location: /login");
+            exit();
+        }
+
+        $userId = $_POST["userId"];
+        $reportId = $_POST["reportId"];
+
+        $pm = new FPersistentManager();
+
+        $report = $pm->load("EReport", array("id"=> $reportId))[0];
+        if($report["status"] != "received") {
+            echo "reportNotValid";
+            exit();
+        }
+
+        $reportUpdate = new EReport($report["id"], $report["userId"], $report["idToReport"], $report["type"], $report["description"], $report["datetime"], "closed");
+        $pm->update($reportUpdate, array("id"=> $reportUpdate->getId()));
+
+        $user = $pm->load("EUser", array("id" => $userId));
+        if($user != array()) {
+            $user = $user[0];
+            $pm->delete("EUser", array("id" => $userId));
+            $pm->delete("EProfile", array("username" => $user["username"], "type" => "user"));
+        }
+    }
+
+    /**
+     * Show old reports page
+     *
+     * Manage the view that shows the old reports page.
+     * 
+     * @param string $search This string is used to load the search parameter into JS
+     * @param string $info This string is used to show any errors on the page related to the search bar
+     */
     public function oldReports(string $search = "", string $info = "ok") {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -511,6 +654,20 @@ class CModerator
         $view->showOldReports($params);
     }
 
+    /**
+     * Old reports load
+     *
+     * Loads old reports according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of old reports loaded.
+     * 
+     * @param string $search The search field that matches the username
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadOldReports(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -554,7 +711,14 @@ class CModerator
         return array($values, $count);
     }
 
-    public function oldreportDetail($id) {
+    /**
+     * Old report detail page
+     *
+     * Manage the view that shows the old report detail page.
+     * 
+     * @param int $id The old report id
+     */
+    public function oldreportDetail(int $id) {
         $session = USession::getInstance();
         $this->checkSession($session);
         $moderatorSession = $session->load('moderator');
@@ -597,7 +761,17 @@ class CModerator
         $view->showOldReportDetail($params);
     }
 
-    private static function check($s)
+    /**
+     * Check for illegal characters
+     *
+     * Checks if required fields contains or not some illegal characters
+     * to prevent SQL injections.
+     * 
+     * @param string $s The string to check
+     * 
+     * @return boolean
+     */
+    private static function check(string $s)
     {
         if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_-]*$/", $s)) {
             return false;

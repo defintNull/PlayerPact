@@ -3,8 +3,24 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManage
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EInterestList.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
 
+/**
+ * Manage the interest list
+ *
+ * Manages the operations regarding the interest list
+ *
+ * @package Playerpact\Controllers
+ */
 class CInterestList
 {
+    /**
+     * Check current session
+     *
+     * Checks if the current session is valid, that is to say if
+     * the user is still in DB and if he is banned or not
+     *
+     * @param $session The session to check
+     * 
+     */
     private function checkSession($session)
     {
         $user = $session->load("user");
@@ -21,16 +37,13 @@ class CInterestList
         }
     }
 
-    public function home()
-    {
-
-    }
-
-    public function viewInterestListSection()
-    {
-
-    }
-
+    /**
+     * Check if a sale post is saved
+     *
+     * Checks if a sale post is saved by the current user depending on the sale post id
+     * and set the result for JS to 1 if it is saved, 0 otherwise.
+     *
+     */
     public function issaved()
     {
         $session = USession::getInstance();
@@ -52,6 +65,14 @@ class CInterestList
         }
     }
 
+    /**
+     * Add/remove a sale post to the interest list
+     *
+     * Adds or remove a sale post to the interest list associated to the current user depending on
+     * the sale post id. If the post was saved before the call to this function, it is removed from the interest list,
+     * if the post was not saved, it is added.
+     *
+     */
     public function add()
     {
         $session = USession::getInstance();

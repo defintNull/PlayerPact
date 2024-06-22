@@ -9,14 +9,36 @@ require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
 require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EBannedUser.php");
 
-
+/**
+ * Manage the login/logout operations
+ *
+ * Manages the operations regarding login and logout
+ *
+ * @package Playerpact\Controllers
+ */
 class CLogin
 {
+    /**
+     * Redirect to login method
+     *
+     * This function simply redirect the call to /login to /login/login
+     *
+     */
     public function home()
     {
         $this->login();
     }
 
+     /**
+     * Shows login page or redirect if already logged in
+     *
+     * Checks the values stored into the session cookie and redirect the client
+     * to the corresponding home page. If there are no clients stored into the current session,
+     * it shows the login page.
+     * 
+     * @param string $check This string is useful for showing any errors.
+     * @param string $date This string shows the date until the ban removing if a banned user tries to login.
+     */
     public function login(string $check = "ok", $date = "")
     {
         $session = USession::getInstance();
@@ -43,7 +65,20 @@ class CLogin
         $view->show($check, $date);
     }
 
-    public function registration($info = "ok", $name = "ok", $surname = "ok", $birthdate = "ok", $email = "ok", $username = "ok", $password = "ok")
+    /**
+     * Registration page
+     *
+     * Shows the registration page. The parameters are useful for showing any errors.
+     * 
+     * @param string $info This string manages the error message on screen
+     * @param string $name This string manages the name related error message on screen
+     * @param string $surname This string manages the surname related error message on screen
+     * @param string $birthdate This string manages the birthdate related error message on screen
+     * @param string $email This string manages the email related error message on screen
+     * @param string $username This string manages the username related error message on screen
+     * @param string $password This string manages the password related error message on screen
+     */
+    public function registration(string $info = "ok", string $name = "ok", string $surname = "ok", string $birthdate = "ok", string $email = "ok", string $username = "ok", string $password = "ok")
     {
         $view = new VLogin();
         $params = array(
@@ -58,6 +93,12 @@ class CLogin
         $view->registration($params);
     }
 
+     /**
+     * Redirect to home page
+     *
+     * Checks username and passwords inserted and checks whether they are valid. If they are valid, it redirects
+     * to the related home page, otherwise it redirects to the login page, setting the parameter check to false
+     */
     public function loginRedirect()
     {
         $username = $_POST["username"];
@@ -73,6 +114,18 @@ class CLogin
         exit();
     }
 
+     /**
+      * @template result
+     * Checks client authentication
+     *
+     * Checks if username and password inserted are valid and return a value based on the authentication result.
+     * Return a string containing the client role if valid, and false if they are not valid.
+     * 
+     * @param string $username This string contains the username
+     * @param string $password This string contains the password
+     * 
+     * @return result
+     */
     private static function authentication(string $username, string $password)
     {
         if (!CLogin::check($username)) {
@@ -134,6 +187,11 @@ class CLogin
         return false;
     }
 
+    /**
+     * Register a new user
+     *
+     * Checks if all the fields are compiled correctly and adds a new user to DB through PM.
+     */
     public function register()
     {
         $missing = $this->checkMissing();
@@ -186,10 +244,10 @@ class CLogin
             if (isset($_FILES["profilepicture"]['name']) && $_FILES["profilepicture"]['error'] == 0) {
                 $file_tmp_path = $_FILES["profilepicture"]['tmp_name'];
                 $file_name = $_FILES["profilepicture"]['name'];
-                $file_size = $_FILES["profilepicture"]['size']; // in byte
+                $file_size = $_FILES["profilepicture"]['size'];
 
                 if ($file_size > 5 * 1024 * 1024) {
-                    header("Location: /login/registration?info=tooBig"); // Aggiungere messaggio a schermo
+                    header("Location: /login/registration?info=tooBig");
                     exit();
                 }
 
@@ -205,7 +263,6 @@ class CLogin
                 }
             }
 
-            //HASH
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             $user = new EUser(1, $username, $password, $name, $surname, $birthdate, $email, $image);
@@ -230,6 +287,11 @@ class CLogin
         exit();
     }
 
+    /**
+     * Check missing fields
+     *
+     * Checks if there are any fields left empty in the registration.
+     */
     private static function checkMissing()
     {
         $name = $_POST["name"];
@@ -268,6 +330,11 @@ class CLogin
         return $missing;
     }
 
+    /**
+     * Check existing username/email
+     *
+     * Checks if the username or the email are already in use when signing up
+     */
     private static function checkExisting()
     {
         $email = $_POST["email"];
@@ -288,6 +355,16 @@ class CLogin
         return $existing;
     }
 
+    /**
+     * Check for illegal characters
+     *
+     * Checks if required fields contains or not some illegal characters
+     * to prevent SQL injections.
+     * 
+     * @param string $s The string to check
+     * 
+     * @return boolean
+     */
     private static function check($s)
     {
         if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_\-]*$/", $s)) {
@@ -296,6 +373,11 @@ class CLogin
         return true;
     }
 
+    /**
+     * Logout function
+     *
+     * Ends the session and redirect to the public home page.
+     */
     public function logout()
     {
         $session = USession::getInstance();
