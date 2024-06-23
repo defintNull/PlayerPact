@@ -1,13 +1,13 @@
 <?php
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EReport.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerator.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EModerationResult.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EBannedUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VModerator.php");
+require_once realpath(__DIR__."/../entity/EProfile.php");
+require_once realpath(__DIR__."/../entity/EReport.php");
+require_once realpath(__DIR__."/../entity/EUser.php");
+require_once realpath(__DIR__."/../utility/USession.php");
+require_once realpath(__DIR__."/../entity/EModerator.php");
+require_once realpath(__DIR__."/../entity/EModerationResult.php");
+require_once realpath(__DIR__."/../entity/EBannedUser.php");
+require_once realpath(__DIR__."/../foundation/FPersistentManager.php");
+require_once realpath(__DIR__."/../view/VModerator.php");
 
 /**
  * Manage moderator related operations in controller level

@@ -1,5 +1,5 @@
 <?php
-include_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FInterface.php");
+include_once realpath(__DIR__."/../foundation/FInterface.php");
 
 /**
  * Entity Class for InterestList object

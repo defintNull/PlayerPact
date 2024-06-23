@@ -1,5 +1,5 @@
 <?php
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VError.php");
+require_once realpath(__DIR__."/../view/VError.php");
 
 /**
  * Manage the showing of the error pages

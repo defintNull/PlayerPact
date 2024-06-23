@@ -1,5 +1,5 @@
 <?php
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/View.php");
+require_once realpath(__DIR__."/../view/View.php");
 
 class VModerator extends View
 {

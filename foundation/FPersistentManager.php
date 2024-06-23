@@ -1,7 +1,7 @@
 <?php
 
 foreach (scandir(dirname(__FILE__)) as $filename) {
-    if (strcmp($filename, "FDB.php") != 0) { // da vedere se funziona senza altrimenti aggiungere anche FInterface da escludere
+    if (strcmp($filename, "FDB.php") != 0) {
         $path = dirname(__FILE__) . '/' . $filename;
         if (is_file($path)) {
             include_once $path;
@@ -273,10 +273,8 @@ class FPersistentManager
      * @param $EClass The class of the object to delete
      * @param array $arr Array of key=>value where key is 
      *                         the attribute of the object and value its value
-     *
-     * @throws Exception if the delete fails
      * 
-     * @return int
+     * @return null|array
      * 
      */
     function delete($CClass, array $arr)
@@ -300,10 +298,8 @@ class FPersistentManager
      * @param $obj The object o update
      * @param array $condition Array of key=>value where key is 
      *                         the attribute of the object and value its value
-     *
-     * @throws Exception if the update fails
      * 
-     * @return int
+     * @return null|array
      * 
      */
     function update($obj, array $condition)
@@ -326,9 +322,7 @@ class FPersistentManager
      *
      * @param $obj The object to check
      *
-     * @throws Exception if the exsist fails
-     * 
-     * @return bool
+     * @return null|array
      * 
      */
     function exists($obj)

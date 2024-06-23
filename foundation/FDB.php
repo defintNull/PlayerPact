@@ -1,5 +1,5 @@
 <?php
-require realpath($_SERVER["DOCUMENT_ROOT"] . "/envloader.php");
+require realpath(__DIR__."/../envloader.php");
 
 /**
  * Manage foundation layer of DB
@@ -254,8 +254,6 @@ class FDB
      *
      * @throws Exception if the delete fails
      * 
-     * @return bool
-     * 
      */
     function update(string $class, $entity, string $condition)
     {
@@ -347,7 +345,7 @@ class FDB
      *
      * @throws Exception if the query fails
      * 
-     * @return int
+     * @return string
      * 
      */
     function getItemCount($class)

@@ -1,19 +1,36 @@
 <?php
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EPostStandard.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EPostSale.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EPostTeam.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChat.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChatUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChatUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EComment.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EReport.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EParticipation.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VPost.php");
+require_once realpath(__DIR__."/../foundation/FPersistentManager.php");
+require_once realpath(__DIR__."/../entity/EPostStandard.php");
+require_once realpath(__DIR__."/../entity/EPostSale.php");
+require_once realpath(__DIR__."/../entity/EPostTeam.php");
+require_once realpath(__DIR__."/../entity/EUser.php");
+require_once realpath(__DIR__."/../entity/EChat.php");
+require_once realpath(__DIR__."/../entity/EChatUser.php");
+require_once realpath(__DIR__."/../entity/EChatUser.php");
+require_once realpath(__DIR__."/../entity/EComment.php");
+require_once realpath(__DIR__."/../entity/EReport.php");
+require_once realpath(__DIR__."/../entity/EParticipation.php");
+require_once realpath(__DIR__."/../view/VPost.php");
 
+/**
+ * Manage post related operations in controller level
+ *
+ * Manages all the post related operations, like creating/deleting posts,
+ * create comments, report posts/comments and interacting with posts
+ *
+ * @package Playerpact\Controllers
+ */
 class CPost
 {
+    /**
+     * Check current session
+     *
+     * Checks if the current session is valid, that is to say if
+     * the user is still in DB or not
+     *
+     * @param $session The session to check
+     * 
+     */
     private function checkSession($session)
     {
         $user = $session->load("user");
@@ -30,11 +47,31 @@ class CPost
         }
     }
 
+    /**
+     * Home page
+     *
+     * Redirects the path /user to /user/standard
+     * 
+     */
     public function home()
     {
         $this->standard();
     }
 
+    /**
+     * Load standard post
+     *
+     * Loads standard posts according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of standard posts loaded.
+     * 
+     * @param string $search The string that match the title to search for
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadStandardPosts(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -63,6 +100,20 @@ class CPost
         return array($values, $count);
     }
 
+    /**
+     * Load sale post
+     *
+     * Loads sale posts according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of sale posts loaded.
+     * 
+     * @param string $search The string that match the title to search for
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadSalePosts(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -92,6 +143,20 @@ class CPost
         return array($values, $count);
     }
 
+    /**
+     * Load team post
+     *
+     * Loads team posts according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of team posts loaded.
+     * 
+     * @param string $search The string that match the title to search for
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadTeamPosts(string $search, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -134,7 +199,16 @@ class CPost
         return array($values, $count);
     }
 
-    public function standard($search = "", $info = "ok")
+    /**
+     * Standard post page
+     *
+     * Manages the visualization of the standard post page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param string $search Used to show errors on screen
+     * @param string $ok Used to show errors on screen
+     */
+    public function standard(string $search = "", string $info = "ok")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -167,7 +241,16 @@ class CPost
         $view->show($params);
     }
 
-    public function sale($search = "", $info = "ok")
+    /**
+     * Sale post page
+     *
+     * Manages the visualization of the sale post page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param string $search Used to show errors on screen
+     * @param string $ok Used to show errors on screen
+     */
+    public function sale(string $search = "", string $info = "ok")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -200,7 +283,16 @@ class CPost
         $view->show($params);
     }
 
-    public function team($search = "", $info = "ok")
+    /**
+     * Team post page
+     *
+     * Manages the visualization of the team post page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param string $search Used to show errors on screen
+     * @param string $ok Used to show errors on screen
+     */
+    public function team(string $search = "", string $info = "ok")
     {
         $view = new VPost();
         $session = USession::getInstance();
@@ -233,6 +325,14 @@ class CPost
         $view->show($params);
     }
 
+    /**
+     * Comments page
+     *
+     * Manages the visualization of the comment page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param int $id The id related to the post in which comments are made.
+     */
     public function comments(int $id)
     {
         $session = USession::getInstance();
@@ -273,6 +373,20 @@ class CPost
         $view->showComments($params);
     }
 
+    /**
+     * Load comments
+     *
+     * Loads comments according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of comments loaded.
+     * 
+     * @param int $postId The id of the standard post which comments are referred to
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadComments(int $postId, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -310,7 +424,15 @@ class CPost
         return array($values, $count);
     }
 
-    public function create($info = "ok")
+    /**
+     * Create post page
+     * 
+     * Manages the visualization of the create post page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param string $info Used to manage error messages in the show method
+     */
+    public function create(string $info = "ok")
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -325,6 +447,11 @@ class CPost
         $view->showSelectNewPost($info);
     }
 
+    /**
+     * Create post
+     * 
+     * Creates a post based on the fields compiled in the post creation page.
+     */
     public function confirmCreation()
     {
         $session = USession::getInstance();
@@ -436,7 +563,6 @@ class CPost
                 exit();
             }
 
-            //Creazione del post team
             $post = new EPostTeam(1, $userId, $values["title"], $values["description"], $datetime, $values["nMaxPlayer"], $values["nPlayers"], $values["time"]);
             $postTeamId = $pm->store($post);
 
@@ -445,21 +571,18 @@ class CPost
                 exit();
             }
 
-            // Creazione della partecipazione
             $participation = new EParticipation($userId, $postTeamId);
             if(!$pm->store($participation)) {
                 header("Location: /error/e404");
                 exit();
             }
 
-            // Creazione della chat
             $chat = new EChat(0, $postTeamId, "team", $datetime);
             if(!$chatId = $pm->store($chat)) {
                 header("Location: /error/e404");
                 exit();
             }
 
-            // Creazione del legame chat-user
             $chatuser = new EChatUser($chatId, $userId, $datetime);
             if(!$pm->store($chatuser)) {
                 header("Location: /error/e404");
@@ -470,8 +593,15 @@ class CPost
             exit();
         }
     }
-
-    public function get_image($id)
+    
+    /**
+     * Get fullscreen image
+     * 
+     * Shows a new tab with the desired image in fullscreen mode
+     * 
+     * @param int $id The sale post id containing the image desired
+     */
+    public function get_image(int $id)
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -495,6 +625,13 @@ class CPost
         $view->showImage($imageURL);
     }
 
+    /**
+     * Check post fields
+     * 
+     * Checks if post field
+     * 
+     * @return bool
+     */
     private function checkNewPostFields()
     {
         if (isset($_POST["standard"])) {

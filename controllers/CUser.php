@@ -2,15 +2,15 @@
 
 use Smarty\Compile\PrintExpressionCompiler;
 
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/view/VUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EMessage.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChat.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EParticipation.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EChatUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EProfile.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
+require_once realpath(__DIR__."/../view/VUser.php");
+require_once realpath(__DIR__."/../entity/EUser.php");
+require_once realpath(__DIR__."/../entity/EMessage.php");
+require_once realpath(__DIR__."/../entity/EChat.php");
+require_once realpath(__DIR__."/../entity/EParticipation.php");
+require_once realpath(__DIR__."/../foundation/FPersistentManager.php");
+require_once realpath(__DIR__."/../entity/EChatUser.php");
+require_once realpath(__DIR__."/../entity/EProfile.php");
+require_once realpath(__DIR__."/../utility/USession.php");
 
 class CUser
 {

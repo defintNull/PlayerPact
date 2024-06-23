@@ -13,9 +13,10 @@ $(document).ready(function() {
 // Function to save a post on button click
 $(document).on("click", ".savePostButton", function () {
 	var postSaleId = $(this).attr("value");
+	console.log(document.getElementById(postSaleId + "-save-post-image"));
 
 	$.ajax({
-		url: "/interestlist/add",
+		url: "/interestList/add",
 		type: "POST",
 		data: { postSaleId: postSaleId },
 		success: function (response) {

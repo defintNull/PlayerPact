@@ -262,7 +262,7 @@ async function addrows(rows, type) {
 
 			function isSaved() {
 				return $.ajax({
-					url: "/interestlist/issaved",
+					url: "/interestList/issaved",
 					type: "POST",
 					data: { postSaleId: row.id },
 				});

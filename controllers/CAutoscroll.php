@@ -1,11 +1,11 @@
 <?php
 
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CPost.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CUser.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CAdmin.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CModerator.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/controllers/CModerator.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/utility/USession.php");
+require_once realpath(__DIR__."/../controllers/CPost.php");
+require_once realpath(__DIR__."/../controllers/CUser.php");
+require_once realpath(__DIR__."/../controllers/CAdmin.php");
+require_once realpath(__DIR__."/../controllers/CModerator.php");
+require_once realpath(__DIR__."/../controllers/CModerator.php");
+require_once realpath(__DIR__."/../utility/USession.php");
 
 /**
  * Manage autoscroll related operations in controller level

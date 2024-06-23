@@ -1,7 +1,7 @@
 <?php
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/foundation/FPersistentManager.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EInterestList.php");
-require_once realpath($_SERVER["DOCUMENT_ROOT"] . "/entity/EUser.php");
+require_once realpath(__DIR__."/../foundation/FPersistentManager.php");
+require_once realpath(__DIR__."/../entity/EInterestList.php");
+require_once realpath(__DIR__."/../entity/EUser.php");
 
 /**
  * Manage the interest list

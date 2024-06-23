@@ -11,7 +11,7 @@ $(document).ready(function () {
 	$.ajax({
 		url: "/autoscroll/loadbycondition" + "?offset=" + offset + "&totalcount=" + totalcount + "&type=" + type + "&date=" + date.value + "&time=" + time.value + "&condition=" + search,
 		success: function (data) {
-			console.log(data);
+			//console.log(data);
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {
