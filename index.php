@@ -1,6 +1,7 @@
 <?php
     require_once (__DIR__."/controllers/FrontController.php");
     require_once (__DIR__."/utility/USession.php");
+    require_once (__DIR__."/bootstrap.php");
 
     $session = USession::getInstance();
     $session->start();
