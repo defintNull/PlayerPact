@@ -1,8 +1,22 @@
 <?php
 
+/**
+ * Manage the redirection with the application URLs
+ *
+ * Manage the redirection with the application URLs.
+ *
+ * @package Playerpact\Controllers
+ */
 class FrontController
 {
-
+    /**
+     * Run front controller
+     * 
+     * Translate the url received in index.php into a call to a desired method of
+     * a specific class.
+     *
+     * @param $uri The url to parse
+     */
     public function run($uri)
     {
         $uri = explode("?", trim($uri, "/"));

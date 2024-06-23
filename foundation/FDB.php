@@ -163,7 +163,6 @@ class FDB
             $sql .= ")";
 
             $sth = $this->db->prepare($sql);
-            //echo $sql;
             $sth->execute();
 
             $id = $this->db->lastInsertId();
@@ -195,7 +194,6 @@ class FDB
             $this->db->beginTransaction();
 
             $sql = "SELECT * FROM " . self::$tables[$class] . " WHERE " . $condition;
-            //echo $sql;
             $sth = $this->db->prepare($sql);
             $sth->execute();
             $results = [];
@@ -204,7 +202,6 @@ class FDB
             }
 
             $this->db->commit();
-            //echo var_dump($results);
             return $results;
 
         } catch (PDOException $e) {
@@ -266,7 +263,6 @@ class FDB
             $values = $entity->getValues();
             foreach ($values as $attrib => $data) {
                 $data = addslashes($data);
-                //echo $data."\n\n";
                 $sql .= $attrib . "=" . "\"" . $data . "\"";
                 if ($counter < count($values) - 1) {
                     $sql .= ", ";

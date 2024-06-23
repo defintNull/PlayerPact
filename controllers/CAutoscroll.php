@@ -329,7 +329,7 @@ class CAutoscroll
      * Calls the loadChats method of the controller CUser to retrieve
      * an array of chats that match the user to whom they belong, based on the username and the desired query parameters.
      *
-     * @param string $username The username that match the post in which the comments belong
+     * @param string $username The username that match the user in which the chats belong
      * @param int $offset The offset to insert in the SQL query
      * @param int $limit The limit to insert in the SQL query
      * @param string $datetime The datetime to insert in the SQL query

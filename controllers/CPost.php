@@ -628,7 +628,7 @@ class CPost
     /**
      * Check post fields
      * 
-     * Checks if post field
+     * Checks if fields in post creation are valid
      * 
      * @return bool
      */
@@ -671,6 +671,11 @@ class CPost
         return true;
     }
 
+    /**
+     * Add comment
+     * 
+     * Adds a new comment in DB through PM. 
+     */
     public function addcomment()
     {
         $session = USession::getInstance();
@@ -706,6 +711,14 @@ class CPost
         exit();
     }
 
+    /**
+     * Report page
+     * 
+     * Manages the visualization of the report page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param string $info Used to manage error messages in the show method
+     */
     public function report($info = "ok")
     {
         $session = USession::getInstance();
@@ -727,6 +740,11 @@ class CPost
         $view->showReportPage($params);
     }
 
+    /**
+     * Send report
+     * 
+     * Stores a report in DB 
+     */
     public function confirmReport()
     {
         $session = USession::getInstance();
@@ -777,6 +795,11 @@ class CPost
         }
     }
 
+    /**
+     * Check if owner
+     * 
+     * Checks if the current user is the owner of a post.
+     */
     public function isowner() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -802,6 +825,11 @@ class CPost
         }
     }
 
+    /**
+     * Participation
+     * 
+     * Set the current user in a team with a participation
+     */
     public function participate()
     {
         $session = USession::getInstance();
@@ -856,6 +884,11 @@ class CPost
         }
     }
 
+    /**
+     * Check if participating
+     * 
+     * Checks if the current user is part of a team based on the related post id.
+     */
     public function isparticipating()
     {
         $session = USession::getInstance();
@@ -879,6 +912,11 @@ class CPost
         }
     }
 
+    /**
+     * Buy
+     * 
+     * Create a chat between user and post owner
+     */
     public function buy()
     {
         $session = USession::getInstance();
@@ -903,10 +941,8 @@ class CPost
 
         $chat = $pm->load("EChat", array("postId" => $postSaleId, "postType" => "sale"));
 
-        // Se esiste una chat relativa a quel post, controllo se l'utente non è già nella chat e se non è colui che ha
-        // creato il post
         $exists = false;
-        //echo count($chat);
+
         if ($chat != null) {
             for ($i = 0; $i < count($chat); $i++) {
                 $chatId = $chat[$i]["id"];
@@ -951,6 +987,11 @@ class CPost
         exit();
     }
 
+    /**
+     * Check if bought
+     * 
+     * Checks if a post has already a chat associated
+     */
     public function isBought()
     {
         $session = USession::getInstance();
@@ -976,7 +1017,6 @@ class CPost
         $exists = 0;
         if ($chat != null) {
             for ($i = 0; $i < count($chat); $i++) {
-                //echo $postSaleId." ".$i."\n";
                 $chatId = $chat[$i]["id"];
                 $chatUser = $pm->load("EChatUser", array("chatId" => $chatId));
 
@@ -995,6 +1035,11 @@ class CPost
         echo $exists;
     }
 
+    /**
+     * Delete post
+     * 
+     * Deletes a post created by the current user.
+     */
     public function delete() {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -1018,7 +1063,17 @@ class CPost
         }
     }
 
-    private static function check($s)
+    /**
+     * Check for illegal characters
+     *
+     * Checks if required fields contains or not some illegal characters
+     * to prevent SQL injections.
+     * 
+     * @param string $s The string to check
+     * 
+     * @return boolean
+     */
+    private static function check(string $s)
     {
         if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_?:<>;, \-]*$/", $s)) {
             return false;

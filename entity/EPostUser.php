@@ -24,10 +24,10 @@ class EPostUser implements FInterface
      * @param int $id The id of the object
      * @param int $postId The id of the post related
      * @param string $postType The type of the post related
-     * @param string $userId The id of the user related
+     * @param int $userId The id of the user related
      * 
      */
-    public function __construct($id, $postId, $type, $userId)
+    public function __construct(int $id, int $postId, string $type, int $userId)
     {
         $this->id = $id;
         $this->postId = $postId;

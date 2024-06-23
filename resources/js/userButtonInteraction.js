@@ -13,14 +13,13 @@ $(document).ready(function() {
 // Function to save a post on button click
 $(document).on("click", ".savePostButton", function () {
 	var postSaleId = $(this).attr("value");
-	console.log(document.getElementById(postSaleId + "-save-post-image"));
 
 	$.ajax({
 		url: "/interestList/add",
 		type: "POST",
 		data: { postSaleId: postSaleId },
 		success: function (response) {
-			console.log(response);
+			//console.log(response);
 			if (document.getElementById(postSaleId + "-save-post-image").value == 0) {
 				document.getElementById(postSaleId + "-save-post-image").src = "/public/saved.png";
 				document.getElementById(postSaleId + "-save-post-image").value = 1;
@@ -43,7 +42,7 @@ $(document).on("click", ".participate-button", function () {
 		type: "POST",
 		data: { postTeamId: postTeamId },
 		success: function (response) {
-			console.log(response);
+			//console.log(response);
 			if(response != "Full") {
 				if (document.getElementById(postTeamId + "-post-participate").value == 0) {
 					document.getElementById(postTeamId + "-post-participate").textContent = "Already on the team";
@@ -87,7 +86,6 @@ $(document).on("click", "#send-message-button", function () {
 $(document).on("click", ".delete-button", function (event) {
 	event.preventDefault();
 	event.stopPropagation();
-	console.log("D");
 	if(confirm("Are you sure you want to delete the post?")) {
 		let postId = $(this).attr("data-id");
 		let postType = $(this).attr("data-type");
@@ -97,8 +95,7 @@ $(document).on("click", ".delete-button", function (event) {
 			type: "POST",
 			data: { postId: postId, postType: postType },
 			success: function (response) {
-				console.log(response);
-				console.log(document.getElementById(postId + "-" + postType));
+				//console.log(response);
 				document.getElementById(postId + "-" + postType).remove();
 				window.location.href = "/user/profile";
 			},

@@ -1,6 +1,4 @@
 $(document).ready(function () {
-	// load the initial rows on page load
-	// ajax call a scroll.php
 	var initialData;
 
 	var offset = document.getElementById("offset").value;
@@ -15,8 +13,8 @@ $(document).ready(function () {
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {
-				console.log(err);
-				//window.location.href = "/error/e404"; //ERRORE ESCE QUI
+				//console.log(err);
+				window.location.href = "/error/e404"; //ERRORE ESCE QUI
 			}
 
 			if (initialData.rows == null || initialData.rows.length == 0) {

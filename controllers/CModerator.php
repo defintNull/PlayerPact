@@ -135,33 +135,6 @@ class CModerator
     }
 
     /**
-     * Show moderator profile page
-     *
-     * Shows the moderator profile page.
-     * 
-     */
-    public function profile() {
-        $session = USession::getInstance();
-        $this->checkSession($session);
-        $mod = $session->load("moderator");
-
-        if ($mod == null) {
-            header("Location: /login");
-            exit();
-        }
-
-        $PPImageURL = "/public/defaultPropic.png";
-        if ($mod->getImage() != "") {
-            $PPImageURL = "data:image/png;base64," . base64_encode($mod->getImage());
-        }
-
-        $params = array("username" => $mod->getUsername() . " (mod)",
-                        "profilePicture" => $PPImageURL);
-        $view = new VModerator();
-        $view->showProfile($params);
-    }
-
-    /**
      * Report load
      *
      * Loads reports according to parameters through the use of PM. 

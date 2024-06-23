@@ -12,8 +12,25 @@ require_once realpath(__DIR__."/../entity/EChatUser.php");
 require_once realpath(__DIR__."/../entity/EProfile.php");
 require_once realpath(__DIR__."/../utility/USession.php");
 
+/**
+ * Manage user related operations in controller level
+ *
+ * Manages all the user related operations, like profile, saved posts, 
+ * participations and chats
+ *
+ * @package Playerpact\Controllers
+ */
 class CUser
 {
+    /**
+     * Check current session
+     *
+     * Checks if the current session is valid, that is to say if
+     * the user is still in DB or not
+     *
+     * @param $session The session to check
+     * 
+     */
     private function checkSession($session)
     {
         $user = $session->load("user");
@@ -30,6 +47,13 @@ class CUser
         }
     }
 
+    /**
+     * User home page controller
+     *
+     * Manages the visualization of the user home page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function home()
     {
         $session = USession::getInstance();
@@ -59,6 +83,13 @@ class CUser
         $view->showHome($params);
     }
 
+    /**
+     * User profile page controller
+     *
+     * Manages the visualization of the user profile page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function profile()
     {
         $session = USession::getInstance();
@@ -84,6 +115,13 @@ class CUser
         $view->showProfile($params);
     }
 
+    /**
+     * Saved posts page controller
+     *
+     * Manages the visualization of the saved posts page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function saved()
     {
         $session = USession::getInstance();
@@ -109,6 +147,13 @@ class CUser
         $view->showSavedPosts($params);
     }
 
+    /**
+     * Teams page controller
+     *
+     * Manages the visualization of the teams page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function participated()
     {
         $session = USession::getInstance();
@@ -135,6 +180,13 @@ class CUser
         $view->showTeams($params);
     }
 
+    /**
+     * Chats page controller
+     *
+     * Manages the visualization of the chats page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function chats()
     {
         $session = USession::getInstance();
@@ -160,6 +212,20 @@ class CUser
         $view->showChatSection($params);
     }
 
+    /**
+     * Chat load
+     *
+     * Loads chat according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of moderators loaded.
+     * 
+     * @param string $username The username of the user associated to chats
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadChats(string $username, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -175,10 +241,8 @@ class CUser
         $values = array();
 
         $userId = $user->getId();
-        // Prendo tutte le chat relative all'utente attuale loggato
         $chatusers = $pm->load("EChatUser", array("userId" => $userId));
 
-        // Se non ci sono chat passa valori nulli al js
         if (count($chatusers) == 0) {
             return array(null, 0);
         }
@@ -194,7 +258,6 @@ class CUser
 
         for ($i = 0; $i < $count; $i++) {
             $chat = new EChat($res[$i]["id"], $res[$i]["postId"], $res[$i]["postType"], $res[$i]["datetime"]);
-            //echo var_dump($chat);
             $values[$i]["id"] = $chat->getId();
             $values[$i]["datetime"] = $chat->getDateTime();
 
@@ -203,10 +266,6 @@ class CUser
                 if ($post != array()) {
                     $posttitle = $post[0]["title"];
                 } else {
-                    // $users = $pm->load("EChatUser", array("chatId" => $chat->getId()));
-                    // if(count($users) <= 1) {
-                    //     $pm->delete("EChat", array("id" => $chat->getId()));
-                    // }
                     $posttitle = "Deleted post";
                 }
 
@@ -238,6 +297,13 @@ class CUser
         return array($values, $count);
     }
 
+    /**
+     * Message page controller
+     *
+     * Manages the visualization of the message page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     */
     public function messages(int $id)
     {
         $session = USession::getInstance();
@@ -256,7 +322,6 @@ class CUser
 
         $pm = new FPersistentManager();
         $res = $pm->load("EChat", array("id" => $id))[0];
-        //echo var_dump($res);
         $chat = new EChat($id, $res["postId"], $res["postType"], $res["datetime"]);
         $deletedPost = false;
 
@@ -311,6 +376,20 @@ class CUser
         $view->showMessageSection($params);
     }
 
+    /**
+     * Messages load
+     *
+     * Loads messages according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of moderators loaded.
+     * 
+     * @param string $chatId The id of the chat containing messages
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadMessages(int $chatId, int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -344,6 +423,12 @@ class CUser
         return array($values, $count);
     }
 
+    /**
+     * Message send
+     *
+     * Adds a message to DB through PM in a certain chat
+     * 
+     */
     public function sendmessage()
     {
         $session = USession::getInstance();
@@ -372,6 +457,12 @@ class CUser
         }
     }
 
+    /**
+     * Message count
+     *
+     * Counts the messages in a certain chat
+     * 
+     */
     public function countchatmessages()
     {
         $session = USession::getInstance();
@@ -393,6 +484,19 @@ class CUser
         echo count($res);
     }
 
+    /**
+     * Post-user relation load
+     *
+     * Loads posts according to the current user and to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of moderators loaded.
+     * 
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadPostUsers(int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -409,8 +513,6 @@ class CUser
         $res = array();
 
         $myPosts = $pm->loadElementsByCondition("EPostUser", array("userId" => $user->getId()), $limit, $offset, $datetime);
-
-        //echo var_dump($res);
 
         $count = count($myPosts);
 
@@ -468,6 +570,19 @@ class CUser
         return array($values, $count);
     }
 
+    /**
+     * Saved posts load
+     *
+     * Loads saved posts according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of moderators loaded.
+     * 
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadSavedPosts(int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -483,7 +598,6 @@ class CUser
         $values = array();
 
         $interest = $pm->loadElementsByCondition("EInterestList",array("userId" => $user->getId()),$limit,$offset,"null");
-        //echo var_dump($part);
         $res = array();
         for ($i = 0; $i < count($interest); $i++) {
             $res = array_merge($res, $pm->load("EPostSale", array("id" => $interest[$i]["postSaleId"])));
@@ -511,6 +625,19 @@ class CUser
         return array($values, $count);
     }
 
+    /**
+     * Teams load
+     *
+     * Loads teams according according to parameters through the use of PM. 
+     * Returns the values needed in JS for the autoscrolling mechanism and
+     * the number of moderators loaded.
+     * 
+     * @param int $offset The offset to put into the query in the PM call
+     * @param int $limit The limit to put into the query in the PM call
+     * @param string $datetime The datetime limit to put into the query in the PM call
+     * 
+     * @return array
+     */
     public function loadTeams(int $offset, int $limit, string $datetime)
     {
         $session = USession::getInstance();
@@ -526,7 +653,6 @@ class CUser
         $values = array();
 
         $participation = $pm->loadElementsByCondition("EParticipation",array("userId" => $user->getId()),$limit,$offset,"null");
-        //echo var_dump($part);
         $res = array();
         for ($i = 0; $i < count($participation); $i++) {
             $res = array_merge($res, $pm->load("EPostTeam", array("id" => $participation[$i]["postTeamId"])));
@@ -555,7 +681,15 @@ class CUser
         return array($values, $count);
     }
 
-    public function privacy($info = "ok")
+    /**
+     * Privacy page controller
+     *
+     * Manages the visualization of the privacy page, with session check,
+     * view initialization and the call to the relative show method.
+     * 
+     * @param string $info Useful to show errors in the html through the corresponding view
+     */
+    public function privacy(string $info = "ok")
     {
         $session = USession::getInstance();
         $this->checkSession($session);
@@ -582,6 +716,11 @@ class CUser
         $view->showPrivacyPage($params);
     }
 
+    /**
+     * Change profile image
+     *
+     * Changes the current user's profile image with a new image.
+     */
     public function changeProfileImage()
     {
         $session = USession::getInstance();
@@ -630,6 +769,11 @@ class CUser
         exit();
     }
 
+    /**
+     * Change email
+     *
+     * Changes the current user's email with a new email.
+     */
     public function changeEmail()
     {
         $session = USession::getInstance();
@@ -666,6 +810,11 @@ class CUser
         $session->set("user", $newUser);
     }
 
+    /**
+     * Change username
+     *
+     * Changes the current user's username with a new username.
+     */
     public function changeusername()
     {
         $session = USession::getInstance();
@@ -701,6 +850,11 @@ class CUser
         $session->set("user", $newUser);
     }
 
+    /**
+     * Change password
+     *
+     * Changes the current user's password with a new password.
+     */
     public function changepassword()
     {
         $session = USession::getInstance();
@@ -730,6 +884,16 @@ class CUser
         $session->set("user", $newUser);
     }
 
+    /**
+     * Check for illegal characters
+     *
+     * Checks if required fields contains or not some illegal characters
+     * to prevent SQL injections.
+     * 
+     * @param string $s The string to check
+     * 
+     * @return boolean
+     */
     private static function check($s)
     {
         if (!preg_match("/^[a-zA-Z0-9à-üÀ-Ü\/@.#!_?, \-]*$/", $s)) {

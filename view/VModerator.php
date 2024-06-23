@@ -27,12 +27,6 @@ class VModerator extends View
         $this->smarty->display("moderator/usersPage.html");
     }
 
-    public function showProfile($params)
-    {
-        $this->assignSmartyParams($params);
-        $this->smarty->display("moderator/profile.html");
-    }
-
     public function showReportDetail($params)
     {
         $this->assignSmartyParams($params);
