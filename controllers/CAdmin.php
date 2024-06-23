@@ -256,7 +256,7 @@ class CAdmin
             $d1 = new DateTime($birthdate);
             $d2 = new DateTime(date("Y-m-d"));
 
-            if(!checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $d1 > $d2) {
+            if(!checkdate($birthdayCheck[1], $birthdayCheck[2], $birthdayCheck[0]) || $d1 > $d2 || strlen($birthdayCheck[0]) > 4) {
                 $bad["birthdate"] = "not valid";
             }
             if(count($bad) > 0) {
