@@ -39,7 +39,7 @@ class FDB
      *
      * Create the new PDO instance with the connection to the DB
      *
-     * @throws Excepiton if the creation fails
+     * @throws Exception if the creation fails
      * 
      */
     private function __construct()
@@ -76,7 +76,7 @@ class FDB
      *
      * @param $query The query to execute
      *
-     * @throws Excepiton if the query fails
+     * @throws Exception if the query fails
      * 
      * @return array|string
      * 
@@ -124,7 +124,7 @@ class FDB
      * @param string $class The class(without E) of the object to store
      * @param $entity The object to store
      *
-     * @throws Excepiton if the store fails
+     * @throws Exception if the store fails
      * 
      * @return int
      * 
@@ -184,7 +184,7 @@ class FDB
      * @param string $class The class(without E) of the object to load
      * @param string $condition The condition used to load the object
      *
-     * @throws Excepiton if the load fails
+     * @throws Exception if the load fails
      * 
      * @return array|string
      * 
@@ -220,7 +220,7 @@ class FDB
      * @param string $class The class(without E) of the object to delete
      * @param string $condition The condition used to delete the object
      *
-     * @throws Excepiton if the delete fails
+     * @throws Exception if the delete fails
      * 
      * @return bool
      * 
@@ -252,7 +252,7 @@ class FDB
      * @param $entity The object to update
      * @param string $condition The condition used to update the object
      *
-     * @throws Excepiton if the delete fails
+     * @throws Exception if the delete fails
      * 
      * @return bool
      * 
@@ -295,7 +295,7 @@ class FDB
      * @param string $class The class(without E) of the object to delete
      * @param $entity The object to check
      *
-     * @throws Excepiton if the delete fails
+     * @throws Exception if the delete fails
      * 
      * @return bool
      * 
@@ -345,7 +345,7 @@ class FDB
      *
      * @param $class The class(without E) to determine the table to count
      *
-     * @throws Excepiton if the query fails
+     * @throws Exception if the query fails
      * 
      * @return int
      * 

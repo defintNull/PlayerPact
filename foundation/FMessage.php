@@ -20,7 +20,7 @@ class FMessage
      *
      * @param $obj The object to store
      *
-     * @throws Excepiton if the store fails
+     * @throws Exception if the store fails
      * 
      * @return int
      * 
@@ -47,7 +47,7 @@ class FMessage
      * @param array $arr Array with key=>value where key is the attribute
      *                         of the object and value its value
      *
-     * @throws Excepiton if the load fails
+     * @throws Exception if the load fails
      * 
      * @return array
      * 
@@ -86,7 +86,7 @@ class FMessage
      * @param string $datetime The datetime for the query to define from when
      *                                      loading the chats
      *
-     * @throws Excepiton if the load fails
+     * @throws Exception if the load fails
      * 
      * @return array
      * 
@@ -114,7 +114,7 @@ class FMessage
      * @param array $arr Array with key=>value where key is the attribute
      *                         of the object and value its value
      *
-     * @throws Excepiton if the delete fails
+     * @throws Exception if the delete fails
      * 
      * @return int
      * 
@@ -151,7 +151,7 @@ class FMessage
      * @param array $arr Array with key=>value where key is the attribute
      *                         of the object and value its value
      *
-     * @throws Excepiton if the update fails
+     * @throws Exception if the update fails
      * 
      * @return void
      * 
@@ -186,7 +186,7 @@ class FMessage
      *
      * @param $obj The object to check
      *
-     * @throws Excepiton if the exists fails
+     * @throws Exception if the exists fails
      * 
      * @return bool
      * 
