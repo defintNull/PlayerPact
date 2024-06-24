@@ -35,6 +35,7 @@ $(document).ready(function () {
 /**
  * Get cookie name
  *
+ * @param name - The name of the cookie
  */
 function getCookie(name) {
 	const value = `; ${document.cookie}`;
