@@ -1,3 +1,7 @@
+/**
+ * Adjusts graphic for admin query
+ *
+ */
 $(document).ready(function() {
     var ugly = document.getElementById('sql-result').value;
     if(ugly.length != 0 && ugly !== null && ugly.substring(0, 9) != "Exception"){

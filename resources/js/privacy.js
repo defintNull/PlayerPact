@@ -1,13 +1,25 @@
+/**
+ * Configure event listener for profile image
+ *
+ */
 $(document).ready(function () {
 	document.getElementById("profile-image-upload").addEventListener("change", function () {
 		document.getElementById("hidden-image-submit").click();
 	});
 });
 
+/**
+ * Configure on click for profile image
+ *
+ */
 $(document).on("click", "#big-profile-image", function () {
 	$("input[id='profile-image-upload']").click();
 });
 
+/**
+ * Configure on click for change email
+ *
+ */
 $(document).on("click", "#change-email", function () {
 	//console.log("Ciao");
 	document.getElementById("change-email").textContent = "Confirm";
@@ -16,6 +28,10 @@ $(document).on("click", "#change-email", function () {
 	document.getElementById("email-textbox").removeAttribute("readonly");
 });
 
+/**
+ * Configure on click for confirm change email
+ *
+ */
 $(document).on("click", "#confirm-change-email", function () {
 	let newEmail = document.getElementById("email-textbox").value;
 
@@ -41,6 +57,10 @@ $(document).on("click", "#confirm-change-email", function () {
 	});
 });
 
+/**
+ * Configure on click for change username
+ *
+ */
 $(document).on("click", "#change-username", function () {
 	//console.log("Ciao");
 	document.getElementById("change-username").textContent = "Confirm";
@@ -50,6 +70,10 @@ $(document).on("click", "#change-username", function () {
 	document.getElementById("username-textbox").removeAttribute("readonly");
 });
 
+/**
+ * Configure on click for confirm change username
+ *
+ */
 $(document).on("click", "#confirm-change-username", function () {
 	let newUsername = document.getElementById("username-textbox").value;
 
@@ -75,6 +99,10 @@ $(document).on("click", "#confirm-change-username", function () {
 	});
 });
 
+/**
+ * Configure on click for change password
+ *
+ */
 $(document).on("click", "#change-password", function () {
 	//console.log("Ciao");
 	document.getElementById("change-password").textContent = "Confirm";
@@ -84,6 +112,10 @@ $(document).on("click", "#change-password", function () {
 	document.getElementById("password-textbox").removeAttribute("readonly");
 });
 
+/**
+ * Configure on click for confirm change password
+ *
+ */
 $(document).on("click", "#confirm-change-password", function () {
 	let newPassword = document.getElementById("password-textbox").value;
 

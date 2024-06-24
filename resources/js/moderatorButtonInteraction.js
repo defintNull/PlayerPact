@@ -1,3 +1,7 @@
+/**
+ * Generate confirm window when mod ignore a reoprt
+ *
+ */
 $(document).on("click", "#report-ignore", function () {
     if(confirm("Are you sure you want to ignore this report?")){
         var reportId = document.getElementById("report").dataset.id;
@@ -14,6 +18,10 @@ $(document).on("click", "#report-ignore", function () {
     }
 });
 
+/**
+ * Generate confirm window when mod delete a post from a reoprt
+ *
+ */
 $(document).on("click", "#report-delete-post", function () {
     if(confirm("Are you sure you want to delete this post/comment?")){
         var reportId = document.getElementById("report").dataset.id;
@@ -35,6 +43,10 @@ $(document).on("click", "#report-delete-post", function () {
     }
 });
 
+/**
+ * Generate confirm window when mod ban a user from a reoprt
+ *
+ */
 $(document).on("click", "#report-ban-user", function () {
     if(confirm("Are you sure you want to ban this user?")){
         var reportId = document.getElementById("report").dataset.id;
@@ -63,6 +75,10 @@ $(document).on("click", "#report-ban-user", function () {
     }
 });
 
+/**
+ * Generate confirm window when mod delete a post from a reoprt
+ *
+ */
 $(document).on("click", "#report-delete-user", function () {
 	if(confirm("Are you sure you want to delete this user?")){
 		var userId = document.getElementById("reported").dataset.ownerid;

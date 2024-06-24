@@ -1,4 +1,8 @@
-$(document).ready(function () {
+/**
+ * Makes the first load for chat section once the page is ready using an ajax call
+ *
+ */
+ù$(document).ready(function () {
 	var initialData;
 
 	var offset = document.getElementById("offset").value;
@@ -43,6 +47,11 @@ $(document).ready(function () {
 	});
 });
 
+/**
+ * Calls a function to load more cards if the user is scrolling down
+ *
+ * @param {Array} initialData - The data loaded from the html needed for the correct count and display of the cards
+ */
 function windowOnScroll(initialData) {
 	if ($(document).height() == $(window).height()) {
 		if ($(".post-item").length == initialData.totalcount) {
@@ -59,6 +68,11 @@ function windowOnScroll(initialData) {
 	});
 }
 
+/**
+ * Makes next cards loads if the user scrolls down using an ajax call
+ * 
+ * @param {Array} initialData - The data loaded from the html needed for the correct count and display of the cards
+ */
 function getMoreData(initialData) {
 	$(".ajax-loader").show();
 	$(window).off("scroll");

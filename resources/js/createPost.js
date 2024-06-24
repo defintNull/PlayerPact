@@ -1,3 +1,7 @@
+/**
+ * Configure the drop-down item for post creation
+ *
+ */
 $(document).ready(function () {
 	//var e = document.getElementById("postChoice");
 	createStandardChoicePage();
@@ -19,6 +23,10 @@ $(document).ready(function () {
 	});
 });
 
+/**
+ * Configure Standard creation page
+ *
+ */
 async function createStandardChoicePage() {
 	const element = document.getElementById("jsAddedMenu");
 	if (element != null) {
@@ -36,6 +44,10 @@ async function createStandardChoicePage() {
 	node.outerHTML = bodyHTML;
 }
 
+/**
+ * Configure Sale creation page
+ *
+ */
 async function createSaleChoicePage() {
 	const element = document.getElementById("jsAddedMenu");
 	if (element != null) {
@@ -53,6 +65,10 @@ async function createSaleChoicePage() {
 	node.outerHTML = bodyHTML;
 }
 
+/**
+ * Configure Team creation page
+ *
+ */
 async function createTeamChoicePage() {
 	const element = document.getElementById("jsAddedMenu");
 	if (element != null) {

@@ -1,3 +1,7 @@
+/**
+ * Configure event listener for sending message
+ *
+ */
 $(document).ready(function() {
 	let t = document.getElementById("message-box");
 
@@ -10,7 +14,10 @@ $(document).ready(function() {
 	}	
 });
 
-// Function to save a post on button click
+/**
+ * Save a post on button click
+ *
+ */
 $(document).on("click", ".savePostButton", function () {
 	var postSaleId = $(this).attr("value");
 
@@ -33,7 +40,10 @@ $(document).on("click", ".savePostButton", function () {
 	});
 });
 
-// Function to participate to a game on button click
+/**
+ * Participate to a game on button click
+ *
+ */
 $(document).on("click", ".participate-button", function () {
 	var postTeamId = $(this).attr("data-id");
 
@@ -64,7 +74,11 @@ $(document).on("click", ".participate-button", function () {
 	});
 });
 
-// Function that sends chat messages
+
+/**
+ * Sends chat messages
+ *
+ */
 $(document).on("click", "#send-message-button", function () {
 	let chatId = $(this).attr("data-id");
 	let message = document.getElementById("message-box").value;
@@ -83,6 +97,10 @@ $(document).on("click", "#send-message-button", function () {
 	}
 });
 
+/**
+ * Generate confirm window when admin delete a post
+ *
+ */
 $(document).on("click", ".delete-button", function (event) {
 	event.preventDefault();
 	event.stopPropagation();

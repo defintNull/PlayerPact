@@ -1,3 +1,7 @@
+/**
+ * Generate confirm window when admin delete a mod
+ *
+ */
 $(document).on("click", ".mod-delete-button", function () {
 	if(confirm("Are you sure you want to delete this mod?")){
 		var modId = $(this).attr("data-id");

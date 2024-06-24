@@ -1,3 +1,7 @@
+/**
+ * Generate confirm window when mod delete a user
+ *
+ */
 $(document).on("click", ".user-delete-button", function () {
 	if(confirm("Are you sure you want to delete this user?")){
 		var userId = $(this).attr("data-id");

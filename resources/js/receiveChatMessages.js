@@ -1,6 +1,8 @@
-// This script implements polling onto database, which means that if there are new messages, it refreshes the page
-// to display new messages in order.
-
+/**
+ * This script implements polling onto database, which means that if there are new messages, it refreshes the page
+ * to display new messages in order.
+ *
+ */
 $(document).ready(function () {
 	let oldMsg = getCookie("chatMessage");
 
@@ -30,6 +32,10 @@ $(document).ready(function () {
 	}, 1000);
 });
 
+/**
+ * Get cookie name
+ *
+ */
 function getCookie(name) {
 	const value = `; ${document.cookie}`;
 	const parts = value.split(`; ${name}=`);
