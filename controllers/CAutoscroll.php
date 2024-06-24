@@ -151,7 +151,7 @@ class CAutoscroll
      * Loads a certain number of elements from DB by id, through PM, and pass certain data
      * to JS by encoding them in JSON.
      *
-     * @param int $id The id of the DB row to be loaded
+     * @param string $id The id of the DB row to be loaded
      * @param int $offset The offset to insert in the SQL query
      * @param int $totalcount The total number of elements that are loaded from DB
      * @param string $type The type of elements to load
@@ -159,7 +159,7 @@ class CAutoscroll
      * @param string $time The time in which the loading from DB is done
      * 
      */
-    public function loadbyid(int $id, int $offset, int $totalcount, string $type, string $date, string $time)
+    public function loadbyid(string $id, int $offset, int $totalcount, string $type, string $date, string $time)
     {
         $date = explode("/", $date);
         $date = $date[0] . "-" . $date[1] . "-" . $date[2];
@@ -190,7 +190,7 @@ class CAutoscroll
 
             echo json_encode($data);
         } else {
-            header("Location: /error/e404");
+            //header("Location: /error/e404");
         }
     }
 

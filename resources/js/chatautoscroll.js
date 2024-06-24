@@ -2,7 +2,7 @@
  * Makes the first load for chat section once the page is ready using an ajax call
  *
  */
-ù$(document).ready(function () {
+$(document).ready(function () {
 	var initialData;
 
 	var offset = document.getElementById("offset").value;
