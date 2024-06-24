@@ -4,7 +4,6 @@
  * @param {Array} rows - The array containing useful data for displaying cards
  * @param {string} type - The type of card, that is to say comment
  */
-
 async function addrows(rows, type) {
 	const commentList = document.getElementById("commentSection");
 

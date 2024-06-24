@@ -4,7 +4,6 @@
  * @param {Array} rows - The array containing useful data for displaying cards
  * @param {string} type - The type of card: it can be "standard", "sale" or "team", depending on the section showing
  */
-
 async function addrows(rows, type) {
 	const postList = document.getElementById("post-list");
 	if (type == "postUser") {
