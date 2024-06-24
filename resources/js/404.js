@@ -1,3 +1,6 @@
+/**
+ * Draws the astronaut visor
+ */
 function drawVisor() {
 	const canvas = document.getElementById("visor");
 	const ctx = canvas.getContext("2d");
@@ -30,6 +33,9 @@ let y1Forward = true;
 let y2Forward = false;
 let y3Forward = true;
 
+/**
+ * Animates the astronaut cable
+ */
 function animate() {
 	requestAnimationFrame(animate);
 	ctx.clearRect(0, 0, innerWidth, innerHeight);

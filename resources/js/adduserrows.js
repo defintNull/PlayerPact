@@ -1,3 +1,10 @@
+/**
+ * Adds to the DOM the loaded user cards in the autoscroll page
+ * 
+ * @param {Array} rows - The array containing useful data for displaying cards
+ * @param {string} type - The type of card, that is to say user
+ */
+
 async function addrows(rows, type) {
 	const moderatorList = document.getElementById("user-list");
 

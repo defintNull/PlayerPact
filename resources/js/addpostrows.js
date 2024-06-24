@@ -1,3 +1,10 @@
+/**
+ * Adds to the DOM the loaded post cards in the autoscroll page
+ * 
+ * @param {Array} rows - The array containing useful data for displaying cards
+ * @param {string} type - The type of card: it can be "standard", "sale" or "team", depending on the section showing
+ */
+
 async function addrows(rows, type) {
 	const postList = document.getElementById("post-list");
 

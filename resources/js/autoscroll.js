@@ -1,3 +1,7 @@
+/**
+ * Makes the first load once the page is ready to display first autoscroll cards using an ajax call
+ * 
+ */
 $(document).ready(function () {
 	var initialData;
 
@@ -43,6 +47,11 @@ $(document).ready(function () {
 	});
 });
 
+/**
+ * Calls a function to load more cords if the user is scrolling down
+ * 
+ * @param {Array} initialData - The data loaded from the html needed for the correct count and display of the cards
+ */
 function windowOnScroll(initialData) {
 
 	$(window).on("scroll", function (e) {
@@ -52,6 +61,11 @@ function windowOnScroll(initialData) {
 	});
 }
 
+/**
+ * Makes next cards loads if the user scrolls down using an ajax call
+ * 
+ * @param {Array} initialData - The data loaded from the html needed for the correct count and display of the cards
+ */
 function getMoreData(initialData) {
 	$(".ajax-loader").show();
 	$(window).off("scroll");

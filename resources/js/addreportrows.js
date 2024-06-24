@@ -1,3 +1,10 @@
+/**
+ * Adds to the DOM the loaded report cards in the autoscroll page
+ * 
+ * @param {Array} rows - The array containing useful data for displaying cards
+ * @param {string} type - The type of card, that is to say report
+ */
+
 async function addrows(rows, type) {
 	const moderatorList = document.getElementById("report-list");
 	

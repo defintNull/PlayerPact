@@ -1,3 +1,10 @@
+/**
+ * Adds to the DOM the loaded comment cards in the autoscroll page
+ * 
+ * @param {Array} rows - The array containing useful data for displaying cards
+ * @param {string} type - The type of card, that is to say comment
+ */
+
 async function addrows(rows, type) {
 	const commentList = document.getElementById("commentSection");
 
