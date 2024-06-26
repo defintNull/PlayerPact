@@ -164,7 +164,7 @@ class CLogin
                     if($d1 <= $d2) {
                         $pm->delete("EBannedUser", array("id" => $banned["id"]));
                     } else {
-                        header("Location: /login/login?check=banned&date=".$banned[0]["banDate"]);
+                        header("Location: /login/login?check=banned&date=".$banned["banDate"]);
                         exit();
                     }
                 }
