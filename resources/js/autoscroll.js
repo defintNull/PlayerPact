@@ -53,7 +53,6 @@ $(document).ready(function () {
  * @param {Array} initialData - The data loaded from the html needed for the correct count and display of the cards
  */
 function windowOnScroll(initialData) {
-
 	$(window).on("scroll", function (e) {
 		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 60) {
 			getMoreData(initialData);

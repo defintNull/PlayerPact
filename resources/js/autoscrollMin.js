@@ -1,6 +1,6 @@
 /**
- * Makes the first load for search-bar once the page is ready using an ajax call
- *
+ * Makes the first load once the page is ready to display first autoscroll cards using an ajax call
+ * 
  */
 $(document).ready(function () {
 	var initialData;
@@ -8,17 +8,16 @@ $(document).ready(function () {
 	var offset = document.getElementById("offset").value;
 	var totalcount = document.getElementById("totalcount").value;
 	var type = document.getElementById("type").value;
-	var search = document.getElementById("search").value;
 	
 	$.ajax({
-		url: "/autoscroll/loadbycondition" + "?offset=" + offset + "&totalcount=" + totalcount + "&type=" + type + "&date=" + date.value + "&time=" + time.value + "&condition=" + search,
+		url: "/autoscroll/load" + "?offset=" + offset + "&totalcount=" + totalcount + "&type=" + type + "&date=" + date.value + "&time=" + time.value,
 		success: function (data) {
 			//console.log(data);
 			try {
 				initialData = JSON.parse(data);
 			} catch (err) {
 				//console.log(err);
-				window.location.href = "/error/e404";
+				window.location.href = "/error/e404"; 
 			}
 			
 			if(initialData.rows.length == 0){
@@ -42,22 +41,29 @@ $(document).ready(function () {
 					}
 				}
 			}
-			windowOnScroll(initialData);
+			
+			windowOnScroll(initialData, true);
 		},
 	});
 });
 
 /**
- * Calls a function to load more cards if the user is scrolling down
- *
+ * Calls a function to load more cords if the user is scrolling down
+ * 
  * @param {Array} initialData - The data loaded from the html needed for the correct count and display of the cards
  */
-function windowOnScroll(initialData) {
-	$(window).on("scroll", function (e) {
-		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 60) {
+function windowOnScroll(initialData, firstTime) {
+	if(firstTime) {
+		if ($(document).height() == $(window).height()) {
 			getMoreData(initialData);
 		}
-	});
+	} else {
+		$(window).on("scroll", function (e) {
+			if ($(window).scrollTop() >= $(document).height() - $(window).height() - 60) {
+				getMoreData(initialData);
+			}
+		});
+	}
 }
 
 /**
@@ -71,7 +77,7 @@ function getMoreData(initialData) {
 
 	if (initialData.offset == initialData.totalcount) {
 		$.ajax({
-			url:"/autoscroll/loadbycondition" +"?offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value  + "&condition=" + search.value, type: "get",
+			url:"/autoscroll/load" +"?offset=" +initialData.offset +"&totalcount=" +initialData.totalcount +"&type=" +initialData.type +"&date=" +date.value +"&time=" +time.value,type: "get",
 			success: function (response) {
 				//console.log(response);
 				try {
@@ -92,7 +98,7 @@ function getMoreData(initialData) {
 					}
 					$(".ajax-loader").hide();
 				}
-				windowOnScroll(initialData);
+				windowOnScroll(initialData, false);
 			},
 		});
 	} else {
