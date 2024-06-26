@@ -161,7 +161,7 @@ class FReport
         foreach($cond as $key => $val){
             $condition .= $key . "=\"" . $val . "\""." AND ";
         }
-        $condition = "datetime<=\"" . $datetime ."\" AND id LIKE \"".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
+        $condition .= "datetime<=\"" . $datetime ."\" AND id LIKE \"".$search."%\" ORDER BY id DESC LIMIT " . $limit . " OFFSET " . $offset;
         
         try {
             return $db->load($table, $condition);
