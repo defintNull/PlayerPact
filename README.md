@@ -16,4 +16,4 @@ Esistono quattro tipologie di utenza:
   <li> Moderatore: Egli potrà visualizzare le segnalazioni fatte dagli utenti e decidere un esito per la segnalazione (ignorare la segnalazione, cancellare il post/commento segnalato, bannare un utente fino ad una data desiderata o eliminare l’account dell’utente). Potrà inoltre visualizzare l’elenco di segnalazioni chiuse e l’elenco degli utenti registrati, con la possibilità di eliminarli.</li>
   <li> Admin: Egli potrà creare nuovi moderatori ed eseguire query direttamente sul database, visualizzando il risultato all’interno di un’apposita area di testo.</li>
 <h1>Link al manuale completo</h1>
-Per il manuale completo contenente anche la procedura di installazione in locale vedere il file <a href="playerpact.pdf"> playerpact.pdf</a>
+Per il manuale completo contenente anche la procedura di installazione in locale vedere il file <a target=blank href="playerpact.pdf"> playerpact.pdf</a>
