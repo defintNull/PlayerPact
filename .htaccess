@@ -1,11 +1,12 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    #RewriteCond %{HTTPS} off
-    #RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
-    RewriteCond %{REQUEST_URI} !^/exec.php$
-    RewriteCond %{REQUEST_URI} !^/resources/css/.*$
-    RewriteCond %{REQUEST_URI} !^/resources/js/.*$
-    RewriteCond %{REQUEST_URI} !^/public/.*$
-    RewriteCond %{REQUEST_URI} !^/resources/Smarty/templates/.*$
-    RewriteRule ^(.*)$ index.php
-</IfModule>
+RewriteEngine on
+
+#RewriteBase /
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteCond %{HTTPS} off
+#RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_URI} !^/resources/css/.*$
+RewriteCond %{REQUEST_URI} !^/resources/js/.*$
+RewriteCond %{REQUEST_URI} !^/public/.*$
+RewriteCond %{REQUEST_URI} !^/resources/Smarty/templates/.*$
+RewriteRule ^(.*)$ index.php
