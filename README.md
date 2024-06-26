@@ -18,4 +18,4 @@ Esistono quattro tipologie di utenza:
 
   </ul>
 <h1>Link al manuale completo</h1>
-Per il manuale completo contenente anche la procedura di installazione in locale vedere il file <a href="playerpact.pdf"> playerpact.pdf</a>
+Per il manuale completo contenente anche la procedura di installazione in locale vedere il file <a href="PlayerPact.pdf"> PlayerPact.pdf</a>
