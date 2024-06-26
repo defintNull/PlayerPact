@@ -1,4 +1,4 @@
-Cos’è PlayerPact <br />
+<h1>Cos’è PlayerPact</h1> <br />
 PlayerPact `e un’applicazione che nasce per dare la possibilit`a a persone che non hanno nessuno
 con cui giocare in videogiochi online di trovare effettivamente qualcuno interessato a farlo.
 Oltre a questo, ogni utente potr`a condividere post in cui si pu`o vendere un prodotto relativo
