@@ -1,5 +1,7 @@
 <?php
 
+require_once realpath(__DIR__ . "/../envloader.php");
+
 /**
  * Manage foundation layer of DB
  *
@@ -45,7 +47,7 @@ class FDB
     {
 
         try {
-            $this->db = new PDO("mysql:host=" . $GLOBALS["DB_HOST"] . ";dbname=" . $GLOBALS["DB_NAME"], $GLOBALS["DB_USER_NAME"], $GLOBALS["DB_PASSWORD"]);
+            $this->db = new PDO("mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"], $_ENV["DB_USER_NAME"], $_ENV["DB_PASSWORD"]);
         } catch (PDOException $e) {
             throw new Exception($e);
         }
