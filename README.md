@@ -3,10 +3,11 @@ PlayerPact è un’applicazione che nasce per dare la possibilità a persone che
 
 <h1>Tipologie di post </h1> <br />
 Esistono tre tipologie di post all’interno dell’applicazione:<br />
-
-Post standard: Contengono titolo e descrizione. Ogni post standard può essere aperto in una sua pagina cliccandoci sopra per visualizzare i commenti o crearne di nuovi.<br />
+<li>
+  <ul> Post standard: Contengono titolo e descrizione. Ogni post standard può essere aperto in una sua pagina cliccandoci sopra per visualizzare i commenti o crearne di nuovi.</ul><br />
 Post di team: Contengono titolo, descrizione, numero giocatori attuali (minimo 1), numero di giocatori massimi (minimo 2) ed un orario di gioco (nel caso si decida un orario già passato per il giorno attuale, verrà impostato valido per il giorno successivo agli occhi degli altri utenti). Ogni utente registrato può interagire cliccando sul pulsante di partecipazione all’interno del post e ogni utente nel team ha a disposizione una chat con cui parlare con gli altri membri del gruppo.<br />
 Post di vendita: Contengono titolo, descrizione, prezzo ed un’immagine di massimo 5 MB. Ogni utente registrato può interagire con il post premendo sul pulsante “buy” e può utilizzare una chat per accordarsi con il proprietario del post. Inoltre, può anche salvare il post nella lista di interesse.
+</li>
 <h1>Ruoli all’interno dell’applicazione</h1><br />
 Esistono quattro tipologie di utenza:
 
