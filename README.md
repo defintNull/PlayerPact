@@ -4,7 +4,7 @@ con cui giocare in videogiochi online di trovare effettivamente qualcuno interes
 Oltre a questo, ogni utente potr`a condividere post in cui si pu`o vendere un prodotto relativo
 al mondo videoludico e avr`a anche l’opportunit`a di poter condividere un proprio pensiero
 relativo sempre all’ambito dei videogiochi.
-Tipologie di post
+<h1>Tipologie di post </h1> <br />
 Esistono tre tipologie di post all’interno dell’applicazione:
   • Post standard: contengono titolo e descrizione. Ogni post standard pu`o essere aperto
 in una sua pagina cliccandoci sopra per visualizzare i commenti o crearne di nuovi.
@@ -18,7 +18,7 @@ cui parlare con gli altri membri del gruppo.
 MB. Ogni utente registrato pu`o interagire con il post premendo sul pulsante ”buy” e
 pu`o utilizzare una chat per accordarsi con il proprietario del post. Inoltre, pu`o anche
 salvare il post nella lista di interesse.
-Ruoli all’interno dell’applicazione
+<h1>Ruoli all’interno dell’applicazione</h1><br />
 Esistono quattro tipologie di utenza:
   • Utente non registrato: egli potr`a visualizzare ogni tipologia di post ed ogni commento
 all’interno dei post standard, senza per`o poter interagire con nessuno di essi (es. non
