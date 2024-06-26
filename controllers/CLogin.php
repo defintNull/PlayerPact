@@ -157,8 +157,16 @@ class CLogin
                 $banned = $pm->load("EBannedUser", array("userId" => $val["id"]));
                 
                 if($banned != array()) {
-                    header("Location: /login/login?check=banned&date=".$banned[0]["banDate"]);
-                    exit();
+                    $banned = $banned[0];
+                    $d1 = new DateTime($banned["banDate"]);
+                    $d2 = new DateTime(date("Y-m-d"));
+
+                    if($d1 <= $d2) {
+                        $pm->delete("EBannedUser", array("id" => $banned["id"]));
+                    } else {
+                        header("Location: /login/login?check=banned&date=".$banned[0]["banDate"]);
+                        exit();
+                    }
                 }
 
                 $user = new EUser($val["id"], $val["username"], $val["password"], $val["name"], $val["surname"], $val["birthDate"], $val["email"], $val["image"]);
